@@ -37,6 +37,10 @@ public class RecursosBean {
     
     //prueba de un metodo de llamado
     
+    /**
+     * REQUERIMIENTO 01
+     */
+    
     public List<RecursosValue> darRecursos(){
         try {
             return dao.darListaRecursos();
