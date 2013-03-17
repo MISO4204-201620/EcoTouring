@@ -46,13 +46,13 @@ public class ConsultaDAO {
     public List<RecursosValue> darListaRecursos() throws SQLException{
  
 		if(dao==null)
-			throw new SQLException("Can't get data source");
+			throw new SQLException("No se puede obtener el DAO");
  
 		//get database connection
 		Connection con = dao.getConnection();
  
 		if(con==null)
-			throw new SQLException("Can't get database connection");
+			throw new SQLException("No se Pudo establecer una COnexion con la DB");
  
 		PreparedStatement ps 
 			= con.prepareStatement(
