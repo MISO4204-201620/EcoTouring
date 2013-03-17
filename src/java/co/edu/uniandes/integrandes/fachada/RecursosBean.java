@@ -26,7 +26,10 @@ import javax.faces.bean.RequestScoped;
 public class RecursosBean {
 
     private ConsultaDAO dao;
+
+   
     
+   
     /**
      * Creates a new instance of RecursosBean
      */
@@ -38,7 +41,7 @@ public class RecursosBean {
     //prueba de un metodo de llamado
     
     /**
-     * REQUERIMIENTO 01
+     * REQUERIMIENTO 01 (Prueba)
      */
     
     public List<RecursosValue> darRecursos(){
@@ -50,5 +53,7 @@ public class RecursosBean {
         }
     
     }
+    
+    
     
 }
