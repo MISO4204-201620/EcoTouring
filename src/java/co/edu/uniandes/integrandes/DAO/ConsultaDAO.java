@@ -5,6 +5,7 @@
 package co.edu.uniandes.integrandes.DAO;
 
 import co.edu.uniandes.integrandes.values.RecursosValue;
+import co.edu.uniandes.integrandes.values.ReservasValue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,12 +24,30 @@ import javax.sql.DataSource;
 public class ConsultaDAO {
     
     private DataSource dao;
+    private Connection con;
     
     public ConsultaDAO()
     {
      
         inicializar();
     
+    }
+    
+    public void  establecerConexion() throws SQLException
+    {
+       
+        
+        if(dao==null)
+		throw new SQLException("No se puede obtener el DAO");
+ 
+		//conexion DB
+	 con = dao.getConnection();
+ 
+	if(con==null){
+		throw new SQLException("No se Pudo establecer una COnexion con la DB");
+               
+        }
+ 
     }
     
     //metodo init
@@ -45,20 +64,13 @@ public class ConsultaDAO {
     
     public List<RecursosValue> darListaRecursos() throws SQLException{
  
-		if(dao==null)
-			throw new SQLException("No se puede obtener el DAO");
- 
-		//get database connection
-		Connection con = dao.getConnection();
- 
-		if(con==null)
-			throw new SQLException("No se Pudo establecer una COnexion con la DB");
- 
+                establecerConexion();
+		
 		PreparedStatement ps 
-			= con.prepareStatement(
-			   "select *  from RECURSOS_G14"); 
+			= con.prepareStatement("select *  from RECURSOS_G14 r1, tipo_recursos_g14 r2 where r1.cod_tipo_recurso=r2.id_tipo_recurso");
+			  
  
-		//get customer data from database
+		//ejecutar la consulta
 		ResultSet result =  ps.executeQuery();
  
 		List<RecursosValue> list = new ArrayList<RecursosValue>();
@@ -71,21 +83,59 @@ public class ConsultaDAO {
                         int estado = result.getInt("ESTADO_RECURSO");
                         int idRec = result.getInt("ID_RECURSO");
                         int codUnidad=result.getInt("COD_UNIDAD");
+                        String desTipo=result.getString("DESCRIPCION_TIPO");
+                        
+                        
                         
                         rec.setTipoRecurso(tipoRec);
 			rec.setDescripcionRecurso(descr);
                         rec.setEstado(estado);
-                        rec.setIdRecurso(2);
+                        rec.setIdRecurso(idRec);
                         rec.setCodUnidad(codUnidad);
-                        
-			//cust.setAddress(result.getString("nada"));
-			//cust.setCreated_date(result.getDate("nada"));
+                        rec.setDescTipo(desTipo);
+			//rec.setHoraI(result.getString("HORARIO_RECURSO_HORAI"));
+                        //rec.setHoraI(result.getString("HORARIO_RECURSO_HORAF"));
  
-			//store all data into a List
+                        
+                        
+		
 			list.add(rec);
 		}
  
 		return list;
 	}
+    
+    
+    public List<ReservasValue> darReservasUsuario(String id) throws SQLException{
+ 
+                establecerConexion();
+		
+		PreparedStatement ps 
+			= con.prepareStatement("");
+			  
+ 
+		//ejecutar la consulta
+		ResultSet result =  ps.executeQuery();
+ 
+		List<ReservasValue> list = new ArrayList<ReservasValue>();
+ 
+		while(result.next()){
+			ReservasValue rec = new ReservasValue();
+                         //aca arma el objeto value  
+			
+ 
+                        
+                        
+		
+			list.add(rec);
+		}
+ 
+		return list;
+	}
+    
+    
+    
+    
+    
     
 }

@@ -6,6 +6,7 @@ package co.edu.uniandes.integrandes.fachada;
 
 import co.edu.uniandes.integrandes.DAO.ConsultaDAO;
 import co.edu.uniandes.integrandes.values.RecursosValue;
+import co.edu.uniandes.integrandes.values.ReservasValue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 
 /**
  *
@@ -26,6 +28,7 @@ import javax.faces.bean.RequestScoped;
 public class RecursosBean {
 
     private ConsultaDAO dao;
+
 
    
     
@@ -51,9 +54,21 @@ public class RecursosBean {
             Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-    
+      
     }
     
+    public List<ReservasValue>consultarReserva(String id)
+   {
+   
+       try {
+            return dao.darReservasUsuario(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+       
+   }
+  
     
     
 }

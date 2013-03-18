@@ -18,14 +18,44 @@ public class RecursosValue {
    
     public String descripcionRecurso;
     public int estado;
-    public ArrayList HorarioDispoRecurso;
+   
+    // cada string sera Dia, Horai, Horaf
+    public ArrayList<String> HorarioDispoRecurso;
     public String nombreRecurso;
     public int numeroRecurso;
     public int tipoRecurso;
-
-    
     public int codUnidad;
     
+    public String horaI;
+    public String horaF;
+
+    public String getHoraI() {
+        return horaI;
+    }
+
+    public void setHoraI(String horaI) {
+        this.horaI = horaI;
+    }
+
+    public String getHoraF() {
+        return horaF;
+    }
+
+    public void setHoraF(String horaF) {
+        this.horaF = horaF;
+    }
+
+    
+    
+    
+     public String getDescTipo() {
+        return descTipo;
+    }
+
+    public void setDescTipo(String descTipo) {
+        this.descTipo = descTipo;
+    }
+    public String descTipo;
     
     
     public int getCodUnidad() {
