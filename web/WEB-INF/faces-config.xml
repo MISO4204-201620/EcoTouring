@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+    
+    <navigation-rule>
+	<from-view-id>index.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{controlador.consultarRecursos()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>consultaRec.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{controlador.consultarReservas()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>consultaRes.xhtml</to-view-id>
+	</navigation-case>
+        
+        <navigation-case>
+		<from-action>#{controlador.ingresarReserva()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>registroRes.xhtml</to-view-id>
+	</navigation-case>
+        
+        <navigation-case>
+		<from-action>#{controlador.ingresarPrestamo()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>registroPres.xhtml</to-view-id>
+	</navigation-case>
+        <navigation-case>
+		<from-action>#{controlador.registrarDevolucion()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>registroDev.xhtml</to-view-id>
+	</navigation-case>
+        
+    </navigation-rule>	
+    
+    <navigation-rule>
+    <from-view-id>consultaRes.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>recursos</from-action>
+		<from-outcome>recursos</from-outcome>
+		<to-view-id>consultaRes1.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
+     
+     
+     
+</faces-config>

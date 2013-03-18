@@ -15,6 +15,26 @@ public class ReservasValue {
     public String nombreResponsable;
     public int numeroRecurso ;
     public int numeroReserva;
+    public int idReserva;
+    
+    public String descripcion_recurso;
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public String getDescripcion_recurso() {
+        return descripcion_recurso;
+    }
+
+    public void setDescripcion_recurso(String descripcion_recurso) {
+        this.descripcion_recurso = descripcion_recurso;
+    }
+    
 
     
     //getters and setters

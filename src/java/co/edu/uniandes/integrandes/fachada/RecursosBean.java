@@ -28,8 +28,10 @@ import javax.faces.event.AjaxBehaviorEvent;
 public class RecursosBean {
 
     private ConsultaDAO dao;
+    
+    private String ced;
 
-
+    
    
     
    
@@ -40,6 +42,16 @@ public class RecursosBean {
         
         dao=new ConsultaDAO();
     }
+    
+    //info mang
+    public String getCed() {
+        return ced;
+    }
+
+    public void setCed(String ced) {
+        this.ced = ced;
+    }
+    
     
     //prueba de un metodo de llamado
     
@@ -57,11 +69,15 @@ public class RecursosBean {
       
     }
     
-    public List<ReservasValue>consultarReserva(String id)
+    /**
+     * REQUERIMIENTO 02 
+     */
+    
+    public List<ReservasValue>consultarReserva()
    {
    
        try {
-            return dao.darReservasUsuario(id);
+            return dao.darReservasUsuario(ced);
         } catch (SQLException ex) {
             Logger.getLogger(RecursosBean.class.getName()).log(Level.SEVERE, null, ex);
             return null;

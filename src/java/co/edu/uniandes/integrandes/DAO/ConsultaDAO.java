@@ -111,7 +111,7 @@ public class ConsultaDAO {
                 establecerConexion();
 		
 		PreparedStatement ps 
-			= con.prepareStatement("");
+			= con.prepareStatement("Select id_reserva ,id_recurso, descripcion_recurso from recursos_g14 r1 ,reservas_g14 r2 where r1.id_recurso=r2.cod_id_recurso and r2.COD_CEDULA_RESPONSABLE='" + id +"'" );
 			  
  
 		//ejecutar la consulta
@@ -120,14 +120,17 @@ public class ConsultaDAO {
 		List<ReservasValue> list = new ArrayList<ReservasValue>();
  
 		while(result.next()){
-			ReservasValue rec = new ReservasValue();
+			ReservasValue res = new ReservasValue();
                          //aca arma el objeto value  
-			
+			res.setIdReserva(result.getInt("ID_RESERVA"));
+                        res.setDescripcion_recurso(result.getString("DESCRIPCION_RECURSO"));
+                        
+                        
  
                         
                         
 		
-			list.add(rec);
+			list.add(res);
 		}
  
 		return list;
