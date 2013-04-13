@@ -7,18 +7,12 @@
     <h:head>
     	<h:outputStylesheet library="css" name="table-style.css"  />
     </h:head>
-    
- 
-        
-    
-     
-    
     <h:body >
      <h1>Registro de Reservas</h1>
      
  
      
-     <h:dataTable   value="#{recursosBean.consultarReserva()}" var="r"
+     <h:dataTable   value="#{prestamoBean.consultarReserva()}" var="r"
     			styleClass="order-table"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row"
@@ -26,26 +20,25 @@
  
     		<h:column>
     			<f:facet name="header">
-    				ID Reserva
+    				ID Prestamo
     			</f:facet>
-    				#{r.idReserva}
+    				#{r.numprestamo}
     		</h:column>
  
     		<h:column>
     			<f:facet name="header">
-    				Descripcion
+    				Hora Prestamo
 				</f:facet>
-    				#{r.descripcion_recurso}
+    				#{r.hora_prestamo}
     		</h:column>
- 
+                <h:column>
+    			<f:facet name="header">
+    				Identificador Reserva
+				</f:facet>
+    				#{r.cod_reserva}
+    		</h:column>
  			
     	</h:dataTable>
- 
-    
-     
-     
      </h:body>
-     
-        
 </html>
 

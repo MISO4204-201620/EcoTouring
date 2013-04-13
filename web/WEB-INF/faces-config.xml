@@ -27,6 +27,11 @@
 		<to-view-id>registroRes.xhtml</to-view-id>
 	</navigation-case>
         
+        
+        
+        
+        
+        
         <navigation-case>
 		<from-action>#{controlador.ingresarPrestamo()}</from-action>
 		<from-outcome>ir</from-outcome>
@@ -38,7 +43,18 @@
 		<to-view-id>registroDev.xhtml</to-view-id>
 	</navigation-case>
         
+
+        
+        <navigation-case>
+		<from-action>#{controlador.actualizarRecurso()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>rf7-ListaRecurso.xhtml</to-view-id>
+	</navigation-case>
+        
     </navigation-rule>	
+    
+    
+    
     
     <navigation-rule>
     <from-view-id>consultaRes.xhtml</from-view-id>
@@ -49,6 +65,41 @@
 	</navigation-case>
      </navigation-rule>
      
+     
+     
+     <navigation-rule>
+    <from-view-id>registroRes.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>insertareserva</from-action>
+		<from-outcome>insertareserva</from-outcome>
+		<to-view-id>requerimiento3.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule> 
+     
+    <navigation-rule>
+    
+        <from-view-id>requerimiento3.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>insertares</from-action>
+		<from-outcome>insertares</from-outcome>
+		<to-view-id>mensajereserva.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule> 
+ 
+      
+<!--      Taller 3      -->
+<!--     <navigation-rule>
+    
+        <from-view-id>requerimiento7.xhtml</from-view-id>
+         <navigation-case>
+		<from-action></from-action>
+		<from-outcome></from-outcome>
+		<to-view-id></to-view-id>
+	</navigation-case>
+        
+        
+        
+     </navigation-rule> -->
      
      
 </faces-config>

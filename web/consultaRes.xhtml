@@ -7,30 +7,17 @@
     <h:head>
     	<h:outputStylesheet library="css" name="table-style.css"  />
     </h:head>
-    
- 
-        
-    
-     
-    
-    <h:body >
-     <h1>Consulta de Reservas</h1>
-     
+    <h:body >     
      <h:form>
-         <h5>Ingrese La Cedula:</h5>
-        <h:inputText value="#{recursosBean.ced}"/>
-        <h:commandButton action="recursos" value="Entrar" />
-     </h:form>
-     <h:form>
-      
-         
-     </h:form>
-     
-     
- 
-    
-     
-     
+         <div align="center">
+             <fieldset style="width:580px;">
+                <h1>Consulta de Reservas</h1>
+                <h5>Ingrese La Cedula:</h5>
+                <h:inputText value="#{usuarioBean.ced}"/>
+                <h:commandButton action="recursos" value="Entrar" />
+            </fieldset>
+        </div>
+  </h:form>
      </h:body>
      
         

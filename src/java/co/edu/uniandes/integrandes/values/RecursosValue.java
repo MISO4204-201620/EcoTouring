@@ -24,6 +24,7 @@ public class RecursosValue {
     public String nombreRecurso;
     public int numeroRecurso;
     public int tipoRecurso;
+    public String desctipoRecurso;
     public int codUnidad;
     
     public String horaI;
@@ -119,8 +120,16 @@ public class RecursosValue {
         return tipoRecurso;
     }
 
+    // el id
     public void setTipoRecurso(int tipoRecurso) {
         this.tipoRecurso = tipoRecurso;
     }
     
+    public String getDesctipoRecurso() {
+        return desctipoRecurso;
+    }
+
+    public void setDesctipoRecurso(String desctipoRecurso) {
+        this.desctipoRecurso = desctipoRecurso;
+    }    
 }

@@ -18,6 +18,7 @@ public class ReservasValue {
     public int idReserva;
     
     public String descripcion_recurso;
+    public String nombreRecurso;  
 
     public int getIdReserva() {
         return idReserva;
@@ -78,5 +79,11 @@ public class ReservasValue {
     public void setNumeroReserva(int numeroReserva) {
         this.numeroReserva = numeroReserva;
     }
-    
+    public String getNombreRecurso() {
+        return nombreRecurso;
+    }
+
+    public void setNombreRecurso(String nombreRecurso) {
+        this.nombreRecurso = nombreRecurso;
+    }    
 }

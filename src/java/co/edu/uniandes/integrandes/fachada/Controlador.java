@@ -39,4 +39,12 @@ public class Controlador {
              return "ir";
         }
         
+         //Taller 3
+         
+          public String actualizarRecurso()
+        {
+             return "ir";
+        }
+         
+         
 }

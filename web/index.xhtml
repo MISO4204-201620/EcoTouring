@@ -15,9 +15,11 @@
     
     <h:body >
         
-          <h1>Integrandes:Sistema de Reservas</h1>
+          
      <h:form>
-         
+         <div align="center">
+         <fieldset style="width:580px;">
+             <h1>Integrandes:Sistema de Reservas</h1>
          <h:form>
              <h:commandButton action="#{controlador.consultarRecursos()}" value="Consultar Recursos" />
              <h:commandButton action="#{controlador.consultarReservas()}" value="Consultar Reservas" />
@@ -25,7 +27,14 @@
              <h:commandButton action="#{controlador.ingresarPrestamo()}" value="Registrar Prestamo" />
              <h:commandButton action="#{controlador.registrarDevolucion()}" value="Registrar Devolucion" />
              
-      </h:form>
+<!--   taller 3 -->
+             
+             <h:commandButton action="#{controlador.actualizarRecurso()}" value="Actualizar Desc. Recurso:RF7" />
+             
+             
+        </h:form>
+         </fieldset>
+         </div>
          
      </h:form>    
          

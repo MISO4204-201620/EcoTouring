@@ -81,6 +81,16 @@ public class IngresoDAO {
      }
      
      
+     //Taller 3
+     
+     //RF7
+     
+     public boolean actualizarRecurso()
+     {
+     
+         return true;
+     
+     }
      
      
 }
