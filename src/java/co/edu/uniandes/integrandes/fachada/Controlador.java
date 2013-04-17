@@ -44,6 +44,7 @@ public class Controlador {
           public String actualizarRecurso()
         {
             System.out.println("Un cambio más");
+            System.out.println("La 21 es la vencida");
             return "ir";             
         }
          //Llamadas
