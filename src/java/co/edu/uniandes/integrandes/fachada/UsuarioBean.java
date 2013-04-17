@@ -268,11 +268,6 @@ public class UsuarioBean implements Serializable{
         }
       
     }
-    
-   
-   
-   
-   
    public void testrf7()
    {
        System.out.println("ddddato: "+ tipoRecurso);
@@ -305,7 +300,7 @@ public class UsuarioBean implements Serializable{
     }
     
     //RESULTADOS FILTRO
-    public List<TipoRecursoValue> resultadoFiltro() {
+    public List<TipoRecursoValue> resultadoFiltro() throws SQLException {
 
         System.out.println("El valo del tipo de CAR que selecciono es: " + getCaracteristica());
         System.out.println("El valo del tipo de HOR que selecciono es: " + getHorario());

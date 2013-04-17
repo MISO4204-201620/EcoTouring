@@ -158,4 +158,13 @@
 	</navigation-case>
      </navigation-rule>
      
+     <navigation-rule>
+    <from-view-id>requerimiento7.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>consultaCarac</from-action>
+		<from-outcome>consultaCarac</from-outcome>
+		<to-view-id>CaractesiticasEditar.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
+     
 </faces-config>

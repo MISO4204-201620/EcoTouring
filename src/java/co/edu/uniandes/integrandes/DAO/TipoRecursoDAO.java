@@ -108,10 +108,11 @@ public class TipoRecursoDAO {
                 return list;
 	}
     
-    public List<TipoRecursoValue> buscarRecursoDisponible(String caracteristica, String horario,String fecha, String TipoRecurso){
+    public List<TipoRecursoValue> buscarRecursoDisponible(String caracteristica, String horario,String fecha, String TipoRecurso) throws SQLException{
         List<TipoRecursoValue> list = new ArrayList<TipoRecursoValue>();
         try {
             establecerConexion();
+            //Operación uno (1) de la transacción
 		PreparedStatement ps = con.prepareStatement
                         ("select DISTINCT DESCRIPCION_RECURSO, ID_RECURSO, CARACTERISTICA_TIPO, hor.HORARIO_RECURSO_HORAI ||' - '|| hor.HORARIO_RECURSO_HORAF AS HORA\n" +
                         "from recursos_g14 rec, caracteristicas_recurso_g14 car, tipo_recursos_g14 ti, horarios_recursos_g14 hor\n" +
@@ -124,8 +125,8 @@ public class TipoRecursoDAO {
                         "AND hor.HORARIO_RECURSO_HORAI ||' - '|| hor.HORARIO_RECURSO_HORAF='"+horario+"'\n" +
                         "ORDER BY DESCRIPCION_RECURSO, CARACTERISTICA_TIPO, HORA");
 		//ejecutar la consulta
-		ResultSet result =  ps.executeQuery();
-                System.out.println("ps");
+		ResultSet result =  ps.executeQuery();                
+                System.out.println(ps);                
 		while(result.next()){
 			TipoRecursoValue res = new TipoRecursoValue();
                          //aca arma el objeto value                                                  
@@ -141,9 +142,11 @@ public class TipoRecursoDAO {
                         
 			list.add(res);                        
 		}
+                con.commit();
                 } 
                 catch (SQLException ex) {
-                    Logger.getLogger(TipoRecursoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TipoRecursoDAO.class.getName()).log(Level.SEVERE, null, ex);                    
+                    con.rollback();
                     return null;
                 }
                 return list;

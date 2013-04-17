@@ -7,14 +7,18 @@ package co.edu.uniandes.integrandes.DAO;
 
 
 
+import co.edu.uniandes.integrandes.fachada.UsuarioBean;
 import co.edu.uniandes.integrandes.values.RecursosValue;
 import co.edu.uniandes.integrandes.values.ReservasValue;
+import co.edu.uniandes.integrandes.values.TipoRecursoValue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -85,12 +89,25 @@ public class IngresoDAO {
      
      //RF7
      
-     public boolean actualizarRecurso()
+     public boolean actualizarRecurso(String caracteristica, int idTipoRecurso) throws SQLException
      {
-     
-         return true;
-     
-     }
-     
-     
+               List<RecursosValue> list = new ArrayList<RecursosValue>();        
+                try{
+                establecerConexion();		
+		//Primera Operación de la Transacción Actualizar el Recurso
+                PreparedStatement ps = con.prepareStatement("update caracteristicas_recurso_g14 set caracteristica_tipo='"+caracteristica+"' where id_caracteristica="+idTipoRecurso);
+                
+                //Segunda Operación Cambiar el estado de las resercas asociadas al recurso
+                PreparedStatement ps1 = con.prepareStatement("UPDATE RESERVAS_G14 RE TI SET ESTADO_RESERVA='Cancelada' WHERE COD_ID_RECURSO="+idTipoRecurso);
+                //ejecutar la consulta
+		ps.executeQuery();
+                con.commit();
+                } 
+                catch (SQLException ex) {
+                    Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+                    con.rollback();
+                    return false;
+                }
+                return true;
+	}        
 }

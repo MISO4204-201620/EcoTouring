@@ -17,7 +17,7 @@
         <h:form id="formFiltro">
         <div align="center">
                 <fieldset style="width:580px;">
-                    Seleccione por favor la característica para filtrar:
+                    Seleccione por favor la característica para filtrar/editar:
                 <h:selectOneMenu value="#{usuarioBean.caracteristica}" id="caracteristica">
                     <f:selectItems value="#{usuarioBean.consultarCaracteristica()}" var="lista" itemLabel="#{lista.decripcion}" itemValue="#{lista.idRecurso}"/>
                 </h:selectOneMenu>                                          
