@@ -135,7 +135,7 @@ public class UsuarioBean implements Serializable{
             mensaje="Todo Terminó bien Registro Reserva";
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
-            mensaje="Algo salió mal " + ex;
+            mensaje="Algo salió mal que vaina" + ex;
         }     
         return mensaje;
      }
@@ -168,10 +168,10 @@ public class UsuarioBean implements Serializable{
    
    
    
-//   public void testrf7()
-//   {
-//       System.out.println("dato: "+ tipoRecurso);
-//   }
+   public void testrf7()
+   {
+       System.out.println("dato: "+ tipoRecurso);
+   }
    
    //mis metodos
    
