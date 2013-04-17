@@ -43,7 +43,8 @@ public class Controlador {
          
           public String actualizarRecurso()
         {
-             return "ir";
+            System.out.println("Un cambio adicional"); 
+            return "ir";             
         }
          //Llamadas
          
