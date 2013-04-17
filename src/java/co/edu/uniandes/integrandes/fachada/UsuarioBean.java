@@ -132,7 +132,7 @@ public class UsuarioBean implements Serializable{
         try {
             int recurso=Integer.parseInt(tipoRecurso);
             dao.insertarReserva(ced, recurso);
-            mensaje="Todo Terminó bien Gracias a Dios";
+            mensaje="Todo Terminó bien Registro Reserva";
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
             mensaje="Algo salió mal " + ex;
