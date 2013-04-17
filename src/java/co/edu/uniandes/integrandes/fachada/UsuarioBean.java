@@ -275,7 +275,7 @@ public class UsuarioBean implements Serializable{
    
    public void testrf7()
    {
-       System.out.println("dato: "+ getTipoRecurso());
+       System.out.println("ddddato: "+ tipoRecurso);
    }
    
    //REQUERIMIENTO 06
