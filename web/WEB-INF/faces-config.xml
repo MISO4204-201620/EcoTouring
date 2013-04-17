@@ -83,9 +83,24 @@
 		<from-action>insertares</from-action>
 		<from-outcome>insertares</from-outcome>
 		<to-view-id>mensajereserva.xhtml</to-view-id>
-	</navigation-case>
+	</navigation-case>               
      </navigation-rule> 
- 
+     
+     <navigation-rule>         
+        <navigation-case>
+		<from-action>#{controlador.hacerReserva()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>hacerReserva.xhtml</to-view-id>
+	</navigation-case>                
+     </navigation-rule>
+     <navigation-rule>
+         <navigation-case>
+		<from-action>#{controlador.dardeBaja()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>consultaRec.xhtml</to-view-id>
+	</navigation-case> 
+     </navigation-rule>
+     
       
 <!--      Taller 3      -->
      <navigation-rule>
@@ -96,10 +111,51 @@
 		<from-outcome>ir</from-outcome>
 		<to-view-id>rf7-ListaRecurso.xhtml</to-view-id>
 	</navigation-case>
-        
-        
-        
      </navigation-rule> 
      
+      <navigation-rule>
+    <from-view-id>hacerReserva.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>filtrarReserva</from-action>
+		<from-outcome>filtrarReserva</from-outcome>
+		<to-view-id>FiltroReserva.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>   
+    
+     <navigation-rule>
+    <from-view-id>hacerReserva.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>consultaCar</from-action>
+		<from-outcome>consultaCar</from-outcome>
+		<to-view-id>hacerReserva.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>   
+     
+     <navigation-rule>
+     <from-view-id>FiltroReserva.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>consultaDispo</from-action>
+		<from-outcome>consultaDispo</from-outcome>
+		<to-view-id>mensajereserva1.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
+     
+     <navigation-rule>
+     <from-view-id>mensajereserva1.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>reservar</from-action>
+		<from-outcome>reservar</from-outcome>
+		<to-view-id>mensajereserva.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
+     
+    <navigation-rule>
+    <from-view-id>index.xhtml</from-view-id>
+         <navigation-case>
+		<from-action>recursos</from-action>
+		<from-outcome>recursos</from-outcome>
+		<to-view-id>R8Parte1.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
      
 </faces-config>

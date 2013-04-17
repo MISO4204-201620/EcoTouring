@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <link type='text/css' rel='stylesheet' media='all' href='/js/Calendario/calendar-blue2.css' title='win2k-cold-1' />
+        <script type='text/javascript' src='/js/Calendario/calendar.js'></script>
+        <script type='text/javascript' src='/js/Calendario/lang/calendar-es.js'></script>
+        <script type='text/javascript' src='/js/Calendario/calendar-setup.js>'></script>
+
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formFiltro">
+        <div align="center">
+                <fieldset style="width:580px;">
+                    Seleccione por favor la característica para filtrar:
+                <h:selectOneMenu value="#{usuarioBean.caracteristica}" id="caracteristica">
+                    <f:selectItems value="#{usuarioBean.consultarCaracteristica()}" var="lista" itemLabel="#{lista.decripcion}" itemValue="#{lista.idRecurso}"/>
+                </h:selectOneMenu>                                          
+                    <br></br>
+                    <br></br>
+                    Seleccione por favor la Hora de la reserva:
+                <h:selectOneMenu value="#{usuarioBean.horario}" id="horario">
+                    <f:selectItems value="#{usuarioBean.consultarHorarios()}" var="lista" itemLabel="#{lista.decripcion}" itemValue="#{lista.decripcion}"/>
+                </h:selectOneMenu>                                          
+                    <br></br>
+                Indique la fecha de la reserva
+                <input type='text' name='fecha' readonly='true' size='13' value="dd-mm-aaaa" id="fecha1"/>
+                <img src="/img/calendario.png" id="selector" />        
+                <script type='text/javascript'>
+                    window.onload = function(){
+                    Calendar.setup({
+                    inputField     :    'f_date_a',
+                    ifFormat       :    '%Y-%m-%d',
+                    showsTime      :    true,
+                    button         :    'selector',
+                    singleClick    :    false,
+                    step           :    1
+                    })
+                    }
+            </script>                    
+                <br></br>
+                Ingrese su número de cédula
+                <h:inputText label="Fecha de la reserva" value="#{usuarioBean.ced}" id="ced"></h:inputText>
+            <h:commandButton action="consultaDispo" value="Validar Disponibilidad" />
+            </fieldset>                
+        </div>              
+        </h:form>
+    </h:body>
+</html>
+

@@ -6,39 +6,50 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
     	<h:outputStylesheet library="css" name="table-style.css"  />
+<link href="http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700" rel="stylesheet" type="text/css" />
+<link href="/css/default.css" rel="stylesheet" type="text/css" media="all" />
     </h:head>
-    
- 
-        
-    
-     
     
     <h:body >
         
           
-     <h:form>
-         <div align="center">
-         <fieldset style="width:580px;">
-             <h1>Integrandes:Sistema de Reservas</h1>
-         <h:form>
-             <h:commandButton action="#{controlador.consultarRecursos()}" value="Consultar Recursos" />
-             <h:commandButton action="#{controlador.consultarReservas()}" value="Consultar Reservas" />
-             <h:commandButton action="#{controlador.ingresarReserva()}" value="Registrar Reservas" />
-             <h:commandButton action="#{controlador.ingresarPrestamo()}" value="Registrar Prestamo" />
-             <h:commandButton action="#{controlador.registrarDevolucion()}" value="Registrar Devolucion" />
-             
-<!--   taller 3 -->
-             
-             <h:commandButton action="#{controlador.actualizarRecurso()}" value="Actualizar Desc. Recurso:RF7" />
-             
-             
-        </h:form>
-         </fieldset>
+     <h:form id="formpadre">
+         <div align="center" id="content">
+             <fieldset style="width:500px;">
+                 <table border="1" width="100%"> 
+                 <tr>
+                     <td colspan="2">
+                         <h5 >Ingrese Cedula para consultar sus notificaciones:</h5>
+                         <h:inputText value="#{usuarioBean.ced}"/>
+                         <h:commandButton action="recursos" value="Entrar" />  
+                     </td>
+                     <td colspan="3">
+                        ¿Olvido su contraseña?
+                     </td>
+                 </tr>
+                 <tr>
+                     <h1>Integrandes:Sistema de Reservas</h1>
+                   <h:form id="form2">
+                       <h:commandButton action="#{controlador.consultarRecursos()}" value="Consultar Recursos" />
+                       <h:commandButton action="#{controlador.consultarReservas()}" value="Consultar Reservas" />
+                       <h:commandButton action="#{controlador.ingresarReserva()}" value="Registrar Reservas" />
+                       <h:commandButton action="#{controlador.ingresarPrestamo()}" value="Registrar Prestamo" />
+                       <h:commandButton action="#{controlador.registrarDevolucion()}" value="Registrar Devolucion" />
+
+                       <fieldset style="width:580px;">
+                           <div align="center" id="content">
+                               <h1>Tercera Iteración</h1>
+                               <h:commandButton action="#{controlador.hacerReserva()}" value="Hacer Reserva" />
+                               <h:commandButton action="#{controlador.actualizarRecurso()}" value="Actualizar Desc. Recurso:RF7" />
+                               <h:commandButton action="#{controlador.dardeBaja()}" value="Dar de Baja Recurso" />
+                           </div>
+                       </fieldset>
+                  </h:form>       
+                 </tr>
+             </table>
+             </fieldset>
          </div>
-         
      </h:form>    
-         
-         
          
      </h:body>
      
