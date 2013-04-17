@@ -23,12 +23,18 @@ public class RecursosValue {
     public ArrayList<String> HorarioDispoRecurso;
     public String nombreRecurso;
     public int numeroRecurso;
+    
+    //estos dos son los que se usan
     public int tipoRecurso;
     public String desctipoRecurso;
+    
     public int codUnidad;
     
     public String horaI;
     public String horaF;
+    
+    
+     public String descTipo;
 
     public String getHoraI() {
         return horaI;
@@ -56,7 +62,7 @@ public class RecursosValue {
     public void setDescTipo(String descTipo) {
         this.descTipo = descTipo;
     }
-    public String descTipo;
+   
     
     
     public int getCodUnidad() {

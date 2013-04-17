@@ -259,4 +259,49 @@ public class ConsultaDAO {
 		}
 		return list;
 	} 
+        
+        public List<RecursosValue> consultarRecursosPorTipo(String tipoRec) throws SQLException{
+            
+             establecerConexion();
+		
+		PreparedStatement ps 
+			= con.prepareStatement("select *  from RECURSOS_G14 r1, tipo_recursos_g14 r2 where r1.cod_tipo_recurso=r2.id_tipo_recurso AND r1.cod_tipo_recurso='"+ tipoRec+"'");
+			  
+ 
+		//ejecutar la consulta
+		ResultSet result =  ps.executeQuery();
+ 
+		List<RecursosValue> list = new ArrayList<RecursosValue>();
+ 
+		while(result.next()){
+			RecursosValue rec = new RecursosValue();
+                         //aca arma el objeto value  
+			
+                        int idtipoRec=(int)result.getLong("COD_TIPO_RECURSO");
+                        String descr=result.getString("DESCRIPCION_RECURSO");
+                        int estado = result.getInt("ESTADO_RECURSO");
+                        int idRec = result.getInt("ID_RECURSO");
+                        int codUnidad=result.getInt("COD_UNIDAD");
+                        String desTipo=result.getString("DESCRIPCION_TIPO");
+                        
+                        rec.setTipoRecurso(idtipoRec);
+			rec.setDescripcionRecurso(descr);
+                        rec.setEstado(estado);
+                        rec.setIdRecurso(idRec);
+                        rec.setCodUnidad(codUnidad);
+                        rec.setDescTipo(desTipo);
+			//rec.setHoraI(result.getString("HORARIO_RECURSO_HORAI"));
+                        //rec.setHoraI(result.getString("HORARIO_RECURSO_HORAF"));             
+			
+                        
+                        
+                           
+			list.add(rec);
+		}
+ 
+		return list;
+            
+            
+            
+        }
 }

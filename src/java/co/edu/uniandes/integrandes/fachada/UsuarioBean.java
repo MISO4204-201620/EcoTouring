@@ -7,6 +7,7 @@ package co.edu.uniandes.integrandes.fachada;
 import co.edu.uniandes.integrandes.DAO.ConsultaDAO;
 import co.edu.uniandes.integrandes.values.RecursosValue;
 import co.edu.uniandes.integrandes.values.ReservasValue;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
 /**
@@ -24,8 +26,8 @@ import javax.faces.event.AjaxBehaviorEvent;
  * @author Coder
  */
 @ManagedBean(name="usuarioBean")
-@RequestScoped
-public class UsuarioBean {
+@SessionScoped
+public class UsuarioBean implements Serializable{
 
     private ConsultaDAO dao;
     private String ced;
@@ -142,6 +144,11 @@ public class UsuarioBean {
      * REQUERIMIENTO 07 
      */
    
+     public boolean  actualizarRecurso()
+     {
+     
+         return true;
+     }
     
     
      
@@ -158,6 +165,13 @@ public class UsuarioBean {
     }
     
    
+   
+   
+   
+   public void testrf7()
+   {
+       System.out.println("dato: "+ tipoRecurso);
+   }
    
    
 }
