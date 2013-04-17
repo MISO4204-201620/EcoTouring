@@ -173,5 +173,6 @@ public class UsuarioBean implements Serializable{
        System.out.println("dato: "+ tipoRecurso);
    }
    
+   //mis metodos
    
 }
