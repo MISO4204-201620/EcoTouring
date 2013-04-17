@@ -170,7 +170,7 @@ public class UsuarioBean implements Serializable{
    
    public void testrf7()
    {
-       System.out.println("dato: "+ tipoRecurso);
+       System.out.println("ddddato: "+ tipoRecurso);
    }
    
    //mis metodos
