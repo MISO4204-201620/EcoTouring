@@ -27,11 +27,6 @@
 		<to-view-id>registroRes.xhtml</to-view-id>
 	</navigation-case>
         
-        
-        
-        
-        
-        
         <navigation-case>
 		<from-action>#{controlador.ingresarPrestamo()}</from-action>
 		<from-outcome>ir</from-outcome>
@@ -43,8 +38,6 @@
 		<to-view-id>registroDev.xhtml</to-view-id>
 	</navigation-case>
         
-
-        
         <navigation-case>
 		<from-action>#{controlador.actualizarRecurso()}</from-action>
 		<from-outcome>ir</from-outcome>
@@ -52,9 +45,6 @@
 	</navigation-case>
         
     </navigation-rule>	
-    
-    
-    
     
     <navigation-rule>
     <from-view-id>consultaRes.xhtml</from-view-id>
@@ -64,9 +54,6 @@
 		<to-view-id>consultaRes1.xhtml</to-view-id>
 	</navigation-case>
      </navigation-rule>
-     
-     
-     
      <navigation-rule>
     <from-view-id>registroRes.xhtml</from-view-id>
          <navigation-case>
@@ -98,6 +85,13 @@
 		<from-action>#{controlador.dardeBaja()}</from-action>
 		<from-outcome>ir</from-outcome>
 		<to-view-id>consultaRec.xhtml</to-view-id>
+	</navigation-case> 
+     </navigation-rule>
+     <navigation-rule>
+         <navigation-case>
+		<from-action>#{controlador.porcentaje()}</from-action>
+		<from-outcome>ir</from-outcome>
+		<to-view-id>TiposRecursoPorcentaje.xhtml</to-view-id>
 	</navigation-case> 
      </navigation-rule>
      
@@ -167,4 +161,12 @@
 	</navigation-case>
      </navigation-rule>
      
+    <navigation-rule>
+    <from-view-id>TiposRecursoPorcentaje.xhtm</from-view-id>
+         <navigation-case>
+		<from-action>consultaPorcentaje</from-action>
+		<from-outcome>consultaPorcentaje</from-outcome>
+		<to-view-id>ResultadoReservasPorcentaje.xhtml</to-view-id>
+	</navigation-case>
+     </navigation-rule>
 </faces-config>

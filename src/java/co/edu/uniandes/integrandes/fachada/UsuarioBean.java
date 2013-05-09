@@ -40,10 +40,12 @@ public class UsuarioBean implements Serializable{
     private String tipoRecurso;
     private String idRecurso;
     private String fecha;
+    private String fecha1;
     private String horario;
     private String caracteristica;
     private HtmlDataTable tabla;
     private TipoRecursoValue tipoRecursoValue;
+    private String porcentaje;
     
     
    
@@ -305,9 +307,10 @@ public class UsuarioBean implements Serializable{
         System.out.println("El valo del tipo de CAR que selecciono es: " + getCaracteristica());
         System.out.println("El valo del tipo de HOR que selecciono es: " + getHorario());
         System.out.println("El valo del tipo de FE que selecciono es: " + getFecha());
+        System.out.println("El valo del tipo de FE que selecciono es: " + getFecha1());
         System.out.println("El valo del tipo de RECURSO que selecciono es: " + getTipoRecurso());
         //int recurso=Integer.parseInt(tipoRecurso);
-        return getTipodao().buscarRecursoDisponible(getCaracteristica(), getHorario(), getFecha(), getTipoRecurso());
+        return getTipodao().buscarRecursoDisponible(getCaracteristica(), getHorario(), getFecha(), getTipoRecurso(), getFecha1());
     }
 
     public String RegistrarReservasT3() {
@@ -327,5 +330,33 @@ public class UsuarioBean implements Serializable{
             mensaje = "Algo salió mal " + ex;
         }
         return mensaje;
+    }
+
+    /**
+     * @return the fecha1
+     */
+    public String getFecha1() {
+        return fecha1;
+    }
+
+    /**
+     * @param fecha1 the fecha1 to set
+     */
+    public void setFecha1(String fecha1) {
+        this.fecha1 = fecha1;
+    }
+
+    /**
+     * @return the porcentaje
+     */
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
+    /**
+     * @param porcentaje the porcentaje to set
+     */
+    public void setPorcentaje(String porcentaje) {
+        this.porcentaje = porcentaje;
     }
 }

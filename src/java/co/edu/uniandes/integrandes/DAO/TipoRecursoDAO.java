@@ -108,21 +108,23 @@ public class TipoRecursoDAO {
                 return list;
 	}
     
-    public List<TipoRecursoValue> buscarRecursoDisponible(String caracteristica, String horario,String fecha, String TipoRecurso) throws SQLException{
+    public List<TipoRecursoValue> buscarRecursoDisponible(String caracteristica, String horario,String fecha, String TipoRecurso, String fecha1) throws SQLException{
         List<TipoRecursoValue> list = new ArrayList<TipoRecursoValue>();
         try {
             establecerConexion();
             //Operación uno (1) de la transacción
 		PreparedStatement ps = con.prepareStatement
-                        ("select DISTINCT DESCRIPCION_RECURSO, ID_RECURSO, CARACTERISTICA_TIPO, hor.HORARIO_RECURSO_HORAI ||' - '|| hor.HORARIO_RECURSO_HORAF AS HORA\n" +
-                        "from recursos_g14 rec, caracteristicas_recurso_g14 car, tipo_recursos_g14 ti, horarios_recursos_g14 hor\n" +
-                        "where rec.cod_tipo_recurso=ti.id_tipo_recurso\n" +
-                        "AND car.cod_id_tipo =ti.id_tipo_recurso\n" +
+                        ("SELECT DISTINCT re.descripcion_recurso, re.id_recurso as numero, CARACTERISTICA_TIPO, hor.HORARIO_RECURSO_HORAI ||' - '|| hor.HORARIO_RECURSO_HORAF AS HORA\n" +
+                        "FROM recursos_g14 re, caracteristicas_recurso_g14 car,tipo_recursos_g14 ti, horarios_recursos_g14 hor\n" +
+                        "where re.cod_tipo_recurso=car.cod_id_tipo\n" +
                         "AND hor.cod_id_recurso=ti.id_tipo_recurso\n" +
                         "AND car.cod_id_tipo=hor.cod_id_recurso\n" +
                         "AND car.id_caracteristica="+caracteristica+"\n" +
                         "AND ti.id_tipo_recurso= "+TipoRecurso+"\n" +
                         "AND hor.HORARIO_RECURSO_HORAI ||' - '|| hor.HORARIO_RECURSO_HORAF='"+horario+"'\n" +
+                        "AND re.id_recurso NOT IN (SELECT DISTINCT cod_id_recurso as recurso\n" +
+                        "FROM RESERVAS_G14\n" +                        
+                        "WHERE HORARIO_RESERVA BETWEEN TO_DATE('" + fecha.trim() + "', 'DD-MM-YYYY HH:MI:SS') AND TO_DATE('"+fecha1.trim()+"','DD-MM-YYYY HH:MI:SS'))\n"+
                         "ORDER BY DESCRIPCION_RECURSO, CARACTERISTICA_TIPO, HORA");
 		//ejecutar la consulta
 		ResultSet result =  ps.executeQuery();                
@@ -133,8 +135,7 @@ public class TipoRecursoDAO {
                         String descripcion_recurso=result.getString("DESCRIPCION_RECURSO");
                         String caracteristica_recurso=result.getString("CARACTERISTICA_TIPO");
                         String hora=result.getString("HORA");
-                        int id_recurso=result.getInt("ID_RECURSO");
-                        
+                        int id_recurso=result.getInt("NUMERO");
 			res.setDecripcion(descripcion_recurso);
                         res.setCaracteristica(caracteristica_recurso);
                         res.setHorario(hora);

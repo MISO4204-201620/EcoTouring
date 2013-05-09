@@ -29,7 +29,8 @@
                 </h:selectOneMenu>                                          
                     <br></br>
                 Indique la fecha de la reserva
-                <input type='text' name='fecha' readonly='true' size='13' value="dd-mm-aaaa" id="fecha1"/>
+                <h:inputText value="#{usuarioBean.fecha}" id="fecha"/>
+                <h:inputText value="#{usuarioBean.fecha1}" id="fecha1"/>
                 <img src="/img/calendario.png" id="selector" />        
                 <script type='text/javascript'>
                     window.onload = function(){
@@ -42,10 +43,7 @@
                     step           :    1
                     })
                     }
-            </script>                    
-                <br></br>
-                Ingrese su número de cédula
-                <h:inputText label="Fecha de la reserva" value="#{usuarioBean.ced}" id="ced"></h:inputText>
+            </script>                                    
             <h:commandButton action="consultaDispo" value="Validar Disponibilidad" />
             </fieldset>                
         </div>              

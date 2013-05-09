@@ -58,4 +58,11 @@ public class Controlador {
         {
              return "ir";
         }
+        
+        //REQUERIMIENTO FUNCIONAL RF3 CUATA ITERACIÓN
+        //REQUERIMIENTO 08
+        public String porcentaje()
+        {
+             return "ir";
+        }
 }

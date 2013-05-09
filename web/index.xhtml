@@ -7,21 +7,22 @@
     <h:head>
     	<h:outputStylesheet library="css" name="table-style.css"  />
 <link href="http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700" rel="stylesheet" type="text/css" />
-<link href="/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="Integrandes.css" rel="stylesheet" type="text/css" media="all" />
+<h:outputStylesheet library="css" name="Integrandes.css"/>
     </h:head>
     
-    <h:body >
+    <h:body style="background-image: url(img01.jpgf) repeat-x repeat-y">
         
           
      <h:form id="formpadre">
          <div align="center" id="content">
              <fieldset style="width:500px;">
-                 <table border="1" width="100%"> 
+                 <table border="1" width="100%" styleClass="tablas"> 
                  <tr>
                      <td colspan="2">
                          <h5 >Ingrese Cedula para consultar sus notificaciones:</h5>
-                         <h:inputText value="#{usuarioBean.ced}"/>
-                         <h:commandButton action="recursos" value="Entrar" />  
+                         <h:inputText value="#{usuarioBean.ced}" styleClass="cajas"/>
+                         <h:commandButton action="recursos" value="Entrar" styleClass="button-style"/>  
                      </td>
                      <td colspan="3">
                         ¿Olvido su contraseña?
@@ -44,6 +45,15 @@
                                <h:commandButton action="#{controlador.dardeBaja()}" value="Dar de Baja Recurso" />
                            </div>
                        </fieldset>
+                       <fieldset style="width:580px;">
+                           <div align="center" id="content">
+                               <h1>Cuarta Iteración</h1>
+                               <h:commandButton action="#{controlador.hacerReserva()}" value="Consultar Recurso RF1" />
+                               <h:commandButton action="#{controlador.hacerReserva()}" value="Consultar Recurso RF2" />
+                               <h:commandButton action="#{controlador.porcentaje()}" value="Recursos-Reservas RF3" />
+                               <h:commandButton action="#{controlador.dardeBaja()}" value="Dar de Baja Recurso" />
+                           </div>
+                       </fieldset>
                   </h:form>       
                  </tr>
              </table>
@@ -51,8 +61,6 @@
          </div>
      </h:form>    
          
-     </h:body>
-     
-        
+    </h:body>
 </html>
 
