@@ -15,7 +15,12 @@ database:
   password: fabricasw
 
   # the JDBC URL
-  url: jdbc:oracle:thin:@54.174.139.165:1521:XE
+  url: jdbc:oracle:thin:admin/fabricasw@//54.174.139.165:1521/XE
+  
+  defaultCatalog: admin
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"
+  logValidationErrors: true  
   
   # any properties specific to your JDBC driver:
   properties:
@@ -25,9 +30,6 @@ database:
   
   # the maximum amount of time to wait on an empty pool before throwing an exception
   maxWaitForConnection: 1s
-
-  # the SQL query to run when validating a connection's liveness
-  validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"
 
   # the timeout before a connection validation queries fail
   validationQueryTimeout: 3s

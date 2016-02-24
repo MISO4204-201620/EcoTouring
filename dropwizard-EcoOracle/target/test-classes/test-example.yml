@@ -3,13 +3,15 @@ defaultName: Stranger
 
 database:
   driverClass: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:admin/fabricasw@//54.174.139.165:1521/XE
   user: admin
   password: fabricasw
-  url: jdbc:oracle:thin:@54.174.139.165:1521:XE
-  
+  defaultCatalog: admin
+  validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"
+  logValidationErrors: true  
+
   properties:
     hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
-    validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"  
 
 server:
   applicationConnectors:
