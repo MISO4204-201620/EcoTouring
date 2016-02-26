@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.helloworld.IntegrationTest" time="21.256" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_73\jre\bin"/>
+    <property name="java.vm.version" value="25.73-b02"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\alejo\Documents\GitHub\EcoTouring\dropwizard-EcoOracle"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\alejo\Documents\GitHub\EcoTouring\dropwizard-EcoOracle"/>
+    <property name="java.runtime.version" value="1.8.0_73-b02"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_73\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\alejo\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Users\alejo\sw\apache-maven-3.3.9\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_73\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Users\alejo\sw\apache-maven-3.3.9\bin;C:\Program Files\Java\jdk1.8.0_73\bin;C:\Program Files\TortoiseGit\bin;C:\Users\alejo\sw\curl-7.47.1-win64-mingw\bin;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\alejo"/>
+    <property name="user.timezone" value="America/Bogota"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="alejo"/>
+    <property name="java.class.path" value="C:\Users\alejo\sw\apache-maven-3.3.9\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="debug"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_73\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package -X"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_73"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_73\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_73\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_73\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_73\jre\classes"/>
+    <property name="sun.stderr.encoding" value="cp437"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\alejo\sw\apache-maven-3.3.9\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.stdout.encoding" value="cp437"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="com.example.helloworld.IntegrationTest" classname="com.example.helloworld.IntegrationTest" time="21.256">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at org.eclipse.jetty.io.SelectorManager.doStop(SelectorManager.java:274)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.stop(AbstractLifeCycle.java:89)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.stop(ContainerLifeCycle.java:143)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStop(ContainerLifeCycle.java:161)
+	at org.eclipse.jetty.server.AbstractConnector.doStop(AbstractConnector.java:305)
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStop(AbstractNetworkConnector.java:88)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.stop(AbstractLifeCycle.java:89)
+	at org.eclipse.jetty.server.Server.doStop(Server.java:465)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.stop(AbstractLifeCycle.java:89)
+	at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:46)
+	at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41)
+	at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76)
+	at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197)
+	at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115)
+	at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out><![CDATA[INFO  [2016-02-23 13:11:27,193] org.eclipse.jetty.util.log: Logging initialized @2137ms
+INFO  [2016-02-23 13:11:27,404] io.dropwizard.assets.AssetsBundle: Registering AssetBundle with name: assets for path /assets/*
+INFO  [2016-02-23 13:11:27,588] org.hibernate.Version: HHH000412: Hibernate Core {5.0.7.Final}
+INFO  [2016-02-23 13:11:27,589] org.hibernate.cfg.Environment: HHH000206: hibernate.properties not found
+INFO  [2016-02-23 13:11:27,590] org.hibernate.cfg.Environment: HHH000021: Bytecode provider name : javassist
+INFO  [2016-02-23 13:11:27,605] io.dropwizard.hibernate.SessionFactoryFactory: Entity classes: [com.example.helloworld.core.Person]
+INFO  [2016-02-23 13:11:27,644] org.hibernate.annotations.common.Version: HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+ERROR [2016-02-23 13:11:29,479] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) [tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:234) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:208) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:189) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:217) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:189) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:692) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+WARN  [2016-02-23 13:11:29,486] org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator: HHH000342: Could not obtain connection to query metadata : Validation Query Failed, enable logValidationErrors for more details.
+INFO  [2016-02-23 13:11:29,512] org.hibernate.dialect.Dialect: HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+INFO  [2016-02-23 13:11:29,539] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: HHH000422: Disabling contextual LOB creation as connection was null
+ERROR [2016-02-23 13:11:30,988] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) [tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.use42Api(AbstractUserTypeHibernateIntegrator.java:83) [usertype.spi-5.0.0.GA.jar:na]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.integrate(AbstractUserTypeHibernateIntegrator.java:206) [usertype.spi-5.0.0.GA.jar:na]
+! at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:278) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+ERROR [2016-02-23 13:11:32,141] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) [tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.use42Api(AbstractUserTypeHibernateIntegrator.java:83) [usertype.spi-5.0.0.GA.jar:na]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.integrate(AbstractUserTypeHibernateIntegrator.java:206) [usertype.spi-5.0.0.GA.jar:na]
+! at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:278) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+INFO  [2016-02-23 13:11:32,145] org.hibernate.type.BasicTypeRegistry: HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@4c7e978c
+ERROR [2016-02-23 13:11:33,502] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) [tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.use42Api(AbstractUserTypeHibernateIntegrator.java:83) [usertype.spi-5.0.0.GA.jar:na]
+! at org.jadira.usertype.spi.shared.AbstractUserTypeHibernateIntegrator.integrate(AbstractUserTypeHibernateIntegrator.java:206) [usertype.spi-5.0.0.GA.jar:na]
+! at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:278) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+ERROR [2016-02-23 13:11:34,977] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) [tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.internal.SessionFactoryImpl$2.obtainConnection(SessionFactoryImpl.java:653) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.IdTableHelper.executeIdTableCreationStatements(IdTableHelper.java:67) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.global.GlobalTemporaryTableBulkIdStrategy.finishPreparation(GlobalTemporaryTableBulkIdStrategy.java:125) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.global.GlobalTemporaryTableBulkIdStrategy.finishPreparation(GlobalTemporaryTableBulkIdStrategy.java:42) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.AbstractMultiTableBulkIdStrategyImpl.prepare(AbstractMultiTableBulkIdStrategyImpl.java:88) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:453) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+ERROR [2016-02-23 13:11:34,982] org.hibernate.hql.spi.id.IdTableHelper: Unable obtain JDBC Connection
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:126) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.internal.SessionFactoryImpl$2.obtainConnection(SessionFactoryImpl.java:653) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.IdTableHelper.executeIdTableCreationStatements(IdTableHelper.java:67) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.global.GlobalTemporaryTableBulkIdStrategy.finishPreparation(GlobalTemporaryTableBulkIdStrategy.java:125) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.global.GlobalTemporaryTableBulkIdStrategy.finishPreparation(GlobalTemporaryTableBulkIdStrategy.java:42) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.hql.spi.id.AbstractMultiTableBulkIdStrategyImpl.prepare(AbstractMultiTableBulkIdStrategyImpl.java:88) ~[hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:453) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708) [hibernate-core-5.0.7.Final.jar:5.0.7.Final]
+! at io.dropwizard.hibernate.SessionFactoryFactory.buildSessionFactory(SessionFactoryFactory.java:96) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:49) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryFactory.build(SessionFactoryFactory.java:39) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:56) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.HibernateBundle.run(HibernateBundle.java:14) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.setup.Bootstrap.run(Bootstrap.java:197) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport$2.run(DropwizardTestSupport.java:170) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:39) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+INFO  [2016-02-23 13:11:35,002] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator: HHH000397: Using ASTQueryTranslatorFactory
+INFO  [2016-02-23 13:11:35,197] io.dropwizard.server.ServerFactory: Starting hello-world
+                           web-scale hello world dP for the web
+                                                 88
+  .d8888b. dP.  .dP .d8888b. 88d8b.d8b. 88d888b. 88 .d8888b.
+  88ooood8  `8bd8'  88'  `88 88'`88'`88 88'  `88 88 88ooood8
+  88.  ...  .d88b.  88.  .88 88  88  88 88.  .88 88 88.  ...
+  `88888P' dP'  `dP `88888P8 dP  dP  dP 88Y888P' dP `88888P'
+                                        88
+                                        dP
+
+INFO  [2016-02-23 13:11:35,214] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2016-02-23 13:11:35,245] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2016-02-23 13:11:35,360] org.eclipse.jetty.setuid.SetUIDListener: Opened application@2c63762b{HTTP/1.1,[http/1.1]}{0.0.0.0:55736}
+INFO  [2016-02-23 13:11:35,360] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@7a9eccc4{HTTP/1.1,[http/1.1]}{0.0.0.0:55737}
+INFO  [2016-02-23 13:11:35,365] org.eclipse.jetty.server.Server: jetty-9.3.7.v20160115
+ERROR [2016-02-23 13:11:36,587] org.apache.tomcat.jdbc.pool.ConnectionPool: Unable to create initial connections of pool.
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) [tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) [tomcat-jdbc-8.0.32.jar:na]
+! at io.dropwizard.db.ManagedPooledDataSource.start(ManagedPooledDataSource.java:38) [dropwizard-db-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryManager.start(SessionFactoryManager.java:24) [dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.lifecycle.JettyManaged.doStart(JettyManaged.java:27) [dropwizard-lifecycle-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.Server.start(Server.java:405) [jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.Server.doStart(Server.java:372) [jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:43) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+INFO  [2016-02-23 13:11:36,629] org.eclipse.jetty.server.ServerConnector: Started application@2c63762b{HTTP/1.1,[http/1.1]}{0.0.0.0:55736}
+WARN  [2016-02-23 13:11:36,631] org.eclipse.jetty.util.thread.QueuedThreadPool: dw-admin{STOPPED,1<=0<=64,i=0,q=0} rejected org.eclipse.jetty.io.ManagedSelector@294aba23 id=0 keys=0 selected=0
+ERROR [2016-02-23 13:11:36,633] io.dropwizard.cli.ServerCommand: Unable to start server, shutting down
+! java.sql.SQLException: Validation Query Failed, enable logValidationErrors for more details.
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:722) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:642) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:464) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:141) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:115) ~[tomcat-jdbc-8.0.32.jar:na]
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:102) ~[tomcat-jdbc-8.0.32.jar:na]
+! at io.dropwizard.db.ManagedPooledDataSource.start(ManagedPooledDataSource.java:38) ~[dropwizard-db-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.hibernate.SessionFactoryManager.start(SessionFactoryManager.java:24) ~[dropwizard-hibernate-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.lifecycle.JettyManaged.doStart(JettyManaged.java:27) ~[dropwizard-lifecycle-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.Server.start(Server.java:405) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.server.Server.doStart(Server.java:372) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! ... 17 common frames omitted
+! Causing: org.eclipse.jetty.util.MultiException: Multiple exceptions
+! at org.eclipse.jetty.server.Server.doStart(Server.java:347) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:43) ~[dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:76) [dropwizard-core-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.startIfRequired(DropwizardTestSupport.java:197) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.DropwizardTestSupport.before(DropwizardTestSupport.java:115) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at io.dropwizard.testing.junit.DropwizardAppRule.before(DropwizardAppRule.java:128) [dropwizard-testing-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+! at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46) [junit-4.12.jar:4.12]
+! at org.junit.rules.RunRules.evaluate(RunRules.java:20) [junit-4.12.jar:4.12]
+! at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128) [surefire-junit4-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+! at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+! Suppressed: java.util.concurrent.RejectedExecutionException: org.eclipse.jetty.io.ManagedSelector@294aba23 id=0 keys=0 selected=0
+! 	at org.eclipse.jetty.util.thread.QueuedThreadPool.execute(QueuedThreadPool.java:377) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.io.SelectorManager.execute(SelectorManager.java:125) ~[jetty-io-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.io.SelectorManager.doStart(SelectorManager.java:255) ~[jetty-io-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:106) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.server.AbstractConnector.doStart(AbstractConnector.java:260) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:81) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:244) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	at org.eclipse.jetty.server.Server.doStart(Server.java:384) ~[jetty-server-9.3.7.v20160115.jar:9.3.7.v20160115]
+! 	... 17 common frames omitted
+INFO  [2016-02-23 13:11:36,645] org.eclipse.jetty.server.ServerConnector: Stopped application@2c63762b{HTTP/1.1,[http/1.1]}{0.0.0.0:0}
+]]></system-out>
+  </testcase>
+</testsuite>
