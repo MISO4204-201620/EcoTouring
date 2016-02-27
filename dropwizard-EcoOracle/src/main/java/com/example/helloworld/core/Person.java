@@ -8,10 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 @Entity
-@Table(name = "people")
+@Table(name = "PERSON")
 @NamedQueries({
         @NamedQuery(
                 name = "com.example.helloworld.core.Person.findAll",
@@ -20,13 +21,16 @@ import java.util.Objects;
 })
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name = "ID", unique = true, nullable = false, precision = 5, scale = 0)
+    @GeneratedValue(generator="InvSeq") 
+    @SequenceGenerator(name="InvSeq",sequenceName="PERSON_SEQ", allocationSize=5) 		
+	
     private long id;
 
-    @Column(name = "fullName", nullable = false)
+    @Column(name = "FULLNAME", nullable = false)
     private String fullName;
 
-    @Column(name = "jobTitle", nullable = false)
+    @Column(name = "JOBTITLE", nullable = false)
     private String jobTitle;
 
     public Person() {

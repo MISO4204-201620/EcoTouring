@@ -62,6 +62,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="getPersonSuccess" classname="com.example.helloworld.resources.PersonResourceTest" time="0.219"/>
-  <testcase name="getPersonNotFound" classname="com.example.helloworld.resources.PersonResourceTest" time="0.013"/>
+  <testcase name="getPersonSuccess" classname="com.example.helloworld.resources.PersonResourceTest" time="0.217"/>
+  <testcase name="getPersonNotFound" classname="com.example.helloworld.resources.PersonResourceTest" time="0.015"/>
 </testsuite>

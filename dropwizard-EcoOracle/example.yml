@@ -1,54 +1,33 @@
 template: Hello, %s!
-
 defaultName: ${DW_DEFAULT_NAME:-Stranger}
 
-# Database settings.
 database:
-
-  # the name of your JDBC driver
   driverClass: oracle.jdbc.driver.OracleDriver
-
-  # the username
-  user: admin
-
-  # the password
-  password: fabricasw
-
-  # the JDBC URL
   url: jdbc:oracle:thin:admin/fabricasw@//54.174.139.165:1521/XE
-  
+  user: admin
+  password: fabricasw
   defaultCatalog: admin
-  # the SQL query to run when validating a connection's liveness
   validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"
   logValidationErrors: true  
-  
-  # any properties specific to your JDBC driver:
+
   properties:
-  
-  hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
+    hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
+  #show_sql: true
   #  charSet: UTF-8
-  
   # the maximum amount of time to wait on an empty pool before throwing an exception
-  maxWaitForConnection: 1s
-
+  #maxWaitForConnection: 1s
   # the timeout before a connection validation queries fail
-  validationQueryTimeout: 3s
-
+  #validationQueryTimeout: 3s
   # the minimum number of connections to keep open
-  minSize: 8
-
+  #minSize: 8
   # the maximum number of connections to keep open
-  maxSize: 32
-
+  #maxSize: 32
   # whether or not idle connections should be validated
-  checkConnectionWhileIdle: false
-
+  #checkConnectionWhileIdle: false
   # the amount of time to sleep between runs of the idle connection validation, abandoned cleaner and idle pool resizing
-  evictionInterval: 10s
-
+  #evictionInterval: 10s
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
-  minIdleTime: 1 minute
-
+  #minIdleTime: 1 minute
 # use the simple server factory if you only want to run on a single port
 #server:
 #  type: simple
