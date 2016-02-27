@@ -5,27 +5,28 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-ecotouringweb/dist
-ecotouringweb/tmp
+ecotouringAngular/dist
+ecotouringAngular/tmp
 
 # dependencies
-ecotouringweb/node_modules
-ecotouringweb/bower_components
+ecotouringAngular/node_modules
+ecotouringAngular/bower_components
 
 # IDEs and editors
 /.idea
 
 # misc
-ecotouringweb/.sass-cache
-ecotouringweb/connect.lock
-ecotouringweb/coverage/*
-ecotouringweb/libpeerconnection.log
-ecotouringweb/npm-debug.log
+ecotouringAngular/.sass-cache
+ecotouringAngular/connect.lock
+ecotouringAngular/coverage/*
+ecotouringAngular/libpeerconnection.log
+ecotouringAngular/npm-debug.log
 npm-debug.log
-ecotouringweb/testem.log
-ecotouringweb/typings
+ecotouringAngular/testem.log
+ecotouringAngular/typings
 
 # e2e
-ecotouringweb/e2e/*.js
-ecotouringweb/e2e/*.map
+ecotouringAngular/e2e/*.js
+ecotouringAngular/e2e/*.map
 
+/ecotouringAngular2
