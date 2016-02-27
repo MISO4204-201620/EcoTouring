@@ -1,0 +1,86 @@
+/* 
+    Document   : Integrandes
+    Created on : 01-may-2013, 17:33:43
+    Author     : Gloria
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Dosis', sans-serif;
+        background-image:url ("#{resource['images:logo.png']}");
+	font-size: 15px;
+	color: #545454;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+h2 {
+	padding: 0px 0px 20px 0px;
+	font-size: 1.50em;
+}
+
+p, ol, ul {
+	margin-top: 0px;
+}
+
+p {
+	line-height: 180%;
+}
+
+strong {
+	color: #2C2C2C;
+}
+
+a {
+	color: #2C2C2C;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a img {
+	border: none;
+}
+
+img.border {
+}
+
+img.alignleft {
+	float: left;
+}
+
+img.alignright {
+	float: right;
+}
+
+img.aligncenter {
+	margin: 0px auto;
+}
+
+hr {
+	display: none;
+}
+
+.tablas{
+	font-family: verdana,sans serif,helvetica;
+	border-spacing: 3px;
+	border-style: solid;
+	border-width: thin;
+	border-color: #000000;
+}

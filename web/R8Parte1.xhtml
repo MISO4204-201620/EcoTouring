@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <h:body >
+   <div align="center">
+    <fieldset style="width:580px;">
+        <h1>Consulta de Reservas</h1>
+        <h:dataTable   value="#{usuarioBean.consultarReserva()}" var="r"
+                           styleClass="order-table"
+                           headerClass="order-table-header"
+                           rowClasses="order-table-odd-row,order-table-even-row"
+                           border="2"
+                   >
+
+                            <h:column>
+                                <f:facet name="header">
+                                    ID Reserva
+                                </f:facet>
+                                #{r.numeroReserva}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    Nombre recurso reservado
+                                </f:facet>
+                                #{r.nombreRecurso}
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">
+                                    Hora Reserva
+                                </f:facet>
+                                #{r.horaReserva}
+                            </h:column>          
+                            <h:column>
+                                <f:facet name="header">
+                                    Responsable reserva
+                                </f:facet>
+                                #{r.nombreResponsable}
+                            </h:column>
+            
+                            <h:column>
+                                <f:facet name="header">
+                                    Estado
+                                </f:facet>
+                                #{r.estado}
+                            </h:column>
+           </h:dataTable>
+            </fieldset>
+        </div>
+
+     </h:body>
+</html>
+

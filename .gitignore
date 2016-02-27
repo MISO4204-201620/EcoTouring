@@ -1,0 +1,32 @@
+/nbproject/private/
+/build/
+/dist/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+ecotouringAngular/dist
+ecotouringAngular/tmp
+
+# dependencies
+ecotouringAngular/node_modules
+ecotouringAngular/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+ecotouringAngular/.sass-cache
+ecotouringAngular/connect.lock
+ecotouringAngular/coverage/*
+ecotouringAngular/libpeerconnection.log
+ecotouringAngular/npm-debug.log
+npm-debug.log
+ecotouringAngular/testem.log
+ecotouringAngular/typings
+
+# e2e
+ecotouringAngular/e2e/*.js
+ecotouringAngular/e2e/*.map
+
+/ecotouringAngular2

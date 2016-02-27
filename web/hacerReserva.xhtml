@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    
+    <h:body >
+        <h:form id="form1">
+         <div align="center">
+                <fieldset style="width:580px;">
+                    <h1>Registro de Reservas</h1>
+                    
+                    Seleccione por favor el tipo de recurso que desea reservar, para consultar las características del mismo:
+                    
+                <h:selectOneMenu value="#{usuarioBean.tipoRecurso}" id="tipoRecurso">
+                    <f:selectItems value="#{usuarioBean.darTipoRecurso()}" var="lista" itemLabel="#{lista.desctipoRecurso}" itemValue="#{lista.tipoRecurso}"/>
+                </h:selectOneMenu>                                          
+                <br></br>                
+                <h:commandButton action="filtrarReserva" value="Agregar Filtro" />
+                <h:commandButton action="consultaCar" value="Caracteristicas" />
+                
+            </fieldset>                
+        </div>  
+       </h:form>
+     </h:body>
+</html>
+
