@@ -1,0 +1,13 @@
+.dark-mask {
+	background-image: url("http://lorempixel.com/1900/1400/nature/");
+	background-size: 100%;
+	background-position: center;
+}
+
+.checkbox{
+	padding: 5px
+}
+
+.checkbox label{
+	color: #000;
+}
