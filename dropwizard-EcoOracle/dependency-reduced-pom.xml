@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.dropwizard</groupId>
-  <artifactId>dropwizard-example</artifactId>
-  <name>Dropwizard Example Application</name>
+  <artifactId>dropwizard-EcoTouring</artifactId>
+  <name>Dropwizard EcoTouring Application</name>
   <version>1.0.0-SNAPSHOT</version>
   <prerequisites>
     <maven>3.0.0</maven>
@@ -120,7 +120,7 @@
           <transformers>
             <transformer />
             <transformer>
-              <mainClass>com.example.helloworld.HelloWorldApplication</mainClass>
+              <mainClass>uniandes.fabricasw.ecotouring.EcoTouringApplication</mainClass>
             </transformer>
           </transformers>
         </configuration>
