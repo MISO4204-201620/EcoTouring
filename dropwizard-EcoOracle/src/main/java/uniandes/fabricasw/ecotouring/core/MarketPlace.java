@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "marketplace")
 @NamedQueries({
-		@NamedQuery(name = "com.example.helloworld.core.MarketPlace.findAll", query = "SELECT mp FROM MarketPlace mp") })
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.MarketPlace.findAll", query = "SELECT mp FROM MarketPlace mp") })
 public class MarketPlace {
 
 	// TODO

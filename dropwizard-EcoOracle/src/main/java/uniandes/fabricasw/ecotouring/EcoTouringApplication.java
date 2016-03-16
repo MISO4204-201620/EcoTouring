@@ -23,11 +23,13 @@ import uniandes.fabricasw.ecotouring.cli.RenderCommand;
 import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.core.Template;
 import uniandes.fabricasw.ecotouring.core.User;
+import uniandes.fabricasw.ecotouring.db.ItemDAO;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
 import uniandes.fabricasw.ecotouring.filter.DateRequiredFeature;
 import uniandes.fabricasw.ecotouring.health.TemplateHealthCheck;
 import uniandes.fabricasw.ecotouring.resources.FilteredResource;
 import uniandes.fabricasw.ecotouring.resources.HelloWorldResource;
+import uniandes.fabricasw.ecotouring.resources.ItemResource;
 import uniandes.fabricasw.ecotouring.resources.PeopleResource;
 import uniandes.fabricasw.ecotouring.resources.PersonResource;
 import uniandes.fabricasw.ecotouring.resources.ProtectedResource;
@@ -77,6 +79,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	@Override
 	public void run(EcoTouringConfiguration configuration, Environment environment) {
 		final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
+		final ItemDAO itemDao = new ItemDAO(hibernateBundle.getSessionFactory());		
 		final Template template = configuration.buildTemplate();
 
 		environment.healthChecks().register("template", new TemplateHealthCheck(template));
@@ -92,6 +95,8 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ProtectedResource());
 		environment.jersey().register(new PeopleResource(dao));
 		environment.jersey().register(new PersonResource(dao));
+		environment.jersey().register(new PersonResource(dao));
+		environment.jersey().register(new ItemResource(itemDao));
 		environment.jersey().register(new FilteredResource());
 
 		/**

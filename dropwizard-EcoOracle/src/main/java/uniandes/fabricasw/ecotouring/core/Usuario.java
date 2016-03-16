@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-@NamedQueries({ @NamedQuery(name = "com.example.helloworld.core.Usuario.findAll", query = "SELECT u FROM Usuario u") })
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Usuario.findAll", query = "SELECT u FROM Usuario u") })
 public class Usuario {
 
 	// TODO

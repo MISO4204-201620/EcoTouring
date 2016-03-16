@@ -12,73 +12,54 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "item")
-@NamedQueries({ @NamedQuery(name = "com.example.helloworld.core.Item.findAll", query = "SELECT i FROM Item i") })
+@Table(name = "ITEM")
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i") })
 public class Item {
+
+	public Item(long id, long idCategory, long idSupplier, long idTipo, char name, long price, long score,
+			char description, long estatus) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.idSupplier = idSupplier;
+		this.idTipo = idTipo;
+		this.name = name;
+		this.price = price;
+		this.score = score;
+		this.description = description;
+		this.estatus = estatus;
+	}
 
 	@Id
 	@GeneratedValue(generator = "ItemSeq")
 	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)
 	public long id;
 
-	@Column(name = "descripcion", nullable = false)
-	public char descripcion;
-
-	@Column(name = "estado", nullable = false)
-	public long estado;
-
 	@Column(name = "idCategoria", nullable = false)
-	public long idCategoria;
+	public long idCategory;
 
 	@Column(name = "idProveedor", nullable = false)
-	public long idProveedor;
-
-	@Column(name = "nombre", nullable = false)
-	public char nombre;
-
-	@Column(name = "precio", nullable = false)
-	public long precio;
+	public long idSupplier;
 
 	@Column(name = "tipoOferta", nullable = false)
-	public long tipoOferta;
+	public long idTipo;
+
+	@Column(name = "nombre", nullable = false)
+	public char name;
+
+	@Column(name = "precio", nullable = false)
+	public long price;
+	
+	@Column(name = "calificacion", nullable = false)
+	public long score;
+	
+	@Column(name = "descripcion", nullable = false)
+	public char description;
+
+	@Column(name = "estado", nullable = false)
+	public long estatus;	
 
 	public Item() {
-	}
-
-	public Item(long id, char descripcion, long estado, long idCategoria, long idProveedor, char nombre, long precio,
-			long tipoOferta) {
-		this.id = id;
-		this.descripcion = descripcion;
-		this.estado = estado;
-		this.idCategoria = idCategoria;
-		this.idProveedor = idProveedor;
-		this.nombre = nombre;
-		this.precio = precio;
-		this.tipoOferta = tipoOferta;
-	}
-
-	public char getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(char descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public long getEstado() {
-		return estado;
-	}
-
-	public void setEstado(long estado) {
-		this.estado = estado;
-	}
-
-	public long getIdCategoria() {
-		return idCategoria;
-	}
-
-	public void setIdCategoria(long idCategoria) {
-		this.idCategoria = idCategoria;
 	}
 
 	public long getId() {
@@ -89,49 +70,114 @@ public class Item {
 		this.id = id;
 	}
 
-	public long getIdProveedor() {
-		return idProveedor;
+	public long getIdCategory() {
+		return idCategory;
 	}
 
-	public void setIdProveedor(long idProveedor) {
-		this.idProveedor = idProveedor;
+	public void setIdCategory(long idCategory) {
+		this.idCategory = idCategory;
 	}
 
-	public char getNombre() {
-		return nombre;
+	public long getIdSupplier() {
+		return idSupplier;
 	}
 
-	public void setNombre(char nombre) {
-		this.nombre = nombre;
+	public void setIdSupplier(long idSupplier) {
+		this.idSupplier = idSupplier;
 	}
 
-	public long getTipoOferta() {
-		return tipoOferta;
+	public long getIdTipo() {
+		return idTipo;
 	}
 
-	public void setTipoOferta(long tipoOferta) {
-		this.tipoOferta = tipoOferta;
+	public void setIdTipo(long idTipo) {
+		this.idTipo = idTipo;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Item)) {
-			return false;
-		}
+	public char getName() {
+		return name;
+	}
 
-		final Item that = (Item) o;
+	public void setName(char name) {
+		this.name = name;
+	}
 
-		return Objects.equals(this.id, that.id) && Objects.equals(this.descripcion, that.descripcion)
-				&& Objects.equals(this.estado, that.estado) && Objects.equals(this.idCategoria, that.idCategoria)
-				&& Objects.equals(this.idProveedor, that.idProveedor) && Objects.equals(this.nombre, that.nombre)
-				&& Objects.equals(this.precio, that.precio) && Objects.equals(this.tipoOferta, that.tipoOferta);
+	public long getPrice() {
+		return price;
+	}
+
+	public void setPrice(long price) {
+		this.price = price;
+	}
+
+	public long getScore() {
+		return score;
+	}
+
+	public void setScore(long score) {
+		this.score = score;
+	}
+
+	public char getDescription() {
+		return description;
+	}
+
+	public void setDescription(char description) {
+		this.description = description;
+	}
+
+	public long getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(long estatus) {
+		this.estatus = estatus;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, descripcion, estado, idCategoria, idProveedor, nombre, precio, tipoOferta);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + description;
+		result = prime * result + (int) (estatus ^ (estatus >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (idCategory ^ (idCategory >>> 32));
+		result = prime * result + (int) (idSupplier ^ (idSupplier >>> 32));
+		result = prime * result + (int) (idTipo ^ (idTipo >>> 32));
+		result = prime * result + name;
+		result = prime * result + (int) (price ^ (price >>> 32));
+		result = prime * result + (int) (score ^ (score >>> 32));
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (description != other.description)
+			return false;
+		if (estatus != other.estatus)
+			return false;
+		if (id != other.id)
+			return false;
+		if (idCategory != other.idCategory)
+			return false;
+		if (idSupplier != other.idSupplier)
+			return false;
+		if (idTipo != other.idTipo)
+			return false;
+		if (name != other.name)
+			return false;
+		if (price != other.price)
+			return false;
+		if (score != other.score)
+			return false;
+		return true;
+	}
+
 }

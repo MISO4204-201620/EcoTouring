@@ -23,6 +23,6 @@ public class ShoppingCartDAO extends AbstractDAO<Person> {
 	}
 
 	public List<Person> findAll() {
-		return list(namedQuery("com.example.helloworld.core.Person.findAll"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Person.findAll"));
 	}
 }

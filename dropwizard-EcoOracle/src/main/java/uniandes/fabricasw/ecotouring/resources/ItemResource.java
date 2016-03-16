@@ -9,29 +9,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import uniandes.fabricasw.ecotouring.core.Person;
-import uniandes.fabricasw.ecotouring.db.PersonDAO;
+import uniandes.fabricasw.ecotouring.core.Item;
+import uniandes.fabricasw.ecotouring.db.ItemDAO;
 
 @Path("/items")
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemResource {
 
-	private final PersonDAO peopleDAO;
+	private final ItemDAO itemDAO;
 
-	public ItemResource(PersonDAO peopleDAO) {
-		this.peopleDAO = peopleDAO;
+	public ItemResource(ItemDAO itemDAO) {
+		this.itemDAO = itemDAO;
 	}
 
 	@POST
 	@UnitOfWork
-	public Person createPerson(Person person) {
-		return peopleDAO.create(person);
+	public Item createPerson(Item item) {
+		return itemDAO.create(item);
 	}
 
 	@GET
 	@UnitOfWork
-	public List<Person> listPeople() {
-		return peopleDAO.findAll();
+	public List<Item> listItems() {
+		return itemDAO.findAll();
 	}
 
 }

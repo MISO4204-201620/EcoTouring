@@ -7,22 +7,22 @@ import org.hibernate.SessionFactory;
 import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import uniandes.fabricasw.ecotouring.core.Person;
+import uniandes.fabricasw.ecotouring.core.Item;
 
-public class ItemDAO extends AbstractDAO<Person> {
+public class ItemDAO extends AbstractDAO<Item> {
 	public ItemDAO(SessionFactory factory) {
 		super(factory);
 	}
 
-	public Optional<Person> findById(Long id) {
+	public Optional<Item> findById(Long id) {
 		return Optional.fromNullable(get(id));
 	}
 
-	public Person create(Person person) {
+	public Item create(Item person) {
 		return persist(person);
 	}
 
-	public List<Person> findAll() {
-		return list(namedQuery("com.example.helloworld.core.Person.findAll"));
+	public List<Item> findAll() {
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAll"));
 	}
 }

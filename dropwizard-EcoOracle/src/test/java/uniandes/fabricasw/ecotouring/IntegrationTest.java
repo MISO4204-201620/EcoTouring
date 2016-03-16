@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package uniandes.fabricasw.ecotouring;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

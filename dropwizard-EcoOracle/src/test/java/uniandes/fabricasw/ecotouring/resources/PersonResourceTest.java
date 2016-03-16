@@ -1,4 +1,4 @@
-package com.example.helloworld.resources;
+package uniandes.fabricasw.ecotouring.resources;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
