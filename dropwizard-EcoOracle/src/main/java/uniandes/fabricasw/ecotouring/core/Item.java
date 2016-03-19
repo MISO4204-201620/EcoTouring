@@ -27,7 +27,7 @@ public class Item {
 	@Id
 	@GeneratedValue(generator = "InvSeq")
 	@SequenceGenerator(name = "InvSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)
-	private BigDecimal id;
+	private long id;
 
 	@Column(name = "NAME", nullable = false)
 	private String name;	
@@ -71,7 +71,7 @@ public class Item {
 	public Item() {
 	}
 
-	public Item(BigDecimal id, Person person, String name, String description, BigDecimal price) {
+	public Item(long id, Person person, String name, String description, BigDecimal price) {
 		this.id = id;
 		//this.person = person;
 		this.name = name;
@@ -79,7 +79,7 @@ public class Item {
 		this.price = price;
 	}
 
-	public Item(BigDecimal id, Person person, Type type, Item item, String name, String description, BigDecimal price,
+	public Item(long id, Person person, Type type, Item item, String name, String description, BigDecimal price,
 			String urlImage, String contentType, Character status, String tags, BigDecimal score, Set itemComments,
 			Set transacctionDetails, Set items, Set itemContents, Set conversations) {
 		this.id = id;
@@ -101,11 +101,11 @@ public class Item {
 		this.conversations = conversations;*/
 	}
 
-	public BigDecimal getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -2,6 +2,7 @@ package uniandes.fabricasw.ecotouring.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -29,6 +30,12 @@ public class PersonResource {
 	@UnitOfWork
 	public Person getPerson(@PathParam("personId") LongParam personId) {
 		return findSafely(personId.get());
+	}
+	
+	@POST
+	@UnitOfWork
+	public Person createPerson(Person person) {
+		return peopleDAO.create(person);
 	}
 
 	@GET
