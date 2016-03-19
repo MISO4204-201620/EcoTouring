@@ -18,11 +18,11 @@ public class ItemDAO extends AbstractDAO<Item> {
 		return Optional.fromNullable(get(id));
 	}
 
-	public Item create(Item person) {
-		return persist(person);
+	public Item create(Item item) {
+		return persist(item);
 	}
 
 	public List<Item> findAll() {
-		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAll"));
+		return list(namedQuery("Item.findAll"));
 	}
 }

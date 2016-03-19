@@ -78,8 +78,10 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 
 	@Override
 	public void run(EcoTouringConfiguration configuration, Environment environment) {
-		final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
-		final ItemDAO itemDao = new ItemDAO(hibernateBundle.getSessionFactory());		
+		
+		// Registrar recursos
+		final PersonDAO personDao = new PersonDAO(hibernateBundle.getSessionFactory());
+		final ItemDAO itemDao     = new ItemDAO(hibernateBundle.getSessionFactory());		
 		final Template template = configuration.buildTemplate();
 
 		environment.healthChecks().register("template", new TemplateHealthCheck(template));
@@ -93,17 +95,12 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new HelloWorldResource(template));
 		environment.jersey().register(new ViewResource());
 		environment.jersey().register(new ProtectedResource());
-		environment.jersey().register(new PeopleResource(dao));
-		environment.jersey().register(new PersonResource(dao));
-		environment.jersey().register(new PersonResource(dao));
-		environment.jersey().register(new ItemResource(itemDao));
 		environment.jersey().register(new FilteredResource());
+		
+		environment.jersey().register(new PeopleResource(personDao));
+		environment.jersey().register(new PersonResource(personDao));
+		
+		environment.jersey().register(new ItemResource(itemDao));
 
-		/**
-		 * final DBIFactory factory = new DBIFactory(); final DBI jdbi =
-		 * factory.build(environment, config.getDataSourceFactory(), "oracle");
-		 * final PersonDAO dao = jdbi.onDemand(PersonDAO.class);
-		 * environment.jersey().register(new PersonResource(dao));
-		 */
 	}
 }

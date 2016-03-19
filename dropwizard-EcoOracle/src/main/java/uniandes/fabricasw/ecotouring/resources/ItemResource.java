@@ -24,7 +24,7 @@ public class ItemResource {
 
 	@POST
 	@UnitOfWork
-	public Item createPerson(Item item) {
+	public Item createItem(Item item) {
 		return itemDAO.create(item);
 	}
 

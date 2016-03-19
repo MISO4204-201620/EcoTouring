@@ -13,7 +13,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PERSON")
-@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAll", query = "SELECT p FROM Person p") })
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAll", 
+                                    query = "SELECT p FROM Person p") })
 public class Person {
 
 	@Id
@@ -23,7 +24,7 @@ public class Person {
 	@SequenceGenerator(name = "InvSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
 	private long id;
 
-	@Column(name = "FULLNAME", nullable = false)
+	@Column(name = "NAME", nullable = false)
 	private String fullName;
 
 	@Column(name = "JOBTITLE", nullable = false)
