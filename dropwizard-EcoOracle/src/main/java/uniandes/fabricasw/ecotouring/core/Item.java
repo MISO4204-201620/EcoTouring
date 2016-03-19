@@ -24,7 +24,9 @@ import uniandes.fabricasw.ecotouring.core.Type;
                                     query = "SELECT i FROM Item i") })
 public class Item {
 
-	@Column(name = "ID", nullable = false)
+	@Id
+	@GeneratedValue(generator = "InvSeq")
+	@SequenceGenerator(name = "InvSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)
 	private BigDecimal id;
 
 	@Column(name = "NAME", nullable = false)
@@ -33,14 +35,14 @@ public class Item {
 	@Column(name = "DESCRIPTION", nullable = true)
 	private String description;	
 	
-	@Column(name = "SUPPLIER", nullable = true)
-	private Person person;
+	/*@Column(name = "SUPPLIER", nullable = true)
+	private Person person;*/
 
 	@Column(name = "PRICE", nullable = true)
 	private BigDecimal price;
 	
-	@Column(name = "CATEGORY", nullable = true)
-	private Type type;
+	/*@Column(name = "CATEGORY", nullable = true)
+	private Type type;*/
 
 	@Column(name = "URL_IMAGE", nullable = true)
 	private String urlImage;	
@@ -57,21 +59,21 @@ public class Item {
 	@Column(name = "SCORE", nullable = true)
 	private BigDecimal score;	
 	
-	@Column(name = "PARENT", nullable = true)
+	/*@Column(name = "PARENT", nullable = true)
 	private Item item;	
 	
 	private Set itemComments = new HashSet(0);
 	private Set transacctionDetails = new HashSet(0);
 	private Set items = new HashSet(0);
 	private Set itemContents = new HashSet(0);
-	private Set conversations = new HashSet(0);
+	private Set conversations = new HashSet(0);*/
 
 	public Item() {
 	}
 
 	public Item(BigDecimal id, Person person, String name, String description, BigDecimal price) {
 		this.id = id;
-		this.person = person;
+		//this.person = person;
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -81,9 +83,9 @@ public class Item {
 			String urlImage, String contentType, Character status, String tags, BigDecimal score, Set itemComments,
 			Set transacctionDetails, Set items, Set itemContents, Set conversations) {
 		this.id = id;
-		this.person = person;
+		/*this.person = person;
 		this.type = type;
-		this.item = item;
+		this.item = item;*/
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -92,11 +94,11 @@ public class Item {
 		this.status = status;
 		this.tags = tags;
 		this.score = score;
-		this.itemComments = itemComments;
+		/*this.itemComments = itemComments;
 		this.transacctionDetails = transacctionDetails;
 		this.items = items;
 		this.itemContents = itemContents;
-		this.conversations = conversations;
+		this.conversations = conversations;*/
 	}
 
 	public BigDecimal getId() {
@@ -107,7 +109,7 @@ public class Item {
 		this.id = id;
 	}
 
-	public Person getPerson() {
+	/*public Person getPerson() {
 		return this.person;
 	}
 
@@ -129,7 +131,7 @@ public class Item {
 
 	public void setItem(Item item) {
 		this.item = item;
-	}
+	}*/
 
 	public String getName() {
 		return this.name;
@@ -195,7 +197,7 @@ public class Item {
 		this.score = score;
 	}
 
-	public Set getItemComments() {
+	/*public Set getItemComments() {
 		return this.itemComments;
 	}
 
@@ -233,6 +235,6 @@ public class Item {
 
 	public void setConversations(Set conversations) {
 		this.conversations = conversations;
-	}
+	}*/
 
 }

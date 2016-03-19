@@ -18,8 +18,6 @@ import javax.persistence.Table;
 public class Person {
 
 	@Id
-	// @Column(name = "ID", unique = true, nullable = false, precision = 5,
-	// scale = 0)
 	@GeneratedValue(generator = "InvSeq")
 	@SequenceGenerator(name = "InvSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
 	private long id;

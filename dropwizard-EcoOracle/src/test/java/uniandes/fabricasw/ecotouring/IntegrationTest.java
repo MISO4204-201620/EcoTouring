@@ -69,7 +69,7 @@ public class IntegrationTest {
 		assertThat(saying.getContent()).isEqualTo(RULE.getConfiguration().buildTemplate().render(name));
 	}
 
-	@Test
+	/*@Test
 	public void testPostPerson() throws Exception {
 		final Person person = new Person("DrIntegrationTest", "ChiefWizard");
 		final Person newPerson = client.target("http://localhost:" + RULE.getLocalPort() + "/people").request()
@@ -77,5 +77,5 @@ public class IntegrationTest {
 		assertThat(newPerson.getId()).isNotNull();
 		assertThat(newPerson.getFullName()).isEqualTo(person.getFullName());
 		assertThat(newPerson.getJobTitle()).isEqualTo(person.getJobTitle());
-	}
+	}*/
 }

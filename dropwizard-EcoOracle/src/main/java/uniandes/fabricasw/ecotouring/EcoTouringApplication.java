@@ -21,6 +21,7 @@ import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
 import uniandes.fabricasw.ecotouring.cli.RenderCommand;
 import uniandes.fabricasw.ecotouring.core.Person;
+import uniandes.fabricasw.ecotouring.core.Item;
 import uniandes.fabricasw.ecotouring.core.Template;
 import uniandes.fabricasw.ecotouring.core.User;
 import uniandes.fabricasw.ecotouring.db.ItemDAO;
@@ -40,13 +41,19 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		new EcoTouringApplication().run(args);
 	}
 
-	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = new HibernateBundle<EcoTouringConfiguration>(
-			Person.class) {
+	private final HibernateBundle<EcoTouringConfiguration> hibernateBundlePerson = new HibernateBundle<EcoTouringConfiguration>(Person.class) {
 		@Override
 		public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
 			return configuration.getDataSourceFactory();
 		}
 	};
+	
+	private final HibernateBundle<EcoTouringConfiguration> hibernateBundleItem = new HibernateBundle<EcoTouringConfiguration>(Item.class) {
+		@Override
+		public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
+			return configuration.getDataSourceFactory();
+		}
+	};	
 
 	@Override
 	public String getName() {
@@ -67,7 +74,8 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 				return configuration.getDataSourceFactory();
 			}
 		});
-		bootstrap.addBundle(hibernateBundle);
+		bootstrap.addBundle(hibernateBundlePerson);
+		bootstrap.addBundle(hibernateBundleItem);
 		bootstrap.addBundle(new ViewBundle<EcoTouringConfiguration>() {
 			@Override
 			public Map<String, Map<String, String>> getViewConfiguration(EcoTouringConfiguration configuration) {
@@ -80,8 +88,8 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	public void run(EcoTouringConfiguration configuration, Environment environment) {
 		
 		// Registrar recursos
-		final PersonDAO personDao = new PersonDAO(hibernateBundle.getSessionFactory());
-		final ItemDAO itemDao     = new ItemDAO(hibernateBundle.getSessionFactory());		
+		final PersonDAO personDao = new PersonDAO(hibernateBundlePerson.getSessionFactory());
+		final ItemDAO itemDao     = new ItemDAO(hibernateBundleItem.getSessionFactory());		
 		final Template template = configuration.buildTemplate();
 
 		environment.healthChecks().register("template", new TemplateHealthCheck(template));
