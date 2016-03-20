@@ -22,32 +22,31 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
-import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
-import uniandes.fabricasw.ecotouring.cli.RenderCommand;
-import uniandes.fabricasw.ecotouring.core.Person;
-import uniandes.fabricasw.ecotouring.core.Item;
-import uniandes.fabricasw.ecotouring.core.Template;
-import uniandes.fabricasw.ecotouring.core.User;
-import uniandes.fabricasw.ecotouring.db.ItemDAO;
-import uniandes.fabricasw.ecotouring.db.PersonDAO;
+import uniandes.fabricasw.ecotouring.auth.*;
+import uniandes.fabricasw.ecotouring.cli.*;
+import uniandes.fabricasw.ecotouring.core.*;
+import uniandes.fabricasw.ecotouring.db.*;
 import uniandes.fabricasw.ecotouring.filter.DateRequiredFeature;
 import uniandes.fabricasw.ecotouring.health.TemplateHealthCheck;
-import uniandes.fabricasw.ecotouring.resources.FilteredResource;
-import uniandes.fabricasw.ecotouring.resources.HelloWorldResource;
-import uniandes.fabricasw.ecotouring.resources.ItemResource;
-import uniandes.fabricasw.ecotouring.resources.ItemsResource;
-import uniandes.fabricasw.ecotouring.resources.PeopleResource;
-import uniandes.fabricasw.ecotouring.resources.PersonResource;
-import uniandes.fabricasw.ecotouring.resources.ProtectedResource;
-import uniandes.fabricasw.ecotouring.resources.ViewResource;
+import uniandes.fabricasw.ecotouring.resources.*;
 
 public class EcoTouringApplication extends Application<EcoTouringConfiguration> {
 	public static void main(String[] args) throws Exception {
 		new EcoTouringApplication().run(args);
 	}
 
-	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = new HibernateBundle<EcoTouringConfiguration>(Person.class,Item.class) {
+
+	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = 
+			//Incluir todas las clases usadas por hibernate
+			new HibernateBundle<EcoTouringConfiguration>(
+					Person.class,
+					Item.class,
+					ItemComment.class,
+					ItemContent.class,
+					Conversation.class,
+					Type.class,
+					Transaction.class,
+					TransactionDetail.class) {
 		@Override
 		public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
 			return configuration.getDataSourceFactory();
@@ -100,10 +99,17 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		
 		
 		// Registrar recursos
-		final PersonDAO personDao = new PersonDAO(hibernateBundle.getSessionFactory());
-		final ItemDAO itemDao     = new ItemDAO(hibernateBundle.getSessionFactory());		
+	    final CategoryDAO categoryDao                 = new CategoryDAO(hibernateBundle.getSessionFactory());
+		final ItemCommentDAO itemCommentDao          = new ItemCommentDAO(hibernateBundle.getSessionFactory());
+		final ItemContentDAO itemContentDao           = new ItemContentDAO(hibernateBundle.getSessionFactory());
+		final ItemConversationDAO itemConversationDao = new ItemConversationDAO(hibernateBundle.getSessionFactory());
+		final ItemDAO itemDao                         = new ItemDAO(hibernateBundle.getSessionFactory());
+		final PersonDAO personDao                     = new PersonDAO(hibernateBundle.getSessionFactory());
+		final ShoppingCartDAO suppliersDao            = new ShoppingCartDAO(hibernateBundle.getSessionFactory());
+		
 		final Template template = configuration.buildTemplate();
-
+		
+		//demo
 		environment.healthChecks().register("template", new TemplateHealthCheck(template));
 		environment.jersey().register(DateRequiredFeature.class);
 		environment.jersey()
@@ -117,10 +123,13 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ProtectedResource());
 		environment.jersey().register(new FilteredResource());
 
+		//fabricasw
+		environment.jersey().register(new CategoriesResource(categoryDao));
+		environment.jersey().register(new ItemResource(itemDao,itemContentDao,itemCommentDao,itemConversationDao));
+		environment.jersey().register(new ItemsResource(itemDao));
 		environment.jersey().register(new PersonResource(personDao));
 		environment.jersey().register(new PeopleResource(personDao));
+		//environment.jersey().register(new SuppliersResource(suppliersDao));
 		
-		environment.jersey().register(new ItemsResource(itemDao));
-		environment.jersey().register(new ItemResource(itemDao));
 	}
 }

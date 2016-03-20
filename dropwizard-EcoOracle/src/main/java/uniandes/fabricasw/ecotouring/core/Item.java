@@ -7,19 +7,21 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import uniandes.fabricasw.ecotouring.core.Item;
-import uniandes.fabricasw.ecotouring.core.Person;
-import uniandes.fabricasw.ecotouring.core.Type;
+import uniandes.fabricasw.ecotouring.core.*;
 
 @Entity
-@Table(name = "ITEM")
+@Table(name = "ITEM", schema = "ADMIN")
 @NamedQueries({ @NamedQuery(name = "Item.findAll",
                                     query = "SELECT i FROM Item i") })
 public class Item {
@@ -35,15 +37,9 @@ public class Item {
 	@Column(name = "DESCRIPTION", nullable = true)
 	private String description;	
 	
-	/*@Column(name = "SUPPLIER", nullable = true)
-	private Person person;*/
-
 	@Column(name = "PRICE", nullable = true)
 	private BigDecimal price;
 	
-	/*@Column(name = "CATEGORY", nullable = true)
-	private Type type;*/
-
 	@Column(name = "URL_IMAGE", nullable = true)
 	private String urlImage;	
 
@@ -59,15 +55,39 @@ public class Item {
 	@Column(name = "SCORE", nullable = true)
 	private BigDecimal score;	
 	
-	/*@Column(name = "PARENT", nullable = true)
-	private Item item;	
+	@ManyToOne
+    @JoinColumn(name = "SUPPLIER", nullable = true)
+	private Person person;
 	
-	private Set itemComments = new HashSet(0);
-	private Set transacctionDetails = new HashSet(0);
-	private Set items = new HashSet(0);
-	private Set itemContents = new HashSet(0);
-	private Set conversations = new HashSet(0);*/
+	/*@ManyToOne
+    @JoinColumn(name = "CATEGORY", nullable = true)
+	private Type type;	
 
+	@ManyToOne
+    @JoinColumn(name = "PARENT", nullable = true)
+	private Item item;	
+
+	@OneToMany
+	@JoinColumn(name = "ID")
+	private Set<Item> items = new HashSet<Item>();	
+	
+	@OneToMany
+	@JoinColumn(name = "ID")
+	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
+
+	@OneToMany
+	@JoinColumn(name = "ID")
+	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();	
+	
+	@OneToMany
+	@JoinColumn(name = "ID")
+	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
+	
+	@OneToMany
+	@JoinColumn(name = "ID")
+	private Set<Conversation> conversations = new HashSet<Conversation>();*/
+	
+	
 	public Item() {
 	}
 
@@ -79,13 +99,13 @@ public class Item {
 		this.price = price;
 	}
 
-	public Item(long id, Person person, Type type, Item item, String name, String description, BigDecimal price,
-			String urlImage, String contentType, Character status, String tags, BigDecimal score, Set itemComments,
-			Set transacctionDetails, Set items, Set itemContents, Set conversations) {
+	public Item(long id, Person person, /*Type type, Item item,*/ String name, String description, BigDecimal price,
+			String urlImage, String contentType, Character status, String tags, BigDecimal score/*, Set itemComments,
+			Set transactionDetails, Set items, Set itemContents, Set conversations*/) {
 		this.id = id;
-		/*this.person = person;
-		this.type = type;
-		this.item = item;*/
+		this.person = person;
+		//this.type = type;
+		//this.item = item;
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -95,7 +115,7 @@ public class Item {
 		this.tags = tags;
 		this.score = score;
 		/*this.itemComments = itemComments;
-		this.transacctionDetails = transacctionDetails;
+		this.transactionDetails = transactionDetails;
 		this.items = items;
 		this.itemContents = itemContents;
 		this.conversations = conversations;*/
@@ -109,15 +129,15 @@ public class Item {
 		this.id = id;
 	}
 
-	/*public Person getPerson() {
+	public Person getSupplier() {
 		return this.person;
 	}
 
-	public void setPerson(Person person) {
+	public void setSupplier(Person person) {
 		this.person = person;
 	}
 
-	public Type getType() {
+	/*public Type getType() {
 		return this.type;
 	}
 
@@ -205,12 +225,12 @@ public class Item {
 		this.itemComments = itemComments;
 	}
 
-	public Set getTransacctionDetails() {
-		return this.transacctionDetails;
+	public Set getTransactionDetails() {
+		return this.transactionDetails;
 	}
 
-	public void setTransacctionDetails(Set transacctionDetails) {
-		this.transacctionDetails = transacctionDetails;
+	public void setTransactionDetails(Set transactionDetail) {
+		this.transactionDetails = transactionDetail;
 	}
 
 	public Set getItems() {
