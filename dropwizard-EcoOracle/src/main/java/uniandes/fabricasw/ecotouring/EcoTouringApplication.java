@@ -1,7 +1,12 @@
 package uniandes.fabricasw.ecotouring;
 
+import java.util.EnumSet;
 import java.util.Map;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 import io.dropwizard.Application;
@@ -21,6 +26,7 @@ import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
 import uniandes.fabricasw.ecotouring.cli.RenderCommand;
 import uniandes.fabricasw.ecotouring.core.Person;
+import uniandes.fabricasw.ecotouring.core.Item;
 import uniandes.fabricasw.ecotouring.core.Template;
 import uniandes.fabricasw.ecotouring.core.User;
 import uniandes.fabricasw.ecotouring.db.ItemDAO;
@@ -30,6 +36,7 @@ import uniandes.fabricasw.ecotouring.health.TemplateHealthCheck;
 import uniandes.fabricasw.ecotouring.resources.FilteredResource;
 import uniandes.fabricasw.ecotouring.resources.HelloWorldResource;
 import uniandes.fabricasw.ecotouring.resources.ItemResource;
+import uniandes.fabricasw.ecotouring.resources.ItemsResource;
 import uniandes.fabricasw.ecotouring.resources.PeopleResource;
 import uniandes.fabricasw.ecotouring.resources.PersonResource;
 import uniandes.fabricasw.ecotouring.resources.ProtectedResource;
@@ -40,8 +47,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		new EcoTouringApplication().run(args);
 	}
 
-	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = new HibernateBundle<EcoTouringConfiguration>(
-			Person.class) {
+	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = new HibernateBundle<EcoTouringConfiguration>(Person.class,Item.class) {
 		@Override
 		public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
 			return configuration.getDataSourceFactory();
@@ -79,6 +85,20 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	@Override
 	public void run(EcoTouringConfiguration configuration, Environment environment) {
 		
+		// Cross-Origin Resource Sharing (CORS)
+		// Enable CORS headers
+	    final FilterRegistration.Dynamic cors =
+	        environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+
+	    // Configure CORS parameters
+	    cors.setInitParameter("allowedOrigins", "*");
+	    cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
+	    cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+
+	    // Add URL mapping CORS
+	    cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");		
+		
+		
 		// Registrar recursos
 		final PersonDAO personDao = new PersonDAO(hibernateBundle.getSessionFactory());
 		final ItemDAO itemDao     = new ItemDAO(hibernateBundle.getSessionFactory());		
@@ -96,11 +116,11 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ViewResource());
 		environment.jersey().register(new ProtectedResource());
 		environment.jersey().register(new FilteredResource());
-		
-		environment.jersey().register(new PeopleResource(personDao));
-		environment.jersey().register(new PersonResource(personDao));
-		
-		environment.jersey().register(new ItemResource(itemDao));
 
+		environment.jersey().register(new PersonResource(personDao));
+		environment.jersey().register(new PeopleResource(personDao));
+		
+		environment.jersey().register(new ItemsResource(itemDao));
+		environment.jersey().register(new ItemResource(itemDao));
 	}
 }

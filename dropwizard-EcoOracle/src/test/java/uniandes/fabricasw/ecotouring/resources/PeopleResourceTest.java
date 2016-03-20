@@ -29,7 +29,6 @@ import com.google.common.collect.ImmutableList;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
-import uniandes.fabricasw.ecotouring.resources.PeopleResource;
 
 /**
  * Unit tests for {@link PeopleResource}.
