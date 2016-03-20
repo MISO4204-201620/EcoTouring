@@ -14,10 +14,10 @@ import uniandes.fabricasw.ecotouring.db.PersonDAO;
 
 @Path("/suppliers")
 @Produces(MediaType.APPLICATION_JSON)
-public class SupplierResource {
+public class SuppliersResource {
 	private final PersonDAO peopleDAO;
 
-	public SupplierResource(PersonDAO peopleDAO) {
+	public SuppliersResource(PersonDAO peopleDAO) {
 		this.peopleDAO = peopleDAO;
 	}
 
