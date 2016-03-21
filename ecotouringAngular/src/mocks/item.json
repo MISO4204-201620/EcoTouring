@@ -1,0 +1,21 @@
+{
+	"data":{
+		"id" : "1",
+		"name" : "Servicio Uno",
+		"description" : "In blandit orci sed est vehicula, id efficitur eros iaculis.",
+		"price" : "400.000",
+		"type" : "individual",
+		"supplier" : {
+			"id" : "2",
+			"name" : "Eco turismo"
+			},
+		"content" : "",
+		"score" : "4.5",
+		"media" : [
+			{"id" : "1", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
+			{"id" : "2", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
+			{"id" : "3", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
+			{"id" : "4", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"}
+		]		
+	}
+}

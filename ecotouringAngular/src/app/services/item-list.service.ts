@@ -1,18 +1,19 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-import {Category} from '../interfaces/category';
+import {ItemThumb} from '../interfaces/item-thumb';
 import {Observable} from 'rxjs/Observable';
 
+
 @Injectable()
-export class CategoryListService {
+export class ItemListService {
 	constructor (private http : Http){}
 
-	//private _categoriesUrl = 'mocks/categories.json';
-	private _categoriesUrl = 'http://54.174.139.165:9999/categories';
+	//private _itemsUrl = 'mocks/items.json';
+	private _itemsUrl = 'http://54.174.139.165:9999/items';
 
-	getCategories(){
-		return this.http.get(this._categoriesUrl)
-							.map(res => <Category[]> res.json().data)
+	getItems(){
+		return this.http.get(this._itemsUrl)
+							.map(res => <ItemThumb[]> res.json())
 							.catch(this.handleError);
 	}
 

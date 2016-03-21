@@ -17,6 +17,7 @@ export class CategoryListComponent implements OnInit {
 
   errorMessage : string;
   categories : Category[];
+  selectedCategory: Category;
 
   ngOnInit(){ this.getCategories();}
 
@@ -26,5 +27,9 @@ export class CategoryListComponent implements OnInit {
   									categories => this.categories = categories,
   									error => this.errorMessage = <any>error
   								);
+  }
+
+  onSelect(category : Category) {
+  	this.selectedCategory = category;
   }
 }

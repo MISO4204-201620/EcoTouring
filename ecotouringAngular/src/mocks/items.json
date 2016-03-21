@@ -1,0 +1,15 @@
+{
+	"data" : [
+		{"id": "1", "name": "Eco Tour 1", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis.","price": "400.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 2", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "600.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 3", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "200.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 4", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "800.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 5", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "500.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 6", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "400.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 7", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "100.000", "image": "http://lorempixel.com/300/300/nature/"},
+		{"id": "1", "name": "Eco Tour 8", "description" : "In blandit orci sed est vehicula, id efficitur eros iaculis. ","price": "700.000", "image": "http://lorempixel.com/300/300/nature/"}
+	],
+	"page" : "1",
+	"total" : "100"
+
+}
