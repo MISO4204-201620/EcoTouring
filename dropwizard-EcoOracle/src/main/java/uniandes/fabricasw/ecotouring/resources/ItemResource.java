@@ -82,7 +82,7 @@ public class ItemResource {
 	private Item findSafely(long itemId) {
 		final Optional<Item> item = itemDAO.findById(itemId);
 		if (!item.isPresent()) {
-			throw new NotFoundException("No such item.");
+			throw new NotFoundException("No existe el identificador del item");
 		}
 		return item.get();
 	}
