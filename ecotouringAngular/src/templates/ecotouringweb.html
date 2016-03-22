@@ -55,10 +55,14 @@ _________________________________________________________ -->
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown active">
-                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown">Home </a>
+                        </li>
+                        <li class="dropdown active">
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Proveedor <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="index.html">Option 1: Default Page</a>
-                                </li>
+                                <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
+                                <li><a href="index.html">Crear paquete</a></li>
+                                <li><a href="index.html">Mis productos</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -78,9 +82,7 @@ _________________________________________________________ -->
 
 </header>
 <div style="min-height: 200px">
-<router-outlet>
-
-</router-outlet>
+    <router-outlet></router-outlet>
 </div>
 <!-- *** FOOTER ***
 _________________________________________________________ -->

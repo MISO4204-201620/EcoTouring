@@ -1,5 +1,10 @@
+<div class="panel-heading">
+    <h3 class="panel-title">Categorias</h3>
+</div>
+<div class="panel-body">
 <ul class="nav nav-pills nav-stacked category-menu">
-    <li *ngFor="#category of categories" class="active">
-        <a href="shop-category.html">{{ category.name }} <span class="badge pull-right">{{ category.total }}</span></a>
+    <li *ngFor="#category of categories" [class.active]="category === selectedCategory" (click)="onSelect(category)">
+        <a [routerLink]="['/Categories', 'Items', {category : category.id}]" >{{ category.name }} <span class="badge pull-right">{{ category.total }}</span></a>
     </li>
 </ul>
+</div>

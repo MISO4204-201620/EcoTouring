@@ -10,59 +10,19 @@
 
 
             <div class="row portfolio">
-                <div class="col-sm-4">
+                <div *ngFor="#category of categories"  class="col-sm-4">
                     <div class="box-image">
                         <div class="image">
                             <img src="http://lorempixel.com/360/270/nature/1" alt="" class="img-responsive">
                         </div>
                         <div class="bg"></div>
                         <div class="name">
-                            <h3><a href="portfolio-detail.html">Visitas Ecológicas</a></h3> 
+                            <h3><a href="portfolio-detail.html">{{ category.name }}</a></h3> 
                         </div>
                         <div class="text">
-                            <p class="hidden-sm">Los mejores luegares para realizar tu visita ecológica.</p>
+                            <p class="hidden-sm">Los mejores lugares para realizar tu visita ecológica.</p>
                             <p class="buttons">
-                                <a [routerLink]="['Categories']" class="btn btn-template-transparent-primary">Buscar</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.item -->
-
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="box-image">
-                        <div class="image">
-                            <img src="http://lorempixel.com/360/270/nature/2" alt="" class="img-responsive">
-                        </div>
-                        <div class="bg"></div>
-                        <div class="name">
-                            <h3><a href="portfolio-detail.html">Hospedajes</a></h3> 
-                        </div>
-                        <div class="text">
-                            <p class="hidden-sm">Los mejores hospedajes en los mejores lugares ecológicos.</p>
-                            <p class="buttons">
-                                <a href="portfolio-detail.html" class="btn btn-template-transparent-primary">Buscar</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.item -->
-
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="box-image">
-                        <div class="image">
-                            <img src="http://lorempixel.com/360/270/nature/3" alt="" class="img-responsive">
-                        </div>
-                        <div class="bg"></div>
-                        <div class="name">
-                            <h3><a href="portfolio-detail.html">Viajes Ecológicos</a></h3> 
-                        </div>
-                        <div class="text">
-                            <p class="hidden-sm">Los mejores planes de viajes a los mejores lugares ecólógicos</p>
-                            <p class="buttons">
-                                <a href="portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                                <a [routerLink]="['/Categories', 'Items', {category : category.id}]" class="btn btn-template-transparent-primary">Buscar</a>
                             </p>
                         </div>
                     </div>
@@ -76,7 +36,7 @@
             <div class="see-more">
                 <p>Quieres buscar más?</p>
 
-                <a href="portfolio-4.html" class="btn btn-template-main">Buscar en nuestro catálogo</a>
+                <a [routerLink]="['/Categories', 'Items', {category : ''}]" class="btn btn-template-main">Buscar en nuestro catálogo</a>
             </div>
 
         </div>
