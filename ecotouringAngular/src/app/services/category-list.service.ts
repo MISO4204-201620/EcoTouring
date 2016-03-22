@@ -7,8 +7,8 @@ import {Observable} from 'rxjs/Observable';
 export class CategoryListService {
 	constructor (private http : Http){}
 
-	//private _categoriesUrl = 'mocks/categories.json';
-	private _categoriesUrl = 'http://54.174.139.165:9999/categories';
+	private _categoriesUrl = 'mocks/categories.json';
+	//private _categoriesUrl = 'http://54.174.139.165:9999/categories';
 
 	getCategories(){
 		return this.http.get(this._categoriesUrl)

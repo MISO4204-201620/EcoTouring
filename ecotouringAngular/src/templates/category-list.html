@@ -4,7 +4,7 @@
 <div class="panel-body">
 <ul class="nav nav-pills nav-stacked category-menu">
     <li *ngFor="#category of categories" [class.active]="category === selectedCategory" (click)="onSelect(category)">
-        <a >{{ category.name }} <span class="badge pull-right">{{ category.total }}</span></a>
+        <a [routerLink]="['/Categories', 'Items', {category : category.id}]" >{{ category.name }} <span class="badge pull-right">{{ category.total }}</span></a>
     </li>
 </ul>
 </div>

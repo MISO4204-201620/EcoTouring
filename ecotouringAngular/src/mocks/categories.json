@@ -1,9 +1,9 @@
 {
 	"data" : [
 		{"id": "1", "name": "Viajes", "total": "400"},
-		{"id": "1", "name": "Hospedajes", "total": "300"},
-		{"id": "1", "name": "Restaurantes", "total": "100"},
-		{"id": "1", "name": "Toures Ecológicos", "total": "350"},
-		{"id": "1", "name": "Tiendas Artesanales", "total": "250"}
+		{"id": "2", "name": "Hospedajes", "total": "300"},
+		{"id": "3", "name": "Restaurantes", "total": "100"},
+		{"id": "4", "name": "Toures Ecológicos", "total": "350"},
+		{"id": "5", "name": "Tiendas Artesanales", "total": "250"}
 	]
 }

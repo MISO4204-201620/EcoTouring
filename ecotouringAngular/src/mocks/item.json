@@ -12,10 +12,10 @@
 		"content" : "",
 		"score" : "4.5",
 		"media" : [
-			{"id" : "1", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
-			{"id" : "2", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
-			{"id" : "3", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"},
-			{"id" : "4", "contentType" : "image", "url" : "http://lorempixel.com/300/300/nature/"}
+			{"id" : "1", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},
+			{"id" : "2", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},
+			{"id" : "3", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},
+			{"id" : "4", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"}
 		]		
 	}
 }

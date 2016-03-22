@@ -31,7 +31,7 @@ import {ItemApp} from '../components/products/item';
     component: ItemListComponent
   },
   { 
-    path: '/:category/item/...', 
+    path: '/item/...', 
     name: 'Item',
     component: ItemApp
   }

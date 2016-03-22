@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {Location, RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 import {Category} from '../interfaces/category';
 import {CategoryListService} from '../services/category-list.service';
 
@@ -8,7 +8,7 @@ import {CategoryListService} from '../services/category-list.service';
   providers: [],
   templateUrl: 'templates/category-list.html',
   styleUrls :[],
-  directives: [],
+  directives: [ROUTER_DIRECTIVES],
   pipes: []
 })
 

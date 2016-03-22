@@ -5,17 +5,17 @@
     <div class="col-md-4 col-sm-6" *ngFor="#item of items">
         <div class="product">
             <div class="image">
-                <a href="shop-detail.html">
+                <a [routerLink]="['/Categories', 'Item','ItemDetail', {item : item.id}]" >
                     <img src="{{item.urlImage}}" alt="" class="img-responsive image1">
                 </a>
             </div>
             <!-- /.image -->
             <div class="text">
-                <h3><a href="shop-detail.html">{{ item.name }}</a></h3>
+                <h3><a [routerLink]="['/Categories', 'Item','ItemDetail', {item : item.id}]">{{ item.name }}</a></h3>
                 <h4>{{ item.description }}</h4>
                 <p class="price">${{ item.price }}</p>
                 <p class="buttons">
-                    <a href="shop-detail.html" class="btn btn-default">Ver Detalle</a>
+                    <a [routerLink]="['/Categories', 'Item','ItemDetail', {item : item.id}]" class="btn btn-default">Ver Detalle</a>
                     <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </p>
             </div>
@@ -38,3 +38,27 @@
     </div>
 </div>
 <!-- /.products -->
+
+<div class="pages">
+
+    <p class="loadMore">
+        <a href="#" class="btn btn-template-main"><i class="fa fa-chevron-down"></i> Load more</a>
+    </p>
+
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a>
+        </li>
+        <li class="active"><a href="#">1</a>
+        </li>
+        <li><a href="#">2</a>
+        </li>
+        <li><a href="#">3</a>
+        </li>
+        <li><a href="#">4</a>
+        </li>
+        <li><a href="#">5</a>
+        </li>
+        <li><a href="#">&raquo;</a>
+        </li>
+    </ul>
+</div>

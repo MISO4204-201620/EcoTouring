@@ -1,14 +1,15 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
+import {Router,RouteParams,ROUTER_PROVIDERS,ROUTER_DIRECTIVES} from 'angular2/router';
 import {ItemThumb} from '../../interfaces/item-thumb';
 import {ItemListService} from '../../services/item-list.service';
+import {CategoriesApp} from '../../categories/categories';
 
 @Component({
   selector: 'item-list',
   providers: [ItemListService],
   templateUrl: 'templates/item-list.html',
   styleUrls :[],
-  directives: [],
+  directives: [ROUTER_DIRECTIVES],
   pipes: []
 })
 
