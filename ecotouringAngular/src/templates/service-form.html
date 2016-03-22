@@ -1,0 +1,30 @@
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Crear servicio</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="/">Inicio</a>
+                    </li>
+                    <li>Crear servicio</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+	<div class="container">
+		<div class="row">
+			<button type="button" class="btn btn-lg btn-default" [class.btn-info]="activeForm === 1" (click)="onSelect(1)">Servicio de Alojamiento</button>
+			<button type="button" class="btn btn-lg btn-default" [class.btn-info]="activeForm === 2" (click)="onSelect(2)">Servicio de Transporte</button>
+			<button type="button" class="btn btn-lg btn-default" [class.btn-info]="activeForm === 3" (click)="onSelect(3)">Servicio de Alimentación</button>
+			<button type="button" class="btn btn-lg btn-default" [class.btn-info]="activeForm === 4" (click)="onSelect(4)">Servicio de Paseo ecológico</button>
+
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>

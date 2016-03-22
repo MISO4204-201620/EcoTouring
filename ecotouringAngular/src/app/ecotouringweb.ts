@@ -42,7 +42,7 @@ import {CategoryListService} from './services/category-list.service';
     name: 'ShoppingCart'
   },
   {
-    path: '/create-service',
+    path: '/create-service/...',
     component: ServiceFormComponent,
     name: 'ServiceForm'
   }
