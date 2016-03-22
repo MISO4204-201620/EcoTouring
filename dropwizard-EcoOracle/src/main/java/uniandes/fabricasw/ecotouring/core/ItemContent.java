@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -15,6 +17,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ITEM_CONTENT", schema = "ADMIN")
+
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.ItemContent.findByItem",
+query = "SELECT i FROM ItemContent i WHERE item = 1") })
+
 public class ItemContent {
 
 	private BigDecimal id;

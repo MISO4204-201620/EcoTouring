@@ -23,7 +23,6 @@ public class ItemContentDAO extends AbstractDAO<ItemContent> {
 	}
 
 	public List<ItemContent> findItemContentByItemId(Long id) {
-		return null;
-		//return Optional.fromNullable(get(id));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.ItemContent.findByItem"));
 	}	
 }

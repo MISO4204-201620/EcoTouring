@@ -24,7 +24,12 @@ import uniandes.fabricasw.ecotouring.core.*;
 @Table(name = "ITEM", schema = "ADMIN")
 @NamedQueries({ @NamedQuery(name = "Item.findAll",
                                     query = "SELECT i FROM Item i") })
-public class Item {
+public class Item implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(generator = "InvSeq")
@@ -59,33 +64,28 @@ public class Item {
     @JoinColumn(name = "SUPPLIER", nullable = true)
 	private Person person;
 	
-	/*@ManyToOne
-    @JoinColumn(name = "CATEGORY", nullable = true)
-	private Type type;	
+	@ManyToOne
+    @JoinColumn(name = "CATEGORY", referencedColumnName = "ID", nullable = true)	
+	private Type category;	
 
 	@ManyToOne
     @JoinColumn(name = "PARENT", nullable = true)
 	private Item item;	
 
-	@OneToMany
-	@JoinColumn(name = "ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private Set<Item> items = new HashSet<Item>();	
 	
-	@OneToMany
-	@JoinColumn(name = "ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
 
-	@OneToMany
-	@JoinColumn(name = "ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();	
 	
-	@OneToMany
-	@JoinColumn(name = "ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
 	
-	@OneToMany
-	@JoinColumn(name = "ID")
-	private Set<Conversation> conversations = new HashSet<Conversation>();*/
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private Set<Conversation> conversations = new HashSet<Conversation>();
 	
 	
 	public Item() {
@@ -93,19 +93,19 @@ public class Item {
 
 	public Item(long id, Person person, String name, String description, BigDecimal price) {
 		this.id = id;
-		//this.person = person;
+		this.person = person;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 	}
 
-	public Item(long id, Person person, /*Type type, Item item,*/ String name, String description, BigDecimal price,
-			String urlImage, String contentType, Character status, String tags, BigDecimal score/*, Set itemComments,
-			Set transactionDetails, Set items, Set itemContents, Set conversations*/) {
+	public Item(long id, Person person, Type category, Item item, String name, String description, BigDecimal price,
+			String urlImage, String contentType, Character status, String tags, BigDecimal score, Set itemComments,
+			Set transactionDetails, Set items, Set itemContents, Set conversations) {
 		this.id = id;
 		this.person = person;
-		//this.type = type;
-		//this.item = item;
+		this.category = category;
+		this.item = item;
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -114,11 +114,11 @@ public class Item {
 		this.status = status;
 		this.tags = tags;
 		this.score = score;
-		/*this.itemComments = itemComments;
+		this.itemComments = itemComments;
 		this.transactionDetails = transactionDetails;
 		this.items = items;
 		this.itemContents = itemContents;
-		this.conversations = conversations;*/
+		this.conversations = conversations;
 	}
 
 	public long getId() {
@@ -137,12 +137,12 @@ public class Item {
 		this.person = person;
 	}
 
-	/*public Type getType() {
-		return this.type;
+	public Type getCategory() {
+		return this.category;
 	}
 
-	public void setType(Type type) {
-		this.type = type;
+	public void setCategory(Type category) {
+		this.category = category;
 	}
 
 	public Item getItem() {
@@ -151,7 +151,7 @@ public class Item {
 
 	public void setItem(Item item) {
 		this.item = item;
-	}*/
+	}
 
 	public String getName() {
 		return this.name;
@@ -217,7 +217,7 @@ public class Item {
 		this.score = score;
 	}
 
-	/*public Set getItemComments() {
+	public Set getItemComments() {
 		return this.itemComments;
 	}
 
@@ -255,6 +255,6 @@ public class Item {
 
 	public void setConversations(Set conversations) {
 		this.conversations = conversations;
-	}*/
+	}
 
 }

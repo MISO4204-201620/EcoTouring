@@ -23,8 +23,7 @@ public class ItemCommentDAO extends AbstractDAO<ItemComment> {
 	}
 
 	public List<ItemComment> findItemCommentsByItemId(Long id) {
-		return null;
-		//return Optional.fromNullable(get(id));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.ItemComment.findByItem"));
 	}
 	
 }

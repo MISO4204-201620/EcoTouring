@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +23,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "CONVERSATION", schema = "ADMIN")
+
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Conversation.findByItem",
+query = "SELECT i FROM Conversation i WHERE item = 1") })
+
 public class Conversation {
 
 	private BigDecimal id;

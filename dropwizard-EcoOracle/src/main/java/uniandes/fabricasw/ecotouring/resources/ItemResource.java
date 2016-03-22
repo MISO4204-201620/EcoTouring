@@ -45,32 +45,32 @@ public class ItemResource {
 
 	@GET
 	@UnitOfWork
-	public Item getItem(@PathParam("itemId") LongParam itemId) {
-		return findSafely(itemId.get());
+	public Item getItem(@PathParam("itemId") Long itemId) {
+		return findSafely(itemId);
 	}
 	
 	@GET
 	@Path("/conversations")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Conversation> listConversations(@PathParam("itemId") LongParam personId) {
-		return itemConversationDAO.findConversationByItemId(personId.get());
+	public List<Conversation> listConversations(@PathParam("itemId") Long itemId) {
+		return itemConversationDAO.findConversationByItemId(itemId);
 	}
 	
 	@GET
 	@Path("/scores")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ItemComment> listScores(@PathParam("itemId") LongParam personId) {
-		return itemCommentDAO.findItemCommentsByItemId(personId.get());
+	public List<ItemComment> listScores(@PathParam("itemId") Long itemId) {
+		return itemCommentDAO.findItemCommentsByItemId(itemId);
 	}	
 	
 	@GET
 	@Path("/content")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ItemContent> listContent(@PathParam("itemId") LongParam personId) {
-		return itemContentDAO.findItemContentByItemId(personId.get());
+	public List<ItemContent> listContent(@PathParam("itemId") Long itemId) {
+		return itemContentDAO.findItemContentByItemId(itemId);
 	}	
 	
 	@POST
