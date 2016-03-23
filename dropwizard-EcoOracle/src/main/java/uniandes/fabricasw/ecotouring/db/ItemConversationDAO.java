@@ -23,7 +23,6 @@ public class ItemConversationDAO extends AbstractDAO<Conversation> {
 	}
 
 	public List<Conversation> findConversationByItemId(Long id) {
-		return null;
-		//return Optional.fromNullable(get(id));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Conversation.findByItem"));
 	}	
 }

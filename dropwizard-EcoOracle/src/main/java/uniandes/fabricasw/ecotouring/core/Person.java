@@ -25,8 +25,12 @@ import javax.persistence.Table;
 @NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAll", 
 query = "SELECT p FROM Person p") })
 
-public class Person {
+public class Person implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private Person person;
 	private Type typeByRole;
