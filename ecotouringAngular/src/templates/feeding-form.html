@@ -1,17 +1,104 @@
-<form>
+<form (ngSubmit)="onSubmit()" #feedingForm="ngForm">
+<br/>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="firstname">Firstname</label>
-            <input type="text" class="form-control" id="firstname">
+            <label for="name">Nombre del restaurante:</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Nombre vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Precio:</label>
+            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price" ngControl="price" #price="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="price.valid || price.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Precio vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="date">Fecha:</label>
+            <input type="date" class="form-control" id="date" required [(ngModel)]="model.date" ngControl="date" #date="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="date.valid || date.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Fecha vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="people">Cantidad:</label>
+            <input type="number" class="form-control" id="people" required [(ngModel)]="model.people" ngControl="people" #people="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="people.valid || people.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Cantidad vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country">País:</label>
+            <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" ngControl="country" #country="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="country.valid || country.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                País vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city">Ciudad:</label>
+            <input type="text" class="form-control" id="city" required [(ngModel)]="model.city" ngControl="city" #city="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="city.valid || city.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Ciudad vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+	        <div class="checkbox">
+			  <label>
+			    <input type="checkbox" value="" required [(ngModel)]="model.options" ngControl="options" #options="ngForm">
+			    Desayuno
+			  </label>
+			</div>
+			<div class="checkbox">
+			  <label>
+			    <input type="checkbox" value="" required [(ngModel)]="model.options" ngControl="options" >
+			    Almuerzo
+			  </label>
+			</div>
+			<div class="checkbox">
+			  <label>
+			    <input type="checkbox" value="" required [(ngModel)]="model.options" ngControl="options" >
+			    Comida
+			  </label>
+			</div>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="options.valid || options.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Nombre vacío o inválido.
+            </div>
+		</div>
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" class="form-control" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Nombre vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido:</label>
+            <textarea id="content" class="form-control editor" [(ngModel)]="model.content" [(ngModel)]="model.content"></textarea>
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-template-main" [disabled]="!feedingForm.form.valid"><i class="fa fa-floppy-o"></i> Crear Servicio</button>
         </div>
     </div>
-    
-
-    <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Send message</button>
-
-    </div>
+    <br/>
 </div>
 <!-- /.row -->
 </form>

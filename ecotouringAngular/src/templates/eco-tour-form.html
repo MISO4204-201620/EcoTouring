@@ -1,17 +1,49 @@
-<form>
+<form (ngSubmit)="onSubmit()" #ecoTourForm="ngForm">
+<br/>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="firstname">Firstname</label>
-            <input type="text" class="form-control" id="firstname">
+            <label for="name">Nombre del eco plan:</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Nombre vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Precio:</label>
+            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price">
+        </div>
+        <div class="form-group">
+            <label for="date">Fecha:</label>
+            <input type="date" class="form-control" id="date" required [(ngModel)]="model.date">
+        </div>
+        <div class="form-group">
+            <label for="people">Cantidad de personas:</label>
+            <input type="number" class="form-control" id="people" required [(ngModel)]="model.people">
+        </div>
+        <div class="form-group">
+            <label for="country">País:</label>
+            <input type="text" class="form-control" id="country" required [(ngModel)]="model.country">
+        </div>
+        <div class="form-group">
+            <label for="city">Ciudad:</label>
+            <input type="text" class="form-control" id="city" required [(ngModel)]="model.city">
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" class="form-control" required [(ngModel)]="model.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido:</label>
+            <textarea id="content" class="form-control editor" [(ngModel)]="model.content" [(ngModel)]="model.content"></textarea>
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-template-main" [disabled]="!ecoTourForm.form.valid"><i class="fa fa-floppy-o"></i> Crear Servicio</button>
         </div>
     </div>
-    
-
-    <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Send message</button>
-
-    </div>
+    <br/>
 </div>
 <!-- /.row -->
 </form>

@@ -1,17 +1,120 @@
-<form>
+<form (ngSubmit)="onSubmit()" #transportForm="ngForm">
+<br/>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="firstname">Firstname</label>
-            <input type="text" class="form-control" id="firstname">
+            <label for="name">Nombre del servicio:</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Nombre vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+        	<label for="name">Tipo de transporte:</label>
+        	<select class="form-control" required [(ngModel)]="model.type" ngControl="type" #type="ngForm">
+			  <option value="1">Avión</option>
+			  <option value="2">Bus</option>
+			  <option value="3">Barco</option>
+			  <option value="4">Taxi</option>
+			</select>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="type.valid || type.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Tipo vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Precio:</label>
+            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price" ngControl="price" #price="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="price.valid || price.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Precio vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateStart">Fecha Llegada:</label>
+            <input type="date" class="form-control" id="dateStart" required [(ngModel)]="model.dateStart" ngControl="dateStart" #dateStart="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="dateStart.valid || dateStart.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Fecha vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateEnd">Fecha Salida:</label>
+            <input type="date" class="form-control" id="dateEnd" required [(ngModel)]="model.dateEnd" ngControl="dateEnd" #dateEnd="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="dateEnd.valid || dateEnd.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Fecha vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="people">Cantidad de personas:</label>
+            <input type="number" class="form-control" id="people" required [(ngModel)]="model.people" ngControl="people" #people="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="people.valid || people.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Cantidad vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="countryStart">País origen:</label>
+            <input type="text" class="form-control" id="countryStart" required [(ngModel)]="model.countryFrom" ngControl="countryFrom" #countryFrom="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="countryFrom.valid || countryFrom.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                País vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cityStart">Ciudad origen:</label>
+            <input type="text" class="form-control" id="cityStart" required [(ngModel)]="model.cityFrom" ngControl="cityFrom" #cityFrom="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="cityFrom.valid || cityFrom.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Ciudad vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="countryEnd">País destino:</label>
+            <input type="text" class="form-control" id="countryEnd" required [(ngModel)]="model.countryTo" ngControl="countryTo" #countryTo="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="countryTo.valid || countryTo.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                País vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cityEnd">Ciudad destino:</label>
+            <input type="text" class="form-control" id="cityEnd" required [(ngModel)]="model.cityTo" ngControl="cityTo" #cityTo="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="cityTo.valid || cityTo.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Ciudad vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" class="form-control" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Descripción vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido:</label>
+            <textarea id="content" class="form-control editor" [(ngModel)]="model.content"></textarea>
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-template-main" [disabled]="!transportForm.form.valid"><i class="fa fa-floppy-o"></i> Crear Servicio</button>
         </div>
     </div>
-    
-
-    <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Send message</button>
-
-    </div>
+    <br/>
 </div>
 <!-- /.row -->
 </form>

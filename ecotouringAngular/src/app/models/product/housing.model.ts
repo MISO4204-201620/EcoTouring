@@ -4,11 +4,12 @@ export class Housing {
 		public name : string,
 		public dateStart : Date,
 		public dateEnd : Date,
-		public description : number,
+		public description : string,
 		public people : number,
 		public country : string,
 		public city : string,
-		hourStart : string,
-		hourEnd : string
+		public price : number,
+		public room : number,
+		public content? : string
 	){}
 }

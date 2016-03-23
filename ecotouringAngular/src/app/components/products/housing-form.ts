@@ -1,7 +1,10 @@
-import {Component,OnInit} from 'angular2/core';
+import {Component,OnInit, Inject, ElementRef} from 'angular2/core';
 import {Location, RouteParams,RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {NgForm}    from 'angular2/common';
+import {Housing} from '../../models/product/housing.model'
+
+declare var jQuery : any;
 
 @Component({
   selector: 'housing-form',
@@ -13,10 +16,21 @@ import {NgForm}    from 'angular2/common';
 })
 
 export class HousingFormComponent implements OnInit {
-	constructor(params : RouteParams, private _router: Router){
-		
+
+  elementRef : ElementRef;
+	constructor(params : RouteParams, private _router: Router, @Inject(ElementRef) elementRef : ElementRef){
+		this.elementRef = elementRef;
 	}
 	
-	ngOnInit(){ }
+
+  model : Housing;
+  submitted = false;
+
+	ngOnInit(){ 
+    this.model = new Housing (0,"",new Date(Date.now()),new Date(Date.now()),"",0,"","",0,0,""); 
+    jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
+  }
+
+  onSubmit(){ this.submitted = true; }
 
 }
