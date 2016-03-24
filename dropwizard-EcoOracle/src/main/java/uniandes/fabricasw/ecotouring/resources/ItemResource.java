@@ -1,6 +1,5 @@
 package uniandes.fabricasw.ecotouring.resources;
 
-
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -19,13 +18,12 @@ import uniandes.fabricasw.ecotouring.core.Conversation;
 import uniandes.fabricasw.ecotouring.core.Item;
 import uniandes.fabricasw.ecotouring.core.ItemComment;
 import uniandes.fabricasw.ecotouring.core.ItemContent;
-import uniandes.fabricasw.ecotouring.core.Person;
+import uniandes.fabricasw.ecotouring.core.Transaction;
 import uniandes.fabricasw.ecotouring.db.ItemCommentDAO;
 import uniandes.fabricasw.ecotouring.db.ItemContentDAO;
 import uniandes.fabricasw.ecotouring.db.ItemConversationDAO;
 import uniandes.fabricasw.ecotouring.db.ItemDAO;
-import uniandes.fabricasw.ecotouring.db.PersonDAO;
-import uniandes.fabricasw.ecotouring.views.PersonView;
+import uniandes.fabricasw.ecotouring.db.ShoppingCartDAO;
 
 @Path("/items/{itemId}")
 @Produces(MediaType.APPLICATION_JSON)
@@ -45,7 +43,7 @@ public class ItemResource {
 
 	@GET
 	@UnitOfWork
-	public Item getItem(@PathParam("itemId") Long itemId) {
+	public Item getItem(@PathParam("itemId") LongParam itemId) {
 		return findSafely(itemId);
 	}
 	
@@ -53,25 +51,34 @@ public class ItemResource {
 	@Path("/conversations")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Conversation> listConversations(@PathParam("itemId") Long itemId) {
-		return itemConversationDAO.findConversationByItemId(itemId);
+	public List<Conversation> listConversations(@PathParam("itemId") LongParam itemId) {
+		return itemConversationDAO.findConversationByItemId(itemId.get());
 	}
 	
 	@GET
 	@Path("/scores")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ItemComment> listScores(@PathParam("itemId") Long itemId) {
-		return itemCommentDAO.findItemCommentsByItemId(itemId);
+	public List<ItemComment> listScores(@PathParam("itemId") LongParam itemId) {
+		return itemCommentDAO.findItemCommentsByItemId(itemId.get());
 	}	
 	
 	@GET
 	@Path("/content")
 	@UnitOfWork
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ItemContent> listContent(@PathParam("itemId") Long itemId) {
-		return itemContentDAO.findItemContentByItemId(itemId);
-	}	
+	public List<ItemContent> listContent(@PathParam("itemId") LongParam itemId) {
+		return itemContentDAO.findItemContentByItemId(itemId.get());
+	}
+	
+	@GET
+	@Path("/shoppingCart")
+	@UnitOfWork
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transaction> listShoppingCart(@PathParam("itemId") LongParam itemId) {
+		return null;
+				//ShoppingCartDAO.findShoppingCartByUserId(itemId.get());
+	}
 	
 	@POST
 	@UnitOfWork
@@ -79,8 +86,8 @@ public class ItemResource {
 		return itemDAO.create(item);
 	}
 
-	private Item findSafely(long itemId) {
-		final Optional<Item> item = itemDAO.findById(itemId);
+	private Item findSafely(LongParam itemId) {
+		final Optional<Item> item = itemDAO.findById(itemId.get());
 		if (!item.isPresent()) {
 			throw new NotFoundException("No existe el identificador del item");
 		}

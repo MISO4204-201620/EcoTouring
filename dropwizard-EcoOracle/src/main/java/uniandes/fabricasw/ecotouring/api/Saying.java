@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 
 public class Saying {
-	private long id;
+	private Long id;
 
 	@Length(max = 3)
 	private String content;
@@ -15,13 +15,13 @@ public class Saying {
 		// Jackson deserialization
 	}
 
-	public Saying(long id, String content) {
+	public Saying(Long id, String content) {
 		this.id = id;
 		this.content = content;
 	}
 
 	@JsonProperty
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

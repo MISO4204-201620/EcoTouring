@@ -54,7 +54,7 @@ public class PersonResource {
 		return new PersonView(PersonView.Template.MUSTACHE, findSafely(personId.get()));
 	}
 
-	private Person findSafely(long personId) {
+	private Person findSafely(Long personId) {
 		final Optional<Person> person = peopleDAO.findById(personId);
 		if (!person.isPresent()) {
 			throw new NotFoundException("No existe el identificador de usuario.");

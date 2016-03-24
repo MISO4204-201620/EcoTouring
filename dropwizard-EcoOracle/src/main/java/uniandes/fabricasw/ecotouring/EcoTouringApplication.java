@@ -39,14 +39,30 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle = 
 			//Incluir todas las clases usadas por hibernate
 			new HibernateBundle<EcoTouringConfiguration>(
-					Person.class,
+					Accommodation.class,
+					AccommodationType.class,
+					Alimentation.class,
+					AlimentationType.class,
+					Article.class,
+					Category.class,
+					City.class,
+					ContentType.class,
+					Conversation.class,
+					Country.class,
+					EcoTour.class,					
 					Item.class,
 					ItemComment.class,
 					ItemContent.class,
-					Conversation.class,
-					Type.class,
+					ItemType.class,
+					Person.class,
+					Role.class,
+					Tag.class,					
 					Transaction.class,
-					TransactionDetail.class) {
+					TransactionDetail.class,
+					TransactionStatus.class,
+					TransactionType.class,
+					Transport.class,
+					TransportType.class) {
 		@Override
 		public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
 			return configuration.getDataSourceFactory();
@@ -100,24 +116,32 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		
 		// Registrar recursos
 	    final CategoryDAO categoryDao                 = new CategoryDAO(hibernateBundle.getSessionFactory());
-		final ItemCommentDAO itemCommentDao          = new ItemCommentDAO(hibernateBundle.getSessionFactory());
+		final ItemCommentDAO itemCommentDao           = new ItemCommentDAO(hibernateBundle.getSessionFactory());
 		final ItemContentDAO itemContentDao           = new ItemContentDAO(hibernateBundle.getSessionFactory());
 		final ItemConversationDAO itemConversationDao = new ItemConversationDAO(hibernateBundle.getSessionFactory());
 		final ItemDAO itemDao                         = new ItemDAO(hibernateBundle.getSessionFactory());
 		final PersonDAO personDao                     = new PersonDAO(hibernateBundle.getSessionFactory());
-		final ShoppingCartDAO suppliersDao            = new ShoppingCartDAO(hibernateBundle.getSessionFactory());
+		final PersonDAO suppliersDao                  = new PersonDAO(hibernateBundle.getSessionFactory());
+		//final ShoppingCartDAO shoppingCartDao       = new ShoppingCartDAO(hibernateBundle.getSessionFactory());
 		
 		final Template template = configuration.buildTemplate();
 		
 		//demo
 		environment.healthChecks().register("template", new TemplateHealthCheck(template));
 		environment.jersey().register(DateRequiredFeature.class);
-		environment.jersey()
-				.register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
-						.setAuthenticator(new ExampleAuthenticator()).setAuthorizer(new ExampleAuthorizer())
+		
+		//auth
+		ExampleAuthenticator authenticator = new ExampleAuthenticator();
+		/*cachedAuthenticator = new CachingAuthenticator<BasicCredentials, User>(
+			      new MetricRegistry(), authenticator, config.getAuthenticationCachePolicy());*/
+		environment.jersey().register(
+			  new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
+						.setAuthenticator(authenticator).setAuthorizer(new ExampleAuthorizer())
 						.setRealm("SUPER SECRET STUFF").buildAuthFilter()));
 		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
 		environment.jersey().register(RolesAllowedDynamicFeature.class);
+		
+		//demo
 		environment.jersey().register(new HelloWorldResource(template));
 		environment.jersey().register(new ViewResource());
 		environment.jersey().register(new ProtectedResource());
@@ -129,7 +153,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ItemsResource(itemDao));
 		environment.jersey().register(new PersonResource(personDao));
 		environment.jersey().register(new PeopleResource(personDao));
-		//environment.jersey().register(new SuppliersResource(suppliersDao));
-		
+		environment.jersey().register(new SuppliersResource(suppliersDao));
+		//environment.jersey().register(new ShoppingCartResource(shoppingCartDao));
 	}
 }

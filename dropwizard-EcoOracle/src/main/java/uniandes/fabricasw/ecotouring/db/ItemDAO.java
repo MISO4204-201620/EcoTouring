@@ -7,13 +7,10 @@ import org.hibernate.SessionFactory;
 import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import uniandes.fabricasw.ecotouring.core.Conversation;
 import uniandes.fabricasw.ecotouring.core.Item;
-import uniandes.fabricasw.ecotouring.core.ItemComment;
-import uniandes.fabricasw.ecotouring.core.ItemContent;
-import uniandes.fabricasw.ecotouring.core.Person;
 
 public class ItemDAO extends AbstractDAO<Item> {
+	
 	public ItemDAO(SessionFactory factory) {
 		super(factory);
 	}
@@ -27,6 +24,6 @@ public class ItemDAO extends AbstractDAO<Item> {
 	}
 
 	public List<Item> findAll() {
-		return list(namedQuery("Item.findAll"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAll"));
 	}	
 }

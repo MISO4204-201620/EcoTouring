@@ -1,15 +1,17 @@
 package uniandes.fabricasw.ecotouring.core;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -18,243 +20,212 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import uniandes.fabricasw.ecotouring.core.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "ITEM", schema = "ADMIN")
-@NamedQueries({ @NamedQuery(name = "Item.findAll",
-                                    query = "SELECT i FROM Item i") })
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i") })
 public class Item implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(generator = "InvSeq")
-	@SequenceGenerator(name = "InvSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)
-	private long id;
-
-	@Column(name = "NAME", nullable = false)
-	private String name;	
-
-	@Column(name = "DESCRIPTION", nullable = true)
-	private String description;	
-	
-	@Column(name = "PRICE", nullable = true)
-	private BigDecimal price;
-	
-	@Column(name = "URL_IMAGE", nullable = true)
-	private String urlImage;	
-
-	@Column(name = "CONTENT_TYPE", nullable = true)
-	private String contentType;	
-
-	@Column(name = "STATUS", nullable = true)
-	private Character status;	
-
-	@Column(name = "TAGS", nullable = true)
-	private String tags;	
-
-	@Column(name = "SCORE", nullable = true)
-	private BigDecimal score;	
-	
-	@ManyToOne
-    @JoinColumn(name = "SUPPLIER", nullable = true)
-	private Person person;
-	
-	@ManyToOne
-    @JoinColumn(name = "CATEGORY", referencedColumnName = "ID", nullable = true)	
-	private Type category;	
-
-	@ManyToOne
-    @JoinColumn(name = "PARENT", nullable = true)
-	private Item item;	
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	private Set<Item> items = new HashSet<Item>();	
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();	
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private Long itemId;	
+	private Category category;
+	private ContentType contentType;
 	private Set<Conversation> conversations = new HashSet<Conversation>();
-	
-	
+	private String description;	
+	private Item item;
+	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
+	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
+	private Set<Item> items = new HashSet<Item>();
+	private ItemType itemType;
+	private String name;
+	private Long price;
+	private Long score;
+	private ItemStatus status;
+	private Person supplier;
+	private String tags;
+	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
+	private String urlImage;
+
 	public Item() {
 	}
 
-	public Item(long id, Person person, String name, String description, BigDecimal price) {
-		this.id = id;
-		this.person = person;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-	}
-
-	public Item(long id, Person person, Type category, Item item, String name, String description, BigDecimal price,
-			String urlImage, String contentType, Character status, String tags, BigDecimal score, Set itemComments,
-			Set transactionDetails, Set items, Set itemContents, Set conversations) {
-		this.id = id;
-		this.person = person;
-		this.category = category;
-		this.item = item;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.urlImage = urlImage;
-		this.contentType = contentType;
-		this.status = status;
-		this.tags = tags;
-		this.score = score;
-		this.itemComments = itemComments;
-		this.transactionDetails = transactionDetails;
-		this.items = items;
-		this.itemContents = itemContents;
-		this.conversations = conversations;
-	}
-
-	public long getId() {
-		return this.id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public Person getSupplier() {
-		return this.person;
-	}
-
-	public void setSupplier(Person person) {
-		this.person = person;
-	}
-
-	public Type getCategory() {
+	@ManyToOne
+	@JoinColumn(name = "CATEGORY", referencedColumnName = "ID", nullable = false)
+	public Category getCategory() {
 		return this.category;
 	}
 
-	public void setCategory(Type category) {
-		this.category = category;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "CONTENT_TYPE", nullable = true)
+	public ContentType getContentType() {
+		return this.contentType;
 	}
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	public Set<Conversation> getConversations() {
+		return this.conversations;
+	}
+
+	@Column(name = "DESCRIPTION", nullable = true)
+	public String getDescription() {
+		return this.description;
+	}
+
+	@Id
+	@Column(name = "ITEM_ID")
+	@GeneratedValue(generator = "ItemSeq")
+	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)	
+	public Long getitemId() {
+		return this.itemId;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "PARENT", nullable = true)
 	public Item getItem() {
 		return this.item;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	public Set<ItemComment> getItemComments() {
+		return this.itemComments;
 	}
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	public Set<ItemContent> getItemContents() {
+		return this.itemContents;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	public Set<Item> getItems() {
+		return this.items;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "TYPE", nullable = true)
+	public ItemType getItemType() {
+		return itemType;
+	}
+
+	@Column(name = "NAME", nullable = false)
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	@Column(name = "PRICE", nullable = false)
+	public Long getPrice() {
+		return this.price;
 	}
 
-	public String getDescription() {
-		return this.description;
+	@Column(name = "SCORE", nullable = false)
+	public Long getScore() {
+		return this.score;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "STATUS", nullable = true)
+	public ItemStatus getStatus() {
+		return this.status;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "SUPPLIER", nullable = true)
+	public Person getSupplier() {
+		return this.supplier;
+	}
+
+	@Column(name = "TAGS", nullable = true)
+	public String getTags() {
+		return this.tags;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")	
+	public Set<TransactionDetail> getTransactionDetails() {
+		return this.transactionDetails;
+	}
+
+	@Column(name = "URL_IMAGE", nullable = true)
+	public String getUrlImage() {
+		return this.urlImage;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public void setContentType(ContentType contentType) {
+		this.contentType = contentType;
+	}
+
+	public void setConversations(Set<Conversation> conversations) {
+		this.conversations = conversations;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
-		return this.price;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public void setItemComments(Set<ItemComment> itemComments) {
+		this.itemComments = itemComments;
+	}
+
+	public void setItemContents(Set<ItemContent> itemContents) {
+		this.itemContents = itemContents;
+	}
+
+	public void setItems(Set<Item> items) {
+		this.items = items;
+	}
+
+	public void setItemType(ItemType itemType) {
+		this.itemType = itemType;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 
-	public String getUrlImage() {
-		return this.urlImage;
+	public void setScore(Long score) {
+		this.score = score;
 	}
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
-
-	public String getContentType() {
-		return this.contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public Character getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(Character status) {
+	public void setStatus(ItemStatus status) {
 		this.status = status;
 	}
 
-	public String getTags() {
-		return this.tags;
+	public void setSupplier(Person person) {
+		this.supplier = person;
 	}
 
 	public void setTags(String tags) {
 		this.tags = tags;
 	}
 
-	public BigDecimal getScore() {
-		return this.score;
+	public void setTransactionDetails(Set<TransactionDetail> transactionDetails) {
+		this.transactionDetails = transactionDetails;
 	}
 
-	public void setScore(BigDecimal score) {
-		this.score = score;
-	}
-
-	public Set getItemComments() {
-		return this.itemComments;
-	}
-
-	public void setItemComments(Set itemComments) {
-		this.itemComments = itemComments;
-	}
-
-	public Set getTransactionDetails() {
-		return this.transactionDetails;
-	}
-
-	public void setTransactionDetails(Set transactionDetail) {
-		this.transactionDetails = transactionDetail;
-	}
-
-	public Set getItems() {
-		return this.items;
-	}
-
-	public void setItems(Set items) {
-		this.items = items;
-	}
-
-	public Set getItemContents() {
-		return this.itemContents;
-	}
-
-	public void setItemContents(Set itemContents) {
-		this.itemContents = itemContents;
-	}
-
-	public Set getConversations() {
-		return this.conversations;
-	}
-
-	public void setConversations(Set conversations) {
-		this.conversations = conversations;
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 }

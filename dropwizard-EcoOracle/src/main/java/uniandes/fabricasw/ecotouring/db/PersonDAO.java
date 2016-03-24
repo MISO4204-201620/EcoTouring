@@ -10,6 +10,7 @@ import io.dropwizard.hibernate.AbstractDAO;
 import uniandes.fabricasw.ecotouring.core.Person;
 
 public class PersonDAO extends AbstractDAO<Person> {
+	
 	public PersonDAO(SessionFactory factory) {
 		super(factory);
 	}
@@ -25,4 +26,8 @@ public class PersonDAO extends AbstractDAO<Person> {
 	public List<Person> findAll() {
 		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Person.findAll"));
 	}
+	
+	public List<Person> findAllSuppliers() {
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Person.findAllSuppliers"));
+	}	
 }

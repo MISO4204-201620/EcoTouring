@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +22,6 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import uniandes.fabricasw.ecotouring.EcoTouringApplication;
 import uniandes.fabricasw.ecotouring.EcoTouringConfiguration;
 import uniandes.fabricasw.ecotouring.api.Saying;
-import uniandes.fabricasw.ecotouring.core.Person;
 
 public class IntegrationTest {
 

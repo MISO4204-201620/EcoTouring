@@ -29,8 +29,8 @@ public class SuppliersResource {
 
 	@GET
 	@UnitOfWork
-	public List<Person> listPeople() {
-		return peopleDAO.findAll();
+	public List<Person> listSupplier() {
+		return peopleDAO.findAllSuppliers();
 	}
 
 }

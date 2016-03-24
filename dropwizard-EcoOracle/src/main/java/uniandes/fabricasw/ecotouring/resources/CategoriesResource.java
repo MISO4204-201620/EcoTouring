@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import uniandes.fabricasw.ecotouring.core.Type;
+import uniandes.fabricasw.ecotouring.core.Category;
 import uniandes.fabricasw.ecotouring.db.CategoryDAO;
 
 @Path("/categories")
@@ -24,13 +24,13 @@ public class CategoriesResource {
 
 	@POST
 	@UnitOfWork
-	public Type createType(Type type) {
-		return categoryDAO.create(type);
+	public Category createType(Category category) {
+		return categoryDAO.create(category);
 	}
 
 	@GET
 	@UnitOfWork
-	public List<Type> listCategories() {
+	public List<Category> listCategories() {
 		return categoryDAO.findAllCategories();
 	}
 

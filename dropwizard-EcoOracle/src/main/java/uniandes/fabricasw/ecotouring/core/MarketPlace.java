@@ -6,15 +6,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "marketplace")
+@Table(name = "MARKETPLACE")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.MarketPlace.findAll", query = "SELECT mp FROM MarketPlace mp") })
-public class MarketPlace {
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.MarketPlace.findAll", query = "SELECT m FROM MarketPlace m") })
+public class MarketPlace implements java.io.Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	// TODO
 	/**
 	 * @Id
-	 * @GeneratedValue(strategy = GenerationType.IDENTITY) public long id;
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY) public Long id;
 	 * 
 	 * @Column(name = "configuracion", nullable = false) public long
 	 *              configuracion;
@@ -25,17 +27,17 @@ public class MarketPlace {
 	 * 
 	 *              public MarketPlace() { }
 	 * 
-	 *              public MarketPlace(long id, long configuracion, char nombre,
+	 *              public MarketPlace(Long id, intconfiguracion, char nombre,
 	 *              char url) { this.id = id; this.configuracion =
 	 *              configuracion; this.nombre = nombre; this.url = url; }
 	 * 
-	 *              public long getId() { return id; }
+	 *              public intgetId() { return id; }
 	 * 
-	 *              public void setId(long id) { this.id = id; }
+	 *              public void setId(Long id) { this.id = id; }
 	 * 
-	 *              public long getConfiguracion() { return configuracion; }
+	 *              public intgetConfiguracion() { return configuracion; }
 	 * 
-	 *              public void setConfiguracion(long configuracion) {
+	 *              public void setConfiguracion(intconfiguracion) {
 	 *              this.configuracion = configuracion; }
 	 * 
 	 *              public char getNombre() { return nombre; }
@@ -56,7 +58,7 @@ public class MarketPlace {
 	 *           Objects.equals(this.nombre, that.nombre) &&
 	 *           Objects.equals(this.url, that.url); }
 	 * 
-	 * @Override public int hashCode() { return Objects.hash(id, configuracion,
+	 * @Override public Long hashCode() { return Objects.hash(id, configuracion,
 	 *           nombre, url); }
 	 */
 }

@@ -10,6 +10,7 @@ import io.dropwizard.hibernate.AbstractDAO;
 import uniandes.fabricasw.ecotouring.core.Person;
 
 public class ShoppingCartDAO extends AbstractDAO<Person> {
+	
 	public ShoppingCartDAO(SessionFactory factory) {
 		super(factory);
 	}
