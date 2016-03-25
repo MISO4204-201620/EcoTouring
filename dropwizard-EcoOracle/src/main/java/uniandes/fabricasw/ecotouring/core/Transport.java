@@ -1,17 +1,11 @@
 package uniandes.fabricasw.ecotouring.core;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 @Entity
-@PrimaryKeyJoinColumn(name="ITEM_ID")
-@Table(name = "TRANSPORT", schema = "ADMIN")
-@NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Transport.findAll", query = "SELECT t FROM Transport t") })
+@DiscriminatorValue("TRANSPORT")
 public class Transport extends Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,10 +13,10 @@ public class Transport extends Item implements java.io.Serializable {
 	private TransportType type;
 	private String origin;
 	private String destination;
-	private String finalHour;
 	private String initialHour;	
+	private String finalHour;	
 
-	@Column(name = "TYPE", nullable = false)
+	@Column(name = "TRANSPORT_TYPE", nullable = false)
 	public TransportType getType() {
 		return type;
 	}	
@@ -37,14 +31,14 @@ public class Transport extends Item implements java.io.Serializable {
 		return destination;
 	}
 
-	@Column(name = "FINAL_HOUR", nullable = false)
-	public String getFinalHour() {
-		return finalHour;
-	}
-
 	@Column(name = "INITIAL_HOUR", nullable = false)
 	public String getInitialHour() {
 		return initialHour;
+	}	
+	
+	@Column(name = "FINAL_HOUR", nullable = false)
+	public String getFinalHour() {
+		return finalHour;
 	}
 
 	public void setDestination(String destination) {

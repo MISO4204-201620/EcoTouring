@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,10 +28,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "ITEM", schema = "ADMIN")
-//@DiscriminatorColumn(name="CATEGORY")
-//@DiscriminatorValue("14")
+@DiscriminatorColumn(name="CATEGORY", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue("BASIC")
 @NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i") })
 public class Item implements java.io.Serializable {
 
@@ -60,7 +63,7 @@ public class Item implements java.io.Serializable {
 	@Id
 	@Column(name = "ITEM_ID")
 	@GeneratedValue(generator = "ItemSeq")
-	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 5)	
+	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 25)	
 	public Long getitemId() {
 		return this.itemId;
 	}		
@@ -97,11 +100,10 @@ public class Item implements java.io.Serializable {
 		return this.score;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "CATEGORY", referencedColumnName = "ID", nullable = false)
+	/*@Enumerated(EnumType.STRING)
 	public Category getCategory() {
 		return this.category;
-	}	
+	}*/
 	
 	@ManyToOne
 	@JoinColumn(name = "SUPPLIER", nullable = true)

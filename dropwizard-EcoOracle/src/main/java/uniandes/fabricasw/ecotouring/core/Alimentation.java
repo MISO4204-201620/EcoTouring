@@ -1,19 +1,13 @@
 package uniandes.fabricasw.ecotouring.core;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 @Entity
-@PrimaryKeyJoinColumn(name="ITEM_ID")
-@Table(name = "ALIMENTATION", schema = "ADMIN")
-@NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Alimentation.findAll", query = "SELECT a FROM Alimentation a") })
+@DiscriminatorValue("ALIMENTATION")
 public class Alimentation extends Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +16,7 @@ public class Alimentation extends Item implements java.io.Serializable {
 	private Long calories;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "TYPE", nullable = false)
+	@Column(name = "ALIMENTATION_TYPE", nullable = false)
 	public AlimentationType getAlimentationType() {
 		return alimentationType;
 	}

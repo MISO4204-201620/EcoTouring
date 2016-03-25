@@ -34,7 +34,6 @@ public class Person implements java.io.Serializable {
 	private String jobTitle;
 	
 	private Role role;
-	private Category category;
 	private String username;
 	private String password;
 	private String address;
@@ -71,13 +70,7 @@ public class Person implements java.io.Serializable {
 	@Column(name = "ROLE", nullable = false)
 	public Role getRole() {
 		return this.role;
-	}		
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CATEGORY")
-	public Category getCategory() {
-		return this.category;
-	}	
+	}
 	
 	@Column(name = "USERNAME", length = 20)
 	public String getUsername() {
@@ -139,10 +132,6 @@ public class Person implements java.io.Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 
 	public void setConversations(Set<Conversation> conversations) {
