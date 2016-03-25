@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
 import {ItemThumb} from '../../interfaces/item-thumb';
 import {Car} from '../../models/car/car.model';
+import {CategoriesApp} from '../../categories/categories';
 
 @Component({
   selector: 'shopping-cart',
@@ -59,6 +60,15 @@ export class ShoppingCartComponent implements OnInit {
 		let pos = this.carBucket.indexOf(item);
 		this.carBucket.splice(pos,1);
 		this.calculateTotalPrice();
+
+		if(sessionStorage.getItem('itemBucket')){
+			sessionStorage.setItem('itemBucket', JSON.stringify(this.carBucket));
+		}
 	}
-	
+
+	/*onRouteLink(car : Car) {
+		let link = ['Item', {item : car.id}];
+		CategoriesApp.router.navigate(link);
+	}
+	*/	
 }

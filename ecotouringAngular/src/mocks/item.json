@@ -1,7 +1,7 @@
 {
 	"data":{
 		"id" : "1",
-		"name" : "Servicio Uno",
+		"name" : "Hotel Amazonia",
 		"description" : "In blandit orci sed est vehicula, id efficitur eros iaculis.",
 		"price" : 400000,
 		"type" : "individual",
@@ -16,6 +16,12 @@
 			{"id" : "2", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},
 			{"id" : "3", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},
 			{"id" : "4", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"}
-		]		
+		],
+		"dateStart" : "02/06/2016",
+		"dateEnd" : "06/06/2016",
+		"people" : 2,
+		"country" : "Colombia",
+		"city" : "Leticia",
+		"room" : 1
 	}
 }

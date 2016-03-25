@@ -3,13 +3,15 @@ import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
 import {Item} from '../../interfaces/item';
 import {ItemDetailService} from '../../services/item-detail.service';
 import {Car} from '../../models/car/car.model';
+import {CommentItemComponent} from '../comments/comment-item';
+//import {Rating} from 'primeng/primeng';
 
 @Component({
   selector: 'item-detail',
   providers: [ItemDetailService],
   templateUrl: 'templates/item-detail.html',
   styleUrls :[],
-  directives: [],
+  directives: [CommentItemComponent],
   pipes: []
 })
 
@@ -22,6 +24,7 @@ export class ItemDetailComponent implements OnInit {
 	item = "";
 	imageMain = "";
 	itemsBucket : Array<Car>;
+	val = 1;
 	
 
 	ngOnInit(){ 

@@ -1,0 +1,71 @@
+<div id="comments">
+    <h4 class="text-uppercase">{{totalComments}} comentarios</h4>
+
+
+    <div class="row comment" *ngFor="#comment of comments">
+        <div class="col-sm-3 col-md-2 text-center-xs">
+            <p>
+                <img src="{{comment.image}}" class="img-responsive img-circle" alt="">
+            </p>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <h5 class="text-uppercase">{{comment.user}}</h5>
+            <p class="posted"><i class="fa fa-clock-o"></i> {{comment.date}}</p>
+            <p>{{comment.comment}}</p>
+            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Responder</a>
+            </p>
+        </div>
+    </div>
+    <!-- /.comment -->
+</div>
+<!-- /#comments -->
+
+
+<div id="comment-form">
+
+    <h4 class="text-uppercase">Deja tu comentario</h4>
+
+    <form>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="name">Nombre <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="email">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="comment">Comentario <span class="required">*</span>
+                    </label>
+                    <textarea class="form-control" id="comment" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-template-main"><i class="fa fa-comment-o"></i> Enviar comentario</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+<!-- /#comment-form -->

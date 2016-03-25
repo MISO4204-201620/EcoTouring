@@ -3,18 +3,19 @@
         <div id="mainImage">
             <img src="{{ imageMain }}" alt="" class="img-responsive">
         </div>
-
+        <!--
         <div class="ribbon sale">
             <div class="theribbon">SALE</div>
             <div class="ribbon-background"></div>
         </div>
-        <!-- /.ribbon -->
+         /.ribbon -->
 
+         <!--
         <div class="ribbon new">
             <div class="theribbon">NEW</div>
             <div class="ribbon-background"></div>
         </div>
-        <!-- /.ribbon -->
+         /.ribbon -->
 
     </div>
     <div class="col-sm-6">
@@ -32,12 +33,14 @@
                     </label>
                     -->
 
+                    <p-rating [(value)]="val"></p-rating>
+
                 </div>
 
                 <p class="price">${{ item.price }}</p>
 
                 <p class="text-center">
-                    <button type="submit" class="btn btn-template-main" (click)="onAddCartItem(item)"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                    <button type="submit" class="btn btn-template-main" (click)="onAddCartItem(item)"><i class="fa fa-shopping-cart"></i>Agregar al carrito</button>
                     <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
                     </button>
                 </p>
@@ -59,24 +62,29 @@
 
 <div class="box" id="details">
     <p>
+        <h4>Nombre del Hotel</h4>
+        <p>{{ item.name }}</p>
+        <h4>País</h4>
+        <p>{{ item.country }}</p>
+        <h4>Ciudad</h4>
+        <p>{{ item.city }}</p>
+        <h4>Fecha de llegada</h4>
+        <p>{{ item.dateStart }}</p>
+        <h4>Fecha de salida</h4>
+        <p>{{ item.dateEnd }}</p>
+        <h4>Habitaciones</h4>
+        <p>{{ item.room }}</p>
+        <h4>Número de personas</h4>
+        <p>{{ item.people }}</p>
         <h4>Detalle del servicio</h4>
         <p>{{ item.description }}</p>
-        <h4>Material & care</h4>
-        <ul>
-            <li>Polyester</li>
-            <li>Machine wash</li>
-        </ul>
-        <h4>Size & Fit</h4>
-        <ul>
-            <li>Regular fit</li>
-            <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-        </ul>
-
+        
         <blockquote>
-            <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-            </p>
+            {{item.content}}
         </blockquote>
 </div>
+
+<comment-item></comment-item>
 
 <div class="box social" id="product-social">
     <h4>Comparte con tus amigos</h4>
