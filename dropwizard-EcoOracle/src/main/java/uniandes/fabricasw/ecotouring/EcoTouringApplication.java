@@ -116,12 +116,13 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		
 		// Registrar recursos
 	    final CategoryDAO categoryDao                 = new CategoryDAO(hibernateBundle.getSessionFactory());
-		final ItemCommentDAO itemCommentDao           = new ItemCommentDAO(hibernateBundle.getSessionFactory());
-		final ItemContentDAO itemContentDao           = new ItemContentDAO(hibernateBundle.getSessionFactory());
-		final ItemConversationDAO itemConversationDao = new ItemConversationDAO(hibernateBundle.getSessionFactory());
 		final ItemDAO itemDao                         = new ItemDAO(hibernateBundle.getSessionFactory());
+		final ConversationDAO conversationDao         = new ConversationDAO(hibernateBundle.getSessionFactory());
+		final ItemCommentDAO itemCommentDao           = new ItemCommentDAO(hibernateBundle.getSessionFactory());
+		final ItemContentDAO itemContentDao           = new ItemContentDAO(hibernateBundle.getSessionFactory());		
 		final PersonDAO personDao                     = new PersonDAO(hibernateBundle.getSessionFactory());
 		final PersonDAO suppliersDao                  = new PersonDAO(hibernateBundle.getSessionFactory());
+		final EcoTourDAO ecoTourDao                   = new EcoTourDAO(hibernateBundle.getSessionFactory());
 		//final ShoppingCartDAO shoppingCartDao       = new ShoppingCartDAO(hibernateBundle.getSessionFactory());
 		
 		final Template template = configuration.buildTemplate();
@@ -149,11 +150,12 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 
 		//fabricasw
 		environment.jersey().register(new CategoriesResource(categoryDao));
-		environment.jersey().register(new ItemResource(itemDao,itemContentDao,itemCommentDao,itemConversationDao));
+		environment.jersey().register(new ItemResource(itemDao,conversationDao,itemCommentDao,itemContentDao));
 		environment.jersey().register(new ItemsResource(itemDao));
 		environment.jersey().register(new PersonResource(personDao));
 		environment.jersey().register(new PeopleResource(personDao));
 		environment.jersey().register(new SuppliersResource(suppliersDao));
+		environment.jersey().register(new EcoTourResource(ecoTourDao));
 		//environment.jersey().register(new ShoppingCartResource(shoppingCartDao));
 	}
 }

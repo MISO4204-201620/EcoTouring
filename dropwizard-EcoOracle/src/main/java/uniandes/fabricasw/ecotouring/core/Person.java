@@ -29,65 +29,85 @@ public class Person implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String address;
-	private Category category;
-	private Set<Conversation> conversations = new HashSet<Conversation>();
-	private String email;
-	private String fullName;
-	@Id
-	@GeneratedValue(generator = "PersonSeq")
-	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
 	private Long id;
-	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
-	private Set<Item> items = new HashSet<Item>();
+	private String fullName;
 	private String jobTitle;
-	private String name;
-	private Person parent;
-	private String password;
-	private Set<Person> persons = new HashSet<Person>();
+	
 	private Role role;
-	private Set<Transaction> transactions = new HashSet<Transaction>();
+	private Category category;
 	private String username;
+	private String password;
+	private String address;
+	private String email;
+	
+	private Person parent;
+	private Set<Person> persons = new HashSet<Person>();
+	private Set<Conversation> conversations = new HashSet<Conversation>();
+	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
+	private Set<Item> items = new HashSet<Item>();	
+	private Set<Transaction> transactions = new HashSet<Transaction>();
 
 	public Person() {
 	}
 
-	@Column(name = "ADDRESS", length = 20)
-	public String getAddress() {
-		return this.address;
-	}
-
+	@Id
+	@GeneratedValue(generator = "PersonSeq")
+	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
+	public Long getId() {
+		return this.id;
+	}	
+	
+	@Column(name = "NAME", length = 20)
+	public String getFullName() {
+		return this.fullName;
+	}	
+	
+	@Column(name = "JOBTITLE", length = 20)
+	public String getJobTitle() {
+		return this.jobTitle;
+	}	
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "ROLE", nullable = false)
+	public Role getRole() {
+		return this.role;
+	}		
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY")
 	public Category getCategory() {
 		return this.category;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
-	public Set<Conversation> getConversations() {
-		return this.conversations;
+	}	
+	
+	@Column(name = "USERNAME", length = 20)
+	public String getUsername() {
+		return this.username;
+	}	
+	
+	@Column(name = "PASSWORD", length = 20)
+	public String getPassword() {
+		return this.password;
+	}	
+	
+	@Column(name = "ADDRESS", length = 20)
+	public String getAddress() {
+		return this.address;
 	}
 
 	@Column(name = "EMAIL", length = 20)
 	public String getEmail() {
 		return this.email;
 	}
+	
 
-	@Column(name = "NAME", length = 20)
-	public String getFullName() {
-		return this.fullName;
-	}
-
-	@Id
-	@GeneratedValue(generator = "InvSeq")
-	@SequenceGenerator(name = "InvSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
-	public Long getId() {
-		return this.id;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+	public Set<Conversation> getConversations() {
+		return this.conversations;
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
 	public Set<ItemComment> getItemComments() {
 		return this.itemComments;
 	}
@@ -98,51 +118,23 @@ public class Person implements java.io.Serializable {
 		return this.items;
 	}
 
-	@Column(name = "JOBTITLE", length = 20)
-	public String getJobTitle() {
-		return this.jobTitle;
-	}
-
-	@Column(name = "FULLNAME", nullable = false, length = 100)
-	public String getName() {
-		return this.name;
-	}
-
-	public Person getParent() {
-		return parent;
-	}
-
-	@Column(name = "PASSWORD", length = 20)
-	public String getPassword() {
-		return this.password;
-	}
-
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARENT")
-	public Person getPerson() {
+	@JoinColumn(name = "PARENT")	
+	public Person getParent() {
 		return this.parent;
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
 	public Set<Person> getPersons() {
 		return this.persons;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "ROLE", nullable = false)
-	public Role getRole() {
-		return this.role;
-	}
-
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	public Set<Transaction> getTransactions() {
 		return this.transactions;
-	}
-
-	@Column(name = "USERNAME", length = 20)
-	public String getUsername() {
-		return this.username;
 	}
 
 	public void setAddress(String address) {
@@ -181,20 +173,12 @@ public class Person implements java.io.Serializable {
 		this.jobTitle = jobTitle;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public void setParent(Person parent) {
 		this.parent = parent;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public void setPerson(Person parent) {
-		this.parent = parent;
 	}
 
 	public void setPersons(Set<Person> persons) {

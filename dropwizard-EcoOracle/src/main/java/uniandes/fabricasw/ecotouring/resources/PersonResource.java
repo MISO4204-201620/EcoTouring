@@ -1,5 +1,6 @@
 package uniandes.fabricasw.ecotouring.resources;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -17,7 +18,8 @@ import uniandes.fabricasw.ecotouring.db.PersonDAO;
 import uniandes.fabricasw.ecotouring.views.PersonView;
 
 @Path("/people/{personId}")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
+@Consumes(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class PersonResource {
 
 	private final PersonDAO peopleDAO;

@@ -10,9 +10,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ECOTOUR", schema = "ADMIN")
-//@DiscriminatorValue("VCUST")
 @PrimaryKeyJoinColumn(name="ITEM_ID")
+@Table(name = "ECOTOUR", schema = "ADMIN")
+
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.EcoTour.findAll", query = "SELECT e FROM EcoTour e") })
 public class EcoTour extends Item implements java.io.Serializable {

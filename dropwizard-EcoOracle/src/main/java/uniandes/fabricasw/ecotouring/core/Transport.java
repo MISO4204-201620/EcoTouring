@@ -8,20 +8,30 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRANSPORT", schema = "ADMIN")
 @PrimaryKeyJoinColumn(name="ITEM_ID")
+@Table(name = "TRANSPORT", schema = "ADMIN")
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Transport.findAll", query = "SELECT t FROM Transport t") })
 public class Transport extends Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private TransportType type;
+	private String origin;
 	private String destination;
 	private String finalHour;
-	private String initialHour;
-	private String origin;
-	private TransportType type;
+	private String initialHour;	
 
+	@Column(name = "TYPE", nullable = false)
+	public TransportType getType() {
+		return type;
+	}	
+	
+	@Column(name = "ORIGIN", nullable = false)
+	public String getOrigin() {
+		return origin;
+	}	
+	
 	@Column(name = "DESTINATION", nullable = false)
 	public String getDestination() {
 		return destination;
@@ -35,16 +45,6 @@ public class Transport extends Item implements java.io.Serializable {
 	@Column(name = "INITIAL_HOUR", nullable = false)
 	public String getInitialHour() {
 		return initialHour;
-	}
-
-	@Column(name = "ORIGIN", nullable = false)
-	public String getOrigin() {
-		return origin;
-	}
-
-	@Column(name = "TYPE", nullable = false)
-	public TransportType getType() {
-		return type;
 	}
 
 	public void setDestination(String destination) {

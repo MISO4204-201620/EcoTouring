@@ -10,8 +10,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ACCOMMODATION", schema = "ADMIN")
 @PrimaryKeyJoinColumn(name="ITEM_ID")
+@Table(name = "ACCOMMODATION", schema = "ADMIN")
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Accommodation.findAll", query = "SELECT a FROM Accommodation a") })
 public class Accommodation extends Item implements java.io.Serializable {

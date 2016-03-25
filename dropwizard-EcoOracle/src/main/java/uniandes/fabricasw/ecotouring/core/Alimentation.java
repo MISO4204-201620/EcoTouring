@@ -10,8 +10,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ALIMENTATION", schema = "ADMIN")
 @PrimaryKeyJoinColumn(name="ITEM_ID")
+@Table(name = "ALIMENTATION", schema = "ADMIN")
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Alimentation.findAll", query = "SELECT a FROM Alimentation a") })
 public class Alimentation extends Item implements java.io.Serializable {
@@ -19,7 +19,7 @@ public class Alimentation extends Item implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private AlimentationType alimentationType;
-	private String name;
+	private Long calories;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE", nullable = false)
@@ -27,18 +27,16 @@ public class Alimentation extends Item implements java.io.Serializable {
 		return alimentationType;
 	}
 
-	@Override
-	@Column(name = "RESTAURANT_NAME", nullable = false)
-	public String getName() {
-		return name;
+	@Column(name = "CALORIES", nullable = false)
+	public Long getCalories() {
+		return calories;
 	}
 
 	public void setAlimentationType(AlimentationType alimentationType) {
 		this.alimentationType = alimentationType;
 	}
 
-	@Override
-	public void setName(String name) {
-		this.name = name;
+	public void setCalories(Long calories) {
+		this.calories = calories;
 	}
 }

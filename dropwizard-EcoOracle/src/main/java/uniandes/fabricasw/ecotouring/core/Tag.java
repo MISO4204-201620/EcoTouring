@@ -19,20 +19,27 @@ public class Tag implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private Article article;
 	public Long count;
-	public String href;
-	private Long id;
+	public String href;	
 	public String word;
 
 	public Tag() {
 	}
-
+	
 	public Tag(String word, Long count) {
 		this.word = word;
 		this.count = count;
 		href = "/tags/" + word;
-	}
+	}	
+	
+	@Id
+	@GeneratedValue(generator = "TagSeq")
+	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ", allocationSize = 5)	
+	public Long getId() {
+		return id;
+	}	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ARTICLE", nullable = false)
@@ -50,17 +57,10 @@ public class Tag implements java.io.Serializable {
 		return href;
 	}
 
-	@Id
-	@GeneratedValue(generator = "TagSeq")
-	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ", allocationSize = 5)	
-	public Long getId() {
-		return id;
-	}
-
 	@Column(name = "WORD", nullable = false, length = 100)	
 	public String getWord() {
 		return word;
-	}
+	}	
 
 	public void setArticle(Article article) {
 		this.article = article;

@@ -1,5 +1,6 @@
 package uniandes.fabricasw.ecotouring.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -14,34 +15,26 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import uniandes.fabricasw.ecotouring.core.Conversation;
-import uniandes.fabricasw.ecotouring.core.Item;
-import uniandes.fabricasw.ecotouring.core.ItemComment;
-import uniandes.fabricasw.ecotouring.core.ItemContent;
-import uniandes.fabricasw.ecotouring.core.Transaction;
-import uniandes.fabricasw.ecotouring.db.ItemCommentDAO;
-import uniandes.fabricasw.ecotouring.db.ItemContentDAO;
-import uniandes.fabricasw.ecotouring.db.ItemConversationDAO;
-import uniandes.fabricasw.ecotouring.db.ItemDAO;
-import uniandes.fabricasw.ecotouring.db.ShoppingCartDAO;
+import uniandes.fabricasw.ecotouring.core.*;
+import uniandes.fabricasw.ecotouring.db.*;
 
 @Path("/items/{itemId}")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class ItemResource {
 
 	private final ItemDAO itemDAO;
-	private final ItemContentDAO itemContentDAO;
+	private final ConversationDAO conversationDAO;
 	private final ItemCommentDAO itemCommentDAO;
-	private final ItemConversationDAO itemConversationDAO;
+	private final ItemContentDAO itemContentDAO;
 
-	public ItemResource(ItemDAO itemDAO, ItemContentDAO itemContentDAO, ItemCommentDAO itemCommentDAO, ItemConversationDAO itemConversationDAO) {
+	public ItemResource(ItemDAO itemDAO, ConversationDAO conversationDAO, ItemCommentDAO itemCommentDAO, ItemContentDAO itemContentDAO ) {
 		this.itemDAO = itemDAO;
-		this.itemContentDAO = itemContentDAO;
+		this.conversationDAO = conversationDAO;
 		this.itemCommentDAO = itemCommentDAO;
-		this.itemConversationDAO = itemConversationDAO;
+		this.itemContentDAO = itemContentDAO;
 	}
 
-	@GET
+	@GET	
 	@UnitOfWork
 	public Item getItem(@PathParam("itemId") LongParam itemId) {
 		return findSafely(itemId);
@@ -50,41 +43,44 @@ public class ItemResource {
 	@GET
 	@Path("/conversations")
 	@UnitOfWork
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Conversation> listConversations(@PathParam("itemId") LongParam itemId) {
-		return itemConversationDAO.findConversationByItemId(itemId.get());
+		return new ArrayList<Conversation>(itemDAO.findConversationsByItem(itemId.get()));
+	}
+	
+	@POST
+	@Path("/conversations")
+	@UnitOfWork
+	public Conversation createConversation(Conversation conversation) {
+		return conversationDAO.create(conversation);
 	}
 	
 	@GET
 	@Path("/scores")
 	@UnitOfWork
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<ItemComment> listScores(@PathParam("itemId") LongParam itemId) {
-		return itemCommentDAO.findItemCommentsByItemId(itemId.get());
+		return new ArrayList<ItemComment>(itemDAO.findItemCommentsByItem(itemId.get()));
+	}
+	
+	@POST
+	@Path("/scores")
+	@UnitOfWork
+	public ItemComment createScore(ItemComment itemComment) {
+		return itemCommentDAO.create(itemComment);
 	}	
 	
 	@GET
 	@Path("/content")
 	@UnitOfWork
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<ItemContent> listContent(@PathParam("itemId") LongParam itemId) {
-		return itemContentDAO.findItemContentByItemId(itemId.get());
-	}
-	
-	@GET
-	@Path("/shoppingCart")
-	@UnitOfWork
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Transaction> listShoppingCart(@PathParam("itemId") LongParam itemId) {
-		return null;
-				//ShoppingCartDAO.findShoppingCartByUserId(itemId.get());
+		return new ArrayList<ItemContent>(itemDAO.findItemContentsByItem(itemId.get()));
 	}
 	
 	@POST
+	@Path("/content")
 	@UnitOfWork
-	public Item createItem(Item item) {
-		return itemDAO.create(item);
-	}
+	public ItemContent createContent(ItemContent itemContent) {
+		return itemContentDAO.create(itemContent);
+	}	
 
 	private Item findSafely(LongParam itemId) {
 		final Optional<Item> item = itemDAO.findById(itemId.get());

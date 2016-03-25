@@ -24,45 +24,38 @@ public class Category implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+
+	private Long id;	
+	private String name;
+	private Long type;
+	private Set<Item> items = new HashSet<Item>();
+
+	public Category() {
+		this.type = 4L;
+	}
+
 	@Id
 	@GeneratedValue(generator = "CategorySeq")
 	@SequenceGenerator(name = "CategorySeq", sequenceName = "CATEGORY_SEQ", allocationSize = 5)
-	private Long id;
-	private Set<Item> items = new HashSet<Item>();
-	private String name;
-	private Long type;
-
-	public Category() {
-	}
-
-	public Category(Long id, Long type, String name) {
-		this.id = id;
-		this.type = type;
-		this.name = name;
-	}
-
-	@Id
-	@GeneratedValue(generator = "InvSeq")
-	@SequenceGenerator(name = "InvSeq", sequenceName = "TYPE_SEQ", allocationSize = 5)
 	public Long getId() {
 		return this.id;
 	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	public Set<Item> getItems() {
-		return this.items;
-	}
-
+	
 	@Column(name = "NAME", nullable = false, length = 100)
 	public String getName() {
 		return this.name;
-	}
+	}	
 
 	@JsonIgnore	
 	@Column(name = "TYPE", nullable = false)
 	public Long getType() {
 		return this.type;
+	}	
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	public Set<Item> getItems() {
+		return this.items;
 	}
 
 	public void setId(Long id) {

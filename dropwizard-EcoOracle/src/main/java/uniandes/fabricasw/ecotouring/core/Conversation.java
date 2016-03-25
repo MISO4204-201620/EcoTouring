@@ -31,18 +31,56 @@ public class Conversation implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Conversation conversation;
-	private Set<Conversation> conversations = new HashSet<Conversation>();
+	private Long id;		
 	private ConversationType conversationtype;
-	private Date dateEntry;
 	private String entry;
+	private Date dateEntry;
+	private Item item;
+	private Person author;	
+	private Conversation conversation;
+	private Set<Conversation> conversations = new HashSet<Conversation>();	
+
+	public Conversation() {
+	}	
+	
 	@Id
 	@GeneratedValue(generator = "ConversationSeq")
 	@SequenceGenerator(name = "ConversationSeq", sequenceName = "CONVERSATION_SEQ", allocationSize = 5)
-	private Long id;
-	private Item item;
-	private Person person;
+	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
+	public Long getId() {
+		return this.id;
+	}
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "TYPE", nullable = false)
+	public ConversationType getConversationtype() {
+		return conversationtype;
+	}	
+	
+	@Column(name = "ENTRY", nullable = false, length = 4000)
+	public String getEntry() {
+		return this.entry;
+	}
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_ENTRY", nullable = false, length = 7)
+	public Date getDateEntry() {
+		return this.dateEntry;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "ITEM", nullable = false)
+	public Item getItem() {
+		return this.item;
+	}	
+
+	@ManyToOne
+	@JoinColumn(name = "AUTHOR", nullable = false)
+	public Person getAuthor() {
+		return this.author;
+	}	
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "PARENT")
 	public Conversation getConversation() {
@@ -53,42 +91,6 @@ public class Conversation implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "conversation")
 	public Set<Conversation> getConversations() {
 		return this.conversations;
-	}
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "TYPE", nullable = false)
-	public ConversationType getConversationtype() {
-		return conversationtype;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE_ENTRY", nullable = false, length = 7)
-	public Date getDateEntry() {
-		return this.dateEntry;
-	}
-
-	@Column(name = "ENTRY", nullable = false, length = 4000)
-	public String getEntry() {
-		return this.entry;
-	}
-
-	@Id
-
-	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
-	public Long getId() {
-		return this.id;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "ITEM", nullable = false)
-	public Item getItem() {
-		return this.item;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "AUTHOR", nullable = false)
-	public Person getPerson() {
-		return this.person;
 	}
 
 	public void setConversation(Conversation conversation) {
@@ -119,8 +121,8 @@ public class Conversation implements java.io.Serializable {
 		this.item = item;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setAuthor(Person author) {
+		this.author = author;
 	}
 
 }

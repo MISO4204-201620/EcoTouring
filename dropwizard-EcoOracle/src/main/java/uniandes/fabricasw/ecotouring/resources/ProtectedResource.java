@@ -2,15 +2,12 @@ package uniandes.fabricasw.ecotouring.resources;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.auth.Auth;
-import io.dropwizard.auth.AuthenticationException;
 import uniandes.fabricasw.ecotouring.core.User;
 
 @Path("/protected")
