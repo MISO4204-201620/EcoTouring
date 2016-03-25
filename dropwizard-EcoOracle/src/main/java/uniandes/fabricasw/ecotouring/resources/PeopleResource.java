@@ -2,6 +2,7 @@ package uniandes.fabricasw.ecotouring.resources;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,7 +14,8 @@ import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
 
 @Path("/people")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
+@Consumes(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class PeopleResource {
 
 	private final PersonDAO peopleDAO;

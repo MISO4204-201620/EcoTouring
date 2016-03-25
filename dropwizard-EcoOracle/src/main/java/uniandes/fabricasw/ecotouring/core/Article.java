@@ -29,25 +29,34 @@ public class Article implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Person author;
-	private Date date;
 	private Long id;
-	private String slug;
-	private Set<Tag> tags = new HashSet<Tag>();
-	private String text;
 	private String title;
+	private String text;
+	private Person author;
+	private Date date;	
+	private String slug;
+	private Set<Tag> tags = new HashSet<Tag>();	
 
 	public Article() {
 	}
 
-	public Article(String slug, String title, String text, Person author, Date date) {
-		setSlug(slug);
-		setText(text);
-		setAuthor(author);
-		setDate(date);
-		setTitle(title);
+	@Id
+	@GeneratedValue(generator = "ArticleSeq")
+	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize = 5)	
+	public Long getId() {
+		return id;
 	}
-
+	
+	@Column(name = "TITLE", nullable = false)
+	public String getTitle() {
+		return title;
+	}
+    
+	@Column(name = "TEXT", nullable = false)
+	public String getText() {
+		return text;
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "AUTHOR", nullable = false)
 	public Person getAuthor() {
@@ -58,14 +67,7 @@ public class Article implements java.io.Serializable {
 	@Column(name = "DATE_CREATED", nullable = false)
 	public Date getDate() {
 		return date;
-	}
-
-	@Id
-	@GeneratedValue(generator = "ArticleSeq")
-	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize = 5)	
-	public Long getId() {
-		return id;
-	}
+	}	
 
 	@Column(name = "SLUG", nullable = false)
 	public String getSlug() {
@@ -76,16 +78,6 @@ public class Article implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	public Set<Tag> getTags() {
 		return tags;
-	}
-
-	@Column(name = "TEXT", nullable = false)
-	public String getText() {
-		return text;
-	}
-
-	@Column(name = "TITLE", nullable = false)
-	public String getTitle() {
-		return title;
 	}
 
 	public void setAuthor(Person author) {

@@ -23,73 +23,51 @@ import javax.persistence.TemporalType;
 public class ItemComment implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private Person author;
-	private Date dateEntry;
-	@Id
-	@GeneratedValue(generator = "ItemCommentSeq")
-	@SequenceGenerator(name = "ItemCommentSeq", sequenceName = "ITEM_COMMENT_SEQ", allocationSize = 5)
-	private Long id;
-	private Item item;
-	private Long score;
+	
+	private Long id;	
 	private String text;
+	private Long score;
+	private Date dateEntry;
+	private Item item;
+	private Person author;
 
 	public ItemComment() {
 	}
 
-	public ItemComment(Long id, Person person, Item item, Long score) {
-		this.id = id;
-		this.author = person;
-		this.item = item;
-		this.score = score;
-	}
-
-	public ItemComment(Long id, Person person, Item item, Long score, String text, Date dateEntry) {
-		this.id = id;
-		this.author = person;
-		this.item = item;
-		this.score = score;
-		this.text = text;
-		this.dateEntry = dateEntry;
-	}
-
-	public Person getAuthor() {
-		return author;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE_ENTRY", length = 7)
-	public Date getDateEntry() {
-		return this.dateEntry;
-	}
-
 	@Id
-
+	@GeneratedValue(generator = "ItemCommentSeq")
+	@SequenceGenerator(name = "ItemCommentSeq", sequenceName = "ITEM_COMMENT_SEQ", allocationSize = 5)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ITEM", nullable = false)
-	public Item getItem() {
-		return this.item;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "AUTHOR", nullable = false)
-	public Person getPerson() {
-		return this.author;
+	
+	@Column(name = "TEXT", length = 20)
+	public String getText() {
+		return this.text;
 	}
 
 	@Column(name = "SCORE", nullable = false, precision = 22, scale = 0)
 	public Long getScore() {
 		return this.score;
 	}
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_ENTRY", length = 7)
+	public Date getDateEntry() {
+		return this.dateEntry;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ITEM", nullable = false)
+	public Item getItem() {
+		return this.item;
+	}	
 
-	@Column(name = "TEXT", length = 20)
-	public String getText() {
-		return this.text;
+	@ManyToOne
+	@JoinColumn(name = "AUTHOR", nullable = false)
+	public Person getAuthor() {
+		return this.author;
 	}
 
 	public void setAuthor(Person author) {

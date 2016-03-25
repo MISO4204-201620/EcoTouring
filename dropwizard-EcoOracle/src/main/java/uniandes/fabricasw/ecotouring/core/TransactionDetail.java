@@ -20,33 +20,29 @@ public class TransactionDetail implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(generator = "TransactionDetailSeq")
-	@SequenceGenerator(name = "TransactionDetailSeq", sequenceName = "TRANSACTION_DETAIL_SEQ", allocationSize = 5)
-	private Long id;
 
+	private Long id;
+	private Transaction transaction;
 	private Item item;
 	private Long price;
-	private Long quantity;
-	private Transaction transaction;
+	private Long quantity;	
 
 	public TransactionDetail() {
 	}
 
-	public TransactionDetail(Long id, Transaction transaction, Item item, Long quantity, Long price) {
-		this.id = id;
-		this.transaction = transaction;
-		this.item = item;
-		this.quantity = quantity;
-		this.price = price;
-	}
-
 	@Id
-
+	@GeneratedValue(generator = "TransactionDetailSeq")
+	@SequenceGenerator(name = "TransactionDetailSeq", sequenceName = "TRANSACTION_DETAIL_SEQ", allocationSize = 5)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;
 	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "TRANSACTION", nullable = false)
+	public Transaction getTransaction() {
+		return this.transaction;
+	}	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM", nullable = false)
@@ -62,12 +58,6 @@ public class TransactionDetail implements java.io.Serializable {
 	@Column(name = "QUANTITY", nullable = false, precision = 22, scale = 0)
 	public Long getQuantity() {
 		return this.quantity;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TRANSACTION", nullable = false)
-	public Transaction getTransaction() {
-		return this.transaction;
 	}
 
 	public void setId(Long id) {

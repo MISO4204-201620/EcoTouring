@@ -2,6 +2,8 @@ package uniandes.fabricasw.ecotouring.core;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,34 +22,21 @@ public class ItemContent implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private ContentType contentType;
-	@Id
-	@GeneratedValue(generator = "ItemContentSeq")
-	@SequenceGenerator(name = "ItemContentSeq", sequenceName = "ITEM_CONTENT_SEQ", allocationSize = 5)
-	private Long id;
-	private Item item;
+	private Long id;	
 	private String name;
 	private String url;
+	private ContentType contentType;
+	private Item item;
 
 	public ItemContent() {
 	}
 
-	@Column(name = "CONTENT_TYPE", nullable = false, length = 20)
-	public ContentType getContentType() {
-		return this.contentType;
-	}
-
 	@Id
-
+	@GeneratedValue(generator = "ItemContentSeq")
+	@SequenceGenerator(name = "ItemContentSeq", sequenceName = "ITEM_CONTENT_SEQ", allocationSize = 5)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ITEM", nullable = false)
-	public Item getItem() {
-		return this.item;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 200)
@@ -59,6 +48,18 @@ public class ItemContent implements java.io.Serializable {
 	public String getUrl() {
 		return this.url;
 	}
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "CONTENT_TYPE", nullable = false, length = 20)
+	public ContentType getContentType() {
+		return this.contentType;
+	}	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ITEM", nullable = false)
+	public Item getItem() {
+		return this.item;
+	}	
 
 	public void setContentType(ContentType contentType) {
 		this.contentType = contentType;

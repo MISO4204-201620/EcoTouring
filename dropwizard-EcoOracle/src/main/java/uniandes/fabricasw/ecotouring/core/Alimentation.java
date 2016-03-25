@@ -1,44 +1,36 @@
 package uniandes.fabricasw.ecotouring.core;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "ALIMENTATION", schema = "ADMIN")
-@PrimaryKeyJoinColumn(name="ITEM_ID")
-@NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Alimentation.findAll", query = "SELECT a FROM Alimentation a") })
+@DiscriminatorValue("ALIMENTATION")
 public class Alimentation extends Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private AlimentationType alimentationType;
-	private String name;
+	private Long calories;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "TYPE", nullable = false)
+	@Column(name = "ALIMENTATION_TYPE", nullable = false)
 	public AlimentationType getAlimentationType() {
 		return alimentationType;
 	}
 
-	@Override
-	@Column(name = "RESTAURANT_NAME", nullable = false)
-	public String getName() {
-		return name;
+	@Column(name = "CALORIES", nullable = false)
+	public Long getCalories() {
+		return calories;
 	}
 
 	public void setAlimentationType(AlimentationType alimentationType) {
 		this.alimentationType = alimentationType;
 	}
 
-	@Override
-	public void setName(String name) {
-		this.name = name;
+	public void setCalories(Long calories) {
+		this.calories = calories;
 	}
 }
