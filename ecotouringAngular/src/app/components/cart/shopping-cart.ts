@@ -30,16 +30,13 @@ export class ShoppingCartComponent implements OnInit {
 	}
 
 	getItems(){
-		this.carBucket = [
-			{id : 1, name : "Viaje al Amazonas", image : "http://lorempixel.com/100/100/transport/", amount : 1, price : 400000, discount : 0, totalPrice : 400000},
-			{id : 2, name : "Hotel Amazonas", image : "http://lorempixel.com/100/100/city/", amount : 1, price : 600000, discount : 0, totalPrice : 600000},
-			{id : 3, name : "Visita Eco Parque", image : "http://lorempixel.com/100/100/nature/", amount : 1, price : 80000, discount : 0, totalPrice : 80000},
-			{id : 4, name : "Visita Reserva Ecológica", image : "http://lorempixel.com/100/100/nature/", amount : 1, price : 60000, discount : 0, totalPrice : 60000}
-		];
 
-		this.calculateTotalPrice();
-
-		this.totalItems = this.carBucket.length;
+		if(sessionStorage.getItem('itemBucket')){
+			let objBucket = sessionStorage.getItem('itemBucket');
+			this.carBucket = JSON.parse(objBucket);
+			this.calculateTotalPrice();
+			this.totalItems = this.carBucket.length;
+		}
 	}
 
 	calculateTotalPrice (){

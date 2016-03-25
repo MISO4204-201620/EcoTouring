@@ -3,7 +3,7 @@
 		"id" : "1",
 		"name" : "Servicio Uno",
 		"description" : "In blandit orci sed est vehicula, id efficitur eros iaculis.",
-		"price" : "400.000",
+		"price" : 400000,
 		"type" : "individual",
 		"supplier" : {
 			"id" : "2",
