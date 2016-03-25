@@ -29,6 +29,42 @@ _________________________________________________________ -->
 
     <!-- *** TOP END *** -->
 
+    <!-- *** LOGIN MODAL ***
+    _________________________________________________________ -->
+
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="customer-orders.html" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email_modal" placeholder="Correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password_modal" placeholder="password">
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
+                        </p>
+
+                    </form>
+
+                    <p class="text-center text-muted">Aún no está registrado?</p>
+                    <p class="text-center text-muted"><a [routerLink]="['Signup']"><strong>Registrate</strong></a>! Es fácil y toma menos de 1 minuto, aprovecha los descuentos y crea tus paquetes para disfrutar de la naturaleza!</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- *** LOGIN MODAL END *** -->
+
     <!-- *** NAVBAR ***
     _________________________________________________________ -->
 
@@ -55,14 +91,22 @@ _________________________________________________________ -->
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown active">
-                            <a href="/" class="dropdown-toggle" data-toggle="dropdown">Home </a>
+                            <a [routerLink]="['Home']" class="dropdown-toggle" data-toggle="dropdown">Inicio </a>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Proveedor <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
                                 <li><a href="index.html">Crear paquete</a></li>
                                 <li><a href="index.html">Mis productos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Cliente <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a [routerLink]="['ShoppingCart']" >Mi carrito</a></li>
+                                <li><a href="index.html">Historial de compras</a></li>
+                                <li><a href="index.html">Mensajes</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -89,13 +133,13 @@ _________________________________________________________ -->
 <footer id="footer">
 <div class="container">
     <div class="col-md-3 col-sm-6">
-        <h4>About us</h4>
+        <h4>Acerca de nosotros</h4>
 
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <p>Somos una plataforma para que encuentres los mejores lugares y planes para vivir mejor nuestra biodiversidad.</p>
 
         <hr>
 
-        <h4>Join our monthly newsletter</h4>
+        <h4>Inscríbete a nuestro newsletter</h4>
 
         <form>
             <div class="input-group">

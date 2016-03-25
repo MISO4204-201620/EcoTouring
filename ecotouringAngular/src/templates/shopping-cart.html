@@ -8,7 +8,7 @@
                 <ul class="breadcrumb">
                     <li><a href="index.html">Inicio</a>
                     </li>
-                    <li>Shopping cart</li>
+                    <li>Carrito de compras</li>
                 </ul>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="text-muted lead">Tiene actualmente {{3}} item(s) en su carrito.</p>
+                <p class="text-muted lead">Tiene actualmente {{totalItems}} item(s) en su carrito.</p>
             </div>
 
 
@@ -42,45 +42,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="#item of carBucket">
                                         <td>
                                             <a href="#">
-                                                <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                                                <img src="{{item.image}}" alt="White Blouse Armani">
                                             </a>
                                         </td>
-                                        <td><a href="#">White Blouse Armani</a>
+                                        <td><a href="#">{{item.name}}</a>
                                         </td>
                                         <td>
-                                            <input type="number" value="2" class="form-control">
+                                            <input type="number" [(ngModel)]="item.amount" class="form-control" (ngModelChange)="getTotalItem(item)">
                                         </td>
-                                        <td>$123.00</td>
-                                        <td>$0.00</td>
-                                        <td>$246.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                            </a>
-                                        </td>
-                                        <td><a href="#">Black Blouse Armani</a>
-                                        </td>
-                                        <td>
-                                            <input type="number" value="1" class="form-control">
-                                        </td>
-                                        <td>$200.00</td>
-                                        <td>$0.00</td>
-                                        <td>$200.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                        <td>${{item.price}}</td>
+                                        <td>${{item.discount}}</td>
+                                        <td>${{item.totalPrice}}</td>
+                                        <td><a (click)="onDeleteCarItem(item)"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="5">Total</th>
-                                        <th colspan="2">$446.00</th>
+                                        <th colspan="2">${{totalBucketPrice}}</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -165,28 +148,28 @@
             <div class="col-md-3">
                 <div class="box" id="order-summary">
                     <div class="box-header">
-                        <h3>Order summary</h3>
+                        <h3>Resumen de la compra</h3>
                     </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                    <p class="text-muted">Impuestos y costos adicionales son calculados en base al valor de cada servicio.</p>
 
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
+                                    <td>Subtotal</td>
+                                    <th>${{totalBucketPrice}}</th>
                                 </tr>
                                 <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
+                                    <td>Valor Seguros</td>
+                                    <th>${{insurancePrice}}</th>
                                 </tr>
                                 <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
+                                    <td>Impuestos (16%)</td>
+                                    <th>${{tax * totalBucketPrice}}</th>
                                 </tr>
                                 <tr class="total">
                                     <td>Total</td>
-                                    <th>$456.00</th>
+                                    <th>${{totalBucketPrice + (tax * totalBucketPrice)}}</th>
                                 </tr>
                             </tbody>
                         </table>
