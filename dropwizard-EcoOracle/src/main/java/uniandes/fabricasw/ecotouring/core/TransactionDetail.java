@@ -20,12 +20,11 @@ public class TransactionDetail implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private Long id;
 	private Transaction transaction;
 	private Item item;
 	private Long price;
-	private Long quantity;	
+	private Long quantity;
 
 	public TransactionDetail() {
 	}
@@ -37,12 +36,12 @@ public class TransactionDetail implements java.io.Serializable {
 	public Long getId() {
 		return this.id;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRANSACTION", nullable = false)
 	public Transaction getTransaction() {
 		return this.transaction;
-	}	
+	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM", nullable = false)
@@ -50,12 +49,12 @@ public class TransactionDetail implements java.io.Serializable {
 		return this.item;
 	}
 
-	@Column(name = "PRICE", nullable = false, precision = 22, scale = 0)
+	@Column(name = "PRICE", nullable = false)
 	public Long getPrice() {
 		return this.price;
 	}
 
-	@Column(name = "QUANTITY", nullable = false, precision = 22, scale = 0)
+	@Column(name = "QUANTITY", nullable = false)
 	public Long getQuantity() {
 		return this.quantity;
 	}

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "PERSON", schema = "ADMIN")
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAll", query = "SELECT p FROM Person p"),
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAllSuppliers", query = "SELECT p FROM Person p WHERE role = 'SUPPLIER'")})
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAllSuppliers", query = "SELECT p FROM Person p WHERE role = 'SUPPLIER'") })
 public class Person implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,18 +32,18 @@ public class Person implements java.io.Serializable {
 	private Long id;
 	private String fullName;
 	private String jobTitle;
-	
+
 	private Role role;
 	private String username;
 	private String password;
 	private String address;
 	private String email;
-	
+
 	private Person parent;
 	private Set<Person> persons = new HashSet<Person>();
 	private Set<Conversation> conversations = new HashSet<Conversation>();
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
-	private Set<Item> items = new HashSet<Item>();	
+	private Set<Item> items = new HashSet<Item>();
 	private Set<Transaction> transactions = new HashSet<Transaction>();
 
 	public Person() {
@@ -54,34 +54,34 @@ public class Person implements java.io.Serializable {
 	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
 	public Long getId() {
 		return this.id;
-	}	
-	
+	}
+
 	@Column(name = "NAME", length = 20)
 	public String getFullName() {
 		return this.fullName;
-	}	
-	
+	}
+
 	@Column(name = "JOBTITLE", length = 20)
 	public String getJobTitle() {
 		return this.jobTitle;
-	}	
-	
+	}
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ROLE", nullable = false)
 	public Role getRole() {
 		return this.role;
 	}
-	
+
 	@Column(name = "USERNAME", length = 20)
 	public String getUsername() {
 		return this.username;
-	}	
-	
+	}
+
 	@Column(name = "PASSWORD", length = 20)
 	public String getPassword() {
 		return this.password;
-	}	
-	
+	}
+
 	@Column(name = "ADDRESS", length = 20)
 	public String getAddress() {
 		return this.address;
@@ -91,7 +91,6 @@ public class Person implements java.io.Serializable {
 	public String getEmail() {
 		return this.email;
 	}
-	
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
@@ -113,7 +112,7 @@ public class Person implements java.io.Serializable {
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARENT")	
+	@JoinColumn(name = "PARENT")
 	public Person getParent() {
 		return this.parent;
 	}

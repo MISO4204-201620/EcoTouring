@@ -7,8 +7,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,65 +30,75 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "ITEM", schema = "ADMIN")
-@DiscriminatorColumn(name="CATEGORY", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "CATEGORY", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("BASIC")
-@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i") })
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i"),
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAccommodation", query = "SELECT i FROM Item i WHERE category = 'ACCOMMODATION'"),
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAlimentation", query = "SELECT i FROM Item i WHERE category = 'ALIMENTATION'"),
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findEcoTour", query = "SELECT i FROM Item i WHERE category = 'ECOTOUR'"),
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findTransport", query = "SELECT i FROM Item i WHERE category = 'TRANSPORT'") })
 public class Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long itemId;	
+	private Long itemId;
 	private ItemType itemType;
 	private ItemStatus status;
 	private String name;
 	private String description;
 	private Long price;
 	private Long score;
-	private Category category;
-	private Person supplier;	
+	private String category;
+	private Person supplier;
 	private String tags;
 	private String urlImage;
 	private ContentType contentType;
-	private Item item;
-	
+	private Item parent;
+
 	private List<Conversation> conversations = new ArrayList<Conversation>();
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
 	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
-	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();	
-	private Set<Item> items = new HashSet<Item>();
-	
+	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
+	private Set<Item> packageDetails = new HashSet<Item>();
+
 	public Item() {
 	}
 
 	@Id
 	@Column(name = "ITEM_ID")
 	@GeneratedValue(generator = "ItemSeq")
-	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 25)	
+	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 25)
 	public Long getitemId() {
 		return this.itemId;
-	}		
-	
+	}
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE", nullable = true)
 	public ItemType getItemType() {
 		return itemType;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS", nullable = true)
 	public ItemStatus getStatus() {
 		return this.status;
-	}	
+	}
+
+	// @Enumerated(EnumType.STRING)
+	@Column(name = "CATEGORY", insertable = false, updatable = false)
+	public String getCategory() {
+		return this.category;
+	}
 
 	@Column(name = "NAME", nullable = false)
 	public String getName() {
 		return this.name;
 	}
-	
+
 	@Column(name = "DESCRIPTION", nullable = true)
 	public String getDescription() {
 		return this.description;
-	}	
+	}
 
 	@Column(name = "PRICE", nullable = false)
 	public Long getPrice() {
@@ -99,46 +109,49 @@ public class Item implements java.io.Serializable {
 	public Long getScore() {
 		return this.score;
 	}
-	
-	/*@Enumerated(EnumType.STRING)
-	public Category getCategory() {
-		return this.category;
-	}*/
-	
+
 	@ManyToOne
 	@JoinColumn(name = "SUPPLIER", nullable = true)
 	public Person getSupplier() {
 		return this.supplier;
-	}	
+	}
 
 	@Column(name = "TAGS", nullable = true)
 	public String getTags() {
 		return this.tags;
 	}
-	
+
 	@Column(name = "URL_IMAGE", nullable = true)
 	public String getUrlImage() {
 		return this.urlImage;
-	}	
+	}
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "CONTENT_TYPE", nullable = true)
 	public ContentType getContentType() {
 		return this.contentType;
 	}
-	
-	@ManyToOne
-	@JoinColumn(name = "PARENT", nullable = true)
-	public Item getItem() {
-		return this.item;
-	}	
+
+	@ManyToOne // (cascade={CascadeType.ALL})
+	@JoinColumn(name = "PARENT", nullable = true/*
+												 * , insertable=false,
+												 * updatable=false
+												 */)
+	public Item getParent() {
+		return this.parent;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+	public Set<Item> getPackageDetails() {
+		return this.packageDetails;
+	}
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	public List<Conversation> getConversations() {
 		return this.conversations;
 	}
-	
+
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	public Set<ItemComment> getItemComments() {
@@ -153,17 +166,11 @@ public class Item implements java.io.Serializable {
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	public Set<Item> getItems() {
-		return this.items;
-	}
-	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")	
 	public Set<TransactionDetail> getTransactionDetails() {
 		return this.transactionDetails;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -183,10 +190,6 @@ public class Item implements java.io.Serializable {
 		this.itemId = itemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
 	public void setItemComments(Set<ItemComment> itemComments) {
 		this.itemComments = itemComments;
 	}
@@ -195,8 +198,12 @@ public class Item implements java.io.Serializable {
 		this.itemContents = itemContents;
 	}
 
-	public void setItems(Set<Item> items) {
-		this.items = items;
+	public void setParent(Item parent) {
+		this.parent = parent;
+	}
+
+	public void setPackageDetails(Set<Item> packageDetails) {
+		this.packageDetails = packageDetails;
 	}
 
 	public void setItemType(ItemType itemType) {

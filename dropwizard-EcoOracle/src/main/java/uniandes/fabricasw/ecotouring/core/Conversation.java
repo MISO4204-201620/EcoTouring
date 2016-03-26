@@ -31,18 +31,18 @@ public class Conversation implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;		
+	private Long id;
 	private ConversationType conversationtype;
 	private String entry;
 	private Date dateEntry;
 	private Item item;
-	private Person author;	
+	private Person author;
 	private Conversation conversation;
-	private Set<Conversation> conversations = new HashSet<Conversation>();	
+	private Set<Conversation> conversations = new HashSet<Conversation>();
 
 	public Conversation() {
-	}	
-	
+	}
+
 	@Id
 	@GeneratedValue(generator = "ConversationSeq")
 	@SequenceGenerator(name = "ConversationSeq", sequenceName = "CONVERSATION_SEQ", allocationSize = 5)
@@ -50,13 +50,13 @@ public class Conversation implements java.io.Serializable {
 	public Long getId() {
 		return this.id;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE", nullable = false)
 	public ConversationType getConversationtype() {
 		return conversationtype;
-	}	
-	
+	}
+
 	@Column(name = "ENTRY", nullable = false, length = 4000)
 	public String getEntry() {
 		return this.entry;
@@ -67,19 +67,19 @@ public class Conversation implements java.io.Serializable {
 	public Date getDateEntry() {
 		return this.dateEntry;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ITEM", nullable = false)
 	public Item getItem() {
 		return this.item;
-	}	
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "AUTHOR", nullable = false)
 	public Person getAuthor() {
 		return this.author;
-	}	
-	
+	}
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "PARENT")

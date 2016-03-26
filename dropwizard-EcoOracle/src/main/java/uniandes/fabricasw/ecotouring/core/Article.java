@@ -33,48 +33,48 @@ public class Article implements java.io.Serializable {
 	private String title;
 	private String text;
 	private Person author;
-	private Date date;	
+	private Date date;
 	private String slug;
-	private Set<Tag> tags = new HashSet<Tag>();	
+	private Set<Tag> tags = new HashSet<Tag>();
 
 	public Article() {
 	}
 
 	@Id
 	@GeneratedValue(generator = "ArticleSeq")
-	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize = 5)	
+	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize = 5)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Column(name = "TITLE", nullable = false)
 	public String getTitle() {
 		return title;
 	}
-    
+
 	@Column(name = "TEXT", nullable = false)
 	public String getText() {
 		return text;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "AUTHOR", nullable = false)
 	public Person getAuthor() {
 		return author;
 	}
 
-	@Temporal(TemporalType.DATE)	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "DATE_CREATED", nullable = false)
 	public Date getDate() {
 		return date;
-	}	
+	}
 
 	@Column(name = "SLUG", nullable = false)
 	public String getSlug() {
 		return slug;
 	}
-	
-    @JsonIgnore
+
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	public Set<Tag> getTags() {
 		return tags;

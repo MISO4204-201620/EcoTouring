@@ -23,8 +23,8 @@ import javax.persistence.TemporalType;
 public class ItemComment implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;	
+
+	private Long id;
 	private String text;
 	private Long score;
 	private Date dateEntry;
@@ -41,7 +41,7 @@ public class ItemComment implements java.io.Serializable {
 	public Long getId() {
 		return this.id;
 	}
-	
+
 	@Column(name = "TEXT", length = 20)
 	public String getText() {
 		return this.text;
@@ -51,18 +51,18 @@ public class ItemComment implements java.io.Serializable {
 	public Long getScore() {
 		return this.score;
 	}
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATE_ENTRY", length = 7)
 	public Date getDateEntry() {
 		return this.dateEntry;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM", nullable = false)
 	public Item getItem() {
 		return this.item;
-	}	
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "AUTHOR", nullable = false)

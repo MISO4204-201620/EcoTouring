@@ -13,19 +13,19 @@ public class Transport extends Item implements java.io.Serializable {
 	private TransportType type;
 	private String origin;
 	private String destination;
-	private String initialHour;	
-	private String finalHour;	
+	private String initialHour;
+	private String finalHour;
 
 	@Column(name = "TRANSPORT_TYPE", nullable = false)
 	public TransportType getType() {
 		return type;
-	}	
-	
+	}
+
 	@Column(name = "ORIGIN", nullable = false)
 	public String getOrigin() {
 		return origin;
-	}	
-	
+	}
+
 	@Column(name = "DESTINATION", nullable = false)
 	public String getDestination() {
 		return destination;
@@ -34,8 +34,8 @@ public class Transport extends Item implements java.io.Serializable {
 	@Column(name = "INITIAL_HOUR", nullable = false)
 	public String getInitialHour() {
 		return initialHour;
-	}	
-	
+	}
+
 	@Column(name = "FINAL_HOUR", nullable = false)
 	public String getFinalHour() {
 		return finalHour;
