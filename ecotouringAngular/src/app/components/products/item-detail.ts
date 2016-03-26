@@ -1,10 +1,12 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit,Inject, ElementRef} from 'angular2/core';
 import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
 import {Item} from '../../interfaces/item';
 import {ItemDetailService} from '../../services/item-detail.service';
 import {Car} from '../../models/car/car.model';
 import {CommentItemComponent} from '../comments/comment-item';
-//import {Rating} from 'primeng/primeng';
+
+
+declare var jQuery : any;
 
 @Component({
   selector: 'item-detail',
@@ -16,14 +18,21 @@ import {CommentItemComponent} from '../comments/comment-item';
 })
 
 export class ItemDetailComponent implements OnInit {
-	constructor(params : RouteParams, private _router: Router, private _itemDetailService : ItemDetailService){
+
+	elementRef : ElementRef;
+
+	constructor(params : RouteParams, private _router: Router, private _itemDetailService : ItemDetailService, @Inject(ElementRef) elementRef : ElementRef){
 		this.idItem = params.get('item');
+		this.elementRef = elementRef;
 	}
 	idItem : string;
 	errorMessage : string;
 	item = "";
 	imageMain = "";
+	itemCategory : string;
 	itemsBucket : Array<Car>;
+	itemMedia : Array<Object>;
+	itemParent = null;
 	val = 1;
 	
 
@@ -42,7 +51,12 @@ export class ItemDetailComponent implements OnInit {
 	}
 
 	actionItem(item){
-		this.imageMain = item.media[0].url;
+		this.imageMain = item.urlImage;
+		this.itemCategory = item.category;
+		this.itemMedia = [{url : item.urlImage}];
+		this.itemParent = item.parent;
+
+		jQuery(this.elementRef.nativeElement).find('.rating-loading').rating({displayOnly: true, step: 1});
 	}
 
 	onAddCartItem (item : Item) {

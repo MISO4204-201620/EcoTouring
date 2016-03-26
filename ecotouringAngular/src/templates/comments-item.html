@@ -5,13 +5,13 @@
     <div class="row comment" *ngFor="#comment of comments">
         <div class="col-sm-3 col-md-2 text-center-xs">
             <p>
-                <img src="{{comment.image}}" class="img-responsive img-circle" alt="">
+                <img src="{{urlImage}}" class="img-responsive img-circle" alt="">
             </p>
         </div>
         <div class="col-sm-9 col-md-10">
-            <h5 class="text-uppercase">{{comment.user}}</h5>
-            <p class="posted"><i class="fa fa-clock-o"></i> {{comment.date}}</p>
-            <p>{{comment.comment}}</p>
+            <h5 class="text-uppercase">{{comment.author.fullName}}</h5>
+            <p class="posted"><i class="fa fa-clock-o"></i> {{comment.dateEntry}}</p>
+            <p>{{comment.entry}}</p>
             <p class="reply"><a href="#"><i class="fa fa-reply"></i> Responder</a>
             </p>
         </div>

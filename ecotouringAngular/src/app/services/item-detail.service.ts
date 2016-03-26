@@ -7,12 +7,12 @@ import {Observable} from 'rxjs/Observable';
 export class ItemDetailService {
 	constructor (private http : Http){}
 
-	private _itemUrl = 'mocks/item.json';
-	//private _itemUrl = 'http://54.174.139.165:9999/item/';
+	//private _itemUrl = 'mocks/item.json';
+	private _itemUrl = 'http://54.174.139.165:9999/items/';
 
 	getItem(idItem){
-		return this.http.get(this._itemUrl)
-							.map((res : Response) => res.json().data)
+		return this.http.get(this._itemUrl + idItem)
+							.map((res : Response) => res.json())
 							.do(data => console.log(data))
 							.catch(this.handleError);
 	}

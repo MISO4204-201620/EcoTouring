@@ -1,18 +1,21 @@
 export class CommentItem {
 
 	public id : number;
-	public comment : string;
+	public conversationType : string;
+	public entry : string;
 	public user : string;
 	public image : string;
-	public date : string;
+	public dateEntry : string;
 	public score : number;
+	public author : string
 	
 	constructor (){
 		this.id = 0;
-		this.comment = "";
+		this.conversationType= "";
+		this.entry = "";
 		this.user = "";
 		this.image = "",
-		this.date = "",
+		this.dateEntry = "",
 		this.score = 0;
 	}
 }

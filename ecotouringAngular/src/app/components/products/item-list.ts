@@ -15,6 +15,7 @@ import {CategoriesApp} from '../../categories/categories';
 
 export class ItemListComponent implements OnInit {
 	constructor(params : RouteParams, private _router: Router, private _itemListService : ItemListService){
+		
 		this.category = params.get('category');
 	}
 	category : string;
@@ -22,10 +23,12 @@ export class ItemListComponent implements OnInit {
 	items : ItemThumb[];
 	selectedItem: ItemThumb;
 
-	ngOnInit(){ this.getItems();}
+	ngOnInit(){ 
+		this.getItems(this.category);
+	}
 
-	getItems(){
-		this._itemListService.getItems()
+	getItems(category : string){
+		this._itemListService.getItems(category)
 									.subscribe(
 										items => this.items = items,
 										error => this.errorMessage = <any>error

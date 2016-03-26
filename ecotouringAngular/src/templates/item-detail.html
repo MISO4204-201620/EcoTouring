@@ -3,12 +3,12 @@
         <div id="mainImage">
             <img src="{{ imageMain }}" alt="" class="img-responsive">
         </div>
-        <!--
-        <div class="ribbon sale">
-            <div class="theribbon">SALE</div>
+        
+        <div class="ribbon sale" *ngIf="item.itemType === 'PACKAGE'">
+            <div class="theribbon">PAQUETE</div>
             <div class="ribbon-background"></div>
         </div>
-         /.ribbon -->
+         
 
          <!--
         <div class="ribbon new">
@@ -33,7 +33,7 @@
                     </label>
                     -->
 
-                    <p-rating [(value)]="val"></p-rating>
+                    <input id="input-3" value="5" class="rating-loading">
 
                 </div>
 
@@ -49,7 +49,7 @@
         </div>
 
         <div class="row" id="thumbs">
-            <div class="col-xs-4" *ngFor="#image of item.media">
+            <div class="col-xs-4" *ngFor="#image of itemMedia">
                 <a href="{{image.url}}" class="thumb">
                     <img src="{{image.url}}" alt="" class="img-responsive">
                 </a>
@@ -62,26 +62,78 @@
 
 <div class="box" id="details">
     <p>
-        <h4>Nombre del Hotel</h4>
+        <h4 [ngSwitch]="itemCategory">
+          <template [ngSwitchWhen]="'ECOTOUR'">Nombre del Tour</template>
+          <template [ngSwitchWhen]="'ACCOMMODATION'">Nombre del Hotel</template>
+          <template [ngSwitchWhen]="'TRANSPORT'">Nombre del Servicio</template>
+          <template [ngSwitchWhen]="'ALIMENTATION'">Nombre del Restaurante</template>
+          <template ngSwitchDefault>Nombre del paquete</template>
+        </h4>
         <p>{{ item.name }}</p>
-        <h4>País</h4>
-        <p>{{ item.country }}</p>
-        <h4>Ciudad</h4>
-        <p>{{ item.city }}</p>
-        <h4>Fecha de llegada</h4>
-        <p>{{ item.dateStart }}</p>
-        <h4>Fecha de salida</h4>
-        <p>{{ item.dateEnd }}</p>
-        <h4>Habitaciones</h4>
-        <p>{{ item.room }}</p>
-        <h4>Número de personas</h4>
-        <p>{{ item.people }}</p>
+        
+        <h4 *ngIf="itemCategory === 'ECOTOUR'">Tipo de tour</h4>
+        <p *ngIf="itemCategory === 'ECOTOUR'">{{ item.ecoTourType }}</p>
+
+        <h4 *ngIf="itemCategory === 'TRANSPORT'">Tipo de transporte</h4>
+        <p *ngIf="itemCategory === 'TRANSPORT'">{{ item.type }}</p>
+
+        <h4 *ngIf="itemCategory === 'TRANSPORT'">Origen</h4>
+        <p *ngIf="itemCategory === 'TRANSPORT'">{{ item.origin }}</p>
+        <h4 *ngIf="itemCategory === 'TRANSPORT'">Destino</h4>
+        <p *ngIf="itemCategory === 'TRANSPORT'">{{ item.destination }}</p>
+        <h4 *ngIf="itemCategory === 'TRANSPORT'">Hora salida</h4>
+        <p *ngIf="itemCategory === 'TRANSPORT'">{{ item.initialHour }}</p>
+        <h4 *ngIf="itemCategory === 'TRANSPORT'">Hora llegada</h4>
+        <p *ngIf="itemCategory === 'TRANSPORT'">{{ item.finalHour }}</p>
+
+        <h4 *ngIf="itemCategory === 'ACCOMMODATION'">País</h4>
+        <p *ngIf="itemCategory === 'ACCOMMODATION'" >{{ item.country }}</p>
+        <h4 *ngIf="itemCategory === 'ACCOMMODATION'">Ciudad</h4>
+        <p *ngIf="itemCategory === 'ACCOMMODATION'">{{ item.city }}</p>
+        <h4 *ngIf="itemCategory === 'ACCOMMODATION'">Tipo de acomodación</h4>
+        <p *ngIf="itemCategory === 'ACCOMMODATION'">{{ item.accommodationType }}</p>
+        <h4 *ngIf="itemCategory === 'ACCOMMODATION'">Número de cuartos</h4>
+        <p *ngIf="itemCategory === 'ACCOMMODATION'">{{ item.numberOfRooms }}</p>
+
+        <h4 *ngIf="itemCategory === 'ALIMENTATION'">Tipo de comida</h4>
+        <p *ngIf="itemCategory === 'ALIMENTATION'">{{ item.alimentationType }}</p>
+        <h4 *ngIf="itemCategory === 'ALIMENTATION'">Calorias</h4>
+        <p *ngIf="itemCategory === 'ALIMENTATION'">{{ item.calories }}</p>
+
         <h4>Detalle del servicio</h4>
         <p>{{ item.description }}</p>
+
         
         <blockquote>
-            {{item.content}}
+            <div *ngIf="itemCategory === 'ECOTOUR'" [innerHTML]="item.itinerary"></div>
+            <div *ngIf="itemCategory === 'BASIC'" [innerHTML]="item.packageDetails"></div>
         </blockquote>
+
+</div>
+
+<div class="row" *ngIf="itemParent !== null">
+    <div class="col-md-3 col-sm-6">
+        <div class="box text-uppercase">
+            <h3>Paquete relacionado al servicio</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <div class="product">
+            <div class="image">
+                <a href="/categories/item/{{itemParent.itemId}}">
+                    <img src="{{itemParent.urlImage}}" alt="" class="img-responsive image1">
+                </a>
+            </div>
+            <div class="text">
+                <h3>{{itemParent.name}}t</h3>
+                <p class="price">${{itemParent.price}}</p>
+
+            </div>
+        </div>
+        <!-- /.product -->
+    </div>
+
 </div>
 
 <comment-item></comment-item>
@@ -96,60 +148,6 @@
     </p>
 </div>
 
-<div class="row">
-    <div class="col-md-3 col-sm-6">
-        <div class="box text-uppercase">
-            <h3>You may also like these products</h3>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6">
-        <div class="product">
-            <div class="image">
-                <a href="#">
-                    <img src="img/product2.jpg" alt="" class="img-responsive image1">
-                </a>
-            </div>
-            <div class="text">
-                <h3>Fur coat</h3>
-                <p class="price">$143</p>
-
-            </div>
-        </div>
-        <!-- /.product -->
-    </div>
-
-    <div class="col-md-3 col-sm-6">
-        <div class="product">
-            <div class="image">
-                <a href="#">
-                    <img src="img/product3.jpg" alt="" class="img-responsive image1">
-                </a>
-            </div>
-            <div class="text">
-                <h3>Fur coat</h3>
-                <p class="price">$143</p>
-            </div>
-        </div>
-        <!-- /.product -->
-    </div>
-
-    <div class="col-md-3 col-sm-6">
-        <div class="product">
-            <div class="image">
-                <a href="#">
-                    <img src="img/product1.jpg" alt="" class="img-responsive image1">
-                </a>
-            </div>
-            <div class="text">
-                <h3>Fur coat</h3>
-                <p class="price">$143</p>
-            </div>
-        </div>
-        <!-- /.product -->
-    </div>
-
-</div>
 
 <div class="row">
     <div class="col-md-3 col-sm-6">

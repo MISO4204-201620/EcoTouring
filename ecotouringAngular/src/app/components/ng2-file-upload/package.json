@@ -1,0 +1,132 @@
+{
+  "_args": [
+    [
+      "ng2-file-upload",
+      "/home/andres/projects/EcoTouring/ecotouringAngular"
+    ]
+  ],
+  "_from": "ng2-file-upload@latest",
+  "_id": "ng2-file-upload@1.0.0-beta.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ng2-file-upload",
+  "_nodeVersion": "4.2.6",
+  "_npmOperationalInternal": {
+    "host": "packages-5-east.internal.npmjs.com",
+    "tmp": "tmp/ng2-file-upload-1.0.0-beta.1.tgz_1454597516574_0.22567525249905884"
+  },
+  "_npmUser": {
+    "email": "valorkin@gmail.com",
+    "name": "valorkin"
+  },
+  "_npmVersion": "3.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "ng2-file-upload",
+    "raw": "ng2-file-upload",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ng2-file-upload/-/ng2-file-upload-1.0.0-beta.1.tgz",
+  "_shasum": "564d7ef3e8f0c062f97909a8b573e7d58a9a6802",
+  "_shrinkwrap": null,
+  "_spec": "ng2-file-upload",
+  "_where": "/home/andres/projects/EcoTouring/ecotouringAngular",
+  "author": {
+    "email": "vyacheslav.chub@valor-software.com",
+    "name": "Vyacheslav Chub"
+  },
+  "bugs": {
+    "url": "https://github.com/valor-software/ng2-file-upload/issues"
+  },
+  "contributors": [
+    {
+      "name": "Vyacheslav Chub",
+      "email": "vyacheslav.chub@valor-software.com",
+      "url": "https://github.com/buchslava"
+    },
+    {
+      "name": "Dmitriy Shekhovtsov",
+      "email": "valorkin@gmail.com",
+      "url": "https://github.com/valorkin"
+    }
+  ],
+  "dependencies": {},
+  "description": "angular2 file upload directives",
+  "devDependencies": {
+    "angular2": "2.0.0-beta.0",
+    "bootstrap": "3.3.6",
+    "clean-webpack-plugin": "0.1.8",
+    "compression-webpack-plugin": "0.2.0",
+    "es6-shim": "0.33.13",
+    "eslint": "1.10.3",
+    "exports-loader": "0.6.2",
+    "file-loader": "0.8.5",
+    "gulp": "3.9.0",
+    "gulp-clean": "0.3.1",
+    "gulp-eslint": "1.1.1",
+    "gulp-size": "2.0.0",
+    "gulp-tsc": "1.1.4",
+    "gulp-tslint": "4.3.1",
+    "html-loader": "0.4.0",
+    "markdown-loader": "0.1.7",
+    "marked": "0.3.5",
+    "moment": "2.11.1",
+    "ng2-bootstrap": "1.0.0-beta.2",
+    "pre-commit": "1.1.2",
+    "prismjs": "github:valorkin/prism",
+    "prismjs-loader": "0.0.2",
+    "raw-loader": "0.5.1",
+    "reflect-metadata": "0.1.2",
+    "require-dir": "0.3.0",
+    "rxjs": "5.0.0-beta.0",
+    "ts-loader": "0.8.0",
+    "tslint": "3.3.0",
+    "typescript": "1.7.5",
+    "webpack": "1.12.12",
+    "webpack-dev-server": "1.14.0",
+    "zone.js": "0.5.10"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "564d7ef3e8f0c062f97909a8b573e7d58a9a6802",
+    "tarball": "http://registry.npmjs.org/ng2-file-upload/-/ng2-file-upload-1.0.0-beta.1.tgz"
+  },
+  "gitHead": "10a82eabdb4353d159ac09a9c5c897b6fcec3d13",
+  "homepage": "https://github.com/valor-software/ng2-file-upload#readme",
+  "keywords": [
+    "angular2",
+    "angularjs",
+    "bootstrap",
+    "twitter-bootstrap"
+  ],
+  "license": "MIT",
+  "main": "ng2-file-upload.js",
+  "maintainers": [
+    {
+      "name": "valorkin",
+      "email": "valorkin@gmail.com"
+    }
+  ],
+  "name": "ng2-file-upload",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/ng2-file-upload.git"
+  },
+  "scripts": {
+    "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
+    "prepublish": "gulp clean && tsc",
+    "server": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
+    "start": "npm run server",
+    "test": "gulp lint"
+  },
+  "typings": "ng2-file-upload.d.ts",
+  "version": "1.0.0-beta.1"
+}

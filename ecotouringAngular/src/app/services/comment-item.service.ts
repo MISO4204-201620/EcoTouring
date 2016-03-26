@@ -7,12 +7,12 @@ import {Observable} from 'rxjs/Observable';
 export class CommentItemService {
 	constructor (private http : Http){}
 
-	private _commentsUrl = 'mocks/comments.json';
-	//private _categoriesUrl = 'http://54.174.139.165:9999/categories';
+	//private _commentsUrl = 'mocks/comments.json';
+	private _commentsUrl = 'http://54.174.139.165:9999/items/';
 
-	getComments(){
-		return this.http.get(this._commentsUrl)
-							.map(res => <CommentItem[]> res.json().data)
+	getComments(id : string){
+		return this.http.get(this._commentsUrl + id + "/conversations")
+							.map(res => <CommentItem[]> res.json())
 							.catch(this.handleError);
 	}
 

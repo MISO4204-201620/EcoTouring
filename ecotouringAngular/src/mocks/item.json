@@ -9,7 +9,7 @@
 			"id" : "2",
 			"name" : "Eco turismo"
 			},
-		"content" : "",
+		"content" : "<h4>Contenido prueba</h4><p>Con parrafo prueba</p>",
 		"score" : "4.5",
 		"media" : [
 			{"id" : "1", "contentType" : "image", "url" : "http://lorempixel.com/400/500/nature/"},

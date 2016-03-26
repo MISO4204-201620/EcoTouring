@@ -7,11 +7,12 @@ import {Observable} from 'rxjs/Observable';
 export class ProviderListService {
 	constructor (private http : Http){}
 
-	private _providersUrl = 'mocks/providers.json';
+	//private _providersUrl = 'mocks/providers.json';
+	private _providersUrl = 'http://54.174.139.165:9999/suppliers';
 
 	getProviders(){
 		return this.http.get(this._providersUrl)
-							.map(res => <Provider[]> res.json().data)
+							.map(res => <Provider[]> res.json())
 							.catch(this.handleError);
 	}
 

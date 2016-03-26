@@ -1,8 +1,8 @@
 {
 	"data" : [
-		{"id": "1", "name": "Viajes", "total": "400"},
-		{"id": "2", "name": "Hospedajes", "total": "300"},
-		{"id": "3", "name": "Restaurantes", "total": "100"},
-		{"id": "4", "name": "Toures Ecológicos", "total": "350"}
+		{"id": "transport", "name": "Viajes","text" : "Disfruta de las mejores opciones para viajar a tu lugar deseado.","urlImage" : "http://lorempixel.com/360/270/transport", "total": "400"},
+		{"id": "accommodation", "name": "Hospedajes","text" : "Selecciona los mejores hoteles para disfrutar tu viaje.","urlImage" : "http://lorempixel.com/360/270/city", "total": "300"},
+		{"id": "alimentation", "name": "Restaurantes","text" : "Disfruta las mejores opciones para tu alimentación.","urlImage" : "http://lorempixel.com/360/270/food","total": "100"},
+		{"id": "ecotour", "name": "Toures Ecológicos","text" : "Los mejores lugares para realizar tu visita ecológica.","urlImage" : "http://lorempixel.com/360/270/nature", "total": "350"}
 	]
 }

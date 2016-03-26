@@ -8,12 +8,15 @@ import {Observable} from 'rxjs/Observable';
 export class ItemListService {
 	constructor (private http : Http){}
 
-	private _itemsUrl = 'mocks/items.json';
-	//private _itemsUrl = 'http://54.174.139.165:9999/items';
+	//private _itemsUrl = 'mocks/items.json';
+	private _itemsUrl = 'http://54.174.139.165:9999/';
 
-	getItems(){
-		return this.http.get(this._itemsUrl)
-							.map(res => <ItemThumb[]> res.json().data)
+	getItems(param = 'items'){
+
+		if (param === null) param = 'items';
+
+		return this.http.get(this._itemsUrl + param)
+							.map(res => <ItemThumb[]> res.json())
 							.catch(this.handleError);
 	}
 

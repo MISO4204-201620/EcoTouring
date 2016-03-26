@@ -1,5 +1,6 @@
 export interface ItemThumb {
-	id : number;
+	itemId : number;
+	itemType : string;
 	name : string;
 	description : string;
 	price : number;
@@ -7,5 +8,6 @@ export interface ItemThumb {
 	contentType : string,
 	status : string,
 	tags : string,
-	score : number
+	score : number,
+	supplier : Object
 }

@@ -13,14 +13,14 @@
                 <div *ngFor="#category of categories"  class="col-sm-4">
                     <div class="box-image">
                         <div class="image">
-                            <img src="http://lorempixel.com/360/270/nature/1" alt="" class="img-responsive">
+                            <img src="{{category.urlImage}}" alt="" class="img-responsive">
                         </div>
                         <div class="bg"></div>
                         <div class="name">
-                            <h3><a href="portfolio-detail.html">{{ category.name }}</a></h3> 
+                            <h3><a [routerLink]="['/Categories', 'Items', {category : category.id}]">{{ category.name }}</a></h3> 
                         </div>
                         <div class="text">
-                            <p class="hidden-sm">Los mejores lugares para realizar tu visita ecológica.</p>
+                            <p class="hidden-sm">{{category.text}}</p>
                             <p class="buttons">
                                 <a [routerLink]="['/Categories', 'Items', {category : category.id}]" class="btn btn-template-transparent-primary">Buscar</a>
                             </p>
