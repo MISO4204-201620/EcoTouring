@@ -16,8 +16,15 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import uniandes.fabricasw.ecotouring.core.*;
-import uniandes.fabricasw.ecotouring.db.*;
+import uniandes.fabricasw.ecotouring.core.Conversation;
+import uniandes.fabricasw.ecotouring.core.Item;
+import uniandes.fabricasw.ecotouring.core.ItemComment;
+import uniandes.fabricasw.ecotouring.core.ItemContent;
+import uniandes.fabricasw.ecotouring.core.ItemStatus;
+import uniandes.fabricasw.ecotouring.db.ConversationDAO;
+import uniandes.fabricasw.ecotouring.db.ItemCommentDAO;
+import uniandes.fabricasw.ecotouring.db.ItemContentDAO;
+import uniandes.fabricasw.ecotouring.db.ItemDAO;
 
 @Path("/items/{itemId}")
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
@@ -29,61 +36,62 @@ public class ItemResource {
 	private final ItemCommentDAO itemCommentDAO;
 	private final ItemContentDAO itemContentDAO;
 
-	public ItemResource(ItemDAO itemDAO, ConversationDAO conversationDAO, ItemCommentDAO itemCommentDAO, ItemContentDAO itemContentDAO ) {
+	public ItemResource(ItemDAO itemDAO, ConversationDAO conversationDAO, ItemCommentDAO itemCommentDAO,
+			ItemContentDAO itemContentDAO) {
 		this.itemDAO = itemDAO;
 		this.conversationDAO = conversationDAO;
 		this.itemCommentDAO = itemCommentDAO;
 		this.itemContentDAO = itemContentDAO;
 	}
 
-	@GET	
+	@GET
 	@UnitOfWork
 	public Item getItem(@PathParam("itemId") LongParam itemId) {
 		return findSafely(itemId);
 	}
-	
+
 	@GET
 	@Path("/conversations")
 	@UnitOfWork
 	public List<Conversation> listConversations(@PathParam("itemId") LongParam itemId) {
 		return new ArrayList<Conversation>(itemDAO.findConversationsByItem(itemId.get()));
 	}
-	
+
 	@POST
 	@Path("/conversations")
 	@UnitOfWork
 	public Conversation createConversation(Conversation conversation) {
 		return conversationDAO.create(conversation);
 	}
-	
+
 	@GET
 	@Path("/scores")
 	@UnitOfWork
 	public List<ItemComment> listScores(@PathParam("itemId") LongParam itemId) {
 		return new ArrayList<ItemComment>(itemDAO.findItemCommentsByItem(itemId.get()));
 	}
-	
+
 	@POST
 	@Path("/scores")
 	@UnitOfWork
 	public ItemComment createScore(ItemComment itemComment) {
 		return itemCommentDAO.create(itemComment);
-	}	
-	
+	}
+
 	@GET
 	@Path("/content")
 	@UnitOfWork
 	public List<ItemContent> listContents(@PathParam("itemId") LongParam itemId) {
 		return new ArrayList<ItemContent>(itemDAO.findItemContentsByItem(itemId.get()));
 	}
-	
+
 	@POST
 	@Path("/content")
 	@UnitOfWork
 	public ItemContent createContent(ItemContent itemContent) {
 		return itemContentDAO.create(itemContent);
 	}
-	
+
 	@POST
 	@Path("/hiddeItem")
 	@UnitOfWork
@@ -92,7 +100,7 @@ public class ItemResource {
 		item.setStatus(ItemStatus.HIDDEN);
 		return itemDAO.update(item);
 	}
-	
+
 	@POST
 	@Path("/publishItem")
 	@UnitOfWork
@@ -100,7 +108,7 @@ public class ItemResource {
 		Item item = itemDAO.findById(itemId.get()).get();
 		item.setStatus(ItemStatus.PUBLISHED);
 		return itemDAO.update(item);
-	}	
+	}
 
 	private Item findSafely(LongParam itemId) {
 		final Optional<Item> item = itemDAO.findById(itemId.get());

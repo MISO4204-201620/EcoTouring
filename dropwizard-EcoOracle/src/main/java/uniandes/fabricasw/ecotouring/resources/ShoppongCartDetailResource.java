@@ -7,7 +7,6 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -15,7 +14,9 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import uniandes.fabricasw.ecotouring.core.*;
+import uniandes.fabricasw.ecotouring.core.Transaction;
+import uniandes.fabricasw.ecotouring.core.TransactionDetail;
+import uniandes.fabricasw.ecotouring.core.TransactionStatus;
 import uniandes.fabricasw.ecotouring.db.ShoppingCartDAO;
 import uniandes.fabricasw.ecotouring.db.ShoppingCartDetailDAO;
 
@@ -56,7 +57,7 @@ public class ShoppongCartDetailResource {
 	public TransactionDetail createTransactionDetail(TransactionDetail transactionDetail) {
 		return shoppingCartDetailDao.create(transactionDetail);
 	}
-	
+
 	@POST
 	@Path("/changeStatusNew")
 	@UnitOfWork

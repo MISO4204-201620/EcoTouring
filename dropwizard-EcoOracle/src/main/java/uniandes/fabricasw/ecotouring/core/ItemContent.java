@@ -22,7 +22,7 @@ public class ItemContent implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;	
+	private Long id;
 	private String name;
 	private String url;
 	private ContentType contentType;
@@ -48,18 +48,18 @@ public class ItemContent implements java.io.Serializable {
 	public String getUrl() {
 		return this.url;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "CONTENT_TYPE", nullable = false, length = 20)
 	public ContentType getContentType() {
 		return this.contentType;
-	}	
-	
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM", nullable = false)
 	public Item getItem() {
 		return this.item;
-	}	
+	}
 
 	public void setContentType(ContentType contentType) {
 		this.contentType = contentType;

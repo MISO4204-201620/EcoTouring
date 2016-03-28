@@ -6,7 +6,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -14,8 +13,8 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import uniandes.fabricasw.ecotouring.core.*;
-import uniandes.fabricasw.ecotouring.db.*;
+import uniandes.fabricasw.ecotouring.core.EcoTour;
+import uniandes.fabricasw.ecotouring.db.EcoTourDAO;
 
 @Path("/ecotour")
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
@@ -27,15 +26,16 @@ public class EcoTourResource {
 		this.ecoTourDAO = ecoTourDAO;
 	}
 
-	@GET	
+	@GET
 	@UnitOfWork
 	public List<EcoTour> listecoTour() {
 		return ecoTourDAO.findAll();
 	}
-	/*public EcoTour getEcoTour(@PathParam("itemId") LongParam itemId) {
-		return findSafely(itemId);
-	}*/
-	
+	/*
+	 * public EcoTour getEcoTour(@PathParam("itemId") LongParam itemId) { return
+	 * findSafely(itemId); }
+	 */
+
 	@POST
 	@UnitOfWork
 	public EcoTour createConversation(EcoTour ecoTour) {

@@ -32,12 +32,12 @@ public class Transaction implements java.io.Serializable {
 	private TransactionType type;
 	private TransactionStatus status;
 	private Person customer;
-	private Date dateTransaction;	
+	private Date dateTransaction;
 	private Set<TransactionDetail> transacctionDetails = new HashSet<TransactionDetail>();
-	
+
 	public Transaction() {
 	}
-	
+
 	@Id
 	@GeneratedValue(generator = "TransactionSeq")
 	@SequenceGenerator(name = "TransactionSeq", sequenceName = "TRANSACTION_SEQ", allocationSize = 5)
@@ -45,18 +45,18 @@ public class Transaction implements java.io.Serializable {
 	public Long getId() {
 		return this.id;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE", nullable = false)
 	public TransactionType getType() {
 		return this.type;
-	}	
+	}
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS", nullable = false)
 	public TransactionStatus getStatus() {
 		return this.status;
-	}	
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER", nullable = false)

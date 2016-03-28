@@ -23,12 +23,12 @@ public class ShoppingCartResource {
 	public ShoppingCartResource(ShoppingCartDAO shoppingCartDAO) {
 		this.shoppingCartDAO = shoppingCartDAO;
 	}
-	
+
 	@GET
 	@UnitOfWork
 	public List<Transaction> listShoppingCart() {
 		return shoppingCartDAO.findAll();
-	}	
+	}
 
 	@POST
 	@UnitOfWork

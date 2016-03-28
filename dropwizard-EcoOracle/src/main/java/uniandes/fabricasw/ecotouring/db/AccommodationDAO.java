@@ -7,10 +7,10 @@ import org.hibernate.SessionFactory;
 import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import uniandes.fabricasw.ecotouring.core.*;
+import uniandes.fabricasw.ecotouring.core.Accommodation;
 
 public class AccommodationDAO extends AbstractDAO<Accommodation> {
-	
+
 	public AccommodationDAO(SessionFactory factory) {
 		super(factory);
 	}
@@ -26,5 +26,5 @@ public class AccommodationDAO extends AbstractDAO<Accommodation> {
 	public List<Accommodation> findAll() {
 		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAccommodation"));
 	}
-	
+
 }

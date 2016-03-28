@@ -7,10 +7,10 @@ import org.hibernate.SessionFactory;
 import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import uniandes.fabricasw.ecotouring.core.*;
+import uniandes.fabricasw.ecotouring.core.EcoTour;
 
 public class EcoTourDAO extends AbstractDAO<EcoTour> {
-	
+
 	public EcoTourDAO(SessionFactory factory) {
 		super(factory);
 	}
@@ -26,5 +26,5 @@ public class EcoTourDAO extends AbstractDAO<EcoTour> {
 	public List<EcoTour> findAll() {
 		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcoTour"));
 	}
-	
+
 }

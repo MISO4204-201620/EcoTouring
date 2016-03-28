@@ -33,7 +33,7 @@ public class PersonResource {
 	public Person getPerson(@PathParam("personId") LongParam personId) {
 		return findSafely(personId.get());
 	}
-	
+
 	@POST
 	@UnitOfWork
 	public Person createPerson(Person person) {

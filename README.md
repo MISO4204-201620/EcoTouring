@@ -19,9 +19,12 @@ java -jar target/dropwizard-EcoTouring-1.0.0-SNAPSHOT.jar server produccion.yml
 
 #4. Probar cada una de las siguientes peticiones GET
 
+--Busquedas por categoria (Listar todos por categoria)
 http://localhost:9999/accommodation 			ok
 http://localhost:9999/alimentation				ok
 http://localhost:9999/ecotour					ok
+http://localhost:9999/transport					ok
+
 http://localhost:9999/items						ok
 http://localhost:9999/items/1					ok
 http://localhost:9999/items/1/content			ok
@@ -32,7 +35,11 @@ http://localhost:9999/people/1					ok
 http://localhost:9999/shoppingCart				ok
 http://localhost:9999/shoppingCart/2			ok
 http://localhost:9999/suppliers					ok
-http://localhost:9999/transport					ok
+
+--Busquedas por palabras clave
+http://localhost:9999/search/ITEM_DESC/noches   falla compila pero no trae datos
+http://localhost:9999/search/PERSON_NAME/sierra falla compila pero no trae datos
+ 
 
 
 #5. Probar los métodos POST

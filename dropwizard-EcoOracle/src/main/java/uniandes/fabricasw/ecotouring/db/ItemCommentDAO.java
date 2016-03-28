@@ -8,7 +8,7 @@ import io.dropwizard.hibernate.AbstractDAO;
 import uniandes.fabricasw.ecotouring.core.ItemComment;
 
 public class ItemCommentDAO extends AbstractDAO<ItemComment> {
-	
+
 	public ItemCommentDAO(SessionFactory factory) {
 		super(factory);
 	}
@@ -20,5 +20,5 @@ public class ItemCommentDAO extends AbstractDAO<ItemComment> {
 	public List<ItemComment> findItemCommentsByItemId(Long id) {
 		return list(namedQuery("uniandes.fabricasw.ecotouring.core.ItemComment.findByItem"));
 	}
-	
+
 }
