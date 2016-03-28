@@ -28,18 +28,33 @@
 
                     <p class="lead">No tienes cuenta aún?</p>
                     <p>Crea tu nueva cuenta y empieza a disfrutar de los mas maravillosos paisajes ecológicos de nuestro país.!</p>
-                    <p class="text-muted">Si tienes alguna pregunta, favor  <a href="contact.html">contáctanos</a>, nuestro personal estará disponble para tí 24/7.</p>
+                    <p class="text-muted">Si tienes alguna pregunta, favor  <a href="">contáctanos</a>, nuestro personal estará disponble para tí 24/7.</p>
+
+                    <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!registerOk">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        {{ okMessage }}
+                    </div>
 
                     <hr>
 
-                    <form (ngSubmit)="onRegister()" #registerForm="ngForm" method="post">
+                    <form (ngSubmit)="onRegister(register)" #registerForm="ngForm" method="post">
                         <div class="form-group">
                             <label for="name-login">Nombre:</label>
-                            <input type="text" class="form-control" id="name-login" required [(ngModel)]="register.name" ngControl="name" #name="ngForm">
-                            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
+                            <input type="text" class="form-control" id="name-login" required [(ngModel)]="register.fullName" ngControl="fullName" #fullName="ngForm">
+                            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="fullName.valid || fullName.pristine">
                                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                                 </button>
                                 Nombre vacío o inválido.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name-login">Usuario:</label>
+                            <input type="text" class="form-control" id="name-login" required [(ngModel)]="register.username" ngControl="username" #username="ngForm">
+                            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="username.valid || username.pristine">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                </button>
+                                Usuario vacío o inválido.
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,8 +76,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone-login">Teléfono:</label>
-                            <input type="text" class="form-control" id="phone-login" [(ngModel)]="register.phone" maxlength="15">
+                            <label for="phone-login">Ocupación:</label>
+                            <input type="text" class="form-control" id="phone-login" [(ngModel)]="register.jobTitle" >
                         </div>
                         <div class="form-group">
                             <label for="address-login">Dirección:</label>
@@ -84,7 +99,7 @@
 
                     <hr>
 
-                    <form (ngSubmit)="onLogin()" #loginForm="ngForm" method="post">
+                    <form (ngSubmit)="onLogin(login)" #loginForm="ngForm" method="post">
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" class="form-control" id="email" required [(ngModel)]="login.email" ngControl="emailLogin" #emailLogin="ngForm">

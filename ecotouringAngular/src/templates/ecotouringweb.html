@@ -18,8 +18,10 @@ _________________________________________________________ -->
                     </div>
 
                     <div class="login">
-                        <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
-                        <a [routerLink]="['Signup']"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
+                        <a href="#" data-toggle="modal" data-target="#login-modal" *ngIf="!isLogged"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+                        <a [routerLink]="['Signup']" *ngIf="!isLogged"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
+                        <a [routerLink]="['Signup']" *ngIf="isLogged"><i class="fa fa-male"></i> <span class="hidden-xs text-uppercase">{{userToken.fullName}}</span></a>
+                        <a href="#" *ngIf="isLogged" (click)="onLogOut()"><i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">Log out</span></a>
                     </div>
 
                 </div>
@@ -93,7 +95,7 @@ _________________________________________________________ -->
                         <li class="dropdown active">
                             <a [routerLink]="['Home']" class="dropdown-toggle" data-toggle="dropdown">Inicio </a>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'SUPPLIER'">
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Proveedor <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
@@ -101,7 +103,7 @@ _________________________________________________________ -->
                                 <li><a href="index.html">Mis productos</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Cliente <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['ShoppingCart']" >Mi carrito</a></li>
