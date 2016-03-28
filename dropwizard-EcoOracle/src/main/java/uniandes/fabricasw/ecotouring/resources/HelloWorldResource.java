@@ -56,7 +56,7 @@ public class HelloWorldResource {
 			LOGGER.info("Received a date: {}", actualDateTimeParam);
 			return actualDateTimeParam.get().toString();
 		} else {
-			LOGGER.warn("No received date");
+			LOGGER.warn("No data found.");
 			return null;
 		}
 	}

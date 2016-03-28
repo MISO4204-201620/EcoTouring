@@ -1,5 +1,7 @@
 package uniandes.fabricasw.ecotouring.resources;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -27,9 +29,12 @@ public class EcoTourResource {
 
 	@GET	
 	@UnitOfWork
-	public EcoTour getEcoTour(@PathParam("itemId") LongParam itemId) {
-		return findSafely(itemId);
+	public List<EcoTour> listecoTour() {
+		return ecoTourDAO.findAll();
 	}
+	/*public EcoTour getEcoTour(@PathParam("itemId") LongParam itemId) {
+		return findSafely(itemId);
+	}*/
 	
 	@POST
 	@UnitOfWork
@@ -40,7 +45,7 @@ public class EcoTourResource {
 	private EcoTour findSafely(LongParam itemId) {
 		final Optional<EcoTour> item = ecoTourDAO.findById(itemId.get());
 		if (!item.isPresent()) {
-			throw new NotFoundException("No existe el identificador del item");
+			throw new NotFoundException("No data found.");
 		}
 		return item.get();
 	}

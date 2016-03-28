@@ -20,7 +20,6 @@ public class TransactionDetail implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private Long id;
 	private Transaction transaction;
 	private Item item;
@@ -50,12 +49,12 @@ public class TransactionDetail implements java.io.Serializable {
 		return this.item;
 	}
 
-	@Column(name = "PRICE", nullable = false, precision = 22, scale = 0)
+	@Column(name = "PRICE", nullable = false)
 	public Long getPrice() {
 		return this.price;
 	}
 
-	@Column(name = "QUANTITY", nullable = false, precision = 22, scale = 0)
+	@Column(name = "QUANTITY", nullable = false)
 	public Long getQuantity() {
 		return this.quantity;
 	}

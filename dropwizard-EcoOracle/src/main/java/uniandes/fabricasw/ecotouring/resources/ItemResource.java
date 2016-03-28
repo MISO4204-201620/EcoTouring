@@ -3,6 +3,7 @@ package uniandes.fabricasw.ecotouring.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -20,6 +21,7 @@ import uniandes.fabricasw.ecotouring.db.*;
 
 @Path("/items/{itemId}")
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
+@Consumes(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class ItemResource {
 
 	private final ItemDAO itemDAO;
@@ -71,7 +73,7 @@ public class ItemResource {
 	@GET
 	@Path("/content")
 	@UnitOfWork
-	public List<ItemContent> listContent(@PathParam("itemId") LongParam itemId) {
+	public List<ItemContent> listContents(@PathParam("itemId") LongParam itemId) {
 		return new ArrayList<ItemContent>(itemDAO.findItemContentsByItem(itemId.get()));
 	}
 	
@@ -80,12 +82,12 @@ public class ItemResource {
 	@UnitOfWork
 	public ItemContent createContent(ItemContent itemContent) {
 		return itemContentDAO.create(itemContent);
-	}	
+	}
 
 	private Item findSafely(LongParam itemId) {
 		final Optional<Item> item = itemDAO.findById(itemId.get());
 		if (!item.isPresent()) {
-			throw new NotFoundException("No existe el identificador del item");
+			throw new NotFoundException("No data found.");
 		}
 		return item.get();
 	}

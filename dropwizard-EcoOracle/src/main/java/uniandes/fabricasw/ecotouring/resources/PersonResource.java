@@ -59,7 +59,7 @@ public class PersonResource {
 	private Person findSafely(Long personId) {
 		final Optional<Person> person = peopleDAO.findById(personId);
 		if (!person.isPresent()) {
-			throw new NotFoundException("No existe el identificador de usuario.");
+			throw new NotFoundException("No data found.");
 		}
 		return person.get();
 	}

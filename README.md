@@ -19,22 +19,25 @@ java -jar target/dropwizard-EcoTouring-1.0.0-SNAPSHOT.jar server produccion.yml
 
 #4. Probar cada una de las siguientes peticiones GET
 
-http://localhost:9999/people
-http://localhost:9999/people/2/view_freemarker
+
+
+http://localhost:9999/accommodation
+http://localhost:9999/alimentation
+http://localhost:9999/ecotour
 http://localhost:9999/items
 http://localhost:9999/items/1
-http://localhost:9999/suppliers
-http://localhost:9999/categories
-
-http://localhost:9999/people/2/shoppingCart
-http://localhost:9999/people/2/shoppingCart/2
-http://localhost:9999/items/1/conversations
-http://localhost:9999/items/1/scores
 http://localhost:9999/items/1/content
+http://localhost:9999/items/1/conversations
+http://localhost:9999/items/5/packageDetail  ***
+http://localhost:9999/items/1/scores
+http://localhost:9999/people
+http://localhost:9999/people/1
+http://localhost:9999/shoppingCart
 
+**http://localhost:9999/people/2/shoppingCart/2
 
-*    POST    /items/{itemId} (uniandes.fabricasw.ecotouring.resources.ItemResource)
-*    GET     /items/{itemId}/shoppingCart (uniandes.fabricasw.ecotouring.resources.ItemResource)
+http://localhost:9999/suppliers
+http://localhost:9999/transport
 
 
 #5. Probar los métodos POST
@@ -48,15 +51,21 @@ curl -H "Content-Type: application/json" -X POST -d {\"fullName\":\"CurlTest\",\
 curl -H "Content-Type: application/json" -X POST -d {\"name\":\"newCategory\"} http://localhost:9999/categories
 
 --Item básico
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"BASIC\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"item\":null}} http://localhost:9999/items
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"BASIC\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null}} http://localhost:9999/items
 --Alojamiento
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ACCOMMODATION\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"item\":null,\"accommodationType\":\"DOUBLE\",\"city\":\"BOGOTA\",\"country\":\"COLOMBIA\",\"hotelName\":\"hotel1\",\"numberOfRooms\":\"4\"}} http://localhost:9999/accommodation
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ACCOMMODATION\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"accommodationType\":\"DOUBLE\",\"city\":\"BOGOTA\",\"country\":\"COLOMBIA\",\"hotelName\":\"hotel1\",\"numberOfRooms\":\"4\"}} http://localhost:9999/accommodation
 --Alimentación
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ALIMENTATION\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"item\":null,\"alimentationType\":\"LUNCH\",\"calories\":\"2000\"}} http://localhost:9999/alimentation
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ALIMENTATION\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"alimentationType\":\"LUNCH\",\"calories\":\"2000\"}} http://localhost:9999/alimentation
 --Transporte
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"TRANSPORT\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"item\":null,\"type\":\"TAXY\",\"origin\":\"originText\",\"destination\":\"destinationText\",\"initialHour\":\"8am\",\"finalHour\":\"8pm\"}} http://localhost:9999/transport
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"TRANSPORT\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"type\":\"TAXY\",\"origin\":\"originText\",\"destination\":\"destinationText\",\"initialHour\":\"8am\",\"finalHour\":\"8pm\"}} http://localhost:9999/transport
 --Ecotour
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"item\":null,\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
+
+--Item Package
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"BASIC\",\"itemType\":\"PACKAGE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null}} http://localhost:9999/items
+--Package Detail
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"SubTour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":{\"itemId\":5},\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
+
 
 \"\":\"\",
 

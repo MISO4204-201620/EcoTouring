@@ -44,18 +44,18 @@ public class Item implements java.io.Serializable {
 	private String description;
 	private Long price;
 	private Long score;
-	private Category category;
+	private String category;
 	private Person supplier;	
 	private String tags;
 	private String urlImage;
 	private ContentType contentType;
-	private Item item;
+	private Item parent;
 	
 	private List<Conversation> conversations = new ArrayList<Conversation>();
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
 	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
 	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();	
-	private Set<Item> items = new HashSet<Item>();
+	private Set<Item> packageDetails = new HashSet<Item>();
 	
 	public Item() {
 	}
@@ -78,7 +78,13 @@ public class Item implements java.io.Serializable {
 	@Column(name = "STATUS", nullable = true)
 	public ItemStatus getStatus() {
 		return this.status;
-	}	
+	}
+
+	//@Enumerated(EnumType.STRING)
+	@Column(name = "CATEGORY", insertable = false, updatable = false)
+	public String getCategory() {
+		return this.category;
+	}
 
 	@Column(name = "NAME", nullable = false)
 	public String getName() {
@@ -99,11 +105,6 @@ public class Item implements java.io.Serializable {
 	public Long getScore() {
 		return this.score;
 	}
-	
-	/*@Enumerated(EnumType.STRING)
-	public Category getCategory() {
-		return this.category;
-	}*/
 	
 	@ManyToOne
 	@JoinColumn(name = "SUPPLIER", nullable = true)
@@ -127,11 +128,16 @@ public class Item implements java.io.Serializable {
 		return this.contentType;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "PARENT", nullable = true)
-	public Item getItem() {
-		return this.item;
-	}	
+	@ManyToOne//(cascade={CascadeType.ALL})
+	@JoinColumn(name = "PARENT", nullable = true/*, insertable=false, updatable=false*/)
+	public Item getParent() {
+		return this.parent;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+	public Set<Item> getPackageDetails() {
+		return this.packageDetails;
+	}
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
@@ -150,12 +156,6 @@ public class Item implements java.io.Serializable {
 	public Set<ItemContent> getItemContents() {
 		return this.itemContents;
 	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	public Set<Item> getItems() {
-		return this.items;
-	}
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")	
@@ -163,7 +163,7 @@ public class Item implements java.io.Serializable {
 		return this.transactionDetails;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -183,10 +183,6 @@ public class Item implements java.io.Serializable {
 		this.itemId = itemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
 	public void setItemComments(Set<ItemComment> itemComments) {
 		this.itemComments = itemComments;
 	}
@@ -194,9 +190,13 @@ public class Item implements java.io.Serializable {
 	public void setItemContents(Set<ItemContent> itemContents) {
 		this.itemContents = itemContents;
 	}
+	
+	public void setParent(Item parent) {
+		this.parent = parent;
+	}	
 
-	public void setItems(Set<Item> items) {
-		this.items = items;
+	public void setPackageDetails(Set<Item> packageDetails) {
+		this.packageDetails = packageDetails;
 	}
 
 	public void setItemType(ItemType itemType) {

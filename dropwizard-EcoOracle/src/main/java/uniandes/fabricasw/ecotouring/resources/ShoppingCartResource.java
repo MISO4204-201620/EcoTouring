@@ -10,30 +10,30 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import uniandes.fabricasw.ecotouring.core.Person;
-import uniandes.fabricasw.ecotouring.db.PersonDAO;
+import uniandes.fabricasw.ecotouring.core.Transaction;
+import uniandes.fabricasw.ecotouring.db.ShoppingCartDAO;
 
 @Path("/shoppingCart")
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
 @Consumes(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class ShoppingCartResource {
 
-	private final PersonDAO peopleDAO;
+	private final ShoppingCartDAO shoppingCartDAO;
 
-	public ShoppingCartResource(PersonDAO peopleDAO) {
-		this.peopleDAO = peopleDAO;
+	public ShoppingCartResource(ShoppingCartDAO shoppingCartDAO) {
+		this.shoppingCartDAO = shoppingCartDAO;
 	}
+	
+	@GET
+	@UnitOfWork
+	public List<Transaction> listShoppingCart() {
+		return shoppingCartDAO.findAll();
+	}	
 
 	@POST
 	@UnitOfWork
-	public Person createPerson(Person person) {
-		return peopleDAO.create(person);
-	}
-
-	@GET
-	@UnitOfWork
-	public List<Person> listPeople() {
-		return peopleDAO.findAll();
+	public Transaction createPerson(Transaction transaction) {
+		return shoppingCartDAO.create(transaction);
 	}
 
 }
