@@ -24,7 +24,7 @@ public class AlimentationDAO extends AbstractDAO<Alimentation> {
 	}
 
 	public List<Alimentation> findAll() {
-		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcotours"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAlimentation"));
 	}
 	
 }

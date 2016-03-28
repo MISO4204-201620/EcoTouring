@@ -13,25 +13,6 @@ import uniandes.fabricasw.ecotouring.core.User;
 @Path("/protected")
 @Produces(MediaType.TEXT_PLAIN)
 public class ProtectedResource {
-	
-	/*@GET
-	@Path("/valid")
-	public String valid(@Auth User user) throws AuthenticationException {
-	   return SUCCESS_JSON;
-	}
-	
-	@POST
-	@Path("/login")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public UserAuthResponse login(User user) throws AuthenticationException {
-	   Optional<User> res = DropwizardApplication.getCachedAuthenticator()
-	                        .authenticate(user.toCredentials());
-	   if ( res.isPresent() ) {
-	       return new UserAuthResponse(res.get());
-	   } else {
-	      throw new MessageWrappedException("Unable to log in with those credentials!");
-	   }
-	}*/
 
 	@PermitAll
 	@GET

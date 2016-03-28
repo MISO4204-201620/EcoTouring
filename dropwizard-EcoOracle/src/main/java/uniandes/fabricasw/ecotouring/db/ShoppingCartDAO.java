@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.AbstractDAO;
+import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.core.Transaction;
 
 public class ShoppingCartDAO extends AbstractDAO<Transaction> {
@@ -25,5 +26,9 @@ public class ShoppingCartDAO extends AbstractDAO<Transaction> {
 
 	public List<Transaction> findAll() {
 		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Transaction.findAll"));
+	}
+	
+	public Transaction update(Transaction transaction) {
+		return persist(transaction);
 	}
 }

@@ -40,4 +40,8 @@ public class ItemDAO extends AbstractDAO<Item> {
 		return (Set<ItemContent>) findById(id).get().getItemContents();
 	}
 	
+	public Item update(Item item) {
+		return persist(item);
+	}	
+	
 }

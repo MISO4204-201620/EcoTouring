@@ -24,7 +24,7 @@ public class AccommodationDAO extends AbstractDAO<Accommodation> {
 	}
 
 	public List<Accommodation> findAll() {
-		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcotours"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findAccommodation"));
 	}
 	
 }

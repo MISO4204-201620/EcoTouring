@@ -163,5 +163,6 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new EcoTourResource(ecoTourDao));
 		environment.jersey().register(new ShoppingCartResource(shoppingCartDao));
 		environment.jersey().register(new ShoppongCartDetailResource(shoppingCartDao,shoppingCartDetailDao));
+		environment.jersey().register(new LoginResource());
 	}
 }

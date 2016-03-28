@@ -24,7 +24,7 @@ public class TransportDAO extends AbstractDAO<Transport> {
 	}
 
 	public List<Transport> findAll() {
-		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcotours"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findTransport"));
 	}
 	
 }

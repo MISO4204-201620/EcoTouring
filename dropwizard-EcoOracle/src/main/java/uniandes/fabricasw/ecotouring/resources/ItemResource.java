@@ -83,6 +83,24 @@ public class ItemResource {
 	public ItemContent createContent(ItemContent itemContent) {
 		return itemContentDAO.create(itemContent);
 	}
+	
+	@POST
+	@Path("/hiddeItem")
+	@UnitOfWork
+	public Item changeItemStatusHidde(@PathParam("itemId") LongParam itemId) {
+		Item item = itemDAO.findById(itemId.get()).get();
+		item.setStatus(ItemStatus.HIDDEN);
+		return itemDAO.update(item);
+	}
+	
+	@POST
+	@Path("/publishItem")
+	@UnitOfWork
+	public Item changeItemStatusPublish(@PathParam("itemId") LongParam itemId) {
+		Item item = itemDAO.findById(itemId.get()).get();
+		item.setStatus(ItemStatus.PUBLISHED);
+		return itemDAO.update(item);
+	}	
 
 	private Item findSafely(LongParam itemId) {
 		final Optional<Item> item = itemDAO.findById(itemId.get());

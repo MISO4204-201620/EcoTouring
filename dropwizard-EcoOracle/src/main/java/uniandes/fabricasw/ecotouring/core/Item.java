@@ -32,7 +32,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "ITEM", schema = "ADMIN")
 @DiscriminatorColumn(name="CATEGORY", discriminatorType=DiscriminatorType.STRING)
 @DiscriminatorValue("BASIC")
-@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i") })
+@NamedQueries({ 
+	@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAll", query = "SELECT i FROM Item i"), 
+	@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAccommodation", query = "SELECT i FROM Item i WHERE category = 'ACCOMMODATION'"),
+	@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAlimentation", query = "SELECT i FROM Item i WHERE category = 'ALIMENTATION'"),
+	@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findEcoTour", query = "SELECT i FROM Item i WHERE category = 'ECOTOUR'"),
+	@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findTransport", query = "SELECT i FROM Item i WHERE category = 'TRANSPORT'")
+	})
 public class Item implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -24,7 +24,7 @@ public class EcoTourDAO extends AbstractDAO<EcoTour> {
 	}
 
 	public List<EcoTour> findAll() {
-		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcotours"));
+		return list(namedQuery("uniandes.fabricasw.ecotouring.core.Item.findEcoTour"));
 	}
 	
 }
