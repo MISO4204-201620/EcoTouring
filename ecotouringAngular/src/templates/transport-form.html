@@ -1,7 +1,12 @@
-<form (ngSubmit)="onSubmit()" #transportForm="ngForm">
+<form (ngSubmit)="onSubmit(model)" #transportForm="ngForm">
 <br/>
 <div class="row">
     <div class="col-sm-6">
+        <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            {{ okMessage }}
+        </div>
         <div class="form-group">
             <label for="name">Nombre del servicio:</label>
             <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
@@ -14,10 +19,10 @@
         <div class="form-group">
         	<label for="name">Tipo de transporte:</label>
         	<select class="form-control" required [(ngModel)]="model.type" ngControl="type" #type="ngForm">
-			  <option value="1">Avión</option>
-			  <option value="2">Bus</option>
-			  <option value="3">Barco</option>
-			  <option value="4">Taxi</option>
+			  <option value="PLANE">Avión</option>
+			  <option value="BUS">Bus</option>
+			  <option value="SHIP">Barco</option>
+			  <option value="TAXY">Taxi</option>
 			</select>
             <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="type.valid || type.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -34,6 +39,7 @@
                 Precio vacío o inválido.
             </div>
         </div>
+        <!--
         <div class="form-group">
             <label for="dateStart">Fecha Llegada:</label>
             <input type="date" class="form-control" id="dateStart" required [(ngModel)]="model.dateStart" ngControl="dateStart" #dateStart="ngForm">
@@ -61,15 +67,26 @@
                 Cantidad vacío o inválido.
             </div>
         </div>
+        -->
         <div class="form-group">
-            <label for="countryStart">País origen:</label>
-            <input type="text" class="form-control" id="countryStart" required [(ngModel)]="model.countryFrom" ngControl="countryFrom" #countryFrom="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="countryFrom.valid || countryFrom.pristine">
+            <label for="countryStart">Origen:</label>
+            <input type="text" class="form-control" id="countryStart" required [(ngModel)]="model.origin" ngControl="origin" #origin="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="origin.valid || origin.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                País vacío o inválido.
+                Origen vacío o inválido.
             </div>
         </div>
+        <div class="form-group">
+            <label for="city">Hora Inicio:</label>
+            <input type="text" class="form-control" id="image" required [(ngModel)]="model.initialHour" ngControl="initialHour" #initialHour="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="initialHour.valid || initialHour.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Hora vacío o inválido.
+            </div>
+        </div>
+        <!--
         <div class="form-group">
             <label for="cityStart">Ciudad origen:</label>
             <input type="text" class="form-control" id="cityStart" required [(ngModel)]="model.cityFrom" ngControl="cityFrom" #cityFrom="ngForm">
@@ -79,15 +96,26 @@
                 Ciudad vacío o inválido.
             </div>
         </div>
+        -->
         <div class="form-group">
-            <label for="countryEnd">País destino:</label>
-            <input type="text" class="form-control" id="countryEnd" required [(ngModel)]="model.countryTo" ngControl="countryTo" #countryTo="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="countryTo.valid || countryTo.pristine">
+            <label for="countryEnd">Destino:</label>
+            <input type="text" class="form-control" id="countryEnd" required [(ngModel)]="model.destination" ngControl="destination" #destination="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="destination.valid || destination.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                País vacío o inválido.
+                Destino vacío o inválido.
             </div>
         </div>
+        <div class="form-group">
+            <label for="city">Hora Final:</label>
+            <input type="text" class="form-control" id="image" required [(ngModel)]="model.finalHour" ngControl="finalHour" #finalHour="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="finalHour.valid || finalHour.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Hora vacío o inválido.
+            </div>
+        </div>
+        <!--
         <div class="form-group">
             <label for="cityEnd">Ciudad destino:</label>
             <input type="text" class="form-control" id="cityEnd" required [(ngModel)]="model.cityTo" ngControl="cityTo" #cityTo="ngForm">
@@ -97,21 +125,37 @@
                 Ciudad vacío o inválido.
             </div>
         </div>
+        -->
+        <div class="form-group">
+            <label for="city">Imagen Url:</label>
+            <input type="url" class="form-control" id="image" required [(ngModel)]="model.urlImage" ngControl="image" #image="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="image.valid || image.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Imagen vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city">Tags:</label>
+            <input type="text" class="form-control" id="tag" [(ngModel)]="model.tag">
+        </div>
         <div class="form-group">
             <label for="description">Descripción:</label>
-            <textarea id="description" class="form-control" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+            <textarea id="description" class="form-control editor" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
             <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
                 Descripción vacío o inválido.
             </div>
         </div>
+        <!--
         <div class="form-group">
             <label for="content">Contenido:</label>
             <textarea id="content" class="form-control editor" [(ngModel)]="model.content"></textarea>
         </div>
+        -->
         <div class="form-group">
-        <button type="submit" class="btn btn-template-main" [disabled]="!transportForm.form.valid"><i class="fa fa-floppy-o"></i> Crear Servicio</button>
+        <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Servicio</button>
         </div>
     </div>
     <br/>

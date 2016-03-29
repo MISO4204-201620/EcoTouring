@@ -1,26 +1,32 @@
 export class Feeding {
-	
-	public id : number;
+
 	public name : string;
-	public date : Date;
-	public people : number;
-	public country : string;
-	public city : string;
 	public description : string;
-	public content : string;
-	public options : Array<string>;
+	public price : number;
+	public category : string;
+	public itemType : string;
+	public status : string;
+	public tag : string;
+	public urlImage : string;
+	public alimentationType : string;
+	public contentType : string;
+	public score : number;
+	public supplier : Object;
+	public calories : string;
 
 	constructor (){
-
-		this.id = 0;
 		this.name = "";
-		this.date = new Date(Date.now());
-		this.people = 0;
-		this.country = "";
-		this.city = "";
 		this.description = "";
-		this.content = "";
-		this.options = [];
-
+		this.price = 0;
+		this.category = "ALIMENTATION";
+		this.itemType = "SINGLE";
+		this.status = "HIDDEN";
+		this.tag = "";
+		this.urlImage = "";
+		this.alimentationType = "";
+		this.contentType = "IMG_PNG";
+		this.score = 0;
+		this.supplier = { id : 0};
+		this.calories = "";
 	}
 }

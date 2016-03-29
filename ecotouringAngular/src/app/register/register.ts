@@ -106,8 +106,7 @@ export class RegisterComponentApp implements OnInit {
       }
       alert("Login exitoso");
       let link = ['Home'];
-      let ecoRoot = new EcotouringwebApp(this._router);
-      ecoRoot.router.navigate(link);
+      this._router.navigate(link);
 
     }else {
       alert(errorMessageLogin);

@@ -1,7 +1,12 @@
-<form  (ngSubmit)="onSubmit()" #housingForm="ngForm">
+<form  (ngSubmit)="onSubmit(model)" #housingForm="ngForm">
 <br/>
 <div class="row">
     <div class="col-sm-6">
+        <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            {{ okMessage }}
+        </div>
         <div class="form-group">
             <label for="name">Nombre del alojamiento:</label>
             <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
@@ -20,6 +25,7 @@
                 Precio vacío o inválido.
             </div>
         </div>
+        <!--
         <div class="form-group">
             <label for="dateStart">Fecha Llegada:</label>
             <input type="date" class="form-control" id="dateStart" required [(ngModel)]="model.dateStart" ngControl="dateStart" #dateStart="ngForm">
@@ -38,15 +44,31 @@
                 Fecha vacío o inválido.
             </div>
         </div>
+        -->
         <div class="form-group">
             <label for="room">Habitaciones:</label>
-            <input type="number" class="form-control" id="room" required [(ngModel)]="model.room" ngControl="room" #room="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="room.valid || room.pristine">
+            <input type="number" class="form-control" id="numberOfRooms" required [(ngModel)]="model.numberOfRooms" ngControl="numberOfRooms" #numberOfRooms="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="numberOfRooms.valid || numberOfRooms.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
                 Habitaciones vacío o inválido.
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="name">Acomodación:</label>
+            <select class="form-control" required [(ngModel)]="model.accomodationType" ngControl="accomodationType" #accomodationType="ngForm">
+              <option value="SINGLE">Sencilla</option>
+              <option value="DOUBLE">Doble</option>
+            </select>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="accomodationType.valid || accomodationType.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Tipo vacío o inválido.
+            </div>
+        </div>
+
+        <!--
         <div class="form-group">
             <label for="people">Cantidad de personas:</label>
             <input type="number" class="form-control" id="people" required [(ngModel)]="model.people" ngControl="people" #people="ngForm">
@@ -56,6 +78,7 @@
                 Número de personas vacío o inválido.
             </div>
         </div>
+        -->
         <div class="form-group">
             <label for="country">País:</label>
             <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" ngControl="country" #country="ngForm">
@@ -75,20 +98,36 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="city">Imagen Url:</label>
+            <input type="url" class="form-control" id="image" required [(ngModel)]="model.urlImage" ngControl="image" #image="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="image.valid || image.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Imagen vacío o inválido.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city">Tags:</label>
+            <input type="text" class="form-control" id="tag" [(ngModel)]="model.tag">
+        </div>
+        <div class="form-group">
             <label for="description">Descripción:</label>
-            <textarea id="description" class="form-control" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+            <textarea id="description" class="form-control editor" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
             <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
                 Descripción vacío o inválido.
             </div>
         </div>
+        <!--
         <div class="form-group">
             <label for="content">Contenido:</label>
             <textarea id="content" class="form-control editor" [(ngModel)]="model.content"></textarea>
+            [disabled]="!housingForm.form.valid"
         </div>
+        -->
         <div class="form-group">
-            <button type="submit" class="btn btn-template-main" [disabled]="!housingForm.form.valid"><i class="fa fa-floppy-o"></i> Crear Servicio</button>
+            <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Servicio</button>
         </div>
     </div>
     <br/>   

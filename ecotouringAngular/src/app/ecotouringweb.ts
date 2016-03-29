@@ -7,7 +7,8 @@ import {HomeApp} from './home/home';
 import {ShoppingCartComponent} from './components/cart/shopping-cart';
 import {ServiceFormComponent} from './components/products/service-form';
 import {CategoryListService} from './services/category-list.service';
-import {User} from './models/user/user.model'
+import {User} from './models/user/user.model';
+import {UserListService} from './services/users-list.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ import {User} from './models/user/user.model'
   providers: [
   ROUTER_PROVIDERS,
   HTTP_PROVIDERS,
-  CategoryListService
+  CategoryListService,
+  UserListService
   ],
   pipes: []
 })
@@ -52,7 +54,9 @@ export class EcotouringwebApp {
 
   userToken : User;
   isLogged = false;
-	constructor(public router: Router) {
+	constructor(public router: Router, private _userListService : UserListService) {
+
+    this.login = new User (); 
 
     if(sessionStorage.getItem('userSession')){
         let objUser = sessionStorage.getItem('userSession');
@@ -62,6 +66,71 @@ export class EcotouringwebApp {
       this.userToken = new User;
     }
   }
+
+  login : User;
+  users : User[];
+  errorMessageLogin : string;
+  okMessageLogin :string;
+  loginOk = false;
+  userLogged = null;
+
+  onLogin( user : User){ 
+    if (!user) {return;}
+
+    this.login = user;
+
+    this._userListService.getUsers()
+                  .subscribe(
+                    users => this.loginValidator(users),
+                    error => this.errorMessageLogin = <any>error
+                  );
+  }
+
+  loginValidator (users :User[]) {
+    this.users = users;
+    let userLogged : User;
+    let loginOk = false;
+    let errorMessageLogin = "";
+    let email = this.login.email;
+    let password = this.login.password;
+    users.forEach(function (user){
+        if (user.email === email){
+          if(user.password === password) {
+            userLogged = user;
+            loginOk = true;
+          }else {
+            errorMessageLogin = "Password incorrecto";            
+          }
+        }else {
+
+          errorMessageLogin = "Email incorrecto o usuario no existe. ";
+        }
+    });
+
+    if(loginOk) {
+      
+      this.userLogged = userLogged;
+
+      if(typeof(Storage) !== "undefined"){
+      
+        if(sessionStorage.getItem('userSession')){
+          sessionStorage.removeItem('userSession');
+        }else {
+          sessionStorage.setItem('userSession', JSON.stringify(this.userLogged));
+        }
+      }else {
+        alert("Favor actualizar su explorador !");
+      }
+      alert("Login exitoso");
+      let link = ['Home'];
+      this.router.navigate(link);
+
+    }else {
+      alert(errorMessageLogin);
+    }
+  }
+
+
   defaultMeaning: number = 42;
   
   meaningOfLife(meaning?: number) {

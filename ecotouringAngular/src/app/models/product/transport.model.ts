@@ -1,30 +1,38 @@
 export class Transport {
 
-	public id : number;
 	public name : string;
-	public dateStart : Date;
-	public dateEnd : Date;
-	public people : number;
-	public countryFrom : string;
-	public cityFrom : string;
-	public countryTo : string;
-	public cityTo : string;
-	public type : number;
 	public description : string;
-	public content : string;
-	
+	public price : number;
+	public category : string;
+	public itemType : string;
+	public status : string;
+	public tag : string;
+	public urlImage : string;
+	public type : string;
+	public origin : string;
+	public destination : string;
+	public contentType : string;
+	public score : number;
+	public supplier : Object;
+	public initialHour : string;
+	public finalHour : string;
+
 	constructor (){
-		this.id = 0;
 		this.name = "";
-		this.dateStart = new Date(Date.now());
-		this.dateEnd = new Date(Date.now());
-		this.people = 0,
-		this.countryFrom = "",
-		this.cityFrom = "";
-		this.countryTo = "",
-		this.cityTo = "";
-		this.type = 1;
 		this.description = "";
-		this.content = "";
+		this.price = 0;
+		this.category = "TRANSPORT";
+		this.itemType = "SINGLE";
+		this.status = "HIDDEN";
+		this.tag = "";
+		this.urlImage = "";
+		this.type = "";
+		this.contentType = "IMG_PNG";
+		this.score = 0;
+		this.supplier = { id : 0};
+		this.initialHour = "";
+		this.finalHour = "";
+		this.origin = "";
+		this.destination = "";
 	}
 }
