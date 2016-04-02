@@ -3,6 +3,7 @@ package uniandes.fabricasw.ecotouring.db;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.common.base.Optional;
@@ -34,7 +35,8 @@ public class PersonDAO extends AbstractDAO<Person> {
 
 	@SuppressWarnings("unchecked")
 	public List<Person> searchPeopleByName(String searchKeyword) {
-		return (List<Person>) this.criteria().add(Restrictions.like("fullName", "searchKeyword")).list();
+		return (List<Person>) this.criteria().add(Restrictions.ilike("fullName", searchKeyword, MatchMode.ANYWHERE))
+				.list();
 	}
-	
+
 }

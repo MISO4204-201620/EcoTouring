@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -25,7 +26,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -59,7 +62,7 @@ public class Item implements java.io.Serializable {
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
 	private Set<ItemContent> itemContents = new HashSet<ItemContent>();
 	private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
-	private Set<Item> packageDetails = new HashSet<Item>();
+	private Set<Item> packageDetails = new HashSet<Item>(0);
 
 	public Item() {
 	}
@@ -132,16 +135,17 @@ public class Item implements java.io.Serializable {
 		return this.contentType;
 	}
 
-	@ManyToOne // (cascade={CascadeType.ALL})
-	@JoinColumn(name = "PARENT", nullable = true/*
-												 * , insertable=false,
-												 * updatable=false
-												 */)
+	@JsonManagedReference
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name = "PARENT", nullable = true)
 	public Item getParent() {
 		return this.parent;
 	}
 
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+	//@OneToMany(orphanRemoval=true)
+    //@JoinColumn(name="PARENT") 
 	public Set<Item> getPackageDetails() {
 		return this.packageDetails;
 	}

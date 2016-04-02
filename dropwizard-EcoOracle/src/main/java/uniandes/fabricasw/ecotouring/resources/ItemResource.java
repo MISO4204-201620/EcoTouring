@@ -62,8 +62,25 @@ public class ItemResource {
 	@UnitOfWork
 	public Conversation createConversation(Conversation conversation) {
 		return conversationDAO.create(conversation);
+	}	
+	
+	@GET
+	@Path("/packageDetail")
+	@UnitOfWork
+	public List<Item> findPackageDetailByItem(@PathParam("itemId") LongParam itemId) {
+		return new ArrayList<Item>(itemDAO.findPackageDetailByItem(itemId.get()));
 	}
 
+	//Asociar un item a un paquete
+	@POST
+	@Path("/packageDetail/{childId}")
+	@UnitOfWork
+	public Item addItem(@PathParam("itemId") LongParam parenId, @PathParam("childId") LongParam childId) {		
+		Item parent = itemDAO.findById(parenId.get()).get(); 
+		Item child = itemDAO.findById(childId.get()).get();
+		return itemDAO.setChild(parent, child);
+	}	
+	
 	@GET
 	@Path("/scores")
 	@UnitOfWork
