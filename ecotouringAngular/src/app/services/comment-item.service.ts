@@ -11,7 +11,7 @@ export class CommentItemService {
 	private _commentsUrl = 'http://54.174.139.165:9999/items/';
 
 	getComments(id : string){
-		return this.http.get(this._commentsUrl + id + "/conversations")
+		return this.http.get(this._commentsUrl + id + "/scores")
 							.map(res => <CommentItem[]> res.json())
 							.catch(this.handleError);
 	}

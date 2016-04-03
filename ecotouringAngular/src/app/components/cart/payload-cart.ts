@@ -3,22 +3,24 @@ import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
 import {ItemThumb} from '../../interfaces/item-thumb';
 import {Car} from '../../models/car/car.model';
 import {CategoriesApp} from '../../categories/categories';
-import {EcotouringwebApp} from '../../ecotouringweb';
+import {PayloadService} from '../../services/payload.service';
+import {Payload} from '../../models/car/payload.model';
 
 @Component({
-  selector: 'shopping-cart',
-  providers: [],
-  templateUrl: 'templates/shopping-cart.html',
+  selector: 'payload-cart',
+  providers: [PayloadService],
+  templateUrl: 'templates/payload-cart.html',
   styleUrls :[],
   directives: [],
   pipes: []
 })
 
-export class ShoppingCartComponent implements OnInit {
-	constructor(params : RouteParams, private _router: Router){
+
+export class PayloadComponent implements OnInit {
+	constructor(params : RouteParams, private _router: Router, private _payloadService : PayloadService){
 		
 	}
-	
+
 	errorMessage : string;
 	carBucket : Car[];
 	selectedItem: Car;
@@ -27,12 +29,14 @@ export class ShoppingCartComponent implements OnInit {
 	insurancePrice = 0;
 	tax = 0.16;
 	sStorage : string;
+	payload : Payload;
+	idUser : number;
 
 
-	ngOnInit(){ 
-		
+	ngOnInit(){
 		let objUser = sessionStorage.getItem('userSession');
         let userToken = JSON.parse(objUser);
+        this.idUser = userToken.id;
 		this.sStorage = 'itemBucket'+ '_' + userToken.id;
 		this.getItems();
 	}
@@ -54,33 +58,26 @@ export class ShoppingCartComponent implements OnInit {
 		}
 	}
 
-	onSelect(item : Car) {
-		this.selectedItem = item;
+	onPay(){
+
+		let pay = new Payload();
+		pay.type = "PURSHASE";
+		pay.status = "NEW";
+		pay.customer =  { id : this.idUser};
+		pay.dateTransaction = "";
+
+    	this._payloadService.sendPay(pay)
+                  .subscribe(
+                    pay => this.onPaySuccesfull(pay),
+                    error => this.errorMessage = <any>error
+                  );
 	}
 
-	getTotalItem (item : Car) {
-		item.totalPrice = item.amount * item.price;
-		this.calculateTotalPrice();
+	onPaySuccesfull (pay) {
+		alert("Pago exitoso");
+
+		sessionStorage.removeItem(this.sStorage);
 	}
 
-	onDeleteCarItem (item : Car) {
-		let pos = this.carBucket.indexOf(item);
-		this.carBucket.splice(pos,1);
-		this.calculateTotalPrice();
 
-		if(sessionStorage.getItem(this.sStorage)){
-			sessionStorage.setItem(this.sStorage, JSON.stringify(this.carBucket));
-		}
-	}
-
-	goPayload() {
-		let link = ['PayloadCart'];
-		this._router.navigate(link);
-	}
-
-	/*onRouteLink(car : Car) {
-		let link = ['Item', {item : car.id}];
-		CategoriesApp.router.navigate(link);
-	}
-	*/	
 }

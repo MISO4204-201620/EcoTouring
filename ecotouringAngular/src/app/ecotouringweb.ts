@@ -9,6 +9,7 @@ import {ServiceFormComponent} from './components/products/service-form';
 import {CategoryListService} from './services/category-list.service';
 import {User} from './models/user/user.model';
 import {UserListService} from './services/users-list.service';
+import {PayloadComponent} from './components/cart/payload-cart';
 
 
 @Component({
@@ -48,14 +49,26 @@ import {UserListService} from './services/users-list.service';
     path: '/create-service/...',
     component: ServiceFormComponent,
     name: 'ServiceForm'
+  },
+  {
+    path: '/payload',
+    component: PayloadComponent,
+    name: 'PayloadCart'
+  },
+  {
+    path: '/results/...',
+    component: CategoriesApp,
+    name: 'SearchResults'
   }
 ])
 export class EcotouringwebApp {
 
   userToken : User;
   isLogged = false;
+  _router : Router;
 	constructor(public router: Router, private _userListService : UserListService) {
 
+    this._router = router;
     this.login = new User (); 
 
     if(sessionStorage.getItem('userSession')){

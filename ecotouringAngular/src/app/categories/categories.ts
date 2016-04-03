@@ -23,7 +23,9 @@ import {ItemApp} from '../components/products/item';
   { 
     path: '/', 
     name: 'Items',
-    component: ItemListComponent
+    component: ItemListComponent,
+    useAsDefault: true
+    
   },
   { 
     path: '/:category', 
@@ -34,6 +36,12 @@ import {ItemApp} from '../components/products/item';
     path: '/item/...', 
     name: 'Item',
     component: ItemApp
+  },
+  { 
+    path: '/items/:text', 
+    name: 'ItemsSearch',
+    component: ItemListComponent,
+    data: {search : true}
   }
 ])
 

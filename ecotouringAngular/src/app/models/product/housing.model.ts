@@ -49,13 +49,13 @@ export class Housing {
 		this.city = "";
 		this.price = 0;
 		this.numberOfRooms = 0;
-		this.category = "ACCOMODATION";
+		this.category = "ACCOMMODATION";
 		this.itemType = "SINGLE";
 		this.status = "HIDDEN";
 		this.tag = "";
 		this.urlImage = "";
 		this.accomodationType = "SINGLE";
-		this.contentType = "IMG_PNG";
+		this.contentType = "IMAGE_PNG";
 		this.score = 0;
 		this.supplier = { id : 0};
 		this.hotelName = "";

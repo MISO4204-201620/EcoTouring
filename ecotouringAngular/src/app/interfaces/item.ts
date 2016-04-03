@@ -10,5 +10,5 @@ export interface Item {
 	supplier : Provider;
 	content : string;
 	score : string;
-	media : [Media];
+	urlImage : string;
 }

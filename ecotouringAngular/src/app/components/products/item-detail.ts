@@ -4,6 +4,7 @@ import {Item} from '../../interfaces/item';
 import {ItemDetailService} from '../../services/item-detail.service';
 import {Car} from '../../models/car/car.model';
 import {CommentItemComponent} from '../comments/comment-item';
+import {User} from '../../models/user/user.model';
 
 
 declare var jQuery : any;
@@ -34,11 +35,16 @@ export class ItemDetailComponent implements OnInit {
 	itemMedia : Array<Object>;
 	itemParent = null;
 	val = 1;
+	isLogged = false;
 	
 
 	ngOnInit(){ 
 		this.getItem(this.idItem);
 		this.itemsBucket = new Array;
+
+		if(sessionStorage.getItem('userSession')){
+          this.isLogged = true;
+        }
 	}
 
 	getItem(idItem){
@@ -61,33 +67,35 @@ export class ItemDetailComponent implements OnInit {
 
 	onAddCartItem (item : Item) {
 		if(typeof(Storage) !== "undefined"){
-			
-			if(sessionStorage.getItem('itemBucket')){
-				let objBucket = sessionStorage.getItem('itemBucket');
+			let objUser = sessionStorage.getItem('userSession');
+          	let userToken = JSON.parse(objUser);
+			let sStorage = 'itemBucket'+ '_' + userToken.id;
+			if(sessionStorage.getItem(sStorage)){
+				let objBucket = sessionStorage.getItem(sStorage);
 				this.itemsBucket = JSON.parse(objBucket);
 				let cartItem = new Car();
 				cartItem.id = item.id;
 				cartItem.name = item.name;
-				cartItem.image = item.media[0].url;
+				cartItem.image = item.urlImage;
 				cartItem.amount = 1;
 				cartItem.price = item.price;
 				cartItem.discount = 0;
 				cartItem.totalPrice = item.price;
 				this.itemsBucket.push(cartItem);
-				sessionStorage.setItem('itemBucket', JSON.stringify(this.itemsBucket));
+				sessionStorage.setItem(sStorage, JSON.stringify(this.itemsBucket));
 				alert("El servicio fue adicionado al carrito de compras.");
 			}else {
 				let cartItem = new Car();
 				cartItem.id = item.id;
 				cartItem.name = item.name;
-				cartItem.image = item.media[0].url;
+				cartItem.image = item.urlImage;
 				cartItem.amount = 1;
 				cartItem.price = item.price;
 				cartItem.discount = 0;
 				cartItem.totalPrice = item.price;
 
 				this.itemsBucket.push(cartItem);
-				sessionStorage.setItem('itemBucket', JSON.stringify(this.itemsBucket));
+				sessionStorage.setItem(sStorage, JSON.stringify(this.itemsBucket));
 				alert("El servicio fue adicionado al carrito de compras.");
 			}
 		}else {

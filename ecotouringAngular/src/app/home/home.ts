@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {Router,RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {SearchComponentApp} from './../searchcomponent';
 import {CategoriesPanelApp} from './../categoriespanel';
 import {CounterApp} from './../counter';

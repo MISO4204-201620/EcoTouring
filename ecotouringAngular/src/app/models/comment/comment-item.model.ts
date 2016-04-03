@@ -1,21 +1,16 @@
+import {User} from '../../models/user/user.model';
+import {Item} from '../../interfaces/item';
+
 export class CommentItem {
 
 	public id : number;
-	public conversationType : string;
-	public entry : string;
-	public user : string;
-	public image : string;
-	public dateEntry : string;
+	public text : string;
 	public score : number;
-	public author : string
+	public dataEntry : string;
+	public item : Item;
+	public author : User;
 	
 	constructor (){
-		this.id = 0;
-		this.conversationType= "";
-		this.entry = "";
-		this.user = "";
-		this.image = "",
-		this.dateEntry = "",
-		this.score = 0;
+		
 	}
 }
