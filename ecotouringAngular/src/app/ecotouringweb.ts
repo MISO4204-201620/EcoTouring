@@ -6,11 +6,11 @@ import {CategoriesApp} from './categories/categories';
 import {HomeApp} from './home/home';
 import {ShoppingCartComponent} from './components/cart/shopping-cart';
 import {ServiceFormComponent} from './components/products/service-form';
+import {PayloadComponent} from './components/cart/payload-cart';
+import {ProfileComponentApp} from './components/user/profile';
+import {UserListService} from './services/users-list.service';
 import {CategoryListService} from './services/category-list.service';
 import {User} from './models/user/user.model';
-import {UserListService} from './services/users-list.service';
-import {PayloadComponent} from './components/cart/payload-cart';
-
 
 @Component({
   selector: 'ecotouringweb-app',
@@ -59,6 +59,11 @@ import {PayloadComponent} from './components/cart/payload-cart';
     path: '/results/...',
     component: CategoriesApp,
     name: 'SearchResults'
+  },
+  {
+    path: '/profile', 
+    component: ProfileComponentApp,
+    name: 'Profile'
   }
 ])
 export class EcotouringwebApp {

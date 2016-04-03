@@ -20,7 +20,7 @@ _________________________________________________________ -->
                     <div class="login">
                         <a href="#" data-toggle="modal" data-target="#login-modal" *ngIf="!isLogged"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
                         <a [routerLink]="['Signup']" *ngIf="!isLogged"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
-                        <a [routerLink]="['Signup']" *ngIf="isLogged"><i class="fa fa-male"></i> <span class="hidden-xs text-uppercase">{{userToken.fullName}}</span></a>
+                        <a [routerLink]="['Profile']" *ngIf="isLogged"><i class="fa fa-male"></i> <span class="hidden-xs text-uppercase">{{userToken.fullName}}</span></a>
                         <a href="#" *ngIf="isLogged" (click)="onLogOut()"><i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">Log out</span></a>
                     </div>
 
@@ -110,7 +110,7 @@ _________________________________________________________ -->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
                                 <li><a href="index.html">Crear paquete</a></li>
-                                <li><a href="index.html">Mis productos</a></li>
+                                <li><a [routerLink]="['/Categories', 'ItemsSupplier', {supplier : userToken.id}]">Mis productos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">

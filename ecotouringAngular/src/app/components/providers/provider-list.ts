@@ -32,4 +32,9 @@ export class ProviderListComponent implements OnInit {
   onSelect(provider : Provider) {
   	this.selectedProvider = provider;
   }
+
+  onFilter(idProvider : number){
+    let link = ['ItemsSupplier',{supplier : idProvider}];
+    this._router.navigate(link);
+  }
 }

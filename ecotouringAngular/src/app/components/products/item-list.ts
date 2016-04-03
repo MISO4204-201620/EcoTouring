@@ -3,11 +3,12 @@ import {Router,RouteParams,ROUTER_PROVIDERS,ROUTER_DIRECTIVES,RouteData} from 'a
 import {ItemThumb} from '../../interfaces/item-thumb';
 import {ItemListService} from '../../services/item-list.service';
 import {SearchItemsService} from '../../services/search-items.service';
+import {ProviderItemsService} from '../../services/provider-items.service';
 import {CategoriesApp} from '../../categories/categories';
 
 @Component({
   selector: 'item-list',
-  providers: [ItemListService,SearchItemsService],
+  providers: [ItemListService,SearchItemsService,ProviderItemsService],
   templateUrl: 'templates/item-list.html',
   styleUrls :[],
   directives: [ROUTER_DIRECTIVES],
@@ -15,11 +16,13 @@ import {CategoriesApp} from '../../categories/categories';
 })
 
 export class ItemListComponent implements OnInit {
-	constructor(params : RouteParams, data: RouteData, private _router: Router, private _itemListService : ItemListService, private _searchItemService : SearchItemsService){
+	constructor(params : RouteParams, data: RouteData, private _router: Router, private _itemListService : ItemListService, private _searchItemService : SearchItemsService, private _providerItemsService : ProviderItemsService){
 		
-		if (data.get('search')){
+		if (data.get('search') !== null){
 			this.dataSearch = params.get('text');
-		}else {
+		} else if (data.get('supplier') !== null) {
+			this.dataSupplier = params.get('supplier');
+		} else {
 			this.category = params.get('category');
 		}
 	}
@@ -29,15 +32,26 @@ export class ItemListComponent implements OnInit {
 	items : ItemThumb[];
 	selectedItem: ItemThumb;
 	dataSearch : string;
+	dataSupplier : string;
 
 	ngOnInit(){ 
-
-		if(this.dataSearch !== null){
+		
+		if(this.dataSearch !== undefined){
 			this.getItemsSearch(this.dataSearch);
-		}else{
+		} else if (this.dataSupplier !== undefined){
+			this.getItemsSuppliers(this.dataSupplier);
+		} else{
 			this.getItems(this.category);
 		}
 		
+	}
+
+	getItemsSuppliers(idSupplier : string){
+		this._providerItemsService.getItems(idSupplier)
+									.subscribe(
+										items => this.items = items,
+										error => this.errorMessage = <any>error
+									);
 	}
 
 	getItemsSearch(description : string){
@@ -57,7 +71,7 @@ export class ItemListComponent implements OnInit {
 	}
 
 	onSelect(item : ItemThumb) {
-	this.selectedItem = item;
+		this.selectedItem = item;
 	}
 	
 }

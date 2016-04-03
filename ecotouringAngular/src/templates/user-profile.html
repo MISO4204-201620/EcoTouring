@@ -1,0 +1,144 @@
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Perfil de usuario</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="/">Home</a>
+                    </li>
+                    <li>Perfil de usuario</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="clearfix">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- *** LEFT COLUMN ***
+     _________________________________________________________ -->
+
+            <div class="col-md-9 clearfix" id="customer-account">
+
+                <p class="lead">Información de tu perfil de usuario.</p>
+                <p class="text-muted">Información detalla de la cuenta de usuario.</p>
+
+                <div class="box clearfix">
+                    <div class="heading">
+                        <h3 class="text-uppercase">Información personal</h3>
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 >Nombre Completo</h4>
+                                <label >{{user.fullName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 for="company">Usuario</h4>
+                                <label >{{user.username}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 for="company">Tipo de usuario</h4>
+                                <label >{{user.role}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 for="city">Ocupación</h4>
+                                <label >{{user.jobTitle}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 for="city">Email</h4>
+                                <label >{{user.email}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4 for="city">Dirección</h4>
+                                <label >{{user.address}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.col-md-9 -->
+
+            <!-- *** LEFT COLUMN END *** -->
+
+            <!-- *** RIGHT COLUMN ***
+     _________________________________________________________ -->
+
+            <div class="col-md-3">
+                <!-- *** CUSTOMER MENU ***
+_________________________________________________________ -->
+                <div class="panel panel-default sidebar-menu">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Menú de usuario</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <ul class="nav nav-pills nav-stacked">
+                            <li >
+                                <a href="customer-orders.html"><i class="fa fa-list"></i> Mis Comprás</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['ShoppingCart']"><i class="fa fa-heart"></i> Mi Carrito</a>
+                            </li>
+                            <li class="active">
+                                <a href="customer-account.html"><i class="fa fa-user"></i> Mi Cuenta</a>
+                            </li>
+                            <li>
+                                <a href="#" (click)="onLogOut()"><i class="fa fa-sign-out"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /.col-md-3 -->
+
+                <!-- *** CUSTOMER MENU END *** -->
+            </div>
+
+            <!-- *** RIGHT COLUMN END *** -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#content -->  

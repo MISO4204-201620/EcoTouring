@@ -42,6 +42,12 @@ import {ItemApp} from '../components/products/item';
     name: 'ItemsSearch',
     component: ItemListComponent,
     data: {search : true}
+  },
+  { 
+    path: '/items-supplier/:supplier', 
+    name: 'ItemsSupplier',
+    component: ItemListComponent,
+    data: {supplier : true}
   }
 ])
 
