@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.common.base.Optional;
@@ -44,13 +45,23 @@ public class ItemDAO extends AbstractDAO<Item> {
 		return (Set<ItemContent>) findById(id).get().getItemContents();
 	}
 
+	public Set<Item> findPackageDetailByItem(Long id) {
+		return (Set<Item>) findById(id).get().getPackageDetails();
+	}
+
+	public Item setChild(Item parent, Item child) {
+		child.setParent(parent);
+		return persist(child);
+	}
+
 	public Item update(Item item) {
 		return persist(item);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Item> searchItemsByDescription(String searchKeyword) {
-		return (List<Item>) this.criteria().add(Restrictions.like("description", "searchKeyword")).list();
+		return (List<Item>) this.criteria().add(Restrictions.ilike("description", searchKeyword, MatchMode.ANYWHERE))
+				.list();
 	}
 
 }

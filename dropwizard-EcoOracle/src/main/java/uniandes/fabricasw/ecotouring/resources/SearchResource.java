@@ -31,12 +31,12 @@ public class SearchResource {
 	public List<?> search(@PathParam("criteria") String criteria, @PathParam("searchKeyword") String searchKeyword) {
 		switch (criteria) {
 		case "ITEM_DESC":
-			return itemDao.searchItemsByDescription("%"+searchKeyword+"%");
+			return itemDao.searchItemsByDescription(searchKeyword);
 		case "PERSON_NAME":
-			return personDAO.searchPeopleByName("%"+searchKeyword+"%");			
+			return personDAO.searchPeopleByName(searchKeyword);
 		default:
 			return itemDao.searchItemsByDescription(searchKeyword);
 		}
-	}
-
+	}	
+	
 }

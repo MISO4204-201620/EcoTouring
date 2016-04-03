@@ -20,27 +20,33 @@ java -jar target/dropwizard-EcoTouring-1.0.0-SNAPSHOT.jar server produccion.yml
 #4. Probar cada una de las siguientes peticiones GET
 
 --Busquedas por categoria (Listar todos por categoria)
-http://localhost:9999/accommodation 			ok
-http://localhost:9999/alimentation				ok
-http://localhost:9999/ecotour					ok
-http://localhost:9999/transport					ok
+http://localhost:9999/accommodation 			ok <br/>
+http://localhost:9999/alimentation				ok <br/>
+http://localhost:9999/ecotour					ok <br/>
+http://localhost:9999/transport					ok <br/>
 
-http://localhost:9999/items						ok
-http://localhost:9999/items/1					ok
-http://localhost:9999/items/1/content			ok
-http://localhost:9999/items/1/conversations		ok
-http://localhost:9999/items/1/scores			ok
-http://localhost:9999/people					ok
-http://localhost:9999/people/1					ok
-http://localhost:9999/shoppingCart				ok
-http://localhost:9999/shoppingCart/2			ok
-http://localhost:9999/suppliers					ok
+http://localhost:9999/items						ok <br/>
+http://localhost:9999/items/1					ok <br/>
+http://localhost:9999/items/1/content			ok <br/>
+http://localhost:9999/items/1/conversations		ok <br/>
+http://localhost:9999/items/1/scores			ok <br/>
+http://localhost:9999/items/5/packageDetail     ok <br/>
+http://localhost:9999/people					ok <br/>
+http://localhost:9999/people/1					ok <br/>
+http://localhost:9999/shoppingCart				ok <br/>
+http://localhost:9999/shoppingCart/2			ok <br/>
+http://localhost:9999/suppliers					ok <br/>
+http://localhost:9999/suppliers/1				ok <br/>
+http://localhost:9999/suppliers/1/items			ok <br/>
 
 --Busquedas por palabras clave
-http://localhost:9999/search/ITEM_DESC/noches   falla compila pero no trae datos
-http://localhost:9999/search/PERSON_NAME/sierra falla compila pero no trae datos
+http://localhost:9999/search/ITEM_DESC/noches   ok <br/>
+http://localhost:9999/search/PERSON_NAME/sierra ok <br/>
  
-
+Falta
+-- Buscar por categoría y palabra clave
+-- Buscar por más de una palabra
+ 
 
 #5. Probar los métodos POST
 
@@ -70,6 +76,9 @@ curl -H "Content-Type: application/json" -X POST -d {\"category\":\"BASIC\",\"it
 
 --POST Package Detail - ADD New Item 			ok
 curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"SubTour2\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":{\"itemId\":218},\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
+
+--POST Package Detail asociar item a un papá    ok
+curl -X POST http://localhost:9999/items/1/packageDetail/2
 
 --POST ShoppingCart			ok
 curl -H "Content-Type: application/json" -X POST -d {\"type\":\"PURSHASE\",\"status\":\"NEW\",\"customer\":{\"id\":2},\"dateTransaction\":\"2016-03-13\"} http://localhost:9999/shoppingCart
@@ -103,7 +112,6 @@ curl -X POST http://localhost:9999/items/2/hiddeItem
 curl -X POST http://localhost:9999/login
 
 \"\":\"\",
-
 
 Notas:
 

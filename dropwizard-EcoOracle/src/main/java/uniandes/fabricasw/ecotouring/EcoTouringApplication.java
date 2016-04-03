@@ -78,6 +78,7 @@ import uniandes.fabricasw.ecotouring.resources.ProtectedResource;
 import uniandes.fabricasw.ecotouring.resources.SearchResource;
 import uniandes.fabricasw.ecotouring.resources.ShoppingCartResource;
 import uniandes.fabricasw.ecotouring.resources.ShoppongCartDetailResource;
+import uniandes.fabricasw.ecotouring.resources.SupplierResource;
 import uniandes.fabricasw.ecotouring.resources.SuppliersResource;
 import uniandes.fabricasw.ecotouring.resources.TransportResource;
 import uniandes.fabricasw.ecotouring.resources.ViewResource;
@@ -194,6 +195,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new PersonResource(personDao));
 		environment.jersey().register(new PeopleResource(personDao));
 		environment.jersey().register(new SuppliersResource(suppliersDao));
+		environment.jersey().register(new SupplierResource(suppliersDao));
 		environment.jersey().register(new EcoTourResource(ecoTourDao));
 		environment.jersey().register(new ShoppingCartResource(shoppingCartDao));
 		environment.jersey().register(new ShoppongCartDetailResource(shoppingCartDao, shoppingCartDetailDao));
