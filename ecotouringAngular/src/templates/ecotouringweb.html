@@ -109,7 +109,7 @@ _________________________________________________________ -->
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Proveedor <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
-                                <li><a href="index.html">Crear paquete</a></li>
+                                <li><a [routerLink]="['ServiceForm', 'PackageServiceForm']">Crear paquete</a></li>
                                 <li><a [routerLink]="['/Categories', 'ItemsSupplier', {supplier : userToken.id}]">Mis productos</a></li>
                             </ul>
                         </li>
@@ -118,6 +118,13 @@ _________________________________________________________ -->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['ShoppingCart']" >Mi carrito</a></li>
                                 <li><a href="index.html">Historial de compras</a></li>
+                                <li><a href="index.html">Mensajes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'ADMIN'">
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Administrador <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a [routerLink]="['CreateUserForm']">Crear proveedor</a></li>
                                 <li><a href="index.html">Mensajes</a></li>
                             </ul>
                         </li>

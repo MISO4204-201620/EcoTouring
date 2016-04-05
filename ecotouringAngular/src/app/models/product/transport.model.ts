@@ -6,7 +6,7 @@ export class Transport {
 	public category : string;
 	public itemType : string;
 	public status : string;
-	public tag : string;
+	public tags : string;
 	public urlImage : string;
 	public type : string;
 	public origin : string;
@@ -24,10 +24,10 @@ export class Transport {
 		this.category = "TRANSPORT";
 		this.itemType = "SINGLE";
 		this.status = "HIDDEN";
-		this.tag = "";
+		this.tags = "";
 		this.urlImage = "";
-		this.type = "";
-		this.contentType = "IMG_PNG";
+		this.type = "TAXY";
+		this.contentType = "IMAGE_PNG";
 		this.score = 0;
 		this.supplier = { id : 0};
 		this.initialHour = "";

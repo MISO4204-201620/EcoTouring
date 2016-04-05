@@ -9,6 +9,7 @@ export class UserListService {
 
 	//private _categoriesUrl = 'mocks/categories.json';
 	private _usersUrl = 'http://54.174.139.165:9999/people';
+	//private _usersUrl = 'http://192.168.220.85:9999/people';
 
 	getUsers(){
 		return this.http.get(this._usersUrl)

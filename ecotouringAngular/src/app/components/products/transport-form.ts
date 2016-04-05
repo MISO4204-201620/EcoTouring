@@ -33,7 +33,7 @@ export class TransportFormComponent implements OnInit {
 
 	ngOnInit(){
     this.model = new Transport (); 
-    jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
+    //jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
   }
 
   onSubmit(model : Transport){ 

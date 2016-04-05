@@ -6,7 +6,7 @@ export class EcoTour {
 	public category : string;
 	public itemType : string;
 	public status : string;
-	public tag : string;
+	public tags : string;
 	public urlImage : string;
 	public ecoTourType : string;
 	public contentType : string;
@@ -21,10 +21,10 @@ export class EcoTour {
 		this.category = "ECOTOUR";
 		this.itemType = "SINGLE";
 		this.status = "HIDDEN";
-		this.tag = "";
+		this.tags = "";
 		this.urlImage = "";
 		this.ecoTourType = "";
-		this.contentType = "IMG_PNG";
+		this.contentType = "IMAGE_PNG";
 		this.score = 0;
 		this.supplier = { id : 0};
 		this.itinerary = "";

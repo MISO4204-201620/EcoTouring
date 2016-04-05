@@ -6,8 +6,8 @@ export class CommentItem {
 	public id : number;
 	public text : string;
 	public score : number;
-	public dataEntry : string;
-	public item : Item;
+	public dateEntry : Date;
+	public item : Object;
 	public author : User;
 	
 	constructor (){
