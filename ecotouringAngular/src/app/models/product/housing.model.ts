@@ -34,9 +34,9 @@ export class Housing {
 	public status : string;
 	public country : string;
 	public city : string;
-	public tag : string;
+	public tags : string;
 	public urlImage : string;
-	public accomodationType : string;
+	public accommodationType : string;
 	public contentType : string;
 	public score : number;
 	public supplier : Object;
@@ -52,9 +52,9 @@ export class Housing {
 		this.category = "ACCOMMODATION";
 		this.itemType = "SINGLE";
 		this.status = "HIDDEN";
-		this.tag = "";
+		this.tags = "";
 		this.urlImage = "";
-		this.accomodationType = "SINGLE";
+		this.accommodationType = "SINGLE";
 		this.contentType = "IMAGE_PNG";
 		this.score = 0;
 		this.supplier = { id : 0};

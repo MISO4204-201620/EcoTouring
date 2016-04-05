@@ -10,6 +10,7 @@ export class ItemListService {
 
 	//private _itemsUrl = 'mocks/items.json';
 	private _itemsUrl = 'http://54.174.139.165:9999/';
+	//private _itemsUrl = 'http://192.168.220.85:9999/';
 
 	getItems(param = 'items'){
 

@@ -8,6 +8,7 @@ import {ShoppingCartComponent} from './components/cart/shopping-cart';
 import {ServiceFormComponent} from './components/products/service-form';
 import {PayloadComponent} from './components/cart/payload-cart';
 import {ProfileComponentApp} from './components/user/profile';
+import {CreateUsersComponentApp} from './components/user/create-users';
 import {UserListService} from './services/users-list.service';
 import {CategoryListService} from './services/category-list.service';
 import {User} from './models/user/user.model';
@@ -64,6 +65,11 @@ import {User} from './models/user/user.model';
     path: '/profile', 
     component: ProfileComponentApp,
     name: 'Profile'
+  },
+  { 
+    path: '/create-user', 
+    component: CreateUsersComponentApp,
+    name: 'CreateUserForm' 
   }
 ])
 export class EcotouringwebApp {

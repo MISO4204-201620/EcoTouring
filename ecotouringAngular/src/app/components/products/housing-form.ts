@@ -35,11 +35,11 @@ export class HousingFormComponent implements OnInit {
 
 	ngOnInit(){ 
     this.model = new Housing (); 
-    jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
+    //jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
   }
 
   onSubmit(model : Housing){ 
-  
+    alert(model.description);
     if (!model) {return;}
 
     if(sessionStorage.getItem('userSession')){

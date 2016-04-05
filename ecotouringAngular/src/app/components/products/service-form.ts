@@ -6,6 +6,7 @@ import {HousingFormComponent} from './housing-form';
 import {TransportFormComponent} from './transport-form';
 import {FeedingFormComponent} from './feeding-form';
 import {EcoTourFormComponent} from './eco-tour-form';
+import {PackageFormComponent} from './package-service-form';
 
 @Component({
   selector: 'service-form',
@@ -38,6 +39,11 @@ import {EcoTourFormComponent} from './eco-tour-form';
     path: '/eco-tour', 
     name: 'EcoTourForm',
     component: EcoTourFormComponent
+  },
+  { 
+    path: '/package-service', 
+    name: 'PackageServiceForm',
+    component: PackageFormComponent
   }
 ])
 
@@ -70,6 +76,9 @@ export class ServiceFormComponent implements OnInit {
   		case 4: 
   			linkRoute = ['EcoTourForm'];
   			break;
+      case 5: 
+        linkRoute = ['PackageServiceForm'];
+        break;
   	}
 
   	this._router.navigate(linkRoute);

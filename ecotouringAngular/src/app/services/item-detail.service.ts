@@ -9,6 +9,7 @@ export class ItemDetailService {
 
 	//private _itemUrl = 'mocks/item.json';
 	private _itemUrl = 'http://54.174.139.165:9999/items/';
+	//private _itemUrl = 'http://192.168.220.85:9999/items/';
 
 	getItem(idItem){
 		return this.http.get(this._itemUrl + idItem)

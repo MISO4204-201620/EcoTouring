@@ -31,10 +31,12 @@ export class ProviderListComponent implements OnInit {
 
   onSelect(provider : Provider) {
   	this.selectedProvider = provider;
+    console.log(provider);
   }
 
-  onFilter(idProvider : number){
-    let link = ['ItemsSupplier',{supplier : idProvider}];
+  onFilter(){
+    let link = ['ItemsSupplier',{supplier : this.selectedProvider.id}];
     this._router.navigate(link);
+    console.log(this.selectedProvider.id);
   }
 }

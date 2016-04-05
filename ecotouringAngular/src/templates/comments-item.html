@@ -21,39 +21,17 @@
 <!-- /#comments -->
 
 
-<div id="comment-form">
+<div id="comment-form" *ngIf="isLogged">
 
     <h4 class="text-uppercase">Deja tu comentario</h4>
 
-    <form>
-        <div class="row">
-
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="name">Nombre <span class="required">*</span>
-                    </label>
-                    <input type="text" class="form-control" id="name">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span>
-                    </label>
-                    <input type="text" class="form-control" id="email">
-                </div>
-            </div>
-        </div>
-
+    <form (ngSubmit)="onSubmit(newComment)" #commentForm="ngForm" method="post">
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="comment">Comentario <span class="required">*</span>
                     </label>
-                    <textarea class="form-control" id="comment" rows="4"></textarea>
+                    <textarea class="form-control" id="comment" rows="4" [(ngModel)]="newComment.text"></textarea>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 export class User {
 
+	public id : number;
 	public fullName : string;
 	public username : string;
 	public email : string;
@@ -10,12 +11,6 @@ export class User {
 	
 	constructor (){
 		
-		this.fullName = "";
-		this.username = "";
-		this.email = "";
-		this.password = "",
-		this.jobTitle = "",
-		this.address = "";
 		this.role = "USER";
 	}
 }

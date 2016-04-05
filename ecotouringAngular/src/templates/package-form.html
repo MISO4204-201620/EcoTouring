@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(model)" #ecoTourForm="ngForm">
+<form  (ngSubmit)="onSubmit(model)" #housingForm="ngForm">
 <br/>
 <div class="row">
     <div class="col-sm-6">
@@ -8,7 +8,7 @@
             {{ okMessage }}
         </div>
         <div class="form-group">
-            <label for="name">Nombre del eco plan:</label>
+            <label for="name">Nombre del paquete:</label>
             <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
             <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -18,27 +18,14 @@
         </div>
         <div class="form-group">
             <label for="price">Precio:</label>
-            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price">
+            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price" ngControl="price" #price="ngForm">
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="price.valid || price.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Precio vacío o inválido.
+            </div>
         </div>
-        <!--
-        <div class="form-group">
-            <label for="date">Fecha:</label>
-            <input type="date" class="form-control" id="date" required [(ngModel)]="model.date">
-        </div>
-
-        <div class="form-group">
-            <label for="people">Cantidad de personas:</label>
-            <input type="number" class="form-control" id="people" required [(ngModel)]="model.people">
-        </div>
-        <div class="form-group">
-            <label for="country">País:</label>
-            <input type="text" class="form-control" id="country" required [(ngModel)]="model.country">
-        </div>
-        <div class="form-group">
-            <label for="city">Ciudad:</label>
-            <input type="text" class="form-control" id="city" required [(ngModel)]="model.city">
-        </div>
-        -->
+        
         <div class="form-group">
             <label for="city">Imagen Url:</label>
             <input type="url" class="form-control" id="image" required [(ngModel)]="model.urlImage" ngControl="image" #image="ngForm">
@@ -48,29 +35,25 @@
                 Imagen vacío o inválido.
             </div>
         </div>
-         <div class="form-group">
-            <label for="name">Tipo de plan:</label>
-            <select class="form-control" required [(ngModel)]="model.ecoTourType" ngControl="type" #type="ngForm">
-              <option value="Hikin">Hikin</option>
-            </select>
-        </div>
         <div class="form-group">
             <label for="city">Tags:</label>
             <input type="text" class="form-control" id="tag" [(ngModel)]="model.tags">
         </div>
         <div class="form-group">
             <label for="description">Descripción:</label>
-            <textarea id="description" class="form-control editor" required [(ngModel)]="model.description"></textarea>
+            <textarea id="description" class="form-control editor" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                Descripción vacío o inválido.
+            </div>
         </div>
+        
         <div class="form-group">
-            <label for="content">Itinerario:</label>
-            <textarea id="content" class="form-control editor" [(ngModel)]="model.itinerary" ></textarea>
-        </div>
-        <div class="form-group">
-        <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Servicio</button>
+            <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Paquete</button>
         </div>
     </div>
-    <br/>
+    <br/>   
 </div>
 <!-- /.row -->
 </form>
