@@ -125,6 +125,22 @@
           </transformers>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>write-project-properties</goal>
+            </goals>
+            <configuration>
+              <outputFile>${project.build.outputDirectory}/uniandes/fabricasw/ecotouring/app.properties</outputFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -250,13 +266,16 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <name>${project.name&gt;</name>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
+    <calificacion>true</calificacion>
     <maven.site.skip>true</maven.site.skip>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <version>${project.version}</version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.deploy.skip>true</maven.deploy.skip>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 </project>
 

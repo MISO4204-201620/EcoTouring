@@ -1,3 +1,5 @@
+package uniandes.fabricasw.ecotouring;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -28,14 +30,14 @@ public class DerivadorEcotouring {
 		if (feature.equals("CORE")) {
 			// Weaver weaver = new AspectJWeaver();
 			// aspectj.weave(b);
-			System.out.println("Se incluyó CORE");
+			System.out.println("Se incluyo CORE");
 		}
 		
-		//Condición sobre constante
+		//Condicion sobre constante
 		if (feature.equals("FEATURE1")) {
 			// patron decorador abrir set= true
 			// escribir una propiedad en un archivo .properties
-			System.out.println("Se incluyó FEATURE1");
+			System.out.println("Se incluyo FEATURE1");
 		}
 		
 		//Aspecto
@@ -44,17 +46,17 @@ public class DerivadorEcotouring {
 			// add
 			// write
 			// jaxb agregar dependency en el pom
-			System.out.println("Se incluyó FEARURE2");
+			System.out.println("Se incluyo FEARURE2");
 		}
 		
-		//Patrón decorador
+		//Patron decorador
 		if (feature.equals("FEARURE3")) {
-			System.out.println("Se incluyó FEARURE3");
+			System.out.println("Se incluyo FEARURE3");
 		}		
 		
 		//Reemplazo de binario
 		if (feature.equals("FEARURE4")) {
-			System.out.println("Se incluyó FEARURE4");
+			System.out.println("Se incluyo FEARURE4");
 		}		
 	}
 
@@ -67,7 +69,7 @@ public class DerivadorEcotouring {
 			lector = new BufferedReader(new FileReader(datos));
 			texto = lector.readLine();
 		} catch (Exception e) {
-			throw new Exception("Error al cargar los datos de configuración");
+			throw new Exception("Error al cargar los datos de configuracion");
 		}
 
 		while (texto != null) {
@@ -75,7 +77,7 @@ public class DerivadorEcotouring {
 			try {
 				texto = lector.readLine();
 			} catch (Exception e) {
-				System.out.println("Error al cargar los datos de configuración");
+				System.out.println("Error al cargar los datos de configuracion");
 			}
 		}
 		lector.close();
