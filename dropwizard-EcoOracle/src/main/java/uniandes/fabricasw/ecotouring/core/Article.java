@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -41,8 +42,8 @@ public class Article implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "ArticleSeq")
-	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ArticleSeq")
+	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ")
 	public Long getId() {
 		return id;
 	}

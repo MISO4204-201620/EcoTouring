@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,8 +36,8 @@ public class Tag implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "TagSeq")
-	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ", allocationSize = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TagSeq")
+	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ")
 	public Long getId() {
 		return id;
 	}

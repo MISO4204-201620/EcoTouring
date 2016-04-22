@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,8 +40,8 @@ public class Transaction implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "TransactionSeq")
-	@SequenceGenerator(name = "TransactionSeq", sequenceName = "TRANSACTION_SEQ", allocationSize = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TransactionSeq")
+	@SequenceGenerator(name = "TransactionSeq", sequenceName = "TRANSACTION_SEQ")
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;

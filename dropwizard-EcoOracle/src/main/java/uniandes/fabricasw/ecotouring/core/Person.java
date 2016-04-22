@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -50,8 +51,8 @@ public class Person implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "PersonSeq")
-	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PersonSeq")
+	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ")
 	public Long getId() {
 		return this.id;
 	}
