@@ -46,7 +46,7 @@ http://localhost:9999/search/PERSON_NAME/sierra ok <br/>
 Falta
 -- Buscar por categoría y palabra clave
 -- Buscar por más de una palabra
- 
+-- Revisar sequences !!!*** 
 
 #5. Probar los métodos POST
 
@@ -69,12 +69,12 @@ curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ALIMENTATION
 curl -H "Content-Type: application/json" -X POST -d {\"category\":\"TRANSPORT\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"type\":\"TAXY\",\"origin\":\"originText\",\"destination\":\"destinationText\",\"initialHour\":\"8am\",\"finalHour\":\"8pm\"}} http://localhost:9999/transport
 
 --POST Ecotour				ok
-curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
+curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null,\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://54.174.139.165:9999/ecotour
 
 --POST Item Package			ok
 curl -H "Content-Type: application/json" -X POST -d {\"category\":\"BASIC\",\"itemType\":\"PACKAGE\",\"status\":\"HIDDEN\",\"name\":\"Tour1\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":null}} http://localhost:9999/items
 
---POST Package Detail - ADD New Item 			ok
+--POST Package Detail - ADD New Item 			PAILAS
 curl -H "Content-Type: application/json" -X POST -d {\"category\":\"ECOTOUR\",\"itemType\":\"SINGLE\",\"status\":\"HIDDEN\",\"name\":\"SubTour2\",\"description\":\"Tour1Description\",\"price\":450000,\"score\":5,\"supplier\":{\"id\":1},\"tags\":null,\"urlImage\":\"http://lorempixel.com/300/300/nature/\",\"contentType\":\"IMAGE_PNG\",\"parent\":{\"itemId\":218},\"ecoTourType\":\"HIKING\",\"itinerary\":\"itineraryText\"}} http://localhost:9999/ecotour
 
 --POST Package Detail asociar item a un papá    ok
@@ -83,7 +83,7 @@ curl -X POST http://localhost:9999/items/1/packageDetail/2
 --POST ShoppingCart			ok
 curl -H "Content-Type: application/json" -X POST -d {\"type\":\"PURSHASE\",\"status\":\"NEW\",\"customer\":{\"id\":2},\"dateTransaction\":\"2016-03-13\"} http://localhost:9999/shoppingCart
 
---POST ShoppingCartDetail	NO
+--POST ShoppingCartDetail	ok
 curl -H "Content-Type: application/json" -X POST -d {\"transaction\":{\"id\":2},\"item\":{\"itemId\":1},\"price\":10,\"quantity\":2} http://localhost:9999/shoppingCart/2/detail
 
 --POST Supplier\			ok
@@ -96,7 +96,7 @@ curl -H "Content-Type: application/json" -X POST -d {\"conversationtype\":\"ANSW
 curl -H "Content-Type: application/json" -X POST -d {\"name\":\"foto1\",\"url\":\"httpLocation\",\"contentType\":\"IMAGE_PNG\",\"item\":{\"itemId\":1}}} http://localhost:9999/items/2/content
 
 --POST ItemScore (comment)	ok
-curl -H "Content-Type: application/json" -X POST -d {\"text\":\"Elmejorproducto\",\"score\":5,\"dateEntry\":\"2016-02-24\",\"item\":{\"itemId\":1},\"author\":{\"id\":1}}} http://localhost:9999/items/2/scores
+curl -H "Content-Type: application/json" -X POST -d {\"text\":\"Elmejorproducto\",\"score\":5,\"dateEntry\":\"2016-02-24\",\"item\":{\"itemId\":1},\"author\":{\"id\":1}}} http://54.174.139.165:9999/items/2/scores
 
 --POST ChangeTransactionStatus
 curl -X POST http://localhost:9999/shoppingCart/2/changeStatusPurshased
