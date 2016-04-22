@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and abstract="true" mandatory="true" name="VariabilidadProducto">
+				<and mandatory="true" name="AtributoCalidad">
+					<feature mandatory="true" name="Latencia"/>
+					<feature mandatory="true" name="Modificabilidad"/>
+					<feature mandatory="true" name="Usabilidad"/>
+					<feature name="Interoperabilidad"/>
+					<feature name="Disponibilidad"/>
+					<feature mandatory="true" name="Seguridad"/>
+				</and>
+				<and mandatory="true" name="Datos">
+					<alt mandatory="true" name="Compras">
+						<feature mandatory="true" name="Transacciones"/>
+						<feature mandatory="true" name="MaestroDetalle"/>
+					</alt>
+					<or mandatory="true" name="Borrado">
+						<feature mandatory="true" name="Fisico"/>
+						<feature mandatory="true" name="Logico"/>
+					</or>
+					<alt mandatory="true" name="ProducosYServicios">
+						<feature mandatory="true" name="Independiente"/>
+						<feature mandatory="true" name="Unido"/>
+					</alt>
+				</and>
+				<and name="FlujoControl">
+					<feature name="RegitroUsuario"/>
+					<feature name="Carrito"/>
+					<feature name="Login"/>
+				</and>
+				<and name="Tecnologia">
+					<alt mandatory="true" name="BD">
+						<feature mandatory="true" name="Postgresql"/>
+						<feature mandatory="true" name="MySQL"/>
+					</alt>
+					<alt mandatory="true" name="Framework">
+						<feature mandatory="true" name="Spring"/>
+						<feature mandatory="true" name="Play2"/>
+						<feature mandatory="true" name="JEE"/>
+					</alt>
+					<or mandatory="true" name="ConsumoServicios">
+						<feature mandatory="true" name="Angular2"/>
+						<feature mandatory="true" name="Hibernate"/>
+						<feature mandatory="true" name="Bootstrap"/>
+						<feature mandatory="true" name="JavaScript"/>
+					</or>
+					<or mandatory="true" name="Despliegue">
+						<feature mandatory="true" name="MaquinaVirtual"/>
+						<feature mandatory="true" name="Amazon"/>
+					</or>
+					<alt mandatory="true" name="AlmacenamientoImagenes">
+						<feature mandatory="true" name="FileSystem"/>
+						<feature mandatory="true" name="S3"/>
+						<feature mandatory="true" name="BaseDatos"/>
+					</alt>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

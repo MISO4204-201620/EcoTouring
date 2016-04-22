@@ -1,0 +1,9 @@
+#---------------------------------------------------------
+# Vehiculos almacenados para el calculo de impuestos
+#
+# Formato: Marca,Linea,Modelo,Precio
+#---------------------------------------------------------
+
+Tesla,S,2016,210000000
+Tesla,3,2016,90000000
+Tesla,X,2016,150000000
