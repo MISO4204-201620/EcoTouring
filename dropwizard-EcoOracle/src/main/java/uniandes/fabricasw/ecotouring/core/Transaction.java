@@ -41,7 +41,7 @@ public class Transaction implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TransactionSeq")
-	@SequenceGenerator(name = "TransactionSeq", sequenceName = "TRANSACTION_SEQ")
+	@SequenceGenerator(name = "TransactionSeq", sequenceName = "TRANSACTION_SEQ", allocationSize=1)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;

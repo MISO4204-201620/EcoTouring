@@ -22,9 +22,9 @@ java -jar target/dropwizard-EcoTouring-1.0.0-SNAPSHOT.jar server produccion.yml
 --Busquedas por categoria (Listar todos por categoria)
 http://localhost:9999/accommodation 			ok <br/>
 http://localhost:9999/alimentation				ok <br/>
+http://localhost:9999/categories				ok <br/>
 http://localhost:9999/ecotour					ok <br/>
 http://localhost:9999/transport					ok <br/>
-
 http://localhost:9999/items						ok <br/>
 http://localhost:9999/items/1					ok <br/>
 http://localhost:9999/items/1/content			ok <br/>
@@ -46,7 +46,6 @@ http://localhost:9999/search/PERSON_NAME/sierra ok <br/>
 Falta
 -- Buscar por categoría y palabra clave
 -- Buscar por más de una palabra
--- Revisar sequences !!!*** 
 
 #5. Probar los métodos POST
 

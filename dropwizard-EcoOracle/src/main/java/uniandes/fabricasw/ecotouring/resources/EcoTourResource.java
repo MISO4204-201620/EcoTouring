@@ -29,12 +29,12 @@ public class EcoTourResource {
 	@GET
 	@UnitOfWork
 	public List<EcoTour> listecoTour() {
-		return ecoTourDAO.findAll();
+		List<EcoTour> l = ecoTourDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
-	/*
-	 * public EcoTour getEcoTour(@PathParam("itemId") LongParam itemId) { return
-	 * findSafely(itemId); }
-	 */
 
 	@POST
 	@UnitOfWork

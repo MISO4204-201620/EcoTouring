@@ -43,7 +43,7 @@ public class Article implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ArticleSeq")
-	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ")
+	@SequenceGenerator(name = "ArticleSeq", sequenceName = "ARTICLE_SEQ", allocationSize=1)
 	public Long getId() {
 		return id;
 	}

@@ -27,10 +27,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -73,7 +72,7 @@ public class Item implements java.io.Serializable {
 	@Id
 	@Column(name = "ITEM_ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_SEQ")
-	@SequenceGenerator(name = "ITEM_SEQ", sequenceName = "ITEM_SEQ")
+	@SequenceGenerator(name = "ITEM_SEQ", sequenceName = "ITEM_SEQ", allocationSize=1)
 	public Long getitemId() {
 		return this.itemId;
 	}

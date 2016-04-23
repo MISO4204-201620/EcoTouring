@@ -37,7 +37,7 @@ public class ItemComment implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ItemCommentSeq")
-	@SequenceGenerator(name = "ItemCommentSeq", sequenceName = "ITEM_COMMENT_SEQ")
+	@SequenceGenerator(name = "ItemCommentSeq", sequenceName = "ITEM_COMMENT_SEQ", allocationSize=1)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;

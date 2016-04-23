@@ -30,6 +30,7 @@ import uniandes.fabricasw.ecotouring.core.AccommodationType;
 import uniandes.fabricasw.ecotouring.core.Alimentation;
 import uniandes.fabricasw.ecotouring.core.AlimentationType;
 import uniandes.fabricasw.ecotouring.core.Article;
+import uniandes.fabricasw.ecotouring.core.Categories;
 import uniandes.fabricasw.ecotouring.core.Category;
 import uniandes.fabricasw.ecotouring.core.City;
 import uniandes.fabricasw.ecotouring.core.ContentType;
@@ -66,6 +67,7 @@ import uniandes.fabricasw.ecotouring.filter.DateRequiredFeature;
 import uniandes.fabricasw.ecotouring.health.TemplateHealthCheck;
 import uniandes.fabricasw.ecotouring.resources.AccommodationResource;
 import uniandes.fabricasw.ecotouring.resources.AlimentationResource;
+import uniandes.fabricasw.ecotouring.resources.CategoriesResource;
 import uniandes.fabricasw.ecotouring.resources.EcoTourResource;
 import uniandes.fabricasw.ecotouring.resources.FilteredResource;
 import uniandes.fabricasw.ecotouring.resources.HelloWorldResource;
@@ -91,7 +93,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle =
 			// Incluir todas las clases usadas por hibernate
 			new HibernateBundle<EcoTouringConfiguration>(Accommodation.class, AccommodationType.class,
-					Alimentation.class, AlimentationType.class, Article.class, Category.class, City.class,
+					Alimentation.class, AlimentationType.class, Article.class, Categories.class, Category.class, City.class,
 					ContentType.class, Conversation.class, Country.class, EcoTour.class, Item.class, ItemComment.class,
 					ItemContent.class, ItemType.class, Person.class, Role.class, Tag.class, Transaction.class,
 					TransactionDetail.class, TransactionStatus.class, TransactionType.class, Transport.class,
@@ -162,10 +164,10 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		Boolean condition = Boolean.valueOf(new EcoTouringProperties().LoadProperties());
 		System.out.println(condition.toString());
 		if (condition) {
-		//if (Boolean.TRUE){
-		//if (Boolean.FALSE){
+			// if (Boolean.TRUE){
+			// if (Boolean.FALSE){
 			final ItemCommentDAO itemCommentDao = new ItemCommentDAO(hibernateBundle.getSessionFactory());
-			//abrir el recurso porque está pegado!!!!
+			// abrir el recurso porque está pegado!!!!
 			environment.jersey().register(new ItemResource(itemDao, conversationDao, itemCommentDao, itemContentDao));
 		}
 
@@ -209,5 +211,6 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ShoppongCartDetailResource(shoppingCartDao, shoppingCartDetailDao));
 		environment.jersey().register(new LoginResource());
 		environment.jersey().register(new SearchResource(personDao, itemDao));
+		environment.jersey().register(new CategoriesResource(accommodationDao, alimentationDao, ecoTourDao, transportDao));
 	}
 }

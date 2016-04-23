@@ -26,21 +26,21 @@ public class DerivadorEcotouring {
 
 	private static void derivar(String feature) {
 
-		//Maven: pom.xml
+		// Maven: pom.xml
 		if (feature.equals("CORE")) {
 			// Weaver weaver = new AspectJWeaver();
 			// aspectj.weave(b);
 			System.out.println("Se incluyo CORE");
 		}
-		
-		//Condicion sobre constante
+
+		// Condicion sobre constante
 		if (feature.equals("FEATURE1")) {
 			// patron decorador abrir set= true
 			// escribir una propiedad en un archivo .properties
 			System.out.println("Se incluyo FEATURE1");
 		}
-		
-		//Aspecto
+
+		// Aspecto
 		if (feature.equals("FEARURE2")) {
 			// abrir
 			// add
@@ -48,16 +48,16 @@ public class DerivadorEcotouring {
 			// jaxb agregar dependency en el pom
 			System.out.println("Se incluyo FEARURE2");
 		}
-		
-		//Patron decorador
+
+		// Patron decorador
 		if (feature.equals("FEARURE3")) {
 			System.out.println("Se incluyo FEARURE3");
-		}		
-		
-		//Reemplazo de binario
+		}
+
+		// Reemplazo de binario
 		if (feature.equals("FEARURE4")) {
 			System.out.println("Se incluyo FEARURE4");
-		}		
+		}
 	}
 
 	private static List<String> cargarConfig(String archivo) throws Exception {

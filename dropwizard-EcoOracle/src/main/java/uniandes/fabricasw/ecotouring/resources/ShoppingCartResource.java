@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,7 +28,11 @@ public class ShoppingCartResource {
 	@GET
 	@UnitOfWork
 	public List<Transaction> listShoppingCart() {
-		return shoppingCartDAO.findAll();
+		List<Transaction> l = shoppingCartDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
 	@POST
