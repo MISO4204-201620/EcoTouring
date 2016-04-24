@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -13,6 +15,14 @@ import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
+import org.apache.maven.shared.invoker.DefaultInvocationRequest;
+import org.apache.maven.shared.invoker.DefaultInvoker;
+import org.apache.maven.shared.invoker.InvocationRequest;
+import org.apache.maven.shared.invoker.Invoker;
+import org.apache.maven.shared.invoker.MavenInvocationException;
+import org.aspectj.bridge.IMessage;
+import org.aspectj.bridge.MessageHandler;
+import org.aspectj.tools.ajc.Main;
 import org.codehaus.plexus.util.WriterFactory;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
@@ -26,6 +36,9 @@ public class DerivadorEcotouring {
 			e.printStackTrace();
 		}
 
+		//
+
+		// Editar POM
 		File pomfile = new File("data/pom.xml");
 		Model model;
 		try {
@@ -72,12 +85,13 @@ public class DerivadorEcotouring {
 			System.out.println("Se incluyo FEATURE1");
 		}
 
-		// Aspecto
+		// The AspectJ compiler API
+		// https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
 		if (feature.equals("FEARURE2")) {
-			// abrir
-			// add
-			// write
-			// jaxb agregar dependency en el pom
+			String[] args = new String[2];
+			args[0] = "HelloWorld.java"; 
+			args[1] = "Trace.java";
+			aspectjWeaver(args);
 			System.out.println("Se incluyo FEARURE2");
 		}
 
@@ -130,6 +144,29 @@ public class DerivadorEcotouring {
 		Writer fileWriter = null;
 		fileWriter = WriterFactory.newXmlWriter(pomfile);
 		mavenXpp3Writer.write(fileWriter, model);
+	}
+
+	public static void aspectjWeaver(String[] args) {
+		Main compiler = new Main();
+		MessageHandler m = new MessageHandler();
+		compiler.run(args, m);
+		IMessage[] ms = m.getMessages(null, true);
+		System.out.println("messages: " + Arrays.asList(ms));
+	}
+
+	public static void buildProduct() {
+		InvocationRequest request = new DefaultInvocationRequest();
+		request.setPomFile(new File("/data/pom.xml"));
+		request.setGoals(Collections.singletonList("package"));
+
+		Invoker invoker = new DefaultInvoker();
+		invoker.setMavenHome(new File("/usr"));
+
+		try {
+			invoker.execute(request);
+		} catch (MavenInvocationException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
