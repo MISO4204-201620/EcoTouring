@@ -52,7 +52,7 @@ public class Person implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PersonSeq")
-	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize=1)
+	@SequenceGenerator(name = "PersonSeq", sequenceName = "PERSON_SEQ", allocationSize = 1)
 	public Long getId() {
 		return this.id;
 	}

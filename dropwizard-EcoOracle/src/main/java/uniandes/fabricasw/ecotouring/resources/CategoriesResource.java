@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import uniandes.fabricasw.ecotouring.core.Categories;
+import uniandes.fabricasw.ecotouring.core.Category;
 import uniandes.fabricasw.ecotouring.db.AccommodationDAO;
 import uniandes.fabricasw.ecotouring.db.AlimentationDAO;
 import uniandes.fabricasw.ecotouring.db.EcoTourDAO;
@@ -24,7 +25,7 @@ public class CategoriesResource {
 	private final EcoTourDAO ecoTourDAO;
 	private final TransportDAO transportDAO;
 
-	public CategoriesResource(AccommodationDAO accommodationDAO,AlimentationDAO alimentationDAO, EcoTourDAO ecoTourDAO,
+	public CategoriesResource(AccommodationDAO accommodationDAO, AlimentationDAO alimentationDAO, EcoTourDAO ecoTourDAO,
 			TransportDAO transportDAO) {
 		this.alimentationDAO = alimentationDAO;
 		this.accommodationDAO = accommodationDAO;
@@ -40,10 +41,10 @@ public class CategoriesResource {
 		List<?> cat2 = accommodationDAO.findAll();
 		List<?> cat3 = ecoTourDAO.findAll();
 		List<?> cat4 = transportDAO.findAll();
-		categories.add(new Categories("Accommodation",cat1.size()));
-		categories.add(new Categories("Alimentation", cat2.size()));
-		categories.add(new Categories("EcoTour", cat3.size()));
-		categories.add(new Categories("Transport", cat4.size()));
+		categories.add(new Categories(Category.ALIMENTATION, cat1.size()));
+		categories.add(new Categories(Category.ACCOMMODATION, cat2.size()));
+		categories.add(new Categories(Category.ECOTOUR, cat3.size()));
+		categories.add(new Categories(Category.TRANSPORT, cat4.size()));
 		return categories;
 	}
 

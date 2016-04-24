@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>DerivadorUniandes</groupId>
+  <artifactId>DerivadorUniandes</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  </dependencies>
+  <repositories>
+    <repository>
+      <id>central.maven.org</id>
+      <url>http://central.maven.org/maven2/</url>
+    </repository>
+  </repositories>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

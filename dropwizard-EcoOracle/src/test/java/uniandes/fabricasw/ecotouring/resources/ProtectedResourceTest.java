@@ -19,7 +19,6 @@ import io.dropwizard.testing.junit.ResourceTestRule;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
 import uniandes.fabricasw.ecotouring.core.User;
-import uniandes.fabricasw.ecotouring.resources.ProtectedResource;
 
 public class ProtectedResourceTest {
 	private static final BasicCredentialAuthFilter<User> BASIC_AUTH_HANDLER = new BasicCredentialAuthFilter.Builder<User>()

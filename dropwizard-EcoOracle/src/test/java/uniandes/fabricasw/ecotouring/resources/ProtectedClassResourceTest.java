@@ -18,7 +18,6 @@ import io.dropwizard.testing.junit.ResourceTestRule;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
 import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
 import uniandes.fabricasw.ecotouring.core.User;
-import uniandes.fabricasw.ecotouring.resources.ProtectedClassResource;
 
 public final class ProtectedClassResourceTest {
 

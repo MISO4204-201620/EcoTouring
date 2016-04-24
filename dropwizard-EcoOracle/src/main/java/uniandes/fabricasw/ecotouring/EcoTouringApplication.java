@@ -93,11 +93,11 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle =
 			// Incluir todas las clases usadas por hibernate
 			new HibernateBundle<EcoTouringConfiguration>(Accommodation.class, AccommodationType.class,
-					Alimentation.class, AlimentationType.class, Article.class, Categories.class, Category.class, City.class,
-					ContentType.class, Conversation.class, Country.class, EcoTour.class, Item.class, ItemComment.class,
-					ItemContent.class, ItemType.class, Person.class, Role.class, Tag.class, Transaction.class,
-					TransactionDetail.class, TransactionStatus.class, TransactionType.class, Transport.class,
-					TransportType.class) {
+					Alimentation.class, AlimentationType.class, Article.class, Categories.class, Category.class,
+					City.class, ContentType.class, Conversation.class, Country.class, EcoTour.class, Item.class,
+					ItemComment.class, ItemContent.class, ItemType.class, Person.class, Role.class, Tag.class,
+					Transaction.class, TransactionDetail.class, TransactionStatus.class, TransactionType.class,
+					Transport.class, TransportType.class) {
 				@Override
 				public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
 					return configuration.getDataSourceFactory();
@@ -211,6 +211,7 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new ShoppongCartDetailResource(shoppingCartDao, shoppingCartDetailDao));
 		environment.jersey().register(new LoginResource());
 		environment.jersey().register(new SearchResource(personDao, itemDao));
-		environment.jersey().register(new CategoriesResource(accommodationDao, alimentationDao, ecoTourDao, transportDao));
+		environment.jersey()
+				.register(new CategoriesResource(accommodationDao, alimentationDao, ecoTourDao, transportDao));
 	}
 }

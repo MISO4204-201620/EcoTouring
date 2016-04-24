@@ -19,8 +19,6 @@ import com.google.common.base.Optional;
 import io.dropwizard.testing.ConfigOverride;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import uniandes.fabricasw.ecotouring.EcoTouringApplication;
-import uniandes.fabricasw.ecotouring.EcoTouringConfiguration;
 import uniandes.fabricasw.ecotouring.api.Saying;
 
 public class IntegrationTest {
@@ -66,13 +64,14 @@ public class IntegrationTest {
 		assertThat(saying.getContent()).isEqualTo(RULE.getConfiguration().buildTemplate().render(name));
 	}
 
-	/*@Test
-	public void testPostPerson() throws Exception {
-		final Person person = new Person("DrIntegrationTest", "ChiefWizard");
-		final Person newPerson = client.target("http://localhost:" + RULE.getLocalPort() + "/people").request()
-				.post(Entity.entity(person, MediaType.APPLICATION_JSON_TYPE)).readEntity(Person.class);
-		assertThat(newPerson.getId()).isNotNull();
-		assertThat(newPerson.getFullName()).isEqualTo(person.getFullName());
-		assertThat(newPerson.getJobTitle()).isEqualTo(person.getJobTitle());
-	}*/
+	/*
+	 * @Test public void testPostPerson() throws Exception { final Person person
+	 * = new Person("DrIntegrationTest", "ChiefWizard"); final Person newPerson
+	 * = client.target("http://localhost:" + RULE.getLocalPort() +
+	 * "/people").request() .post(Entity.entity(person,
+	 * MediaType.APPLICATION_JSON_TYPE)).readEntity(Person.class);
+	 * assertThat(newPerson.getId()).isNotNull();
+	 * assertThat(newPerson.getFullName()).isEqualTo(person.getFullName());
+	 * assertThat(newPerson.getJobTitle()).isEqualTo(person.getJobTitle()); }
+	 */
 }

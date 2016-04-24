@@ -37,7 +37,7 @@ public class Tag implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TagSeq")
-	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ", allocationSize=1)
+	@SequenceGenerator(name = "TagSeq", sequenceName = "TAG_SEQ", allocationSize = 1)
 	public Long getId() {
 		return id;
 	}
