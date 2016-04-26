@@ -22,6 +22,10 @@
   <link href="css/owl.theme.css" rel="stylesheet">
   <link href="css/bootstrap3-wysihtml5.css" rel="stylesheet">
   <link href="css/star-rating.css" rel="stylesheet">
+  <link href="assets/styles/salesforce-lightning-design-system.css" rel="stylesheet">
+
+
+
   
   <!-- Service worker support is disabled by default.
        Install the worker script and uncomment to enable.
@@ -51,6 +55,7 @@
   <script src="vendor/angular2/bundles/angular2.dev.js"></script>
   <script src="vendor/angular2/bundles/http.dev.js"></script>
   <script src="vendor/angular2/bundles/router.dev.js"></script>
+    
 
   <script src="thirdparty/libs.js"></script>
   <script>
@@ -61,10 +66,42 @@
           format: 'register',
           defaultExtension: 'js'
         },
+        'ng-lightning' : {
+          map : {
+            './ng-lightning' : './ng-lightning.js',
+            './badges' : './badges',
+            './breadcrumbs' : './breadcrumbs',
+            './buttons' : './buttons',
+            './config' : './config',
+            './icons' : './icons',
+            './images' : './images',
+            './lookups' : './lookups',
+            './menus' : './menus',
+            './modals' : './modals',
+            './notifications' : './notifications',
+            './paginations' : './paginations',
+            './pick' : './pick',
+            './pills' : './pills',
+            './popovers' : './popovers',
+            './ratings' : './ratings',
+            './sections' : './sections',
+            './spinners' : './spinners',
+            './tabs' : './tabs',
+            './util' : './util'
+          }          
+        },
+        'primeng' : {
+          map : {
+            './primeng' : './primeng.js'
+          }
+        }
+        ,
         "/angular2": {"defaultExtension": false}
       },
       map: {
-          'ng2-file-upload': 'node_modules/ng2-file-upload'
+          'ng-lightning' : 'vendor/ng-lightning',
+          "primeng": "vendor/primeng",
+          'tether' : "vendor/tether/dist/js/tether.js"
       }
     });
     System.import('app.js').then(null, console.error.bind(console));

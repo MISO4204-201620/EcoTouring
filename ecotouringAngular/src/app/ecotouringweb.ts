@@ -148,6 +148,7 @@ export class EcotouringwebApp {
       alert("Login exitoso");
       let link = ['Home'];
       this.router.navigate(link);
+      location.reload();
 
     }else {
       alert(errorMessageLogin);

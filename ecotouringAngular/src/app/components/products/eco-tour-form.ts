@@ -31,10 +31,13 @@ export class EcoTourFormComponent implements OnInit {
   createOk = false;
   okMessage :string;
   errorMessage : string;
+  typeEcotour : Object;
+
 	
 	ngOnInit(){
     this.model = new EcoTour (); 
-    jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
+      this.typeEcotour = {uno : "Hikin2"} ;
+    //jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
   }
 
   onSubmit(model : EcoTour){ 

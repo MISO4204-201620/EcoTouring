@@ -34,7 +34,7 @@ export class FeedingFormComponent implements OnInit {
 	
 	ngOnInit(){ 
     this.model = new Feeding (); 
-    jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
+    //jQuery(this.elementRef.nativeElement).find('.editor').wysihtml5();
   }
 
   onSubmit(model : Feeding){ 

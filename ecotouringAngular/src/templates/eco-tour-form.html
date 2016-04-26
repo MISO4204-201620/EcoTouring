@@ -50,8 +50,8 @@
         </div>
          <div class="form-group">
             <label for="name">Tipo de plan:</label>
-            <select class="form-control" required [(ngModel)]="model.ecoTourType" ngControl="type" #type="ngForm">
-              <option value="Hikin">Hikin</option>
+            <select class="form-control" required [(ngModel)]="model.ecoTourType" ngControl="typeEco" #typeEco="ngForm">
+              <option [value]="typeEcotour.uno">Hikin</option>
             </select>
         </div>
         <div class="form-group">
