@@ -29,12 +29,12 @@ public class TransportResource {
 	@GET
 	@UnitOfWork
 	public List<Transport> listTransport() {
-		return transportDAO.findAll();
+		List<Transport> l = transportDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
-	/*
-	 * public Transport getTranspor(@PathParam("itemId") LongParam itemId) {
-	 * return findSafely(itemId); }
-	 */
 
 	@POST
 	@UnitOfWork

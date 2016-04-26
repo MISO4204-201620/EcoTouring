@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<featureModel xsi:schemaLocation="./resources/featureide.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <struct>
+        <and name="Biblioteca">
+            <and mandatory="true" name="InterfazBiblioteca">
+                <feature mandatory="true" name="alquilar"/>
+                <feature name="borrarDevuelto"/>
+                <feature name="buscarAutoresExacto"/>
+                <feature name="buscarDescriptoresPorPalabra"/>
+                <feature name="buscarTituloPorPalabra"/>
+                <feature mandatory="true" name="devolver"/>
+                <feature name="insertarCopiaLibro"/>
+                <feature name="insertarLibro"/>
+                <feature mandatory="true" name="verAlquilados"/>
+            </and>
+            <feature mandatory="true" name="autenticar"/>
+            <feature mandatory="true" name="registrarUsuario"/>
+            <feature mandatory="true" name="salir"/>
+            <alt mandatory="true" name="PanelAccionAgregarLibro">
+                <feature name="accionBotonInsertarNuevoLibro"/>
+                <feature name="armarPanelContenedor"/>
+            </alt>
+            <or name="PanelAccionBuscarLibro">
+                <feature name="buscar"/>
+                <feature name="seleccionCombo"/>
+            </or>
+            <feature name="anhanirLabeles"/>
+            <feature name="cambiarUsuario"/>
+        </and>
+    </struct>
+    <comments>Diagrama de Caracterisiticas Bibilioteca</comments>
+</featureModel>

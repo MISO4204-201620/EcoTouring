@@ -63,7 +63,7 @@ public class PeopleResourceTest {
 
 		assertThat(response.getStatusInfo()).isEqualTo(Response.Status.OK);
 		verify(dao).create(personCaptor.capture());
-		//assertThat(personCaptor.getValue()).isEqualTo(person);
+		// assertThat(personCaptor.getValue()).isEqualTo(person);
 	}
 
 	@Test
@@ -76,6 +76,6 @@ public class PeopleResourceTest {
 				});
 
 		verify(dao).findAll();
-		//assertThat(response).containsAll(people);
+		// assertThat(response).containsAll(people);
 	}
 }

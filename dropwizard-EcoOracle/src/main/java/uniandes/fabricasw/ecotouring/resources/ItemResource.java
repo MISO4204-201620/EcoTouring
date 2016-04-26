@@ -54,7 +54,11 @@ public class ItemResource {
 	@Path("/conversations")
 	@UnitOfWork
 	public List<Conversation> listConversations(@PathParam("itemId") LongParam itemId) {
-		return new ArrayList<Conversation>(itemDAO.findConversationsByItem(itemId.get()));
+		ArrayList<Conversation> l = new ArrayList<Conversation>(itemDAO.findConversationsByItem(itemId.get()));
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
 	@POST
@@ -62,30 +66,38 @@ public class ItemResource {
 	@UnitOfWork
 	public Conversation createConversation(Conversation conversation) {
 		return conversationDAO.create(conversation);
-	}	
-	
+	}
+
 	@GET
 	@Path("/packageDetail")
 	@UnitOfWork
 	public List<Item> findPackageDetailByItem(@PathParam("itemId") LongParam itemId) {
-		return new ArrayList<Item>(itemDAO.findPackageDetailByItem(itemId.get()));
+		ArrayList<Item> l = new ArrayList<Item>(itemDAO.findPackageDetailByItem(itemId.get()));
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
-	//Asociar un item a un paquete
+	// Asociar un item a un paquete
 	@POST
 	@Path("/packageDetail/{childId}")
 	@UnitOfWork
-	public Item addItem(@PathParam("itemId") LongParam parenId, @PathParam("childId") LongParam childId) {		
-		Item parent = itemDAO.findById(parenId.get()).get(); 
+	public Item addItem(@PathParam("itemId") LongParam parenId, @PathParam("childId") LongParam childId) {
+		Item parent = itemDAO.findById(parenId.get()).get();
 		Item child = itemDAO.findById(childId.get()).get();
 		return itemDAO.setChild(parent, child);
-	}	
-	
+	}
+
 	@GET
 	@Path("/scores")
 	@UnitOfWork
 	public List<ItemComment> listScores(@PathParam("itemId") LongParam itemId) {
-		return new ArrayList<ItemComment>(itemDAO.findItemCommentsByItem(itemId.get()));
+		List<ItemComment> l = new ArrayList<ItemComment>(itemDAO.findItemCommentsByItem(itemId.get()));
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
 	@POST
@@ -99,7 +111,11 @@ public class ItemResource {
 	@Path("/content")
 	@UnitOfWork
 	public List<ItemContent> listContents(@PathParam("itemId") LongParam itemId) {
-		return new ArrayList<ItemContent>(itemDAO.findItemContentsByItem(itemId.get()));
+		List<ItemContent> l = new ArrayList<ItemContent>(itemDAO.findItemContentsByItem(itemId.get()));
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
 	@POST

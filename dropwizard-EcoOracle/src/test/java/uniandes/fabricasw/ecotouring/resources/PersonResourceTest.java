@@ -19,7 +19,6 @@ import com.google.common.base.Optional;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
-import uniandes.fabricasw.ecotouring.resources.PersonResource;
 
 /**
  * Unit tests for {@link PersonResource}.

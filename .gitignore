@@ -30,3 +30,7 @@ ecotouringAngular/e2e/*.js
 ecotouringAngular/e2e/*.map
 
 /ecotouringAngular2
+classes
+/Taller2/Processor/target
+/Taller2/n15_biblioteca/classes
+/DerivadorUniandes/target

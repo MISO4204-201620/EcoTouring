@@ -29,12 +29,12 @@ public class AccommodationResource {
 	@GET
 	@UnitOfWork
 	public List<Accommodation> listAccommodation() {
-		return accommodationDAO.findAll();
+		List<Accommodation> l = accommodationDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
-	/*
-	 * public Accommodation getAccommodation(@PathParam("itemId") LongParam
-	 * itemId) { return findSafely(itemId); }
-	 */
 
 	@POST
 	@UnitOfWork

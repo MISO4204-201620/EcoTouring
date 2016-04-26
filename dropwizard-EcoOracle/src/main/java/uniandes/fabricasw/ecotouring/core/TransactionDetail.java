@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,8 +31,8 @@ public class TransactionDetail implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "TransactionDetailSeq")
-	@SequenceGenerator(name = "TransactionDetailSeq", sequenceName = "TRANSACTION_DETAIL_SEQ", allocationSize = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TransactionDetailSeq")
+	@SequenceGenerator(name = "TransactionDetailSeq", sequenceName = "TRANSACTION_DETAIL_SEQ", allocationSize = 1)
 	@Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
 	public Long getId() {
 		return this.id;

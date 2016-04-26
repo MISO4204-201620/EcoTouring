@@ -29,12 +29,12 @@ public class AlimentationResource {
 	@GET
 	@UnitOfWork
 	public List<Alimentation> listAlimentation() {
-		return alimentationDAO.findAll();
+		List<Alimentation> l = alimentationDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
-	/*
-	 * public Alimentation getAlimentation(@PathParam("itemId") LongParam
-	 * itemId) { return findSafely(itemId); }
-	 */
 
 	@POST
 	@UnitOfWork

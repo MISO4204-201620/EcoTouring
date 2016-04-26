@@ -15,6 +15,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -26,9 +27,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -69,8 +70,8 @@ public class Item implements java.io.Serializable {
 
 	@Id
 	@Column(name = "ITEM_ID")
-	@GeneratedValue(generator = "ItemSeq")
-	@SequenceGenerator(name = "ItemSeq", sequenceName = "ITEM_SEQ", allocationSize = 25)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_SEQ")
+	@SequenceGenerator(name = "ITEM_SEQ", sequenceName = "ITEM_SEQ", allocationSize = 1)
 	public Long getitemId() {
 		return this.itemId;
 	}
@@ -135,17 +136,16 @@ public class Item implements java.io.Serializable {
 		return this.contentType;
 	}
 
-	@JsonManagedReference
-	@ManyToOne(cascade={CascadeType.ALL})
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@itemId")
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PARENT", nullable = true)
 	public Item getParent() {
 		return this.parent;
 	}
 
-	@JsonBackReference
+	// @JsonManagedReference
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@itemId")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-	//@OneToMany(orphanRemoval=true)
-    //@JoinColumn(name="PARENT") 
 	public Set<Item> getPackageDetails() {
 		return this.packageDetails;
 	}

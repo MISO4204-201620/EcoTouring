@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -33,7 +34,11 @@ public class PeopleResource {
 	@GET
 	@UnitOfWork
 	public List<Person> listPeople() {
-		return peopleDAO.findAll();
+		List<Person> l = peopleDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
 
 }

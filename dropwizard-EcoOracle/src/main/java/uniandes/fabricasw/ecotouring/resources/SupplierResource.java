@@ -2,12 +2,10 @@ package uniandes.fabricasw.ecotouring.resources;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,24 +40,12 @@ public class SupplierResource {
 	@Path("/items")
 	@UnitOfWork
 	public List<Item> listItems(@PathParam("personId") LongParam personId) {
-		return new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
+		ArrayList<Item> l = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
 	}
-
-	/*@POST
-	@Path("/conversations")
-	@UnitOfWork
-	public Conversation createConversation(Conversation conversation) {
-		return conversationDAO.create(conversation);
-	}
-	
-	@POST
-	@Path("/publishItem")
-	@UnitOfWork
-	public Item changeItemStatusPublish(@PathParam("itemId") LongParam itemId) {
-		Item item = itemDAO.findById(itemId.get()).get();
-		item.setStatus(ItemStatus.PUBLISHED);
-		return itemDAO.update(item);
-	}*/
 
 	private Person findSafely(LongParam itemId) {
 		final Optional<Person> item = personDAO.findById(itemId.get());
