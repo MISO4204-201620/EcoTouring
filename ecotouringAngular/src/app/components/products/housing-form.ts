@@ -39,7 +39,7 @@ export class HousingFormComponent implements OnInit {
   }
 
   onSubmit(model : Housing){ 
-    alert(model.description);
+    //alert(model.description);
     if (!model) {return;}
 
     if(sessionStorage.getItem('userSession')){

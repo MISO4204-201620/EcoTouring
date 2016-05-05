@@ -1,5 +1,6 @@
 import {Component, OnInit,Inject, ElementRef} from 'angular2/core';
 import {Router,RouteParams,ROUTER_PROVIDERS} from 'angular2/router';
+import {NGL_DIRECTIVES} from 'ng-lightning/ng-lightning';
 import {Item} from '../../interfaces/item';
 import {ItemDetailService} from '../../services/item-detail.service';
 import {Car} from '../../models/car/car.model';
@@ -14,7 +15,7 @@ declare var jQuery : any;
   providers: [ItemDetailService],
   templateUrl: 'templates/item-detail.html',
   styleUrls :[],
-  directives: [CommentItemComponent],
+  directives: [CommentItemComponent, NGL_DIRECTIVES],
   pipes: []
 })
 
@@ -36,6 +37,13 @@ export class ItemDetailComponent implements OnInit {
 	itemParent = null;
 	val = 1;
 	isLogged = false;
+
+	valueItem = 4;
+  	readonlyItem = true;
+  	sizeItem = 'large';
+
+  	private sizes = ['x-small', 'small', '', 'large'];
+
 	
 
 	ngOnInit(){ 

@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {Location,RouteParams, RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
+//import {Rating} from 'primeng/primeng';
+import {NGL_DIRECTIVES} from 'ng-lightning/ng-lightning';
 import {CommentItem} from '../../models/comment/comment-item.model';
 import {CommentItemService} from '../../services/comment-item.service';
 import {User} from '../../models/user/user.model';
@@ -8,8 +10,8 @@ import {User} from '../../models/user/user.model';
   selector: 'comment-item',
   providers: [CommentItemService],
   templateUrl: 'templates/comments-item.html',
-  styleUrls :[],
-  directives: [ROUTER_DIRECTIVES],
+  styleUrls :['assets/styles/salesforce-lightning-design-system.css'],
+  directives: [ROUTER_DIRECTIVES, NGL_DIRECTIVES],
   pipes: []
 })
 
@@ -29,6 +31,17 @@ export class CommentItemComponent implements OnInit {
   isLogged = false;
   userToken : User;
   newComment : CommentItem;
+
+  
+  valueComment = 0;
+  readonlyComment = false;
+  size = 'small';
+
+  private sizes = ['x-small', 'small', '', 'large'];
+
+  changeSize() {
+    this.size = this.sizes[(this.sizes.indexOf(this.size) + 1) % this.sizes.length];
+  }
 
   ngOnInit(){ 
     this.getComments(this.itemId);

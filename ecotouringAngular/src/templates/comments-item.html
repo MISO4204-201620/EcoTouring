@@ -12,8 +12,6 @@
             <h5 class="text-uppercase">{{comment.author.fullName}}</h5>
             <p class="posted"><i class="fa fa-clock-o"></i> {{comment.dateEntry}}</p>
             <p>{{comment.text}}</p>
-            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Responder</a>
-            </p>
         </div>
     </div>
     <!-- /.comment -->
@@ -28,6 +26,10 @@
     <form (ngSubmit)="onSubmit(newComment)" #commentForm="ngForm" method="post">
         <div class="row">
             <div class="col-sm-12">
+            Calificación del servicio: {{valueComment}}
+                <ngl-rating [(rate)]="valueComment" [isReadonly]="readonlyComment" [size]="sizeComment"></ngl-rating>
+                
+
                 <div class="form-group">
                     <label for="comment">Comentario <span class="required">*</span>
                     </label>

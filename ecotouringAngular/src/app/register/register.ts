@@ -3,7 +3,7 @@ import {Location, RouteParams,RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {NgForm}    from 'angular2/common';
 import {User} from '../models/user/user.model'
-import {RegisterService} from '../services/register.service';
+import {RegisterService} from '../services/register.service';                                                     
 import {UserListService} from '../services/users-list.service';
 import {EcotouringwebApp} from '../ecotouringweb';
 
@@ -107,6 +107,7 @@ export class RegisterComponentApp implements OnInit {
       alert("Login exitoso");
       let link = ['Home'];
       this._router.navigate(link);
+      location.reload();
 
     }else {
       alert(errorMessageLogin);
