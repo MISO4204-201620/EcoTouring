@@ -1,0 +1,22 @@
+template: Hello, %s!
+defaultName: Stranger
+
+database:
+  driverClass: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:admin/fabricasw@//54.174.139.165:1521/XE
+  user: admin
+  password: fabricasw
+  defaultCatalog: admin
+  validationQuery: "/* MyService Health Check */ SELECT 1 FROM DUAL"
+  logValidationErrors: true  
+
+  properties:
+    hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 0
+  adminConnectors:
+    - type: http
+      port: 0

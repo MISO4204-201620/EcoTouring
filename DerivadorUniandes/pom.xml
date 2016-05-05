@@ -1,43 +1,108 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>DerivadorUniandes</groupId>
-	<artifactId>DerivadorUniandes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<groupId>co.edu.uniandes</groupId>
+	<artifactId>derivatorParent</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}-${project.version}</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<name>${project.name></name>
+		<version>${project.version}</version>
+
+		<aspectj.runtime.version>1.8.2</aspectj.runtime.version>
+
+		<!-- Implementación variabilidad CONDICION SOBRE CONSTANTE -->
+		<calificacion>true</calificacion>
+		<!-- You'll probably want to remove this for your project. We're just using 
+			it here so that dropwizard-ecotouring doesn't get deployed as a library. -->
+		<maven.deploy.skip>true</maven.deploy.skip>
+		<!-- You'll probably want to remove this for your project. We'Re just using 
+			it here so that dropwizard-ecotouring site doesn't get staged and deployed. -->
+		<maven.site.skip>true</maven.site.skip>
+		<maven.site.deploy.skip>true</maven.site.deploy.skip>
+	</properties>
+	<modules>
+		<module>aspectsModule</module>
+		<module>codeModule</module>
+		<!-- <module>blogModule</module> -->
+		<!-- <module>coreModule</module> -->
+	</modules>
 	<repositories>
 		<repository>
 			<id>central.maven.org</id>
 			<url>http://central.maven.org/maven2/</url>
 		</repository>
 	</repositories>
+	<dependencyManagement>
+		<dependencies>
+			<!-- AOP dependencies. -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.runtime.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjtools</artifactId>
+				<version>${aspectj.runtime.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjtools</artifactId>
-			<version>1.8.9</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-invoker</artifactId>
-			<version>2.1.1</version>
+			<version>2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-model</artifactId>
 			<version>3.3.9</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.3.9</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>aspectj-maven-plugin</artifactId>
+					<version>1.8</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+								<goal>test-compile</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<description>Integrador de código</description>
+	<url>https://github.com/MISO4204-201620/EcoTouring</url>
 </project>
