@@ -8,11 +8,17 @@ export class CategoryListService {
 	constructor (private http : Http){}
 
 	private _categoriesUrl = 'mocks/categories.json';
-	//private _categoriesUrl = 'http://54.174.139.165:9999/categories';
+	private _categoriesCountUrl = 'http://54.174.139.165:9999/categories';
 
 	getCategories(){
 		return this.http.get(this._categoriesUrl)
 							.map(res => <Category[]> res.json().data)
+							.catch(this.handleError);
+	}
+
+	getCategoriesCount(){
+		return this.http.get(this._categoriesCountUrl)
+							.map(res => <Object[]> res.json())
 							.catch(this.handleError);
 	}
 

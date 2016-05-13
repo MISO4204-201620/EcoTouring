@@ -39,11 +39,6 @@ import {PackageFormComponent} from './package-service-form';
     path: '/eco-tour', 
     name: 'EcoTourForm',
     component: EcoTourFormComponent
-  },
-  { 
-    path: '/package-service', 
-    name: 'PackageServiceForm',
-    component: PackageFormComponent
   }
 ])
 

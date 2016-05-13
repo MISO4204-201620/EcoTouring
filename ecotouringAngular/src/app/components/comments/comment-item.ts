@@ -70,7 +70,7 @@ export class CommentItemComponent implements OnInit {
     comment.item = { itemId : this.itemId};
     comment.author = this.userToken;
     comment.dateEntry = new Date(Date.now());
-    comment.score = 4;
+    comment.score = this.valueComment;
 
     this._commentItemService.postComments(this.itemId, comment)
                   .subscribe(

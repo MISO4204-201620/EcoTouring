@@ -16,7 +16,11 @@ import {CategoriesApp} from '../../categories/categories';
 })
 
 export class ItemListComponent implements OnInit {
+
+	
+
 	constructor(params : RouteParams, data: RouteData, private _router: Router, private _itemListService : ItemListService, private _searchItemService : SearchItemsService, private _providerItemsService : ProviderItemsService){
+		
 		
 		if (data.get('search') !== null){
 			this.dataSearch = params.get('text');
@@ -33,6 +37,7 @@ export class ItemListComponent implements OnInit {
 	selectedItem: ItemThumb;
 	dataSearch : string;
 	dataSupplier : string;
+	emptyResults = false;
 
 	ngOnInit(){ 
 		
@@ -58,7 +63,7 @@ export class ItemListComponent implements OnInit {
 		this._searchItemService.getItems(description)
 									.subscribe(
 										items => this.items = items,
-										error => this.errorMessage = <any>error
+										error => this.onErrorMessage(<any>error)
 									);
 	}
 
@@ -66,12 +71,20 @@ export class ItemListComponent implements OnInit {
 		this._itemListService.getItems(category)
 									.subscribe(
 										items => this.items = items,
-										error => this.errorMessage = <any>error
+										error => this.onErrorMessage(<any>error)
 									);
 	}
 
 	onSelect(item : ItemThumb) {
 		this.selectedItem = item;
 	}
+
+	onErrorMessage (error : any) {
+		this.errorMessage = error;
+		this.emptyResults = true;
+	}
 	
+	onGoHome (){
+		this._router.navigate(['Home']);
+	}
 }

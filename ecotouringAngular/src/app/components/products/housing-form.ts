@@ -2,7 +2,6 @@ import {Component,OnInit, Inject, ElementRef} from 'angular2/core';
 import {Location, RouteParams,RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {NgForm,CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle}    from 'angular2/common';
-//import {FileSelect, FileDrop, FileUploader} from 'ng2-file-upload';
 import {Housing} from '../../models/product/housing.model';
 import {HousingService} from '../../services/housing.service';
 import {User} from '../../models/user/user.model'

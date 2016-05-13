@@ -97,7 +97,7 @@ export class ItemDetailComponent implements OnInit {
 				cartItem.id = item.id;
 				cartItem.name = item.name;
 				cartItem.image = item.urlImage;
-				cartItem.amount = 1;
+				cartItem.amount = item.amount;
 				cartItem.price = item.price;
 				cartItem.discount = 0;
 				cartItem.totalPrice = item.price;

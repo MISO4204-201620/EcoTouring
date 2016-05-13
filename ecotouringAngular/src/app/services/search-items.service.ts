@@ -20,7 +20,7 @@ export class SearchItemsService {
 		}
 
 		return this.http.get(this._itemsUrl + param)
-							.map(res => <ItemThumb[]> res.json())
+							.map(res => <ItemThumb[]> res.json().data)
 							.catch(this.handleError);
 	}
 

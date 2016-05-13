@@ -1,59 +1,134 @@
-<form  (ngSubmit)="onSubmit(model)" #housingForm="ngForm">
-<br/>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-            </button>
-            {{ okMessage }}
-        </div>
-        <div class="form-group">
-            <label for="name">Nombre del paquete:</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                Nombre vacío o inválido.
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Crear paquete de servicios</h1>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="price">Precio:</label>
-            <input type="number" class="form-control" id="price" required [(ngModel)]="model.price" ngControl="price" #price="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="price.valid || price.pristine">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                Precio vacío o inválido.
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="/">Inicio</a>
+                    </li>
+                    <li>Crear paquete de servicios</li>
+                </ul>
+
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="city">Imagen Url:</label>
-            <input type="url" class="form-control" id="image" required [(ngModel)]="model.urlImage" ngControl="image" #image="ngForm">
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="image.valid || image.pristine">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                Imagen vacío o inválido.
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="city">Tags:</label>
-            <input type="text" class="form-control" id="tag" [(ngModel)]="model.tags">
-        </div>
-        <div class="form-group">
-            <label for="description">Descripción:</label>
-            <textarea id="description" class="form-control editor" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
-            <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                Descripción vacío o inválido.
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Paquete</button>
         </div>
     </div>
-    <br/>   
 </div>
-<!-- /.row -->
-</form>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <form  (ngSubmit)="onSubmit(model)" #housingForm="ngForm">
+            <br/>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        {{ okMessage }}
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre del paquete:</label>
+                        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="name.valid || name.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Nombre vacío o inválido.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Precio:</label>
+                        <input type="number" class="form-control" id="price" required [(ngModel)]="model.price" ngControl="price" #price="ngForm">
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="price.valid || price.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Precio vacío o inválido.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city">Imagen Url:</label>
+                        <input type="url" class="form-control" id="image" required [(ngModel)]="model.urlImage" ngControl="image" #image="ngForm">
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="image.valid || image.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Imagen vacío o inválido.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Tags:</label>
+                        <input type="text" class="form-control" id="tag" [(ngModel)]="model.tags">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción:</label>
+                        <textarea id="description" class="form-control editor" required [(ngModel)]="model.description" ngControl="description" #description="ngForm"></textarea>
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="description.valid || description.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Descripción vacío o inválido.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Paquete</button>
+                    </div>
+                </div>
+                <br/>   
+            </div>
+            <!-- /.row -->
+            </form>      
+        </div>
+
+        <div class="row">
+
+            <!-- *** LEFT COLUMN ***
+     _________________________________________________________ -->
+
+            <div class="col-md-9 clearfix" id="customer-order" [hidden]="!createOk">
+
+                <p class="lead text-muted">Adicionar un producto al paquete.</p>
+
+                <div class="box">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Servicio</th>
+                                    <th>Costo</th>
+                                    <th>Adicionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="#item of items">
+                                    <td>
+                                        <a href="#">
+                                            <img src="{{item.urlImage}}" alt="{{item.name}}">
+                                        </a>
+                                    </td>
+                                    <td><a href="#">{{item.name}}</a>
+                                    </td>
+                                    <td>${{item.price}}</td>
+                                    <td><button type="button" class="btn btn-sm btn-success" (click) = "addItemToPackage(model.itemId, item.itemId)">+</button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <!-- /.table-responsive -->
+
+                </div>
+                <!-- /.box -->
+
+            </div>
+            <!-- /.col-md-9 -->
+
+            <!-- *** LEFT COLUMN END *** -->
+
+        </div>
+        <!-- /.row -->
+    </div>
+</div>

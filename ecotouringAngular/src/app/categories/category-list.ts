@@ -18,8 +18,12 @@ export class CategoryListComponent implements OnInit {
   errorMessage : string;
   categories : Category[];
   selectedCategory: Category;
+  categoriesCount : Object[];
 
-  ngOnInit(){ this.getCategories();}
+  ngOnInit(){ 
+    this.getCategories();
+    this.getCategoriesCount();
+  }
 
   getCategories(){
   	this._categoryListService.getCategories()
@@ -27,6 +31,22 @@ export class CategoryListComponent implements OnInit {
   									categories => this.categories = categories,
   									error => this.errorMessage = <any>error
   								);
+  }
+
+  getCategoriesCount(){
+    this._categoryListService.getCategoriesCount()
+                  .subscribe(
+                    categoriesCount => this.categoriesCount = categoriesCount,
+                    error => this.errorMessage = <any>error,
+                    () => this.onGetCategories(this.categoriesCount)
+                  );
+  }
+
+  onGetCategories(categoriesCount : Object[]) {
+     this.categories[0].total = categoriesCount[3]['size'];
+     this.categories[1].total = categoriesCount[1]['size'];
+     this.categories[2].total = categoriesCount[0]['size'];
+     this.categories[3].total = categoriesCount[2]['size'];
   }
 
   onSelect(category : Category) {

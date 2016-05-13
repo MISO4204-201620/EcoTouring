@@ -11,4 +11,5 @@ export interface Item {
 	content : string;
 	score : string;
 	urlImage : string;
+	amount : number;
 }
