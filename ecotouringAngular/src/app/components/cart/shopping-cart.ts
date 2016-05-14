@@ -42,8 +42,13 @@ export class ShoppingCartComponent implements OnInit {
 		if(sessionStorage.getItem(this.sStorage)){
 			let objBucket = sessionStorage.getItem(this.sStorage);
 			this.carBucket = JSON.parse(objBucket);
-			this.calculateTotalPrice();
 			this.totalItems = this.carBucket.length;
+
+			for (let i = 0; i < this.carBucket.length; i++){
+				this.carBucket[i].totalPrice = this.carBucket[i].amount * this.carBucket[i].price;
+			}
+
+			this.calculateTotalPrice();
 		}
 	}
 

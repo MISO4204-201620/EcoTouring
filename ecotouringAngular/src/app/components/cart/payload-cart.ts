@@ -5,6 +5,7 @@ import {Car} from '../../models/car/car.model';
 import {CategoriesApp} from '../../categories/categories';
 import {PayloadService} from '../../services/payload.service';
 import {Payload} from '../../models/car/payload.model';
+import {CartDetail} from '../../models/car/cart-detail.model';
 
 @Component({
   selector: 'payload-cart',
@@ -60,11 +61,13 @@ export class PayloadComponent implements OnInit {
 
 	onPay(){
 
+
 		let pay = new Payload();
+		let today = new Date();
 		pay.type = "PURSHASE";
 		pay.status = "NEW";
 		pay.customer =  { id : this.idUser};
-		pay.dateTransaction = "";
+		pay.dateTransaction = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
 
     	this._payloadService.sendPay(pay)
                   .subscribe(
@@ -74,9 +77,37 @@ export class PayloadComponent implements OnInit {
 	}
 
 	onPaySuccesfull (pay) {
-		alert("Pago exitoso");
+		
+		let success = false;
+		if(sessionStorage.getItem(this.sStorage)){
+			let objBucket = sessionStorage.getItem(this.sStorage);
+			this.carBucket = JSON.parse(objBucket);
+			this.totalItems = this.carBucket.length;
 
-		sessionStorage.removeItem(this.sStorage);
+			for (let i = 0; i < this.carBucket.length; i++){
+				let cartDetail = new CartDetail();
+				cartDetail.transaction = { id : pay.id};
+				cartDetail.item = { itemId : this.carBucket[i].id};
+				cartDetail.price = this.carBucket[i].price;
+				cartDetail.quantity = this.carBucket[i].amount;
+
+				this._payloadService.sendCartDetail(cartDetail)
+	                  .subscribe(
+	                    cartDetail => this.onPayDetail(i),
+	                    error => this.errorMessage = <any>error
+	                  );
+
+	            
+			}
+		}
+	}
+
+	onPayDetail ( id : number) {
+		if( (id + 1) === this.carBucket.length) {
+        	alert("Pago exitoso");
+        	sessionStorage.removeItem(this.sStorage);
+        	this._router.navigate(['Home']);
+        }
 	}
 
 

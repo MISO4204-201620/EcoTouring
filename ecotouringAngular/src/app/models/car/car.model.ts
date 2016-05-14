@@ -1,6 +1,6 @@
 export class Car {
 
-	public id : number;
+	public id : string;
 	public name : string;
 	public image : string;
 	public amount : number;
@@ -9,7 +9,7 @@ export class Car {
 	public totalPrice : number;
 	
 	constructor (){
-		this.id = 0;
+		this.id = "0";
 		this.name = "";
 		this.image = "";
 		this.amount = 0,

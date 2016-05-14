@@ -2,6 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {Car} from '../models/car/car.model';
 import {Payload} from '../models/car/payload.model';
+import {CartDetail} from '../models/car/cart-detail.model';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -19,6 +20,17 @@ export class PayloadService {
 		return this.http.post(this._payloadUrl, body, options)
 						.map(res => <Payload> res.json())
 						.catch(this.handleError)
+	}
+
+	sendCartDetail (item : CartDetail) : Observable<CartDetail> {
+		let body = JSON.stringify(item);
+		console.log(body);
+		let headers = new Headers({'Content-Type' : 'application/json'});
+		let options = new RequestOptions({ headers : headers});
+
+		return this.http.post(this._payloadUrl + "/" + item['transaction']['id'] + "/detail", body, options)
+						.map(res => <CartDetail> res.json())
+						.catch(this.handleError)	
 	}
 
 	private handleError (error: Response){

@@ -44,13 +44,13 @@
                                     <tr *ngFor="#item of carBucket">
                                         <td>
                                             <a href="/categories/item/{{item.id}}">
-                                                <img src="{{item.image}}" alt="White Blouse Armani">
+                                                <img src="{{item.image}}" alt="{{item.name}}">
                                             </a>
                                         </td>
                                         <td><a href="/categories/item/{{item.id}}">{{item.name}}</a>
                                         </td>
                                         <td>
-                                            <input type="number" [(ngModel)]="item.amount" class="form-control" (ngModelChange)="getTotalItem(item)">
+                                            <input type="number" [(ngModel)]="item.amount" class="form-control " (ngModelChange)="getTotalItem(item)" disabled>
                                         </td>
                                         <td>${{item.price}}</td>
                                         <td>${{item.discount}}</td>

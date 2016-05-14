@@ -82,7 +82,7 @@ export class ItemDetailComponent implements OnInit {
 				let objBucket = sessionStorage.getItem(sStorage);
 				this.itemsBucket = JSON.parse(objBucket);
 				let cartItem = new Car();
-				cartItem.id = item.id;
+				cartItem.id = this.idItem;
 				cartItem.name = item.name;
 				cartItem.image = item.urlImage;
 				cartItem.amount = 1;
@@ -94,7 +94,7 @@ export class ItemDetailComponent implements OnInit {
 				alert("El servicio fue adicionado al carrito de compras.");
 			}else {
 				let cartItem = new Car();
-				cartItem.id = item.id;
+				cartItem.id = this.idItem;
 				cartItem.name = item.name;
 				cartItem.image = item.urlImage;
 				cartItem.amount = item.amount;
