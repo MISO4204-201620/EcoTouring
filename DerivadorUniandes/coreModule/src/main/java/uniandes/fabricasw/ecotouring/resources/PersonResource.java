@@ -1,5 +1,7 @@
 package uniandes.fabricasw.ecotouring.resources;
 
+import java.util.Set;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
@@ -13,6 +15,7 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import uniandes.fabricasw.ecotouring.core.Message;
 import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
 import uniandes.fabricasw.ecotouring.views.PersonView;
@@ -55,6 +58,17 @@ public class PersonResource {
 	public PersonView getPersonViewMustache(@PathParam("personId") LongParam personId) {
 		return new PersonView(PersonView.Template.MUSTACHE, findSafely(personId.get()));
 	}
+	
+	@GET
+	@Path("/messages")
+	@UnitOfWork
+	public Set<Message> listMessages(@PathParam("personId") LongParam personId) {
+		Set<Message> l = findSafely(personId.get()).getMessages();
+		if (l.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+		return l;
+	}	
 
 	private Person findSafely(Long personId) {
 		final Optional<Person> person = peopleDAO.findById(personId);

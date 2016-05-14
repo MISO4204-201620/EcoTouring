@@ -1,15 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Header del proyecto -->
+	<artifactId>codeModule</artifactId>
+	<name>${project.artifactId}-${project.version}</name>
+	<description>Código prueba derivador carlos.parra@uniandes.edu.co</description>
+
 	<parent>
 		<groupId>co.edu.uniandes</groupId>
 		<artifactId>derivatorParent</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>codeModule</artifactId>
-	<name>${project.artifactId}-${project.version}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.runtime.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniandes</groupId>
+			<artifactId>aspectsModule</artifactId>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<configuration>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>co.edu.uniandes</groupId>
+							<artifactId>aspectsModule</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+				</configuration>
+			</plugin>
 			<!-- Se llama con mvn exec:java -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -23,10 +52,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>co.edu.uniandes.fabricasw.sample.MainApp</mainClass>
+					<mainClass>co.uniandes.sample.MainApp</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<description>Código prueba derivador carlos.parra@uniandes.edu.co</description>
+
 </project>

@@ -148,7 +148,7 @@ public class ItemResource {
 		if (!item.isPresent()) {
 			throw new NotFoundException("No data found.");
 		}
-		//interceptar 2 líneas
+		//interceptar lineas
 		item.get().addQueryCounter();
 		itemDAO.update(item.get());
 		return item.get();

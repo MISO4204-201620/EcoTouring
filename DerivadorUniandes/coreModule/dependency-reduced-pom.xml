@@ -4,7 +4,7 @@
   <groupId>io.dropwizard</groupId>
   <artifactId>dropwizard-EcoTouring</artifactId>
   <name>coreModule</name>
-  <version>1.0.0-rc1</version>
+  <version>1.0.0-rc2</version>
   <prerequisites>
     <maven>3.0.0</maven>
   </prerequisites>
@@ -171,7 +171,7 @@
     <dependency>
       <groupId>io.dropwizard</groupId>
       <artifactId>dropwizard-testing</artifactId>
-      <version>1.0.0-rc1</version>
+      <version>1.0.0-rc2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>

@@ -15,7 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TAG", schema = "ADMIN")
-@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Tag.findAll", query = "SELECT t FROM Tag t") })
+@NamedQueries({ @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Tag.findAll", query = "SELECT t FROM Tag t") 
+})
 public class Tag implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

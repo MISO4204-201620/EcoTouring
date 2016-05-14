@@ -25,7 +25,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "ARTICLE", schema = "ADMIN")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Article.findAll", query = "SELECT a FROM Article a") })
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Article.findAll", query = "SELECT a FROM Article a") 
+		})
 public class Article implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

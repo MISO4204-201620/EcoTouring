@@ -15,7 +15,12 @@ mvn package
 
 #3. Correr el fat jar que levanta el servidor 
 
-java -jar target/dropwizard-EcoTouring-1.0.0-SNAPSHOT.jar server produccion.yml
+--Localmente
+java -jar target/dropwizard-EcoTouring-1.0.0-rc2.jar server produccion.yml
+
+--En el server y que quede en el backgroud para poder cerrar el terminal
+nohup java -jar dropwizard-EcoTouring-1.0.0-rc2.jar server produccion.yml > serverPID.txt 2>&1&
+kill -9 'cat serverPID.txt'
 
 #4. Probar cada una de las siguientes peticiones GET
 
@@ -106,6 +111,13 @@ curl -X POST http://localhost:9999/shoppingCart/2/changeStatusValidated
 --POST ChangeItemStatus
 curl -X POST http://localhost:9999/items/2/publishItem
 curl -X POST http://localhost:9999/items/2/hiddeItem
+
+--POST Article
+curl -H "Content-Type: application/json" -X POST -d {\"title\":\"testtitle\",\"text\":\"testtext\",\"author\":{\"id\":1},\"date\":\"2016-05-14\",\"slug\":\"testslug\"}} http://localhost:9999/articles
+
+--POST Message
+curl -H "Content-Type: application/json" -X POST -d {\"subject\":\"testsubject\",\"body\":\"testbody\",\"sender\":{\"id\":1},\"receiver\":{\"id\":1},\"date\":\"2016-05-14\",\"status\":\"UNREAD\"}} http://localhost:9999/messages
+
 
 --POST Login -- FALTA!!!
 curl -X POST http://localhost:9999/login

@@ -25,7 +25,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "PERSON", schema = "ADMIN")
 @NamedQueries({
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAll", query = "SELECT p FROM Person p"),
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAllSuppliers", query = "SELECT p FROM Person p WHERE role = 'SUPPLIER'") })
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Person.findAllSuppliers", query = "SELECT p FROM Person p WHERE role = 'SUPPLIER'") 
+		})
 public class Person implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,7 @@ public class Person implements java.io.Serializable {
 	private Set<ItemComment> itemComments = new HashSet<ItemComment>();
 	private Set<Item> items = new HashSet<Item>();
 	private Set<Transaction> transactions = new HashSet<Transaction>();
+	private Set<Message> messages = new HashSet<Message>();
 
 	public Person() {
 	}
@@ -129,6 +131,12 @@ public class Person implements java.io.Serializable {
 	public Set<Transaction> getTransactions() {
 		return this.transactions;
 	}
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver")
+	public Set<Message> getMessages() {
+		return this.messages;
+	}	
 
 	public void setAddress(String address) {
 		this.address = address;
@@ -181,6 +189,10 @@ public class Person implements java.io.Serializable {
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
 	}
+	
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}	
 
 	public void setUsername(String username) {
 		this.username = username;

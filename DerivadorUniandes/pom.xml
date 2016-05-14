@@ -1,21 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Header del proyecto -->
 	<groupId>co.edu.uniandes</groupId>
 	<artifactId>derivatorParent</artifactId>
 	<version>1.0</version>
-	<packaging>pom</packaging>
 	<name>${project.artifactId}-${project.version}</name>
+	<description>Integrador de código</description>
+	<url>https://github.com/MISO4204-201620/EcoTouring</url>
+	<packaging>pom</packaging>
+
 	<properties>
+		<aspectj.runtime.version>1.8.7</aspectj.runtime.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<name>${project.name></name>
 		<version>${project.version}</version>
-
-		<aspectj.runtime.version>1.8.2</aspectj.runtime.version>
-
 		<!-- Implementación variabilidad CONDICION SOBRE CONSTANTE -->
 		<calificacion>true</calificacion>
 		<!-- You'll probably want to remove this for your project. We're just using 
@@ -26,33 +28,31 @@
 		<maven.site.skip>true</maven.site.skip>
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 	</properties>
+
 	<modules>
 		<module>aspectsModule</module>
 		<module>codeModule</module>
+		<module>coreModule</module>
 		<!-- <module>blogModule</module> -->
-		<!-- <module>coreModule</module> -->
 	</modules>
+
 	<repositories>
 		<repository>
 			<id>central.maven.org</id>
 			<url>http://central.maven.org/maven2/</url>
 		</repository>
 	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
-			<!-- AOP dependencies. -->
 			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>${aspectj.runtime.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjtools</artifactId>
-				<version>${aspectj.runtime.version}</version>
+				<groupId>co.edu.uniandes</groupId>
+				<artifactId>aspectsModule</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
@@ -70,10 +70,12 @@
 			<version>3.3.9</version>
 		</dependency>
 	</dependencies>
+
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<pluginManagement>
 			<plugins>
+				<!-- Activar desde el derivador para que haga weave (es excluyente con 
+					maven-compiler-plugin) -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>aspectj-maven-plugin</artifactId>
@@ -87,22 +89,17 @@
 						</execution>
 					</executions>
 					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
+						<complianceLevel>1.8</complianceLevel>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
-					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
-					</configuration>
-				</plugin>
+				<!-- Activar desde el derivador para que compile (es excluyente con aspectj-maven-plugin) -->
+				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+					<version>3.5.1</version> <configuration> <encoding>UTF-8</encoding> <source>${maven.compiler.target}</source> 
+					<target>${maven.compiler.target}</target> </configuration> </plugin> -->
 			</plugins>
 		</pluginManagement>
 	</build>
-	<description>Integrador de código</description>
-	<url>https://github.com/MISO4204-201620/EcoTouring</url>
+
 </project>

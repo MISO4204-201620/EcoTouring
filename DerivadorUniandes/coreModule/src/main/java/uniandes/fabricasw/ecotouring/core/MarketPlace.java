@@ -8,7 +8,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MARKETPLACE")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.MarketPlace.findAll", query = "SELECT m FROM MarketPlace m") })
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.MarketPlace.findAll", query = "SELECT m FROM MarketPlace m") 
+		})
 public class MarketPlace implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
