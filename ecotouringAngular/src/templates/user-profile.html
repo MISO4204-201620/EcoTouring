@@ -119,7 +119,10 @@ _________________________________________________________ -->
                                 <a [routerLink]="['ShoppingCart']"><i class="fa fa-heart"></i> Mi Carrito</a>
                             </li>
                             <li class="active">
-                                <a href="customer-account.html"><i class="fa fa-user"></i> Mi Cuenta</a>
+                                <a [routerLink]="['Profile']"><i class="fa fa-user"></i> Mi Cuenta</a>
+                            </li>
+                            <li >
+                                <a [routerLink]="['Inbox']"><i class="fa fa-envelope-o"></i> Inbox</a>
                             </li>
                             <li>
                                 <a href="#" (click)="onLogOut()"><i class="fa fa-sign-out"></i> Logout</a>

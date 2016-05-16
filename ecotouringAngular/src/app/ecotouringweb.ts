@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {Route, Location, RouteConfig, RouterLink, Router,ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {NGL_DIRECTIVES} from 'ng-lightning/ng-lightning';
 import {RegisterComponentApp} from './register/register';
 import {CategoriesApp} from './categories/categories';
 import {HomeApp} from './home/home';
@@ -10,6 +11,9 @@ import {PayloadComponent} from './components/cart/payload-cart';
 import {ProfileComponentApp} from './components/user/profile';
 import {CreateUsersComponentApp} from './components/user/create-users';
 import {PackageFormComponent} from './components/products/package-service-form';
+import {BlogComponent} from './components/blog/blog';
+import {EntryComponent} from './components/blog/entry';
+import {MessagesComponent} from './components/messages/messages';
 import {UserListService} from './services/users-list.service';
 import {CategoryListService} from './services/category-list.service';
 import {User} from './models/user/user.model';
@@ -17,7 +21,8 @@ import {User} from './models/user/user.model';
 @Component({
   selector: 'ecotouringweb-app',
   templateUrl: './templates/ecotouringweb.html',
-  directives: [ROUTER_DIRECTIVES],
+  styleUrls :['css/components/reports.css'],
+  directives: [ROUTER_DIRECTIVES, NGL_DIRECTIVES],
   providers: [
   ROUTER_PROVIDERS,
   HTTP_PROVIDERS,
@@ -76,6 +81,21 @@ import {User} from './models/user/user.model';
     path: '/create-package', 
     component: PackageFormComponent,
     name: 'PackageServiceForm' 
+  },
+  {
+    path: '/blog', 
+    component: BlogComponent,
+    name: 'Blog' 
+  },
+  {
+    path: '/create-entry', 
+    component: EntryComponent,
+    name: 'CreateEntry' 
+  },
+  {
+    path: '/messages', 
+    component: MessagesComponent,
+    name: 'Inbox' 
   }
 ])
 export class EcotouringwebApp {
@@ -83,6 +103,9 @@ export class EcotouringwebApp {
   userToken : User;
   isLogged = false;
   _router : Router;
+  opened: boolean = false;
+  size: string;
+
 	constructor(public router: Router, private _userListService : UserListService) {
 
     this._router = router;
@@ -176,5 +199,14 @@ export class EcotouringwebApp {
         let link = ['Home'];
         this.router.navigate(link);
     } 
+  }
+
+  open(size: string) {
+    this.size = size;
+    this.opened = !this.opened;
+  }
+
+  cancel() {
+    this.opened = false;
   }
 }
