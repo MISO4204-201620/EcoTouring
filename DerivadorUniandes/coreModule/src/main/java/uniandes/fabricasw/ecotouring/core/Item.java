@@ -41,8 +41,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAccommodation", query = "SELECT i FROM Item i WHERE category = 'ACCOMMODATION'"),
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findAlimentation", query = "SELECT i FROM Item i WHERE category = 'ALIMENTATION'"),
 		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findEcoTour", query = "SELECT i FROM Item i WHERE category = 'ECOTOUR'"),
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findTransport", query = "SELECT i FROM Item i WHERE category = 'TRANSPORT'") 
-		})
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Item.findTransport", query = "SELECT i FROM Item i WHERE category = 'TRANSPORT'") })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Item implements java.io.Serializable {
 
@@ -160,7 +159,7 @@ public class Item implements java.io.Serializable {
 	public List<Conversation> getConversations() {
 		return this.conversations;
 	}
-	
+
 	@Column(name = "QUERY_COUNTER", nullable = true)
 	public int getQueryCounter() {
 		return queryCounter;

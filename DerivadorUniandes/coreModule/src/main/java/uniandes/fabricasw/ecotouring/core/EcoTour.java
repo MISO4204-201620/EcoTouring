@@ -5,12 +5,10 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "ITEM", schema = "ADMIN")
 @DiscriminatorValue("ECOTOUR")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EcoTour extends Item implements java.io.Serializable {

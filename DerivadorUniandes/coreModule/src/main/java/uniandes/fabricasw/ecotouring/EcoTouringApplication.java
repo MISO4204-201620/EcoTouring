@@ -22,8 +22,8 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-import uniandes.fabricasw.ecotouring.auth.ExampleAuthenticator;
-import uniandes.fabricasw.ecotouring.auth.ExampleAuthorizer;
+import uniandes.fabricasw.ecotouring.auth.EcoTouringAuthenticator;
+//import uniandes.fabricasw.ecotouring.auth.EcoTouringAuthorizer;
 import uniandes.fabricasw.ecotouring.cli.RenderCommand;
 import uniandes.fabricasw.ecotouring.core.Accommodation;
 import uniandes.fabricasw.ecotouring.core.AccommodationType;
@@ -103,35 +103,12 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 
 	private final HibernateBundle<EcoTouringConfiguration> hibernateBundle =
 			// Incluir todas las clases usadas por hibernate
-			new HibernateBundle<EcoTouringConfiguration>(
-					Accommodation.class, 
-					AccommodationType.class,
-					Alimentation.class, 
-					AlimentationType.class, 
-					Article.class, 
-					Categories.class, 
-					Category.class, 
-					City.class, 
-					ContentType.class, 
-					Conversation.class, 
-					ConversationType.class, 
-					Country.class, 
-					EcoTour.class, 
-					EcoTourType.class, 
-					Item.class, 
-					ItemComment.class, 
-					ItemContent.class, 
-					ItemType.class, 
-					Message.class, 
-					MessageStatus.class, 
-					Person.class, 
-					Role.class, 
-					Tag.class,
-					Transaction.class, 
-					TransactionDetail.class, 
-					TransactionStatus.class, 
-					TransactionType.class,
-					Transport.class, 
+			new HibernateBundle<EcoTouringConfiguration>(Accommodation.class, AccommodationType.class,
+					Alimentation.class, AlimentationType.class, Article.class, Categories.class, Category.class,
+					City.class, ContentType.class, Conversation.class, ConversationType.class, Country.class,
+					EcoTour.class, EcoTourType.class, Item.class, ItemComment.class, ItemContent.class, ItemType.class,
+					Message.class, MessageStatus.class, Person.class, Role.class, Tag.class, Transaction.class,
+					TransactionDetail.class, TransactionStatus.class, TransactionType.class, Transport.class,
 					TransportType.class) {
 				@Override
 				public DataSourceFactory getDataSourceFactory(EcoTouringConfiguration configuration) {
@@ -185,26 +162,43 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		// Registrar recursos
 		final AccommodationDAO accommodationDao = new AccommodationDAO(hibernateBundle.getSessionFactory());
 		final AlimentationDAO alimentationDao = new AlimentationDAO(hibernateBundle.getSessionFactory());
-		final ArticleDAO articleDao = new ArticleDAO(hibernateBundle.getSessionFactory());
 		final ConversationDAO conversationDao = new ConversationDAO(hibernateBundle.getSessionFactory());
 		final EcoTourDAO ecoTourDao = new EcoTourDAO(hibernateBundle.getSessionFactory());
 		final ItemContentDAO itemContentDao = new ItemContentDAO(hibernateBundle.getSessionFactory());
 		final ItemDAO itemDao = new ItemDAO(hibernateBundle.getSessionFactory());
-		final MessageDAO messageDao = new MessageDAO(hibernateBundle.getSessionFactory());		
+		final MessageDAO messageDao = new MessageDAO(hibernateBundle.getSessionFactory());
 		final PersonDAO personDao = new PersonDAO(hibernateBundle.getSessionFactory());
 		final PersonDAO suppliersDao = new PersonDAO(hibernateBundle.getSessionFactory());
 		final ShoppingCartDAO shoppingCartDao = new ShoppingCartDAO(hibernateBundle.getSessionFactory());
 		final ShoppingCartDetailDAO shoppingCartDetailDao = new ShoppingCartDetailDAO(
 				hibernateBundle.getSessionFactory());
 		final TransportDAO transportDao = new TransportDAO(hibernateBundle.getSessionFactory());
-		
 
-		Boolean condition = Boolean.valueOf(new EcoTouringProperties().LoadProperties());
-		System.out.println(condition.toString());
-		if (condition) {
+		// Derivación sobre constante de módulos variables
+
+		Boolean conditionCalificacion = Boolean.valueOf(new EcoTouringProperties().LoadProperties("calificacion"));
+		if (conditionCalificacion) {
 			final ItemCommentDAO itemCommentDao = new ItemCommentDAO(hibernateBundle.getSessionFactory());
-			// abrir el recurso porque está pegado!!!!
-			environment.jersey().register(new ItemResource(itemDao, conversationDao, itemCommentDao, itemContentDao));
+			environment.jersey()
+					.register(new ItemResource(itemDao, conversationDao, itemCommentDao, itemContentDao, messageDao));
+		}
+
+		Boolean conditionMensajes = Boolean.valueOf(new EcoTouringProperties().LoadProperties("mensajes"));
+		if (conditionMensajes) {
+			environment.jersey().register(new MessageResource(messageDao));
+			environment.jersey().register(new MessagesResource(messageDao));
+		}
+
+		Boolean conditionReportes = Boolean.valueOf(new EcoTouringProperties().LoadProperties("reportes"));
+		if (conditionReportes) {
+			environment.jersey().register(new SupplierCSVResource(suppliersDao));
+		}
+
+		Boolean conditionBlog = Boolean.valueOf(new EcoTouringProperties().LoadProperties("blog"));
+		if (conditionBlog) {
+			final ArticleDAO articleDao = new ArticleDAO(hibernateBundle.getSessionFactory());
+			environment.jersey().register(new ArticleResource(articleDao));
+			environment.jersey().register(new ArticlesResource(articleDao));
 		}
 
 		final Template template = configuration.buildTemplate();
@@ -214,18 +208,21 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(DateRequiredFeature.class);
 
 		// auth
-		ExampleAuthenticator authenticator = new ExampleAuthenticator();
+		EcoTouringAuthenticator authenticator = new EcoTouringAuthenticator();
 		/*
 		 * cachedAuthenticator = new CachingAuthenticator<BasicCredentials,
 		 * User>( new MetricRegistry(), authenticator,
 		 * config.getAuthenticationCachePolicy());
 		 */
-		environment.jersey()
-				.register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
-						.setAuthenticator(authenticator).setAuthorizer(new ExampleAuthorizer())
-						.setRealm("SUPER SECRET STUFF").buildAuthFilter()));
-		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
-		environment.jersey().register(RolesAllowedDynamicFeature.class);
+		/*
+		 * environment.jersey() .register(new AuthDynamicFeature(new
+		 * BasicCredentialAuthFilter.Builder<User>()
+		 * .setAuthenticator(authenticator).setAuthorizer(new
+		 * EcoTouringAuthorizer()) .setRealm("SUPER SECRET STUFF"
+		 * ).buildAuthFilter())); environment.jersey().register(new
+		 * AuthValueFactoryProvider.Binder<>(User.class));
+		 * environment.jersey().register(RolesAllowedDynamicFeature.class);
+		 */
 
 		// demo
 		environment.jersey().register(new HelloWorldResource(template));
@@ -242,17 +239,13 @@ public class EcoTouringApplication extends Application<EcoTouringConfiguration> 
 		environment.jersey().register(new PeopleResource(personDao));
 		environment.jersey().register(new SuppliersResource(suppliersDao));
 		environment.jersey().register(new SupplierResource(suppliersDao));
-		environment.jersey().register(new SupplierCSVResource(suppliersDao));
 		environment.jersey().register(new EcoTourResource(ecoTourDao));
 		environment.jersey().register(new ShoppingCartResource(shoppingCartDao));
-		environment.jersey().register(new ShoppongCartDetailResource(shoppingCartDao, shoppingCartDetailDao));
-		environment.jersey().register(new LoginResource());
+		environment.jersey()
+				.register(new ShoppongCartDetailResource(itemDao, messageDao, shoppingCartDao, shoppingCartDetailDao));
+		environment.jersey().register(new LoginResource(personDao));
 		environment.jersey().register(new SearchResource(personDao, itemDao));
 		environment.jersey()
 				.register(new CategoriesResource(accommodationDao, alimentationDao, ecoTourDao, transportDao));
-		environment.jersey().register(new ArticleResource(articleDao));
-		environment.jersey().register(new MessageResource(messageDao));
-		environment.jersey().register(new ArticlesResource(articleDao));
-		environment.jersey().register(new MessagesResource(messageDao));		
 	}
 }

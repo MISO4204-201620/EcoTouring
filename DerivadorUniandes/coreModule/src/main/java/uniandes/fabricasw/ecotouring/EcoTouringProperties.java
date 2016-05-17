@@ -5,11 +5,7 @@ import java.util.Properties;
 
 public class EcoTouringProperties {
 
-	public static void main(String[] args) {
-		System.out.println(new EcoTouringProperties().LoadProperties());
-	}
-
-	public String LoadProperties() {
+	public String LoadProperties(String condition) {
 		java.io.InputStream is = this.getClass().getResourceAsStream("app.properties");
 		java.util.Properties p = new Properties();
 		try {
@@ -18,7 +14,7 @@ public class EcoTouringProperties {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return p.getProperty("calificacion");
+		return p.getProperty(condition);
 	}
 
 }

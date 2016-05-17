@@ -26,10 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "MESSAGE", schema = "ADMIN")
-@NamedQueries({ 
-	    @NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Message.findAll", query = "SELECT m FROM Message m"),
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Message.findByReceiver", query = "SELECT m FROM Message m WHERE receiver = :receiver") 
-	    })
+@NamedQueries({
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Message.findAll", query = "SELECT m FROM Message m"),
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Message.findByReceiver", query = "SELECT m FROM Message m WHERE receiver = :receiver") })
 public class Message implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,12 +41,21 @@ public class Message implements java.io.Serializable {
 	private Date dateEntry;
 	private MessageStatus status;
 	private Message parent;
-	
+
 	private Set<Message> messages = new HashSet<Message>();
 
 	public Message() {
 	}
-	
+
+	public Message(String subject, String body, Person sender, Person receiver, Date dateEntry, MessageStatus status) {
+		this.subject = subject;
+		this.body = body;
+		this.sender = sender;
+		this.receiver = receiver;
+		this.dateEntry = dateEntry;
+		this.status = status;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MessageSeq")
 	@SequenceGenerator(name = "MessageSeq", sequenceName = "MESSAGE_SEQ", allocationSize = 1)
@@ -55,8 +63,8 @@ public class Message implements java.io.Serializable {
 	public Long getId() {
 		return this.id;
 	}
-	
-	@Column(name = "SUBJECT", nullable = false, length = 200)	
+
+	@Column(name = "SUBJECT", nullable = false, length = 200)
 	public String getSubject() {
 		return subject;
 	}
@@ -67,19 +75,19 @@ public class Message implements java.io.Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "SENDER", nullable = false)	
+	@JoinColumn(name = "SENDER", nullable = false)
 	public Person getSender() {
 		return sender;
 	}
-	
+
 	@ManyToOne
-	@JoinColumn(name = "RECEIVER", nullable = false)	
+	@JoinColumn(name = "RECEIVER", nullable = false)
 	public Person getReceiver() {
 		return receiver;
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE_ENTRY", nullable = false, length = 7)	
+	@Column(name = "DATE_ENTRY", nullable = false, length = 7)
 	public Date getDateEntry() {
 		return dateEntry;
 	}
@@ -88,40 +96,40 @@ public class Message implements java.io.Serializable {
 	@Column(name = "STATUS", nullable = false)
 	public MessageStatus getStatus() {
 		return status;
-	}	
-	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "PARENT")	
-	public Message getParent() {
-		return parent;
-	}	
+	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")	
+	@ManyToOne
+	@JoinColumn(name = "PARENT")
+	public Message getParent() {
+		return parent;
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
 	public Set<Message> getMessages() {
 		return messages;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
-	}	
+	}
 
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	
+
 	public void setBody(String body) {
 		this.body = body;
 	}
 
 	public void setSender(Person sender) {
 		this.sender = sender;
-	}	
-	
+	}
+
 	public void setReceiver(Person receiver) {
 		this.receiver = receiver;
-	}	
+	}
 
 	public void setDateEntry(Date dateEntry) {
 		this.dateEntry = dateEntry;
@@ -130,10 +138,10 @@ public class Message implements java.io.Serializable {
 	public void setStatus(MessageStatus status) {
 		this.status = status;
 	}
-	
+
 	public void setParent(Message parent) {
 		this.parent = parent;
-	}	
+	}
 
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;

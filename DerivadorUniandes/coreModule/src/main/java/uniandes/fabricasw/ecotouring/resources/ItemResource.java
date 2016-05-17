@@ -1,6 +1,7 @@
 package uniandes.fabricasw.ecotouring.resources;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -21,10 +22,13 @@ import uniandes.fabricasw.ecotouring.core.Item;
 import uniandes.fabricasw.ecotouring.core.ItemComment;
 import uniandes.fabricasw.ecotouring.core.ItemContent;
 import uniandes.fabricasw.ecotouring.core.ItemStatus;
+import uniandes.fabricasw.ecotouring.core.Message;
+import uniandes.fabricasw.ecotouring.core.MessageStatus;
 import uniandes.fabricasw.ecotouring.db.ConversationDAO;
 import uniandes.fabricasw.ecotouring.db.ItemCommentDAO;
 import uniandes.fabricasw.ecotouring.db.ItemContentDAO;
 import uniandes.fabricasw.ecotouring.db.ItemDAO;
+import uniandes.fabricasw.ecotouring.db.MessageDAO;
 
 @Path("/items/{itemId}")
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
@@ -35,9 +39,11 @@ public class ItemResource {
 	private final ConversationDAO conversationDAO;
 	private final ItemCommentDAO itemCommentDAO;
 	private final ItemContentDAO itemContentDAO;
+	private final MessageDAO messageDAO;
 
 	public ItemResource(ItemDAO itemDAO, ConversationDAO conversationDAO, ItemCommentDAO itemCommentDAO,
-			ItemContentDAO itemContentDAO) {
+			ItemContentDAO itemContentDAO, MessageDAO messageDAO) {
+		this.messageDAO = messageDAO;
 		this.itemDAO = itemDAO;
 		this.conversationDAO = conversationDAO;
 		this.itemCommentDAO = itemCommentDAO;
@@ -64,7 +70,8 @@ public class ItemResource {
 	@POST
 	@Path("/conversations")
 	@UnitOfWork
-	public Conversation createConversation(Conversation conversation) {
+	public Conversation createAJConversation(Conversation conversation) {
+		Optional<Item> i = itemDAO.findById(conversation.getItem().getitemId());
 		return conversationDAO.create(conversation);
 	}
 
@@ -103,7 +110,8 @@ public class ItemResource {
 	@POST
 	@Path("/scores")
 	@UnitOfWork
-	public ItemComment createScore(ItemComment itemComment) {
+	public ItemComment createAJScore(ItemComment itemComment) {
+		Optional<Item> i = itemDAO.findById(itemComment.getItem().getitemId());
 		return itemCommentDAO.create(itemComment);
 	}
 
@@ -148,7 +156,7 @@ public class ItemResource {
 		if (!item.isPresent()) {
 			throw new NotFoundException("No data found.");
 		}
-		//interceptar lineas
+		// interceptar lineas
 		item.get().addQueryCounter();
 		itemDAO.update(item.get());
 		return item.get();

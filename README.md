@@ -47,6 +47,14 @@ http://localhost:9999/suppliers/1/items			ok <br/>
 --Busquedas por palabras clave
 http://localhost:9999/search/ITEM_DESC/noches   ok <br/>
 http://localhost:9999/search/PERSON_NAME/sierra ok <br/>
+
+--Reportes del proveedor
+http://localhost:9999/supplierCSV/1/comentariosCSV ok <br/>
+http://localhost:9999/supplierCSV/1/consultasCSV   ok <br/>
+http://localhost:9999/supplierCSV/1/ventasCSV      ok <br/>
+
+--Mensages
+http://localhost:9999/people/1/messages
  
 Falta
 -- Buscar por categoría y palabra clave
@@ -112,11 +120,11 @@ curl -X POST http://localhost:9999/shoppingCart/2/changeStatusValidated
 curl -X POST http://localhost:9999/items/2/publishItem
 curl -X POST http://localhost:9999/items/2/hiddeItem
 
---POST Article
+--POST Article				ok
 curl -H "Content-Type: application/json" -X POST -d {\"title\":\"testtitle\",\"text\":\"testtext\",\"author\":{\"id\":1},\"date\":\"2016-05-14\",\"slug\":\"testslug\"}} http://localhost:9999/articles
 
---POST Message
-curl -H "Content-Type: application/json" -X POST -d {\"subject\":\"testsubject\",\"body\":\"testbody\",\"sender\":{\"id\":1},\"receiver\":{\"id\":1},\"date\":\"2016-05-14\",\"status\":\"UNREAD\"}} http://localhost:9999/messages
+--POST Message				ok
+curl -H "Content-Type: application/json" -X POST -d {\"subject\":\"testsubject\",\"body\":\"testbody\",\"sender\":{\"id\":1},\"receiver\":{\"id\":1},\"dateEntry\":\"2016-05-14\",\"status\":\"UNREAD\"}} http://localhost:9999/messages
 
 
 --POST Login -- FALTA!!!

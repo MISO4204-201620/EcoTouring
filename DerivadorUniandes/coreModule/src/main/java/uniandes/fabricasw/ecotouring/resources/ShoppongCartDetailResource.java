@@ -1,5 +1,6 @@
 package uniandes.fabricasw.ecotouring.resources;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.ws.rs.GET;
@@ -14,9 +15,14 @@ import com.google.common.base.Optional;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import uniandes.fabricasw.ecotouring.core.Item;
+import uniandes.fabricasw.ecotouring.core.Message;
+import uniandes.fabricasw.ecotouring.core.MessageStatus;
 import uniandes.fabricasw.ecotouring.core.Transaction;
 import uniandes.fabricasw.ecotouring.core.TransactionDetail;
 import uniandes.fabricasw.ecotouring.core.TransactionStatus;
+import uniandes.fabricasw.ecotouring.db.ItemDAO;
+import uniandes.fabricasw.ecotouring.db.MessageDAO;
 import uniandes.fabricasw.ecotouring.db.ShoppingCartDAO;
 import uniandes.fabricasw.ecotouring.db.ShoppingCartDetailDAO;
 
@@ -24,12 +30,17 @@ import uniandes.fabricasw.ecotouring.db.ShoppingCartDetailDAO;
 @Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
 public class ShoppongCartDetailResource {
 
+	private final ItemDAO itemDAO;
+	private final MessageDAO messageDAO;
 	private final ShoppingCartDAO shoppingCartDAO;
-	private final ShoppingCartDetailDAO shoppingCartDetailDao;
+	private final ShoppingCartDetailDAO shoppingCartDetailDAO;
 
-	public ShoppongCartDetailResource(ShoppingCartDAO shoppingCartDAO, ShoppingCartDetailDAO shoppingCartDetailDao) {
+	public ShoppongCartDetailResource(ItemDAO itemDAO, MessageDAO messageDAO, ShoppingCartDAO shoppingCartDAO,
+			ShoppingCartDetailDAO shoppingCartDetailDAO) {
+		this.itemDAO = itemDAO;
+		this.messageDAO = messageDAO;
 		this.shoppingCartDAO = shoppingCartDAO;
-		this.shoppingCartDetailDao = shoppingCartDetailDao;
+		this.shoppingCartDetailDAO = shoppingCartDetailDAO;
 	}
 
 	@GET
@@ -40,8 +51,8 @@ public class ShoppongCartDetailResource {
 
 	@POST
 	@UnitOfWork
-	public TransactionDetail createPerson(TransactionDetail transactionDetail) {
-		return shoppingCartDetailDao.create(transactionDetail);
+	public TransactionDetail addItem2Cart(TransactionDetail transactionDetail) {
+		return shoppingCartDetailDAO.create(transactionDetail);
 	}
 
 	@GET
@@ -54,8 +65,9 @@ public class ShoppongCartDetailResource {
 	@POST
 	@Path("/detail")
 	@UnitOfWork
-	public TransactionDetail createTransactionDetail(TransactionDetail transactionDetail) {
-		return shoppingCartDetailDao.create(transactionDetail);
+	public TransactionDetail createAJTransactionDetail(TransactionDetail transactionDetail) {
+		Optional<Item> i = itemDAO.findById(transactionDetail.getItem().getitemId());
+		return shoppingCartDetailDAO.create(transactionDetail);
 	}
 
 	@POST

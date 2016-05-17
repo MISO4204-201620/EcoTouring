@@ -58,7 +58,7 @@ public class PersonResource {
 	public PersonView getPersonViewMustache(@PathParam("personId") LongParam personId) {
 		return new PersonView(PersonView.Template.MUSTACHE, findSafely(personId.get()));
 	}
-	
+
 	@GET
 	@Path("/messages")
 	@UnitOfWork
@@ -68,7 +68,7 @@ public class PersonResource {
 			throw new NotFoundException("No data found.");
 		}
 		return l;
-	}	
+	}
 
 	private Person findSafely(Long personId) {
 		final Optional<Person> person = peopleDAO.findById(personId);

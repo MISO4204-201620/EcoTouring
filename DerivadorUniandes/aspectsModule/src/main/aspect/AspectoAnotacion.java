@@ -1,25 +1,25 @@
 package main.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class AspectoAnotacion {
 
-	@Pointcut("execution(* foo(String))")
-	public void puntoCorte() {
+	@Pointcut("execution(* createAJ*(..))")
+	public void notificacion() {
 	}
 
-	@Before("puntoCorte()")
-	public void antesPunto(JoinPoint joinPoint) {
-		System.out.println("Advice antes de foo");
-	}
-
-	@After("puntoCorte()")
+	@AfterReturning("notificacion()")
 	public void despuesPunto(JoinPoint joinPoint) {
-		System.out.println("Advice después de foo");
+		System.out.println("\t\t***");
+		System.out.println("Advice @AfterReturning de createAJ");
+		System.out.println("\t\t***");
+		/*messageDAO.create(new Message("Notificaciï¿½n Sistema",
+				"Se realizï¿½ una operaciï¿½n sobre el item" + i.get().getName(),
+				i.get().getSupplier(), i.get().getSupplier(), new Date(),
+				MessageStatus.UNREAD));*/
 	}
 }

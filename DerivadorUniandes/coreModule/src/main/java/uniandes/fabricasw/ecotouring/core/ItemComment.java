@@ -20,8 +20,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ITEM_COMMENT", schema = "ADMIN")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.ItemComment.findByItem", query = "SELECT i FROM ItemComment i WHERE item = 1") 
-		})
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.ItemComment.findByItem", query = "SELECT i FROM ItemComment i WHERE item = 1") })
 public class ItemComment implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

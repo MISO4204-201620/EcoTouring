@@ -24,8 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "TRANSACTION", schema = "ADMIN")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Transaction.findAll", query = "SELECT t FROM Transaction t") 
-		})
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.Transaction.findAll", query = "SELECT t FROM Transaction t") })
 public class Transaction implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

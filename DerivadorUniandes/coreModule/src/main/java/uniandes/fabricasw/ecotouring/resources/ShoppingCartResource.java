@@ -37,8 +37,7 @@ public class ShoppingCartResource {
 
 	@POST
 	@UnitOfWork
-	public Transaction createPerson(Transaction transaction) {
+	public Transaction createShoppingCart(Transaction transaction) {
 		return shoppingCartDAO.create(transaction);
 	}
-
 }

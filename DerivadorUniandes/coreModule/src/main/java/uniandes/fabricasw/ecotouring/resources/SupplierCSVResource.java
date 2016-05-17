@@ -43,27 +43,27 @@ public class SupplierCSVResource {
 			e.printStackTrace();
 		}
 		return null;
-	}	
-	
+	}
+
 	@GET
 	@Path("/ventasCSV")
 	@UnitOfWork
 	public Response listVentasCSV(@PathParam("personId") LongParam personId) {
-			ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
-			if (items.isEmpty()) {
-				throw new NotFoundException("No data found.");
-			}
-			
-			ArrayList<ItemVentasCSV> itemsCSV = new ArrayList<ItemVentasCSV>();
-			for (Item item : items) {
-				ItemVentasCSV i = new ItemVentasCSV(item);
-				i.setItemId(item.getitemId());
-				i.setName(item.getName());
-				itemsCSV.add(i);
-			}		
-			Object myCsvText = toVentasCSV(itemsCSV);
-			String fileName = "ventas.csv";
-			return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
+		ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
+		if (items.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+
+		ArrayList<ItemVentasCSV> itemsCSV = new ArrayList<ItemVentasCSV>();
+		for (Item item : items) {
+			ItemVentasCSV i = new ItemVentasCSV(item);
+			i.setItemId(item.getitemId());
+			i.setName(item.getName());
+			itemsCSV.add(i);
+		}
+		Object myCsvText = toVentasCSV(itemsCSV);
+		String fileName = "ventas.csv";
+		return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
 	}
 
 	// Reporte 2 Items del proveedor más consultados descargable en CSV
@@ -77,27 +77,27 @@ public class SupplierCSVResource {
 			e.printStackTrace();
 		}
 		return null;
-	}	
-	
+	}
+
 	@GET
 	@Path("/consultasCSV")
 	@UnitOfWork
-		public Response listConsultasCSV(@PathParam("personId") LongParam personId) {
-			ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
-			if (items.isEmpty()) {
-				throw new NotFoundException("No data found.");
-			}
-			
-			ArrayList<ItemConsultasCSV> itemsCSV = new ArrayList<ItemConsultasCSV>();
-			for (Item item : items) {
-				ItemConsultasCSV i = new ItemConsultasCSV(item);
-				i.setItemId(item.getitemId());
-				i.setName(item.getName());
-				itemsCSV.add(i);
-			}		
-			Object myCsvText = toConsultasCSV(itemsCSV);
-			String fileName = "consultas.csv";
-			return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
+	public Response listConsultasCSV(@PathParam("personId") LongParam personId) {
+		ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
+		if (items.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+
+		ArrayList<ItemConsultasCSV> itemsCSV = new ArrayList<ItemConsultasCSV>();
+		for (Item item : items) {
+			ItemConsultasCSV i = new ItemConsultasCSV(item);
+			i.setItemId(item.getitemId());
+			i.setName(item.getName());
+			itemsCSV.add(i);
+		}
+		Object myCsvText = toConsultasCSV(itemsCSV);
+		String fileName = "consultas.csv";
+		return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
 	}
 
 	// Reporte 3 Items del proveedor más comentados descargables en CSV
@@ -112,26 +112,26 @@ public class SupplierCSVResource {
 		}
 		return null;
 	}
-	
+
 	@GET
 	@Path("/comentariosCSV")
 	@UnitOfWork
 	public Response listComentariosCSV(@PathParam("personId") LongParam personId) {
-			ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
-			if (items.isEmpty()) {
-				throw new NotFoundException("No data found.");
-			}
-			
-			ArrayList<ItemComentariosCSV> itemsCSV = new ArrayList<ItemComentariosCSV>();
-			for (Item item : items) {
-				ItemComentariosCSV i = new ItemComentariosCSV(item);
-				i.setItemId(item.getitemId());
-				i.setName(item.getName());
-				itemsCSV.add(i);
-			}		
-			Object myCsvText = toComentadosCSV(itemsCSV);
-			String fileName = "comentarios.csv";
-			return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
+		ArrayList<Item> items = new ArrayList<Item>(personDAO.findById(personId.get()).get().getItems());
+		if (items.isEmpty()) {
+			throw new NotFoundException("No data found.");
+		}
+
+		ArrayList<ItemComentariosCSV> itemsCSV = new ArrayList<ItemComentariosCSV>();
+		for (Item item : items) {
+			ItemComentariosCSV i = new ItemComentariosCSV(item);
+			i.setItemId(item.getitemId());
+			i.setName(item.getName());
+			itemsCSV.add(i);
+		}
+		Object myCsvText = toComentadosCSV(itemsCSV);
+		String fileName = "comentarios.csv";
+		return Response.ok(myCsvText).header("Content-Disposition", "attachment; filename=" + fileName).build();
 	}
 
 	private Person findSafely(LongParam itemId) {

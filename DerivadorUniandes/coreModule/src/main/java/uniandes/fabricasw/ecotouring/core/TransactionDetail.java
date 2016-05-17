@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TRANSACCTION_DETAIL", schema = "ADMIN")
 @NamedQueries({
-		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.TransactionDetail.findAll", query = "SELECT t FROM TransactionDetail t") 
-		})
+		@NamedQuery(name = "uniandes.fabricasw.ecotouring.core.TransactionDetail.findAll", query = "SELECT t FROM TransactionDetail t") })
 public class TransactionDetail implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
