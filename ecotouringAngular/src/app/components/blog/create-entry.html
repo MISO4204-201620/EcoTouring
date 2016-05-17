@@ -1,0 +1,65 @@
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Ecotouring Blog</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a [routerLink]="['Home']">Inicio</a>
+                    </li>
+                    <li><a [routerLink]="['Blog']">Blog</a></li>
+                    <li><a>Entrada</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <form  (ngSubmit)="onSubmit(entry)" #entryForm="ngForm">
+            <br/>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        {{ okMessage }}
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Título de la entrada:</label>
+                        <input type="text" class="form-control" id="title" required [(ngModel)]="entry.title" ngControl="title" #title="ngForm">
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="title.valid || title.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Título vacío o inválido.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Contenido:</label>
+                        <textarea id="description" class="form-control editor" required [(ngModel)]="entry.text" ngControl="text" #text="ngForm"></textarea>
+                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="text.valid || text.pristine">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            Contenido de la entrada vacío o inválido.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Tags:</label>
+                        <input type="text" class="form-control" id="tag" [(ngModel)]="entry.slug">
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Crear Entrada</button>
+                    </div>
+                </div>
+                <br/>   
+            </div>
+            <!-- /.row -->
+            </form>
+        </div>
+    </div>
+</div>

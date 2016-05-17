@@ -11,9 +11,9 @@ _________________________________________________________ -->
                 </div>
                 <div class="col-xs-7">
                     <div class="social">
-                        <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
-                        <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                        <a href="#" onclick="hello('facebook').login()" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                        <a href="#" onclick="hello('google').login()" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" onclick="hello('twitter').login()" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
                         <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                     </div>
 
@@ -111,6 +111,8 @@ _________________________________________________________ -->
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
                                 <li><a [routerLink]="['PackageServiceForm']">Crear paquete</a></li>
                                 <li><a [routerLink]="['/Categories', 'ItemsSupplier', {supplier : userToken.id}]">Mis productos</a></li>
+                                <li><a href="#" (click)="open()">Mis reportes</a></li>
+                                <li><a [routerLink]="['Inbox']">Mensajes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">
@@ -118,7 +120,17 @@ _________________________________________________________ -->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['ShoppingCart']" >Mi carrito</a></li>
                                 <li><a href="index.html">Historial de compras</a></li>
-                                <li><a href="index.html">Mensajes</a></li>
+                                <li><a [routerLink]="['Inbox']">Mensajes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" *ngIf="!isLogged">
+                            <a [routerLink]="['Blog']" class="dropdown-toggle" data-toggle="dropdown">Blog </a>
+                        </li>
+                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a [routerLink]="['Blog']" >Listar Entradas</a></li>
+                                <li><a [routerLink]="['CreateEntry']" >Crear Entrada</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" *ngIf="isLogged && userToken.role === 'ADMIN'">
@@ -144,6 +156,26 @@ _________________________________________________________ -->
     <!-- *** NAVBAR END *** -->
 
 </header>
+
+<!-- **** REPORTS MODAL *** -->
+<ngl-modal header="Ecotouring Reportes" [(open)]="opened" [size]="size">
+  <div body>
+    <p>Descargue sus reportes.</p>
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más buscados</button>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más vendidos</button>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más comentados</button>
+    </div>
+  </div>
+  <button class="btn btn-sm btn-success" (click)="cancel()">Cerrar</button>
+</ngl-modal>
+
+<!-- **** END REPORTS MODAL *** -->
+
 <div style="min-height: 200px">
     <router-outlet></router-outlet>
 </div>
@@ -310,3 +342,4 @@ _________________________________________________________ -->
 <!-- /#copyright -->
 
 <!-- *** COPYRIGHT END *** -->
+

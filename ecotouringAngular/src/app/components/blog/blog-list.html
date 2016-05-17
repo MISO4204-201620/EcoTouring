@@ -1,0 +1,66 @@
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Ecotouring Blog</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="/">Inicio</a>
+                    </li>
+                    <li>Blog</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9" id="blog-listing-medium">
+                <section class="post" *ngFor="#entry of entries">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="image">
+                                <a href="blog-post.html">
+                                    <img src="http://lorempixel.com/400/200/" class="img-responsive" alt="Example blog post alt">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h2><a href="post.htmls">{{entry.title}}</a></h2>
+                            <div class="clearfix">
+                                <p class="author-category">Por <a href="#">{{entry.author.fullName}}</a>
+                                </p>
+                                <p class="date-comments">
+                                    <a href="#"><i class="fa fa-calendar-o"></i> {{entry.date}}</a>
+                                    <a href="#"><i class="fa fa-comment-o"></i> Comentarios</a>
+                                </p>
+                            </div>
+                            <p class="intro">{{entry.text}}</p>
+                            <p class="read-more"><a href="#" class="btn btn-template-main">Ver más</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel sidebar-menu">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tags</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="tag-cloud">
+                            <li *ngFor="#tag of entries"><a href="#"><i class="fa fa-tags"></i> {{tag.slug}}</a> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -37,6 +37,7 @@ export class ItemDetailComponent implements OnInit {
 	itemParent = null;
 	val = 1;
 	isLogged = false;
+	idSupplier : number;
 
 	valueItem = 4;
   	readonlyItem = true;
@@ -69,6 +70,7 @@ export class ItemDetailComponent implements OnInit {
 		this.itemCategory = item.category;
 		this.itemMedia = [{url : item.urlImage}];
 		this.itemParent = item.parent;
+		this.idSupplier = item.supplier.id;
 
 		jQuery(this.elementRef.nativeElement).find('.rating-loading').rating({displayOnly: true, step: 1});
 	}
