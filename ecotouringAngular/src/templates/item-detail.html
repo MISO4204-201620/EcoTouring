@@ -27,10 +27,15 @@
                 <p class="text-center">
                     <button type="submit" class="btn btn-template-main" (click)="onAddCartItem(item)" [disabled]="!isLogged"><i class="fa fa-shopping-cart"></i>Agregar al carrito</button>
                 </p>
-                <p># de Noches</p>
+
+                <p *ngIf="itemCategory === 'ECOTOUR'"># de personas</p>
+                <p *ngIf="itemCategory === 'TRANSPORT'"># de pasajeros</p>
+                <p *ngIf="itemCategory === 'ACCOMMODATION'" ># de Noches</p>
+                <p *ngIf="itemCategory === 'ALIMENTATION'"># de platos</p>
+                
                 <div class="col-xs-3">
                         <input type="number"  class="form-control input-sm" id="amount" required [(ngModel)]="item.amount">
-                    </div>
+                </div>
 
             </form>
         </div>

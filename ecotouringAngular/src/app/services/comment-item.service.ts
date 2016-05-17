@@ -2,17 +2,19 @@ import {Injectable} from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {CommentItem} from '../models/comment/comment-item.model';
 import {Observable} from 'rxjs/Observable';
+import {ConfigParams} from '../config-params';
 
 @Injectable()
 export class CommentItemService {
 	constructor (private http : Http){}
 
 	//private _commentsUrl = 'mocks/comments.json';
-	private _commentsUrl = 'http://54.174.139.165:9999/items/';
-	//private _commentsUrl = 'http://192.168.220.85:9999/items/';
+	private config = new ConfigParams ();
+	private _apiUrl = this.config.urlAPI + 'items';
+	
 
 	getComments(id : string){
-		return this.http.get(this._commentsUrl + id + "/scores")
+		return this.http.get(this._apiUrl + id + "/scores")
 							.map(res => <CommentItem[]> res.json())
 							.catch(this.handleError);
 	}
@@ -23,7 +25,7 @@ export class CommentItemService {
 		let headers = new Headers({'Content-Type' : 'application/json'});
 		let options = new RequestOptions({ headers : headers});
 
-		return this.http.post(this._commentsUrl + id + "/scores", body, options)
+		return this.http.post(this._apiUrl + id + "/scores", body, options)
 						.map(res => <CommentItem> res.json())
 						.catch(this.handleError)
 	}

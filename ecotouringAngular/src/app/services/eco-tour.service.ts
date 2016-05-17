@@ -2,12 +2,14 @@ import {Injectable} from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {EcoTour} from '../models/product/eco-tour.model';
 import {Observable} from 'rxjs/Observable';
+import {ConfigParams} from '../config-params';
 
 @Injectable()
 export class EcoTourService {
 	constructor (private http : Http){}
 
-	private _ecoTourUrl = 'http://54.174.139.165:9999/ecotour';
+	private config = new ConfigParams ();
+	private _apiUrl = this.config.urlAPI + 'ecotour/';
 
 	createService (service : EcoTour) : Observable<EcoTour> {
 		let body = JSON.stringify(service);
@@ -15,7 +17,7 @@ export class EcoTourService {
 		let headers = new Headers({'Content-Type' : 'application/json'});
 		let options = new RequestOptions({ headers : headers});
 
-		return this.http.post(this._ecoTourUrl, body, options)
+		return this.http.post(this._apiUrl, body, options)
 						.map(res => <EcoTour> res.json())
 						.catch(this.handleError)
 	}

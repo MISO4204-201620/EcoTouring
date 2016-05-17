@@ -14,7 +14,6 @@ _________________________________________________________ -->
                         <a href="#" onclick="hello('facebook').login()" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
                         <a href="#" onclick="hello('google').login()" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
                         <a href="#" onclick="hello('twitter').login()" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                     </div>
 
                     <div class="login">
@@ -111,22 +110,21 @@ _________________________________________________________ -->
                                 <li><a [routerLink]="['/ServiceForm']" >Crear servicio</a></li>
                                 <li><a [routerLink]="['PackageServiceForm']">Crear paquete</a></li>
                                 <li><a [routerLink]="['/Categories', 'ItemsSupplier', {supplier : userToken.id}]">Mis productos</a></li>
-                                <li><a href="#" (click)="open()">Mis reportes</a></li>
-                                <li><a [routerLink]="['Inbox']">Mensajes</a></li>
+                                <li><a href="#" (click)="open()" *ngIf="configApp.reportes">Mis reportes</a></li>
+                                <li><a [routerLink]="['Inbox']" *ngIf="configApp.mensajes">Mensajes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Cliente <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['ShoppingCart']" >Mi carrito</a></li>
-                                <li><a href="index.html">Historial de compras</a></li>
-                                <li><a [routerLink]="['Inbox']">Mensajes</a></li>
+                                <li><a [routerLink]="['Inbox']" *ngIf="configApp.mensajes">Mensajes</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown" *ngIf="!isLogged">
+                        <li class="dropdown" *ngIf="!isLogged && configApp.blog">
                             <a [routerLink]="['Blog']" class="dropdown-toggle" data-toggle="dropdown">Blog </a>
                         </li>
-                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER'">
+                        <li class="dropdown" *ngIf="isLogged && userToken.role === 'USER' && configApp.blog">
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['Blog']" >Listar Entradas</a></li>
@@ -137,7 +135,6 @@ _________________________________________________________ -->
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Administrador <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['CreateUserForm']">Crear proveedor</a></li>
-                                <li><a href="index.html">Mensajes</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -158,17 +155,17 @@ _________________________________________________________ -->
 </header>
 
 <!-- **** REPORTS MODAL *** -->
-<ngl-modal header="Ecotouring Reportes" [(open)]="opened" [size]="size">
+<ngl-modal header="Ecotouring Reportes" [(open)]="opened" [size]="size" *ngIf="configApp.reportes">
   <div body>
     <p>Descargue sus reportes.</p>
     <div class="row">
-        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más buscados</button>
+        <a  class="btn btn-lg btn-template-main" href="{{apiUrl + reporteConsulta}}" target="_blank"><ngl-icon icon="download" align="left"></ngl-icon>Más buscados</a>
     </div>
     <div class="row">
-        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más vendidos</button>
+        <a class="btn btn-lg btn-template-main" href="{{apiUrl + reporteVenta}}" target="_blank"><ngl-icon icon="download" align="left"></ngl-icon>Más vendidos</a>
     </div>
     <div class="row">
-        <button type="button" class="btn btn-lg btn-template-main" (click)="onSelect(1)"><ngl-icon icon="download" align="left"></ngl-icon>Más comentados</button>
+        <a class="btn btn-lg btn-template-main" href="{{apiUrl + reporteComentario}}" target="_blank"><ngl-icon icon="download" align="left"></ngl-icon>Más comentados</a>
     </div>
   </div>
   <button class="btn btn-sm btn-success" (click)="cancel()">Cerrar</button>

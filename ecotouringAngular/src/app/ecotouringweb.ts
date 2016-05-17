@@ -17,6 +17,9 @@ import {MessagesComponent} from './components/messages/messages';
 import {UserListService} from './services/users-list.service';
 import {CategoryListService} from './services/category-list.service';
 import {User} from './models/user/user.model';
+import {EcoTouringFeaturesConfig} from './EcoTouringFeaturesConfig';
+import {ConfigParams} from './config-params';
+
 
 @Component({
   selector: 'ecotouringweb-app',
@@ -105,16 +108,31 @@ export class EcotouringwebApp {
   _router : Router;
   opened: boolean = false;
   size: string;
+  configApp : EcoTouringFeaturesConfig;
+  config : ConfigParams;
+  apiUrl : string;
+  reporteComentario = "supplierCSV/";
+  reporteConsulta = "supplierCSV/";
+  reporteVenta = "supplierCSV/";
+
 
 	constructor(public router: Router, private _userListService : UserListService) {
 
+    this.config = new ConfigParams ();
+    this.apiUrl = this.config.urlAPI;
+
+    
     this._router = router;
     this.login = new User (); 
+    this.configApp = new EcoTouringFeaturesConfig();
 
     if(sessionStorage.getItem('userSession')){
         let objUser = sessionStorage.getItem('userSession');
         this.userToken = JSON.parse(objUser);
         this.isLogged = true;
+        this.reporteComentario += this.userToken.id + "/comentariosCSV";
+        this.reporteConsulta += this.userToken.id + "/consultasCSV";
+        this.reporteVenta += this.userToken.id + "/ventasCSV";
     }else {
       this.userToken = new User;
     }
