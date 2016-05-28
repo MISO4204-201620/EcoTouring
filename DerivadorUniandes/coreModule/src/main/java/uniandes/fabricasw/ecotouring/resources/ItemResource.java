@@ -72,6 +72,10 @@ public class ItemResource {
 	@UnitOfWork
 	public Conversation createAJConversation(Conversation conversation) {
 		Optional<Item> i = itemDAO.findById(conversation.getItem().getitemId());
+		messageDAO.create(new Message("Notificacion Sistema",
+				"Se realizo una operacion sobre el item" + i.get().getName(),
+				i.get().getSupplier(), i.get().getSupplier(), new Date(),
+				MessageStatus.UNREAD));
 		return conversationDAO.create(conversation);
 	}
 
@@ -112,6 +116,10 @@ public class ItemResource {
 	@UnitOfWork
 	public ItemComment createAJScore(ItemComment itemComment) {
 		Optional<Item> i = itemDAO.findById(itemComment.getItem().getitemId());
+		messageDAO.create(new Message("Notificacion Sistema",
+				"Se realizo una operacion sobre el item" + i.get().getName(),
+				i.get().getSupplier(), i.get().getSupplier(), new Date(),
+				MessageStatus.UNREAD));
 		return itemCommentDAO.create(itemComment);
 	}
 

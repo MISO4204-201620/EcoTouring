@@ -137,3 +137,4 @@ Notas:
 1. Para importar el driver de oracle al repositorio local
 
 mvn install:install-file -Dfile=C:\Users\alejo\sw\sqldeveloper\jdbc\lib\ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar
+mvn install:install-file -Dfile=C:\Users\alejo\Documents\GitHub\EcoTouring\DerivadorUniandes\blogModule\target\blogModule-1.0.0-rc2.jar -DgroupId=co.edu.uniandes -DartifactId=blogModule -Dversion=1.0.0-rc2 -Dpackaging=jar

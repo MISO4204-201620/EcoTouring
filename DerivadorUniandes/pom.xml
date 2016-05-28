@@ -9,12 +9,13 @@
 	<name>${project.artifactId}-${project.version}</name>
 	<description>Integrador de código</description>
 	<url>https://github.com/MISO4204-201620/EcoTouring</url>
-	<packaging>pom</packaging>
+	<!--<packaging>pom</packaging> -->
 
 	<properties>
 		<aspectj.runtime.version>1.8.7</aspectj.runtime.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<name>${project.name></name>
 		<version>${project.version}</version>
@@ -28,10 +29,10 @@
 	</properties>
 
 	<modules>
-		<module>aspectsModule</module>
-		<module>codeModule</module>
-		<module>coreModule</module>
-		<!-- <module>blogModule</module> -->
+		<!--<module>aspectsModule</module> -->
+		<!--<module>codeModule</module> -->
+		<!--<module>coreModule</module> -->
+		<!--<module>blogModule</module> -->
 	</modules>
 
 	<repositories>
@@ -41,17 +42,12 @@
 		</repository>
 	</repositories>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>co.edu.uniandes</groupId>
-				<artifactId>aspectsModule</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>1.8.7</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-invoker</artifactId>
@@ -96,23 +92,28 @@
 				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
 					<version>3.5.1</version> <configuration> <encoding>UTF-8</encoding> <source>${maven.compiler.target}</source> 
 					<target>${maven.compiler.target}</target> </configuration> </plugin> -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.4.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<mainClass>co.edu.uniandes.fabricasw.derivator.DerivadorEcotouring</mainClass>
-				</configuration>
-			</plugin>					
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.5.0</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>java</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<mainClass>co.edu.uniandes.fabricasw.derivator.DerivadorEcotouring</mainClass>
+						<arguments>
+							<!-- Seleccionar una opción de producto predeterminado  -->
+							<argument>data/defaultFULL.config</argument>
+							<!-- <argument>data/defaultFULL.config</argument> -->
+							<!-- <argument>data/defaultMIN.config</argument> -->
+						</arguments>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>

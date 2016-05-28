@@ -10,9 +10,8 @@ import javax.ws.rs.core.MediaType;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import uniandes.fabricasw.ecotouring.auth.Authenticator;
-import uniandes.fabricasw.ecotouring.auth.EcoTouringAuthenticator;
-import uniandes.fabricasw.ecotouring.auth.FacebookAuthenticator;
-import uniandes.fabricasw.ecotouring.auth.TwitterAuthenticator;
+import uniandes.fabricasw.ecotouring.auth.AuthenticatorFactory;
+import uniandes.fabricasw.ecotouring.auth.IAuthenticatorStrategy;
 import uniandes.fabricasw.ecotouring.core.Person;
 import uniandes.fabricasw.ecotouring.db.PersonDAO;
 
@@ -28,31 +27,50 @@ public class LoginResource {
 	}
 
 	// Verifica si un string es nulo o vacio
-	public static boolean isNullOrEmpty(String param) {
-		return param == null || param.trim().length() == 0;
+	public static boolean isNullOrEmpty(String param) { 
+	    return param == null || param.trim().length() == 0;
 	}
-
+	
+	// Metodo de autenticar usuario
 	@POST
 	@UnitOfWork
 	public Person authenticateUser(Person user) {
+		
 
-		Person authenticatedUser = null;
+		// Se instancia la fabrica de estrategias de autenticacion
+		AuthenticatorFactory authenticatorFactory = new AuthenticatorFactory();
+		IAuthenticatorStrategy authenticatorStrategy;		
+		String identifier;
 
-		if (!isNullOrEmpty(user.getFacebook())) {
-			Authenticator facebookAuthenticator = new Authenticator(new FacebookAuthenticator());
-			authenticatedUser = facebookAuthenticator.authenticate(userDAO, user.getUsername(), user.getFacebook());
-		} else if (!isNullOrEmpty(user.getTwitter())) {
-			Authenticator twitterAuthenticator = new Authenticator(new TwitterAuthenticator());
-			authenticatedUser = twitterAuthenticator.authenticate(userDAO, user.getUsername(), user.getTwitter());
-		} else if (!isNullOrEmpty(user.getPassword())) {
-			Authenticator ecoTouringAuthenticator = new Authenticator(new EcoTouringAuthenticator());
-			authenticatedUser = ecoTouringAuthenticator.authenticate(userDAO, user.getUsername(), user.getPassword());
+		// Se determina por que tipo de red social opcional pide autenticacion sino se obliga a autenticar por la app
+		if(!isNullOrEmpty(user.getFacebook())){
+
+
+			authenticatorStrategy = authenticatorFactory.create("facebook");
+			identifier = user.getFacebook();
 		}
+		else if(!isNullOrEmpty(user.getTwitter())){
 
+
+
+
+
+			authenticatorStrategy = authenticatorFactory.create("twitter");
+			identifier = user.getTwitter();
+		}
+		else {
+			authenticatorStrategy = authenticatorFactory.create("ecotouring");
+			identifier = user.getPassword();
+		}
+		
+		// Se instancia el autenticador con el tipo de estrategia de autenticacion
+		Authenticator authenticator = new Authenticator(authenticatorStrategy);
+		Person authenticatedUser = authenticator.authenticate(userDAO, user.getUsername(), identifier);		
+				
 		if (authenticatedUser == null) {
 			throw new NotFoundException("Usuario no autenticado");
 		}
-
-		return authenticatedUser;
+		
+		return authenticatedUser;		
 	}
 }

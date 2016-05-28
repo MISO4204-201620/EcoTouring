@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and abstract="true" mandatory="true" name="EcoTouring">
+				<and mandatory="true" name="OCrearGaleriaVirtualProveedor">
+					<feature mandatory="true" name="OAlojamiento"/>
+					<feature mandatory="true" name="OAlimentacion"/>
+					<feature mandatory="true" name="OTransporte"/>
+					<feature mandatory="true" name="OPaseosEcologicos"/>
+				</and>
+				<and mandatory="true" name="OVisualizarProdiuctosIndividuales">
+					<feature mandatory="true" name="OVerDetalle"/>
+				</and>
+				<and mandatory="true" name="OCrearSistemaBusqueda">
+					<feature mandatory="true" name="OPorProveedor"/>
+					<feature mandatory="true" name="OTipoServicio"/>
+					<feature mandatory="true" name="ODescripcion"/>
+				</and>
+				<feature mandatory="true" name="OCrearCarritoCompra"/>
+				<and mandatory="true" name="OCrearPreguntas">
+					<feature mandatory="true" name="ODarRespuesta"/>
+				</and>
+				<feature name="ACrearCalificacion"/>
+				<feature name="AGestionarBlog"/>
+				<or name="ACrearReportesProveedor">
+					<feature mandatory="true" name="AReporteBusqueda"/>
+					<feature mandatory="true" name="AReporteConsultas"/>
+					<feature mandatory="true" name="AReporteVentas"/>
+				</or>
+				<or name="ARegistrar">
+					<feature mandatory="true" name="ARFacebook"/>
+					<feature mandatory="true" name="ARTwitter"/>
+					<feature mandatory="true" name="ARAplicacion"/>
+				</or>
+				<or name="AIniciarSesion">
+					<feature mandatory="true" name="AIFacebook"/>
+					<feature mandatory="true" name="AITwitter"/>
+					<feature mandatory="true" name="AIAplicacion"/>
+				</or>
+				<and name="ANotificaciones">
+					<feature mandatory="true" name="AMensajesInternos"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>ARFacebook</var>
+					<var>AIFacebook</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AIFacebook</var>
+					<var>ARFacebook</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>ARTwitter</var>
+					<var>AITwitter</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AITwitter</var>
+					<var>ARTwitter</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>ARAplicacion</var>
+					<var>AIAplicacion</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AReporteBusqueda</var>
+					<conj>
+						<var>AReporteConsultas</var>
+						<var>AReporteVentas</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AReporteConsultas</var>
+					<conj>
+						<var>AReporteBusqueda</var>
+						<var>AReporteVentas</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AReporteVentas</var>
+					<conj>
+						<var>AReporteConsultas</var>
+						<var>AReporteBusqueda</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AIFacebook</var>
+					<var>AITwitter</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

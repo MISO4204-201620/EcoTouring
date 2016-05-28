@@ -23,6 +23,7 @@ import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.MavenInvocationException;
+//Para usar aspectj llamando la utilidad AJC
 import org.aspectj.bridge.IMessage;
 import org.aspectj.bridge.MessageHandler;
 import org.aspectj.tools.ajc.Main;
@@ -32,8 +33,10 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 public class DerivadorEcotouring {
 
 	public static void main(String[] args) {
+		System.out.println("\nProducto:\t"+args[0]);
 		try {
-			List<String> features = cargarConfig("data/default.config");
+			List<String> features = cargarConfig(args[0]);
+					//"data/default.config");
 			derivarProducto(features);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +44,9 @@ public class DerivadorEcotouring {
 	}
 
 	private static void derivarProducto(List<String> features) {
+		System.out.println("\nDerivador Ecotouring Fabricas SW 201610\n");
 		Properties properties = new Properties();
+		//El archivo pom base es un activo de la línea
 		File pomfileOrigen = new File("data/pom.xml");
 		File pomfileDestino = new File("coreModule/pom.xml");
 		Model model;
@@ -84,62 +89,52 @@ public class DerivadorEcotouring {
 	}
 
 	private static void derivarCore(Model model) {
-		// Revisar el orden tal vez toque movel al final
-		// Que genere el package
-		System.out.println("Se incluyo el CORE");
+		// El core se incluye desde el inicio al editar y extender el POM base
+		System.out.println("Se incluyó\t CORE\n");
 	}
 
 	// Aspectos
 	private static void derivarNotificaciones(Model model, Properties properties) {
-		// Weaver weaver = new AspectJWeaver();
-		// aspectj.weave(b);
-		// The AspectJ compiler API
-		// https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
-		/*
-		 * if (feature.equals("FEARURE2")) { String[] args = new String[2];
-		 * args[0] = "HelloWorld.java"; args[1] = "Trace.java";
-		 * aspectjWeaver(args); System.out.println("Se incluyo FEARURE2"); }
-		 */
-		System.out.println("Se incluyo Notificaciones");
+		model.addProperty("notificaciones", "true");
+		System.out.println("Se incluyó\t Notificaciones");
 	}
 
-	// Patron
+	// Patron es en tiempo de ejecución
 	private static void derivarRedesSociales(Model model, Properties properties) {
-		// patron decorador abrir set= true
-		// escribir una propiedad en un archivo .properties
-		System.out.println("Se incluyo Redes Sociales");
+		properties.setProperty("redesSociales", "true");
+		System.out.println("Se incluyó\t Redes Sociales");
 	}
 
 	// Dependencia
 	private static void derivarBlog(Model model, Properties properties) {
 		Dependency dep = new Dependency();
-		dep.setGroupId("org.aspectj");
-		dep.setArtifactId("aspectjrt");
-		dep.setVersion("1.8.9");
-		properties.setProperty("blog", "true");
+		dep.setGroupId("co.edu.uniandes");
+		dep.setArtifactId("blogModule");
+		dep.setVersion("11.0.0-rc2");
 		model.addProperty("blog", "true");
-		System.out.println("Se incluyo Blog");
+		properties.setProperty("blog", "true");
+		System.out.println("Se incluyó\t Blog");
 	}
 
 	// Condicion sobre constante
 	private static void derivarMensajes(Model model, Properties properties) {
 		properties.setProperty("mensajes", "true");
 		model.addProperty("mensajes", "true");
-		System.out.println("Se incluyo mensajes");
+		System.out.println("Se incluyó\t mensajes");
 	}
 
 	// Condicion sobre constante
 	private static void derivarCalificacion(Model model, Properties properties) {
 		properties.setProperty("calificacion", "true");
 		model.addProperty("calificacion", "true");
-		System.out.println("Se incluyo Calificación");
+		System.out.println("Se incluyó\t Calificación");
 	}
 
 	// Condicion sobre constante
 	private static void derivarRepores(Model model, Properties properties) {
 		properties.setProperty("reportes", "true");
 		model.addProperty("reportes", "true");
-		System.out.println("Se incluyo Reportes");
+		System.out.println("Se incluyó\t Reportes");
 	}
 
 	private static List<String> cargarConfig(String archivo) throws Exception {
@@ -235,6 +230,7 @@ public class DerivadorEcotouring {
 			featuresFileWriter.newLine();
 			featuresFileWriter.write("}");
 			featuresFileWriter.close();
+			System.out.println("Se derivó\t FrontEnd");
 		} catch (IOException e) {
 			System.err.println("Error al generar el de configuración del front.");
 		}

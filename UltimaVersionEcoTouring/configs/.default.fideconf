@@ -1,0 +1,33 @@
+# Lists all features from the model with manual (first digit) and automatic (second digit) selection
+# 0 = deselected, 1 = selected, 2 = undefined
+21EcoTouring
+11OCrearGaleriaVirtualProveedor
+11OAlojamiento
+11OAlimentacion
+11OTransporte
+11OPaseosEcologicos
+11OVisualizarProdiuctosIndividuales
+11OVerDetalle
+11OCrearSistemaBusqueda
+11OPorProveedor
+11OTipoServicio
+11ODescripcion
+11OCrearCarritoCompra
+11OCrearPreguntas
+11ODarRespuesta
+22ACrearCalificacion
+22AGestionarBlog
+22ACrearReportesProveedor
+22AReporteBusqueda
+22AReporteConsultas
+22AReporteVentas
+21ARegistrar
+22ARFacebook
+22ARTwitter
+12ARAplicacion
+21AIniciarSesion
+22AIFacebook
+22AITwitter
+21AIAplicacion
+22ANotificaciones
+22AMensajesInternos

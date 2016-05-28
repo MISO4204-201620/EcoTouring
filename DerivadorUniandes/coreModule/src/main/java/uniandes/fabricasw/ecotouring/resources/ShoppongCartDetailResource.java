@@ -67,6 +67,10 @@ public class ShoppongCartDetailResource {
 	@UnitOfWork
 	public TransactionDetail createAJTransactionDetail(TransactionDetail transactionDetail) {
 		Optional<Item> i = itemDAO.findById(transactionDetail.getItem().getitemId());
+		messageDAO.create(new Message("Notificacion Sistema",
+				"Se realizo una operacion sobre el item" + i.get().getName(),
+				i.get().getSupplier(), i.get().getSupplier(), new Date(),
+				MessageStatus.UNREAD));
 		return shoppingCartDetailDAO.create(transactionDetail);
 	}
 
