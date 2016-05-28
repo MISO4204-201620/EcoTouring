@@ -2,16 +2,18 @@ import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {ItemThumb} from '../interfaces/item-thumb';
 import {Observable} from 'rxjs/Observable';
+import {ConfigParams} from '../config-params';
 
 @Injectable()
 export class ProviderItemsService {
 	constructor (private http : Http){}
 
-	private _itemsUrl = 'http://54.174.139.165:9999/suppliers/';
+	private config = new ConfigParams ();
+	private _apiUrl = this.config.urlAPI + "suppliers/";
 
 	getItems(param){
 
-		return this.http.get(this._itemsUrl + param + '/items')
+		return this.http.get(this._apiUrl + param + '/items')
 							.map(res => <ItemThumb[]> res.json())
 							.catch(this.handleError);
 	}

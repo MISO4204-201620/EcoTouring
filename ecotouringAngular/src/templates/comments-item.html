@@ -19,7 +19,7 @@
 <!-- /#comments -->
 
 
-<div id="comment-form" *ngIf="isLogged">
+<div id="comment-form" *ngIf="isLogged && configApp.calificacion">
 
     <h4 class="text-uppercase">Deja tu comentario</h4>
 
@@ -40,61 +40,62 @@
 
         <div class="row">
             <div class="col-sm-12 text-right">
-                <button class="btn btn-template-main"><i class="fa fa-comment-o"></i> Enviar comentario</button>
-                <a class="btn btn-template-main" (click)="open()"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
+                <button class="btn btn-template-main" ><i class="fa fa-comment-o"></i> Enviar comentario</button>
+                <a class="btn btn-template-main" (click)="open()" *ngIf="configApp.mensajes"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
             </div>
         </div>
 
 
     </form>
 
-    <!-- **** REPORTS MODAL *** -->
-    <ngl-modal header="Ecotouring Mensajes" [(open)]="opened" [size]="sizeModal">
-      <div body>
-        <p>Enviar mensaje al proveedor.</p>
-        <div class="row" style="padding: 20px">
-            <form  (ngSubmit)="onSubmitMessage(newMessage)" #messageForm="ngForm">
-            <br/>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+</div>
+<a class="btn btn-template-main" (click)="open()" *ngIf="isLogged && configApp.mensajes && !configApp.calificacion"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
+<!-- /#comment-form -->
+
+<!-- **** REPORTS MODAL *** -->
+<ngl-modal header="Ecotouring Mensajes" [(open)]="opened" [size]="sizeModal" *ngIf="isLogged && configApp.mensajes">
+  <div body>
+    <p>Enviar mensaje al proveedor.</p>
+    <div class="row" style="padding: 20px">
+        <form  (ngSubmit)="onSubmitMessage(newMessage)" #messageForm="ngForm">
+        <br/>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="alert alert-success alert-dismissible" role="alert" [hidden]="!createOk">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    {{ okMessage }}
+                </div>
+                <div class="form-group">
+                    <label for="name">Asunto:</label>
+                    <input type="text" class="form-control" id="subject" required [(ngModel)]="newMessage.subject" ngControl="subject" #subject="ngForm">
+                    <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="subject.valid || subject.pristine">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        {{ okMessage }}
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Asunto:</label>
-                        <input type="text" class="form-control" id="subject" required [(ngModel)]="newMessage.subject" ngControl="subject" #subject="ngForm">
-                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="subject.valid || subject.pristine">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                            </button>
-                            Asunto vacío o inválido.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Mensaje:</label>
-                        <textarea id="description" class="form-control editor" required [(ngModel)]="newMessage.body" ngControl="text" #text="ngForm"></textarea>
-                        <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="text.valid || text.pristine">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                            </button>
-                            El mensaje es vacío o inválido.
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Enviar mensaje</button>
+                        Asunto vacío o inválido.
                     </div>
                 </div>
-                <br/>   
+                <div class="form-group">
+                    <label for="description">Mensaje:</label>
+                    <textarea id="description" class="form-control editor" required [(ngModel)]="newMessage.body" ngControl="text" #text="ngForm"></textarea>
+                    <div class="alert alert-danger alert-dismissible" role="alert" [hidden]="text.valid || text.pristine">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        El mensaje es vacío o inválido.
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-template-main" ><i class="fa fa-floppy-o"></i> Enviar mensaje</button>
+                </div>
             </div>
-            <!-- /.row -->
-            </form>    
+            <br/>   
         </div>
-      </div>
-      <button class="btn btn-sm btn-success" (click)="cancel()">Cerrar</button>
-    </ngl-modal>
+        <!-- /.row -->
+        </form>    
+    </div>
+  </div>
+  <button class="btn btn-sm btn-success" (click)="cancel()">Cerrar</button>
+</ngl-modal>
 
-    <!-- **** END REPORTS MODAL *** -->
-
-</div>
-<!-- /#comment-form -->
+<!-- **** END REPORTS MODAL *** -->

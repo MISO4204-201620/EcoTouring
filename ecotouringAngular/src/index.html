@@ -248,20 +248,37 @@
         facebook: "1097817630262054",
         google: "816306725862-9l5fhsvn90bc975s1pfj826l6m76q705.apps.googleusercontent.com",
         twitter: "yzNypQLXlAGegOlS6xRwHVd7nrvAg95AYllJBcCfKmK6S7bGgC"
-    }, {redirect_uri: '/signup'});
+    }, {redirect_uri: '/redirect.html'});
 
     hello.on('auth.login', function(auth) {
 
         // Call user information, for the given network
-        hello(auth.network).api('/me').then(function(r) {
+        hello(auth.network).api('/me?fields=email,first_name,last_name,name,timezone,verified').then(function(r) {
             // Inject it into the container
-            var label = document.getElementById('profile_' + auth.network);
-            if (!label) {
-                label = document.createElement('div');
-                label.id = 'profile_' + auth.network;
-                document.getElementById('profile').appendChild(label);
+            console.log(r);
+
+            let user = {
+              id : r.id,
+              fullName : r.name,
+              username : r.email,
+              email : r.email,
+              password : "",
+              jobTitle : "",
+              address : "",
+              role : "USER"
             }
-            label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+
+            if(typeof(Storage) !== "undefined"){
+              if(sessionStorage.getItem('userSession')){
+                sessionStorage.removeItem('userSession');
+              }else {
+                sessionStorage.setItem('userSession', JSON.stringify(user));
+                //location.reload();
+              }
+            }else {
+              alert("Favor actualizar su explorador !");
+            }
+            
         });
     });
 </script>

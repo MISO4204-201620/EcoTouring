@@ -2,12 +2,14 @@ import {Injectable} from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {Housing} from '../models/product/housing.model';
 import {Observable} from 'rxjs/Observable';
+import {ConfigParams} from '../config-params';
 
 @Injectable()
 export class HousingService {
 	constructor (private http : Http){}
 
-	private _housingUrl = 'http://54.174.139.165:9999/accommodation';
+	private config = new ConfigParams ();
+	private _apiUrl = this.config.urlAPI + 'accommodation';
 
 	createService (service : Housing) : Observable<Housing> {
 		let body = JSON.stringify(service);
@@ -15,7 +17,7 @@ export class HousingService {
 		let headers = new Headers({'Content-Type' : 'application/json'});
 		let options = new RequestOptions({ headers : headers});
 
-		return this.http.post(this._housingUrl, body, options)
+		return this.http.post(this._apiUrl, body, options)
 						.map(res => <Housing> res.json())
 						.catch(this.handleError)
 	}

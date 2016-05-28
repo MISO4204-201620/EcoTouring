@@ -8,6 +8,7 @@ import {User} from '../../models/user/user.model';
 import {Message} from '../messages/messages.model';
 import {MessagesService} from '../messages/messages.service';
 import {Item} from '../../interfaces/item';
+import {EcoTouringFeaturesConfig} from '../../EcoTouringFeaturesConfig';
 
 @Component({
   selector: 'comment-item',
@@ -22,8 +23,11 @@ export class CommentItemComponent implements OnInit {
 
   @Input('id-supplier') idSupplier: string;
 
+  configApp : EcoTouringFeaturesConfig;
+  
   constructor(params : RouteParams,private _router: Router, private _commentItemService : CommentItemService, private _messageService : MessagesService){
     this.itemId = params.get('item');
+    this.configApp = new EcoTouringFeaturesConfig();
   }
 
   itemId :string;

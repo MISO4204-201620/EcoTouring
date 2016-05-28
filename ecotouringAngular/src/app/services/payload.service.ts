@@ -4,12 +4,14 @@ import {Car} from '../models/car/car.model';
 import {Payload} from '../models/car/payload.model';
 import {CartDetail} from '../models/car/cart-detail.model';
 import {Observable} from 'rxjs/Observable';
+import {ConfigParams} from '../config-params';
 
 @Injectable()
 export class PayloadService {
 	constructor (private http : Http){}
 
-	private _payloadUrl = 'http://54.174.139.165:9999/shoppingCart';
+	private config = new ConfigParams ();
+	private _apiUrl = this.config.urlAPI + "shoppingCart";
 
 	sendPay (service : Payload) : Observable<Payload> {
 		let body = JSON.stringify(service);
@@ -17,7 +19,7 @@ export class PayloadService {
 		let headers = new Headers({'Content-Type' : 'application/json'});
 		let options = new RequestOptions({ headers : headers});
 
-		return this.http.post(this._payloadUrl, body, options)
+		return this.http.post(this._apiUrl, body, options)
 						.map(res => <Payload> res.json())
 						.catch(this.handleError)
 	}
@@ -28,7 +30,7 @@ export class PayloadService {
 		let headers = new Headers({'Content-Type' : 'application/json'});
 		let options = new RequestOptions({ headers : headers});
 
-		return this.http.post(this._payloadUrl + "/" + item['transaction']['id'] + "/detail", body, options)
+		return this.http.post(this._apiUrl + "/" + item['transaction']['id'] + "/detail", body, options)
 						.map(res => <CartDetail> res.json())
 						.catch(this.handleError)	
 	}
